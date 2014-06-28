@@ -98,7 +98,7 @@ class HouseLoanController < ApplicationController
 
 	def push_loan_case_to_gdoc(is_dealed, to_buy_price, parking_price, to_loan_price, is_need_grace_period, grace_period_years, to_loan_period_years, other_info,address, layer, building_type, rooms, living_rooms, rest_rooms, building_area, public_area, land_area, building_age, house_decoration, house_condition, is_top_built, top_building_area, parking_type, parking_layer, parking_area, applicant_name,applicant_email, applicant_phone1, applicant_phone2, applicant_age, applicant_company_name, is_applicant_company_founder, applicant_title, applicant_serve_year, applicant_year_earning, applicant_other_earning, applicant_company_type, applicant_is_have_house, applicant_other_house_loan, applicant_other_credit_loan, applicant_other_learning_loan, is_applicant_use_revolving_interest, is_applicant_use_check, is_applicant_have_bounce_check)
 		session = GoogleDrive.login(ENV["GMAIL_USERNAME"], ENV["GMAIL_SECRET"])
-		ws = session.spreadsheet_by_key(ENV["TABLE_LENDER"]).worksheets[0]	
+		ws = session.spreadsheet_by_key(ENV["TABLE_LOAN_CASE"]).worksheets[0]	
 		num_rows = ws.num_rows + 1
 		ws[num_rows,1] = is_dealed
 		ws[num_rows,2] = to_buy_price

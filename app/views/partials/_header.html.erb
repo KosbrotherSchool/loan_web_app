@@ -16,22 +16,41 @@
 					<div class="navigation">
 						<nav>
 						<ul class="nav topnav">
-							<li class="dropdown active">
-							<a href="index.html"><i class="icon-home"></i> 首頁</a>
-							</li>
-							<li>
-							<a href="apply_mortgage.html">申請新房貸</a>
-							</li>
-							<li>
-							<a href="join_us.html">貸款專員申請加入</a>
-							</li>
-							<li>
-							<a href="faq.html">常見問題</a>
-							</li>
-							<li>
-							<a href="about_us.html">關於我們</a>
-							</li>
-							
+								<% if action_name == "index" %>					
+									<li class="dropdown active">
+								<% else %>
+									<li>
+								<% end %>
+										<a href="index.html"><i class="icon-home"></i> 首頁</a>
+									</li>
+								<% if action_name == "apply_mortgage" %>					
+									<li class="dropdown active">
+								<% else %>
+									<li>
+								<% end %>
+									<a href="apply_mortgage.html">申請新房貸</a>
+								</li>
+								<% if action_name == "join_us" %>					
+									<li class="dropdown active">
+								<% else %>
+									<li>
+								<% end %>
+									<a href="join_us.html">貸款專員申請加入</a>
+									</li>
+								<% if action_name == "faq" %>					
+									<li class="dropdown active">
+								<% else %>
+									<li>
+								<% end %>
+									<a href="faq.html">常見問題</a>
+									</li>
+								<% if action_name == "about_us" %>					
+									<li class="dropdown active">
+								<% else %>
+									<li>
+								<% end %>
+									<a href="about_us.html">關於我們</a>
+									</li>						
 						</ul>
 						</nav>
 					</div>
