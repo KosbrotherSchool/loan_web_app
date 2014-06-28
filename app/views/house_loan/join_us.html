@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+
+<body>
+
+<div id="wrapper">
+		
+	<section id="inner-headline">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="inner-heading">
+					<h2>貸款專員申請加入</h2>
+					</div>
+				</div>	
+			</div>			
+		</div>
+	</section>
+	
+	<section id="content">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span8">
+					<% if @lender.present? %>			
+						<h4>請填寫以下資訊申請，我們會進行三項認證。</h4>
+						
+						<% if @lender.errors.any? %>
+								<h2>Errors: </h2>
+								<ul>
+									<% @lender.errors.full_messages.each do |message|%>
+										<li><%= message %></li>
+									<% end %>
+								</ul>
+						<% end %>
+					
+						<%= form_for @lender, url: {action: "create_lender"}, html: {class: "form-horizontal"} do |f| %>
+						  
+						<!-- <div id="sendmessage">
+							您的申請已送出，感謝您，客服將儘快回覆您的申請。
+						</div> -->
+						<div class="row-fluid">
+							<div class="control-group">
+							    <label class="control-label" for="">專員姓名*<br /></label>
+							    <div class="controls">
+										<%= f.text_field :name, :placeholder => "請填寫真實姓名。"%>
+							    </div>
+							</div>
+							<div class="control-group">
+							    <label class="control-label" for="">電子信箱/Email*<br /></label>
+							    <div class="controls">
+										<%= f.text_field :email, :placeholder => "請填寫您的公司信箱。"%>
+							    </div>
+							</div>
+							<div class="control-group">
+							    <label class="control-label" for="">公司電話*<br /></label>
+							    <div class="controls">
+										<%= f.text_field :contact_company_phone, :placeholder => "請填寫您的公司電話。"%>
+							    </div>
+							</div>
+							<div class="control-group">
+							    <label class="control-label" for="">公司傳真*<br /></label>
+							    <div class="controls">
+										<%= f.text_field :fax_phone, :placeholder => "請填寫您的公司傳真號碼。"%>
+							    </div>
+							</div>
+							<div class="control-group">
+							    <label class="control-label" for="">個人電話*<br /></label>
+							    <div class="controls">
+										<%= f.text_field :contact_personal_phone, :placeholder => "格式如右：0912-345-678"%>
+							    </div>
+							</div>
+							<div class="control-group">
+							    <label class="control-label" for="">公司名稱*<br /></label>
+							    <div class="controls">
+										<%= f.text_field :bank, :placeholder => "富邦銀行/南山人壽"%>
+							    </div>
+							</div>
+							<div class="control-group">
+							    <label class="control-label" for="">分行/通訊處名稱<br /></label>
+							    <div class="controls">
+										<%= f.text_field :bank_branch, :placeholder => "成德分行/八德通訊處"%>
+							    </div>
+							</div>
+							
+							<div class="control-group">
+							    <label class="control-label" for="">職稱*<br /></label>
+							    <div class="controls">
+										<%= f.text_field :work_title, :placeholder => "依照您的職稱填寫"%>
+							    </div>
+							</div>
+							<div class="control-group">
+							    <label class="control-label" for="">承做區域*（可複選）<br /></label>
+							    <div class="controls">
+										<label class="checkbox inline">
+										    <input type="checkbox" name="taipei" id="region" value="true"> 台北市
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="new_taipei" id="region" value="true"> 新北市
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="" id="region" value=""> 基隆市
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="" id="region" value=""> 桃園市
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="" id="region" value=""> 新竹縣市
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="" id="region" value=""> 苗栗縣
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="" id="region" value=""> 台中市
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="" id="region" value=""> 彰化縣市
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="" id="region" value=""> 南投縣
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="" id="region" value=""> 高雄市
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="" id="region" value=""> 屏東縣
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="" id="region" value=""> 宜蘭縣
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="" id="region" value=""> 花蓮縣
+										</label>
+										<label class="checkbox inline">
+										    <input type="checkbox" name="" id="region" value=""> 台東縣
+										</label>
+							    </div>
+							</div>
+							<div class="control-group">
+							    <label class="control-label" for="">上傳名片*<br /></label>
+							    <div class="controls">
+								<input type="file" name="file1">
+							    </div>
+							</div>
+							<div class="control-group">
+							    <label class="control-label" for="">上傳大頭照（生活照 寬300px 高225px）*<br /></label>
+							    <div class="controls">
+								<input type="file" name="file2">
+							    </div>
+							</div>
+							<div class="control-group">
+							    <div class="controls">
+									<div class="form-actions">
+									  <button class="btn btn-success input-medium" type="submit">送出</button>
+									</div>
+							    </div>
+							</div>
+						</div>	
+						</form>
+
+						<% end %>
+
+					 <% else %>
+				  	<h4>您的申請已送出，感謝您，我們將盡快與您聯絡。</h4>		  	
+				  <% end %>
+				</div>
+				<div class="span4">
+					<div class="clearfix"></div>
+					<aside class="right-sidebar">
+					   <div class="widget">
+						  <h5 class="widgetheading">收費說明<span></span></h5>
+						  目前本服務針對每一筆成功核貸案件，向貸款專員收取服務費新台幣2000元整。
+						  <br />
+						  客服確認成功媒合後，會提供帳戶供專員繳交服務費。
+					  </div>
+					  <div class="widget">
+						  <h5 class="widgetheading">申請說明<span></span></h5>
+						  請據實填寫您的「公司Email信箱」以及「公司電話」，我們將用此兩項方式與您聯繫認證。
+						  <br />
+						  我們不接受個人名義申請！
+					  </div>
+					  <div class="widget">
+						  <h5 class="widgetheading">公司團隊大量加入<span></span></h5>
+						  請<a href="" class="btn btn-theme">點此下載EXCEL</a>，填寫後寄至service@e-loan.com.tw，我們客服將與負責人聯繫，為貴公司團隊一次加入！
+					  </div>
+					</aside>
+				</div>	
+			</div>
+		</div>
+	</section>
+</div>
+<a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bglight icon-2x active"></i></a>	
+
+
+</body>
+</html>

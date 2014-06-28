@@ -1,0 +1,484 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <title>一貸宗師</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="js/jquery-2.0.2.js"></script>
+    <script type="text/javascript" src="js/jquery.twzipcode.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+    <style>
+        
+        .page-header {
+            padding-bottom: 2px;
+            margin: 10px 0 20px;
+            border-bottom: 1px solid #eeeeee;
+        }
+        
+        .addr-county, .addr-area{width:90px;}
+        .addr-county{
+        }
+        .addr-area{
+            
+        }
+        .addr-zip{
+            width:50px;
+            border:1px solid #666;
+        }
+       
+       
+    </style>
+    
+</head>
+<body>
+    <div class="row-fluid" style="width: 1000px;">
+        <div class="span12">
+            <div class="page-header">
+                <h2>申請新房貸</h2>
+            </div>
+            <form class="form-horizontal" action="">
+                <!-- demand info -->
+                <div class="control-group">
+                    <label class="control-label"><h4>貸款需求</h4></label>
+                    <div class="controls">
+                    詳細填寫以下資料，銀行或壽險房貸專員立即評估後，告知您評估結果。
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">是否成交*</label>
+                    <div class="controls">
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                            已簽約成交
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                            準備議價，尚未成交
+                        </label>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputRent">成交價格/預計成交價格*<br /></label>
+                    <div class="controls">
+                        <input id="inputRent" type="text" placeholder="" />萬
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputRent">貸款金額*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />萬
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">是否需要寬限期*</label>
+                    <div class="controls">
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="0" checked>
+                            否
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="1">
+                            是，需要
+                            <input id="" type="text" placeholder="" />年
+                        </label>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">貸款期限*<br /></label>
+                    <div class="controls">
+                        <label class="checkbox inline">
+                            <input type="checkbox" name="" id="" value=""> 皆可
+                        </label>
+                        <label class="checkbox inline">
+                            <input type="checkbox" name="" id="" value=""> 20年
+                        </label>
+                        <label class="checkbox inline">
+                            <input type="checkbox" name="" id="" value=""> 30年
+                        </label>
+                        <label class="checkbox inline">
+                            <input type="checkbox" name="" id="" value=""> 40年
+                        </label>
+                    </div>
+                </div>
+                 <div class="control-group">
+                    <label class="control-label">備註：（如可提供保證人或其他財力證明）</label>
+                    <div class="controls">
+                        <textarea rows="10"></textarea>
+                    </div>
+                </div>
+                 
+                <!-- house info -->
+                <div class="page-header">
+                    <h2>房屋資訊</h2>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">地址*<br /></label>
+                    <div class="controls" >
+                        <!-- twzipcode plugin-->
+                        <div id="twzipcode"></div>
+                        <input id="inputAddr" type="text" class="span5" placeholder="請輸入地址" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">樓層*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />樓
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">建築類型*<br /></label>
+                    <div class="controls">
+                        <select class="span3">
+                            <option>公寓</option>
+                            <option>電梯大樓</option>
+                            <option>套房</option>
+                            <option>透天</option>
+                        </select>
+                    </div>
+                </div>
+                 <div class="control-group">
+                    <label class="control-label" for="">格局*<br /></label>
+                    <div class="controls">
+                        <select class="span2">
+                            <option>-請選擇-</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                        </select>房 / 
+                        <select class="span2">
+                            <option>-請選擇-</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                        </select>廳 /
+                        <select class="span2">
+                            <option>-請選擇-</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                        </select>衛 
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">建物權狀坪數*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />坪（不含車位）
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">公設坪數*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />坪
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">土地持分坪數*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />坪
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">屋齡*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />年（新成屋請填0）
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">裝潢*</label>
+                    <div class="controls">
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="0" checked>
+                            無裝潢
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="1">
+                            裝潢仍新
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="2">
+                            裝潢較舊
+                        </label>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">屋況*</label>
+                    <div class="controls">
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="1" checked>
+                            佳，且無滲漏水或壁癌
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="2">
+                            中等，有些許滲漏水或壁癌情況
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="3">
+                            不佳，有嚴重滲漏水或壁癌
+                        </label>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">頂樓是否有加蓋*</label>
+                    <div class="controls">
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="0" checked>
+                            無
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="1">
+                            有
+                        </label>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">加蓋坪數<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />坪
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">是否有車位*</label>
+                    <div class="controls">
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="0" checked>
+                            無
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="1">
+                            機械車位
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="2">
+                            平面車位
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label" for="">車位樓層<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />地下一樓，請填B1
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">車位坪數<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />坪
+                    </div>
+                </div>
+                
+                
+                <!-- user info -->
+                <div class="page-header">
+                    <h2>個人資訊</h2>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">您的稱呼*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="如：林先生、陳小姐" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">電子信箱/Email*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="格式：yourname@gmail.com" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">聯絡電話1*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="格式如右：0912918938" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">聯絡電話2<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="格式如右：02-9379-2398轉21" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">年齡*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />歲
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">公司名稱*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">是否為公司負責人*</label>
+                    <div class="controls">
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="0" checked>
+                            否
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="1">
+                            是
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label" for="">職稱<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">年資*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />年
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">年薪*<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />萬
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">其他收入<br /></label>
+                    <div class="controls">
+                        <input id="" type="text" placeholder="" />萬
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">公司屬性（可複選）<br /></label>
+                    <div class="controls">
+                        <label class="checkbox inline">
+                            <input type="checkbox" name="" id="" value=""> 百大企業
+                        </label>
+                        <label class="checkbox inline">
+                            <input type="checkbox" name="" id="" value=""> 千大企業
+                        </label>
+                        <label class="checkbox inline">
+                            <input type="checkbox" name="" id="" value=""> 軍公教單位
+                        </label>
+                        <label class="checkbox inline">
+                            <input type="checkbox" name="" id="" value=""> 上市櫃公司
+                        </label>
+                        <label class="checkbox inline">
+                            <input type="checkbox" name="" id="" value=""> 外商公司
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">名下是否有房子*</label>
+                    <div class="controls">
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="0" checked>
+                            無
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="1">
+                            有
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">名下其他負債</label>
+                    <div class="controls">
+                        <label class="">
+                            房貸 <input id="" type="text" placeholder="" />萬
+                        </label>
+                        <label class="">
+                            信貸 <input id="" type="text" placeholder="" />萬
+                        </label>
+                        <label class="">
+                            車貸 <input id="" type="text" placeholder="" />萬
+                        </label>
+                        <label class="">
+                            助學貸款 <input id="" type="text" placeholder="" />萬
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">過去半年是否有動用過信用卡或現金卡循環利息*</label>
+                    <div class="controls">
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="0" checked>
+                            無
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="1">
+                            有
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">是否有使用支票*</label>
+                    <div class="controls">
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="0" checked>
+                            無
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="1">
+                            有
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">過去三年是否有跳票記錄*</label>
+                    <div class="controls">
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="0" checked>
+                            無
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="optionsRadios" id="" value="1">
+                            有
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="form-actions">
+                            <button class="btn btn-primary input-large" type="submit">送出</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+            <div style="clear: both;"> </div>
+        </div>
+       
+    </div>
+    <script type="text/javascript">
+        $('#twzipcode').twzipcode({
+            css: ['addr-county', 'addr-area', 'addr-zip']
+        });
+    </script>
+</body>
+</html>
