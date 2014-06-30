@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140628160433) do
     t.string   "loan_interest"
     t.text     "interest_explaination"
     t.boolean  "is_binded"
+    t.string   "grace_period"
     t.text     "expense_explaination"
     t.text     "other_info"
     t.datetime "created_at"

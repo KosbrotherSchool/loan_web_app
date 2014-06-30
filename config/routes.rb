@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post "create_lender" => "house_loan#create_lender"
   post "create_loan_case" => "house_loan#create_loan_case"
 
+  get "backstage/index" => "backstage#index"
+
   # resources :house_exchange_loan
   resources :house_loan
   # resources :personal_loan
