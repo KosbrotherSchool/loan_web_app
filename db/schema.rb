@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630150102) do
+ActiveRecord::Schema.define(version: 20140630161309) do
 
   create_table "case_statuses", force: true do |t|
     t.string   "name"
@@ -21,19 +21,6 @@ ActiveRecord::Schema.define(version: 20140630150102) do
 
   create_table "counties", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "lender_responses", force: true do |t|
-    t.integer  "loan_money"
-    t.integer  "loan_years"
-    t.string   "loan_interest"
-    t.text     "interest_explaination"
-    t.boolean  "is_binded"
-    t.string   "grace_period"
-    t.text     "expense_explaination"
-    t.text     "other_info"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -107,6 +94,21 @@ ActiveRecord::Schema.define(version: 20140630150102) do
     t.boolean  "is_applicant_have_bounce_check"
     t.integer  "county_id"
     t.integer  "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "loan_responses", force: true do |t|
+    t.integer  "loan_money"
+    t.integer  "loan_years"
+    t.string   "loan_interest"
+    t.text     "interest_explaination"
+    t.boolean  "is_binded"
+    t.string   "grace_period"
+    t.text     "expense_explaination"
+    t.text     "other_info"
+    t.integer  "lender_id"
+    t.integer  "loan_case_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

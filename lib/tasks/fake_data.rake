@@ -86,6 +86,49 @@ namespace :fake_data do
 
 	end
 
+	task :responses => :environment do
+
+			res = LoanResponse.new
+			res.loan_money = 500
+			res.loan_years = 20
+			res.loan_interest = "2.37%"
+			res.interest_explaination = "一段式"
+			res.is_binded = false
+			res.grace_period = "20年"
+			res.expense_explaination = "5000開辦費"
+			res.other_info = "無"
+			res.lender_id = 1
+			res.loan_case_id = 1
+			res.save
+
+			res = LoanResponse.new
+			res.loan_money = 500
+			res.loan_years = 20
+			res.loan_interest = "2.37%"
+			res.interest_explaination = "一段式"
+			res.is_binded = false
+			res.grace_period = "20年"
+			res.expense_explaination = "5000開辦費"
+			res.other_info = "無"
+			res.lender_id = 1
+			res.loan_case_id = 2
+			res.save
+
+			res = LoanResponse.new
+			res.loan_money = 500
+			res.loan_years = 20
+			res.loan_interest = "2.37%"
+			res.interest_explaination = "一段式"
+			res.is_binded = false
+			res.grace_period = "20年"
+			res.expense_explaination = "5000開辦費"
+			res.other_info = "無"
+			res.lender_id = 2
+			res.loan_case_id = 1
+			res.save
+			
+	end
+
 
 
 
