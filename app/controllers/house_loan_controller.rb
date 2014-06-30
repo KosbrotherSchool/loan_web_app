@@ -8,7 +8,7 @@ class HouseLoanController < ApplicationController
 
 	def apply_mortgage
 		if params[:msg] == 'success'
-		
+			
 		else
 			@loan_case = LoanCase.new
 		end
@@ -42,7 +42,11 @@ class HouseLoanController < ApplicationController
 		@loan_case.applicant_company_type = applicant_company_type
 
 		if @loan_case.save
-			push_loan_case_to_gdoc(@loan_case.is_dealed, @loan_case.to_buy_price, @loan_case.parking_price, @loan_case.to_loan_price, @loan_case.is_need_grace_period, @loan_case.grace_period_years, @loan_case.to_loan_period_years, @loan_case.other_info, @loan_case.address, @loan_case.layer, @loan_case.building_type, @loan_case.rooms, @loan_case.living_rooms, @loan_case.rest_rooms, @loan_case.building_area, @loan_case.public_area, @loan_case.land_area, @loan_case.building_age, @loan_case.house_decoration, @loan_case.house_condition, @loan_case.is_top_built, @loan_case.top_building_area, @loan_case.parking_type, @loan_case.parking_layer, @loan_case.parking_area, @loan_case.applicant_name, @loan_case.applicant_email, @loan_case.applicant_phone1, @loan_case.applicant_phone2, @loan_case.applicant_age, @loan_case.applicant_company_name, @loan_case.is_applicant_company_founder, @loan_case.applicant_title, @loan_case.applicant_serve_year, @loan_case.applicant_year_earning, @loan_case.applicant_other_earning, @loan_case.applicant_company_type, @loan_case.applicant_is_have_house, @loan_case.applicant_other_house_loan, @loan_case.applicant_other_car_loan, @loan_case.applicant_other_learning_loan, @loan_case.is_applicant_use_revolving_interest, @loan_case.is_applicant_use_check, @loan_case.is_applicant_have_bounce_check)
+			# push_loan_case_to_gdoc(@loan_case.is_dealed, @loan_case.to_buy_price, @loan_case.parking_price, @loan_case.to_loan_price, @loan_case.is_need_grace_period, @loan_case.grace_period_years, @loan_case.to_loan_period_years, @loan_case.other_info, @loan_case.address, @loan_case.layer, @loan_case.building_type, @loan_case.rooms, @loan_case.living_rooms, @loan_case.rest_rooms, @loan_case.building_area, @loan_case.public_area, @loan_case.land_area, @loan_case.building_age, @loan_case.house_decoration, @loan_case.house_condition, @loan_case.is_top_built, @loan_case.top_building_area, @loan_case.parking_type, @loan_case.parking_layer, @loan_case.parking_area, @loan_case.applicant_name, @loan_case.applicant_email, @loan_case.applicant_phone1, @loan_case.applicant_phone2, @loan_case.applicant_age, @loan_case.applicant_company_name, @loan_case.is_applicant_company_founder, @loan_case.applicant_title, @loan_case.applicant_serve_year, @loan_case.applicant_year_earning, @loan_case.applicant_other_earning, @loan_case.applicant_company_type, @loan_case.applicant_is_have_house, @loan_case.applicant_other_house_loan, @loan_case.applicant_other_car_loan, @loan_case.applicant_other_learning_loan, @loan_case.is_applicant_use_revolving_interest, @loan_case.is_applicant_use_check, @loan_case.is_applicant_have_bounce_check)
+			ConfirmMailer.mail_content(@loan_case.id).deliver
+			Lender.all.each do |lender|
+				MailToLenderMailer.mail_content(@loan_case.id, lender.email).deliver
+			end
 			redirect_to :controller => 'house_loan', :action => 'apply_mortgage', :msg => 'success'
 		else
 			render :apply_mortgage
@@ -108,50 +112,42 @@ class HouseLoanController < ApplicationController
 		ws[num_rows,6] = grace_period_years
 		ws[num_rows,7] = to_loan_period_years
 		ws[num_rows,8] = other_info
-		ws[num_rows,9] = is_dealed
-		ws[num_rows,10] = to_buy_price
-		ws[num_rows,11] = parking_price
-		ws[num_rows,12] = to_loan_price
-		ws[num_rows,13] = is_need_grace_period
-		ws[num_rows,14] = grace_period_years
-		ws[num_rows,15] = to_loan_period_years
-		ws[num_rows,16] = other_info
-		ws[num_rows,17] = address
-		ws[num_rows,18] = layer
-		ws[num_rows,19] = building_type
-		ws[num_rows,20] = rooms
-		ws[num_rows,21] = living_rooms
-		ws[num_rows,22] = rest_rooms
-		ws[num_rows,23] = building_area
-		ws[num_rows,24] = public_area
-		ws[num_rows,25] = land_area
-		ws[num_rows,26] = building_age
-		ws[num_rows,27] = house_decoration
-		ws[num_rows,28] = house_condition
-		ws[num_rows,29] = is_top_built
-		ws[num_rows,30] = top_building_area
-		ws[num_rows,31] = parking_type
-		ws[num_rows,32] = parking_layer
-		ws[num_rows,33] = parking_area
-		ws[num_rows,34] = applicant_name
-		ws[num_rows,35] = applicant_email
-		ws[num_rows,36] = applicant_phone1
-		ws[num_rows,37] = applicant_phone2
-		ws[num_rows,38] = applicant_age
-		ws[num_rows,39] = applicant_company_name
-		ws[num_rows,40] = is_applicant_company_founder
-		ws[num_rows,41] = applicant_title
-		ws[num_rows,42] = applicant_serve_year
-		ws[num_rows,43] = applicant_year_earning
-		ws[num_rows,44] = applicant_other_earning
-		ws[num_rows,45] = applicant_company_type
-		ws[num_rows,46] = applicant_is_have_house
-		ws[num_rows,47] = applicant_other_house_loan
-		ws[num_rows,48] = applicant_other_credit_loan
-		ws[num_rows,49] = applicant_other_learning_loan
-		ws[num_rows,50] = is_applicant_use_revolving_interest
-		ws[num_rows,51] = is_applicant_use_check
-		ws[num_rows,52] = is_applicant_have_bounce_check
+		ws[num_rows,9] = address
+		ws[num_rows,10] = layer
+		ws[num_rows,11] = building_type
+		ws[num_rows,12] = rooms
+		ws[num_rows,13] = living_rooms
+		ws[num_rows,14] = rest_rooms
+		ws[num_rows,15] = building_area
+		ws[num_rows,16] = public_area
+		ws[num_rows,17] = land_area
+		ws[num_rows,18] = building_age
+		ws[num_rows,19] = house_decoration
+		ws[num_rows,20] = house_condition
+		ws[num_rows,21] = is_top_built
+		ws[num_rows,22] = top_building_area
+		ws[num_rows,23] = parking_type
+		ws[num_rows,24] = parking_layer
+		ws[num_rows,25] = parking_area
+		ws[num_rows,26] = applicant_name
+		ws[num_rows,27] = applicant_email
+		ws[num_rows,28] = applicant_phone1
+		ws[num_rows,29] = applicant_phone2
+		ws[num_rows,30] = applicant_age
+		ws[num_rows,31] = applicant_company_name
+		ws[num_rows,32] = is_applicant_company_founder
+		ws[num_rows,33] = applicant_title
+		ws[num_rows,34] = applicant_serve_year
+		ws[num_rows,35] = applicant_year_earning
+		ws[num_rows,36] = applicant_other_earning
+		ws[num_rows,37] = applicant_company_type
+		ws[num_rows,38] = applicant_is_have_house
+		ws[num_rows,39] = applicant_other_house_loan
+		ws[num_rows,40] = applicant_other_credit_loan
+		ws[num_rows,41] = applicant_other_learning_loan
+		ws[num_rows,42] = is_applicant_use_revolving_interest
+		ws[num_rows,43] = is_applicant_use_check
+		ws[num_rows,44] = is_applicant_have_bounce_check
 		ws.save()
 	end
 

@@ -1,0 +1,27 @@
+<p>專員您好,</p>
+
+<p>
+  以下為本次詢問案件資料:
+</p>
+<p>
+  是否已成交: <%= @loan_case.is_dealed %>
+</p>
+<p>
+  預計成交總價: <%= @loan_case.to_buy_price %> 萬
+</p>
+<p>
+  車位購買價: <%= @loan_case.parking_price %> 萬
+</p>
+<p>
+  貸款金額: <%= @loan_case.to_loan_price %> 萬
+</p>
+<p>
+  是否需要寬限期: <%= @loan_case.is_need_grace_period %>, 寬限期間: <%= @loan_case.grace_period_years %> 年
+</p>
+<p>
+  貸款期限: <%= @loan_case.to_loan_period_years %> 年
+</p>
+<p>
+  其他財力說明: <%= @loan_case.other_info %>
+</p>
+

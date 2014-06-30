@@ -5,11 +5,10 @@ class ConfirmMailer < ActionMailer::Base
   # with the following lookup:
   #
   #   en.confirm_mailer.mail_content.subject
-  #   ConfirmMailer.mail_content("kosbrotherschool@gmail.com",30).deliver
+  #   ConfirmMailer.mail_content(30).deliver
   #
-  def mail_content(email, case_id)
+  def mail_content(case_id)
     @loan_case = LoanCase.find(case_id)
-
-    mail to: email, subject: "e貸宗師感謝您的申請~"
+    mail to: @loan_case.applicant_email, subject: "e貸宗師感謝您的申請~"
   end
 end
