@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621030126) do
+ActiveRecord::Schema.define(version: 20140628160433) do
 
   create_table "counties", force: true do |t|
     t.string   "name"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 20140621030126) do
     t.string   "work_title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "card_file_name"
+    t.string   "card_content_type"
+    t.integer  "card_file_size"
+    t.datetime "card_updated_at"
   end
 
   create_table "loan_cases", force: true do |t|

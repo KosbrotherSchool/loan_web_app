@@ -44,4 +44,6 @@ Rails.application.configure do
     :password => "1ncfxju3mpg4"
   }
   
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+  
 end

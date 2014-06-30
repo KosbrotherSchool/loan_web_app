@@ -89,7 +89,7 @@ class HouseLoanController < ApplicationController
   end
 
 	def lender_params
-		params.require(:lender).permit(:name,:email,:contact_company_phone, :fax_phone, :contact_personal_phone, :bank, :bank_branch, :work_title)
+		params.require(:lender).permit(:name,:email,:contact_company_phone, :fax_phone, :contact_personal_phone, :bank, :bank_branch, :work_title, :avatar, :card)
 	end
 
 	def loan_case_params
