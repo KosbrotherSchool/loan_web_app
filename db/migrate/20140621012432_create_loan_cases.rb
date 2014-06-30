@@ -50,7 +50,7 @@ class CreateLoanCases < ActiveRecord::Migration
       t.boolean :is_applicant_have_bounce_check
 
       t.integer :county_id
-      # t.integer :town_id
+      t.integer :status_id
 
       t.timestamps
     end

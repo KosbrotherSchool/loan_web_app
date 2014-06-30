@@ -11,23 +11,149 @@
 			<div class="row">
 
 				<table border=1>
-					<tr>
-						<td>申請填表時間</td>
-						<td>申請人</td>
-						<td>寄出專員數/已回覆專員數</td>
-						<td>回覆率</td>
-						<td>申請填表時間</td>
-						<td>剩下幾天到期</td>
-						<td>送出</td>
-					</tr>
-					<% @loan_cases.each do |f|%>
-						<td><%= f.created_at %></td>
-						<td><%= f.applicant_name %></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td><button type="button">送出</button></td>
+						<tr>
+							<td>申請填表時間</td>
+							<td>申請人</td>
+							<td>寄出專員數/已回覆專員數</td>
+							<td>回覆率</td>
+							<td>申請填表時間</td>
+							<td>剩下幾天到期</td>
+							<td>送出</td>
+						</tr>
+					<% @loan_cases.where("status_id = 1").each do |f|%>
+					 	<tr>
+							<td><%= f.created_at %></td>
+							<td><%= f.applicant_name %></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><button type="button">送出</button></td>
+						</tr>
+					<% end %>
+				</table>			
+
+			</div>
+
+			<div class="row">
+				<h2>評估中</h2>
+			</div>
+
+			<div class="row">
+
+				<table border=1>
+						<tr>
+							<td>申請填表時間</td>
+							<td>申請人</td>
+							<td>寄出專員數/已回覆專員數</td>
+							<td>回覆率</td>
+							<td>申請填表時間</td>
+							<td>剩下幾天到期</td>
+							<td>送出</td>
+						</tr>
+					<% @loan_cases.where("status_id = 2").each do |f|%>
+					 	<tr>
+							<td><%= f.created_at %></td>
+							<td><%= f.applicant_name %></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><button type="button">送出</button></td>
+						</tr>
+					<% end %>
+				</table>			
+
+			</div>
+
+			<div class="row">
+				<h2>送件中</h2>
+			</div>
+
+			<div class="row">
+
+				<table border=1>
+						<tr>
+							<td>申請填表時間</td>
+							<td>申請人</td>
+							<td>寄出專員數/已回覆專員數</td>
+							<td>回覆率</td>
+							<td>申請填表時間</td>
+							<td>剩下幾天到期</td>
+							<td>送出</td>
+						</tr>
+					<% @loan_cases.where("status_id = 3").each do |f|%>
+					 	<tr>
+							<td><%= f.created_at %></td>
+							<td><%= f.applicant_name %></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><button type="button">送出</button></td>
+						</tr>
+					<% end %>
+				</table>			
+
+			</div>
+
+			<div class="row">
+				<h2>核貸中</h2>
+			</div>
+
+			<div class="row">
+
+				<table border=1>
+						<tr>
+							<td>申請填表時間</td>
+							<td>申請人</td>
+							<td>寄出專員數/已回覆專員數</td>
+							<td>回覆率</td>
+							<td>申請填表時間</td>
+							<td>剩下幾天到期</td>
+							<td>送出</td>
+						</tr>
+					<% @loan_cases.where("status_id = 4").each do |f|%>
+					 	<tr>
+							<td><%= f.created_at %></td>
+							<td><%= f.applicant_name %></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><button type="button">送出</button></td>
+						</tr>
+					<% end %>
+				</table>			
+
+			</div>
+
+			<div class="row">
+				<h2>已核貸回覆</h2>
+			</div>
+
+			<div class="row">
+
+				<table border=1>
+						<tr>
+							<td>申請填表時間</td>
+							<td>申請人</td>
+							<td>寄出專員數/已回覆專員數</td>
+							<td>回覆率</td>
+							<td>申請填表時間</td>
+							<td>剩下幾天到期</td>
+							<td>送出</td>
+						</tr>
+					<% @loan_cases.where("status_id = 5").each do |f|%>
+					 	<tr>
+							<td><%= f.created_at %></td>
+							<td><%= f.applicant_name %></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td><button type="button">送出</button></td>
+						</tr>
 					<% end %>
 				</table>			
 

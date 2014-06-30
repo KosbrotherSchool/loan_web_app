@@ -86,24 +86,24 @@ c = County.new
 c.name = "連江縣"
 c.save
 
-case_type = CaseType.new
-case_type.name = "等待回覆"
-case_type.save
+case_status = CaseStatus.new
+case_status.name = "等待回覆"
+case_status.save
 
-case_type = CaseType.new
-case_type.name = "評估中"
-case_type.save
+case_status = CaseStatus.new
+case_status.name = "評估中"
+case_status.save
 
-case_type = CaseType.new
-case_type.name = "送件中"
-case_type.save
+case_status = CaseStatus.new
+case_status.name = "送件中"
+case_status.save
 
-case_type = CaseType.new
-case_type.name = "核貸中"
-case_type.save
+case_status = CaseStatus.new
+case_status.name = "核貸中"
+case_status.save
 
-case_type = CaseType.new
-case_type.name = "已核貸回覆"
-case_type.save
+case_status = CaseStatus.new
+case_status.name = "已核貸回覆"
+case_status.save
 
 
