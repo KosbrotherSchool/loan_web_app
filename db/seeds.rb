@@ -1,13 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-# encoding: UTF-8
-
 c = County.new
 c.name = "基隆市"
 c.save 
@@ -94,4 +84,26 @@ c.save
 
 c = County.new
 c.name = "連江縣"
-c.save 
+c.save
+
+case_type = CaseType.new
+case_type.name = "等待回覆"
+case_type.save
+
+case_type = CaseType.new
+case_type.name = "評估中"
+case_type.save
+
+case_type = CaseType.new
+case_type.name = "送件中"
+case_type.save
+
+case_type = CaseType.new
+case_type.name = "核貸中"
+case_type.save
+
+case_type = CaseType.new
+case_type.name = "已核貸回覆"
+case_type.save
+
+

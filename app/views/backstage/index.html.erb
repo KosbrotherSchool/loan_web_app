@@ -1,1 +1,49 @@
-this is index
+
+<div id="wrapper">
+	
+
+	<section id="content">
+		<div class="container">
+			<div class="row">
+				<h2>等待回覆案件</h2>
+			</div>
+
+			<div class="row">
+
+				<table border=1>
+					<tr>
+						<td>申請填表時間</td>
+						<td>申請人</td>
+						<td>寄出專員數/已回覆專員數</td>
+						<td>回覆率</td>
+						<td>申請填表時間</td>
+						<td>剩下幾天到期</td>
+						<td>送出</td>
+					</tr>
+					<% @loan_cases.each do |f|%>
+						<td><%= f.created_at %></td>
+						<td><%= f.applicant_name %></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><button type="button">送出</button></td>
+					<% end %>
+				</table>			
+
+			</div>
+			
+			<!-- divider -->
+			<div class="row">
+				<div class="span12">
+					<div class="solidline"></div>
+				</div>
+			</div>
+			<!-- end divider -->
+			
+	<div class="blankline30"></div>
+
+		</div>
+	</section>
+
+</div>
