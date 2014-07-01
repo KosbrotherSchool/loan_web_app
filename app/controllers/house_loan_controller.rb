@@ -18,6 +18,13 @@ class HouseLoanController < ApplicationController
 		@loan_case = LoanCase.new(loan_case_params)
 
 		@loan_case.address = params[:county] + params[:district] + @loan_case.address
+		
+		County.all.each do |county|
+			county_s = county.name[0..1]
+			if condition
+				
+			end
+		end
 
 		applicant_company_type = ""
 		if params[:company_type_1][:value] != "" 
@@ -64,7 +71,137 @@ class HouseLoanController < ApplicationController
 	def create_lender
 		@lender = Lender.new(lender_params)
 		if @lender.save
-			push_lender_data_to_gdoc(lender_params[:name],lender_params[:email],lender_params[:contact_company_phone],lender_params[:fax_phone],lender_params[:contact_personal_phone],lender_params[:bank],lender_params[:bank_branch],lender_params[:work_title])
+			
+			if params[:taipei] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 2
+				lenderCountyShip.save
+			end
+
+			if params[:new_taipei] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 3
+				lenderCountyShip.save
+			end
+
+			if params[:keelung] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 1
+				lenderCountyShip.save
+			end
+
+			if params[:taoyuan] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 4
+				lenderCountyShip.save
+			end
+
+			if params[:hsinchu] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 5
+				lenderCountyShip.save
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 6
+				lenderCountyShip.save
+			end
+
+			if params[:miaoli] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 7
+				lenderCountyShip.save
+			end
+
+			if params[:taichung] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 8
+				lenderCountyShip.save
+			end
+
+			if params[:changhua] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 10
+				lenderCountyShip.save
+			end
+
+			if params[:nantao] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 9
+				lenderCountyShip.save
+			end
+
+			if params[:yunlin] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 11
+				lenderCountyShip.save
+			end
+
+			if params[:jiayi] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 12
+				lenderCountyShip.save
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 13
+				lenderCountyShip.save
+			end
+
+			if params[:tainan] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 14
+				lenderCountyShip.save
+			end
+
+			if params[:kaohsiung] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 15
+				lenderCountyShip.save
+			end
+
+			if params[:pingtung] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 16
+				lenderCountyShip.save
+			end
+
+			if params[:yilan] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 17
+				lenderCountyShip.save
+			end
+
+			if params[:hualian] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 18
+				lenderCountyShip.save
+			end
+
+			if params[:taidong] == "true"
+				lenderCountyShip = LenderCountyShip.new
+				lenderCountyShip.lender_id = @lender.id
+				lenderCountyShip.county_id = 19
+				lenderCountyShip.save
+			end
+
+
+
+			# push_lender_data_to_gdoc(lender_params[:name],lender_params[:email],lender_params[:contact_company_phone],lender_params[:fax_phone],lender_params[:contact_personal_phone],lender_params[:bank],lender_params[:bank_branch],lender_params[:work_title])
 			redirect_to :controller => 'house_loan', :action => 'join_us', :msg => 'success'
 		else
 			render :join_us

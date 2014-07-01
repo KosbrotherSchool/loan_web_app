@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630161309) do
+ActiveRecord::Schema.define(version: 20140701011703) do
 
   create_table "case_statuses", force: true do |t|
     t.string   "name"
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(version: 20140630161309) do
 
   create_table "counties", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lender_county_ships", force: true do |t|
+    t.integer  "lender_id"
+    t.integer  "county_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lender_loan_case_ships", force: true do |t|
+    t.integer  "lender_id"
+    t.integer  "loan_case_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
