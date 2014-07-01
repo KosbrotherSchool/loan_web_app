@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "faq" => "house_loan#faq"
   get "privacy" => "house_loan#privacy"
   get "term" => "house_loan#term"
-  get "response" => "house_loan#response"
+  get "lender_response" => "house_loan#lender_response"
 
   post "create_lender" => "house_loan#create_lender"
   post "create_loan_case" => "house_loan#create_loan_case"

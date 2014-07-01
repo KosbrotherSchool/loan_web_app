@@ -224,7 +224,7 @@ class HouseLoanController < ApplicationController
 	def privacy	
 	end
 
-	def response
+	def lender_response
 	end
 
 	private 
