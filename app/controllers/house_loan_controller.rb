@@ -224,6 +224,9 @@ class HouseLoanController < ApplicationController
 	def privacy	
 	end
 
+	def response
+	end
+
 	private 
 
 	def to_boolean(str)
