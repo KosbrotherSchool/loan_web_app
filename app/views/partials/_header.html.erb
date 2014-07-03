@@ -23,14 +23,14 @@
 								<% end %>
 										<a href="index.html"><i class="icon-home"></i> 首頁</a>
 									</li>
-								<% if action_name == "apply_mortgage" %>					
+								<% if action_name == "apply_mortgage" || action_name == "create_loan_case"  %>					
 									<li class="dropdown active">
 								<% else %>
 									<li>
 								<% end %>
 									<a href="apply_mortgage.html">申請新房貸</a>
 								</li>
-								<% if action_name == "join_us" %>					
+								<% if action_name == "join_us" ||  action_name == "create_lender"%>					
 									<li class="dropdown active">
 								<% else %>
 									<li>
