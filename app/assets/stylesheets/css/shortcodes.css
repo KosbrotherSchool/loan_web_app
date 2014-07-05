@@ -85,7 +85,7 @@
 .pricing-content{
 	background: #fff;
 	text-align:center;
-	font-size:14px;
+	font-size:20px;
 }
 
 .pricing-content strong{
@@ -176,10 +176,10 @@ border: 1px solid #e6e6e6;
 	padding:30px 0 20px;
 }
 
-.pricing-box-wrap .pricing-terms  h6 {
+.pricing-box-wrap .pricing-terms h6 {
 	margin-top:10px;
 	color:#fff;
-	font-size:18px;
+	font-size:20px;
 	font-weight:300;
 }
 
@@ -778,7 +778,7 @@ ul.team-categ li a{
 	display:block;
 	padding:35x 0 35x 0;
 	color:#353535;
-	font-size:16px;
+	font-size:20px;
 	text-decoration:none;
 	font-weight:700;
 }
