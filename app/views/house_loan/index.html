@@ -15,7 +15,7 @@
 				<div class="camera_wrap" id="camera-slide">
 				
 					<!-- slide 1 here -->
-					<div  data-src="assets/img/slides/camera/slide1/img1.jpg">
+					<div  data-src= "<%= asset_path 'img/slides/camera/slide1/img1.jpg' %>">
 						<div class="camera_caption fadeFromLeft">
 							<div class="container-fluid">
 								<div class="row-fluid">                                
@@ -27,7 +27,7 @@
 										</a>
 									</div>
 									<div class="span5">
-										<img src="assets/img/slides/camera/slide1/screen.png" alt="" class="animated bounceInDown delay1" />
+										<%= image_tag("img/slides/camera/slide1/screen.png", class: "animated bounceInDown delay1") %>
 									</div>
 								</div>  
 							</div>                                                                                         
@@ -35,12 +35,12 @@
 					</div>
 					
 					<!-- slide 2 here -->
-					<div  data-src="assets/img/slides/camera/slide2/img1.jpg">
+					<div  data-src= "<%= asset_path 'img/slides/camera/slide2/img1.jpg' %>">
 						<div class="camera_caption fadeFromLeft">
 							<div class="container-fluid">
 								<div class="row-fluid"> 
 									<div class="span5">
-										<img src="assets/img/slides/camera/slide2/bank.jpg" alt="" />
+										<%= image_tag("img/slides/camera/slide2/bank.jpg") %>
 									</div>								
 									<div class="span6">
 										<h2 class="animated fadeInDown"><strong><span class="colored">您是房貸專員嗎？<br />現在加入，獲得更多業務來源！</span></strong></h2>
@@ -193,7 +193,7 @@
 								<!-- Item Project and Filter Name -->
 								<li class="item-thumbs span3 " data-id="id-0" data-type="taipei">
 									<div class="team-box thumbnail">
-									  <img src="assets/img/dummies/team/9.jpg" alt="" />
+									  <%= image_tag("img/dummies/team/9.jpg") %>
 									  <div class="caption">
 										<h6>中國信託 陳專員</h6>
 										<p>
@@ -212,7 +212,7 @@
 								<!-- Item Project and Filter Name -->
 								<li class="item-thumbs span3" data-id="id-1" data-type="taoyuan">
 									<div class="team-box thumbnail">
-									  <img src="assets/img/dummies/team/10.jpg" alt="" />
+									  <%= image_tag("img/dummies/team/10.jpg") %>
 									  <div class="caption">
 										<h6>您是房貸專員嗎？ </h6>
 										
@@ -227,7 +227,7 @@
 								<!-- Item Project and Filter Name -->
 								<li class="item-thumbs span3 " data-id="id-2" data-type="taichung">
 									<div class="team-box thumbnail">
-									  <img src="assets/img/dummies/team/11.jpg" alt="" />
+									  <%= image_tag("img/dummies/team/11.jpg") %>
 									  <div class="caption">
 										<h6>南山人壽 吳專員</h6>
 										<p>
@@ -246,7 +246,7 @@
 								<!-- Item Project and Filter Name -->
 								<li class="item-thumbs span3 " data-id="id-3" data-type="tainan">
 									<div class="team-box thumbnail">
-									  <img src="assets/img/dummies/team/11.jpg" alt="" />
+									  <%= image_tag("img/dummies/team/11.jpg") %>
 									  <div class="caption">
 										<h6>南山人壽 吳專員</h6>
 										<p>
@@ -265,7 +265,7 @@
 								<!-- Item Project and Filter Name -->
 								<li class="item-thumbs span3 " data-id="id-4" data-type="kaohsiung">
 									<div class="team-box thumbnail">
-									  <img src="assets/img/dummies/team/4.jpg" alt="" />
+									  <%= image_tag("img/dummies/team/4.jpg") %>
 									  <div class="caption">
 										<h6>富邦銀行 劉專員</h6>
 										<p>
@@ -284,7 +284,7 @@
 								<!-- Item Project and Filter Name -->
 								<li class="item-thumbs span3 " data-id="id-5" data-type="yilan">
 									<div class="team-box thumbnail">
-									  <img src="assets/img/dummies/team/5.jpg" alt="" />
+									  <%= image_tag("img/dummies/team/5.jpg") %>
 									  <div class="caption">
 										<h6>任你貸當鋪 鄭專員</h6>
 										<p>
