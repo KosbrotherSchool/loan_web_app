@@ -43,6 +43,7 @@ end
 # gem 'capistrano-rails', group: :development
 gem 'capistrano', '~> 2.15'
 gem 'capistrano-ext'
+gem 'net-ssh', '2.7.0'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
