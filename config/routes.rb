@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  devise_for :users, controllers: { sessions: "sessions" }
+  # :skip => :registrations
+  # resources :users
+  
   root :to => "house_loan#index"
   get "about_us" => "house_loan#about_us"
   get "index" => "house_loan#index"
