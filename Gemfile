@@ -41,6 +41,8 @@ end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'capistrano', '~> 2.15'
+gem 'capistrano-ext'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
