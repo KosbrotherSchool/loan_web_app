@@ -19,8 +19,6 @@ Rails.application.routes.draw do
 
   get "backstage" => "backstage#index"
 
-  # resources :house_exchange_loan
   resources :house_loan
-  # resources :personal_loan
 
 end
