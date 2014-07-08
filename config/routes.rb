@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get "apply_mortgage" => "loan_cases#apply_mortgage"
 
   resources :loan_cases do
+    get "responses/lenders" => "responses#lender_response"
     resources :responses
   end
 
