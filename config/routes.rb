@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root :to => "house_loan#index"
   get "about_us" => "house_loan#about_us"
   get "index" => "house_loan#index"
-  get "apply_mortgage" => "house_loan#apply_mortgage"
+
   get "join_us" => "house_loan#join_us"
   get "faq" => "house_loan#faq"
   get "privacy" => "house_loan#privacy"
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   post "create_loan_case" => "house_loan#create_loan_case"
 
   get "backstage" => "backstage#index"
+  get "apply_mortgage" => "loan_cases#apply_mortgage"
 
   resources :loan_cases do
     resources :responses

@@ -73,7 +73,7 @@
 								</ul>
 					<% end %>
 				  
-				  <%= form_for @loan_case, url: {action: "create_loan_case"}, html: {class: "form-horizontal"} do |f| %>
+				  <%= form_for @loan_case, :controller =>"loan_cases", :action => "create"  , html: {class: "form-horizontal"} do |f| %>
 
 				  <!-- <div id="sendmessage">
 					  您的需求已送出，感謝您，專員將儘快回覆您的需求。
