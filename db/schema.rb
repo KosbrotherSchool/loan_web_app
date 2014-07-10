@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140701011703) do
+ActiveRecord::Schema.define(version: 20140704064230) do
 
   create_table "case_statuses", force: true do |t|
     t.string   "name"
@@ -75,37 +75,27 @@ ActiveRecord::Schema.define(version: 20140701011703) do
     t.integer  "rooms"
     t.integer  "living_rooms"
     t.integer  "rest_rooms"
-    t.decimal  "building_area",                       precision: 10, scale: 2
-    t.decimal  "public_area",                         precision: 10, scale: 2
-    t.decimal  "land_area",                           precision: 10, scale: 2
+    t.decimal  "building_area",               precision: 10, scale: 2
     t.integer  "building_age"
     t.string   "house_decoration"
     t.string   "house_condition"
     t.boolean  "is_top_built"
-    t.decimal  "top_building_area",                   precision: 10, scale: 2
+    t.decimal  "top_building_area",           precision: 10, scale: 2
     t.string   "parking_type"
-    t.string   "parking_layer"
-    t.decimal  "parking_area",                        precision: 10, scale: 0
+    t.decimal  "parking_area",                precision: 10, scale: 0
     t.string   "applicant_name"
     t.string   "applicant_email"
-    t.string   "applicant_phone1"
-    t.string   "applicant_phone2"
+    t.string   "applicant_phone"
     t.integer  "applicant_age"
     t.string   "applicant_company_name"
-    t.boolean  "is_applicant_company_founder"
     t.string   "applicant_title"
     t.integer  "applicant_serve_year"
     t.integer  "applicant_year_earning"
     t.integer  "applicant_other_earning"
-    t.string   "applicant_company_type"
     t.boolean  "applicant_is_have_house"
     t.string   "applicant_other_house_loan"
     t.string   "applicant_other_credit_loan"
-    t.string   "applicant_other_car_loan"
-    t.string   "applicant_other_learning_loan"
-    t.boolean  "is_applicant_use_revolving_interest"
-    t.boolean  "is_applicant_use_check"
-    t.boolean  "is_applicant_have_bounce_check"
+    t.boolean  "is_credit_ok"
     t.integer  "county_id"
     t.integer  "status_id"
     t.datetime "created_at"
@@ -126,5 +116,23 @@ ActiveRecord::Schema.define(version: 20140701011703) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

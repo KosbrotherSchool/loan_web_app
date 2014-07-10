@@ -4,7 +4,6 @@ class LoanCase < ActiveRecord::Base
 	has_many :lender_loan_case_ships
 	has_many :lenders, :through => :lender_loan_case_ships
 
-	validates :is_dealed, :presence => {:message => "請選擇是否已成交"}
 	validates :to_buy_price, :presence => {:message => "請填寫成交總價"}
 	validates :to_loan_price, :presence => {:message => "請填寫預計貸款金額"}
 
@@ -18,8 +17,7 @@ class LoanCase < ActiveRecord::Base
 	validates :applicant_name, :presence => {:message => "請填寫您的稱呼"}
 	validates :applicant_email, :presence => {:message => "請填寫您的聯絡Email"}
 	validates_format_of :applicant_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :message => "信箱的格式錯誤"
-	validates :applicant_phone1, :presence => {:message => "請填寫您的聯絡電話1"}
-	validates :applicant_phone2, :presence => {:message => "請填寫您的聯絡電話2"}
+	validates :applicant_phone, :presence => {:message => "請填寫您的聯絡電話"}
 	validates :applicant_age, :presence => {:message => "請填寫您的年齡"}
 	validates :applicant_company_name, :presence => {:message => "請填寫您的公司名稱"}
 	validates :applicant_serve_year, :presence => {:message => "請填寫您的年資"}

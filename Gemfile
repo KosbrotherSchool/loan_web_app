@@ -48,6 +48,8 @@ gem 'net-ssh', '2.7.0'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'devise'
+
 gem 'google_drive'
 gem 'rest-client', '~> 1.6.7'
 

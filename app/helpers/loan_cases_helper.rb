@@ -1,0 +1,2 @@
+module LoanCasesHelper
+end
