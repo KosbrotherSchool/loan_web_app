@@ -5,27 +5,50 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="inner-heading">
-					<h2>回覆貸款需求 案件編號： <%= @loan_case.id %></h2>
+					   <h2>回覆貸款需求 案件編號： <%= @loan_case.id %></h2>
 					</div>
+
+          <% if !@loan_response.present? %>
+            <h1 style="color:#FF8000">感謝您的回覆, 我們會儘快將您提供的資訊告知申請者。</h1> 
+          <% end %>
+
 				</div>	
 			</div>			
 		</div>
 	</section>
-	
+
 	<section id="content">
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span6">
+          
                     <h2>貸款需求</h2>
                     <hr>
                     <ul class="demand" id="demand-1">
-                        <li>是否成交：<%= @loan_case.is_dealed %></li>
+                        <% if  @loan_case.is_dealed == true %>
+                            <li>是否成交：已簽約成交</li>
+                        <% else %>
+                            <li>是否成交：準備議價，尚未成交</li>
+                        <% end %>
                         <li>成交總價/預計成交總價: <%= @loan_case.to_buy_price %> 萬（如有車位，含車位價格)</li>
                         <li>車位購買價: <%= @loan_case.parking_price %> 萬</li>
                         <li>欲貸款金額： <%= @loan_case.to_loan_price %> 萬</li>
-                        <li>是否需要寬限期： <%= @loan_case.is_need_grace_period %> ，寬限期： <%= @loan_case.grace_period_years %> 年</li>
-                        <li>貸款期限： <%= @loan_case.to_loan_period_years %> </li>
-                        <li>備註： <%= @loan_case.other_info %> </li>
+                        <% if  @loan_case.is_need_grace_period == true %>
+                            <li>是否需要寬限期：
+                            是, ，寬限期： <%= @loan_case.grace_period_years %> 年</li>
+                        <% else %>
+                            <li>是否需要寬限期：否</li>
+                        <% end %> 
+                        <% if  @loan_case.grace_period_years != 0 %>
+                            <li>貸款期限： <%= @loan_case.to_loan_period_years %> 年</li>
+                        <% else %>
+                            <li>貸款期限：皆可</li>
+                        <% end %>
+                        <% if  @loan_case.other_info != "" %>
+                            <li>特殊需求與說明： <%= @loan_case.other_info %> </li>
+                        <% else %>
+                            <li>特殊需求與說明：無</li>
+                        <% end %>              
                     </ul>
                     
                     <div class="blankline20"></div>
@@ -37,105 +60,116 @@
                         <li>建築類型： <%= @loan_case.building_type %> </li>
                         <li>格局： <%= @loan_case.rooms %> 房/ <%= @loan_case.living_rooms %> 廳/ <%= @loan_case.rest_rooms %> 衛</li>
                         <li>建物權狀坪數: <%= @loan_case.building_area %> 坪（不含車位）</li>
-                        <li>公設坪數： <%= @loan_case.public_area %> 坪（非必填）</li>
-                        <li>土地持分坪數： <%= @loan_case.land_area %> 坪（非必填）</li>
                         <li>屋齡： <%= @loan_case.building_age %> 年（填0為新成屋）</li>
                         <li>裝潢： <%= @loan_case.house_decoration %> </li>
                         <li>屋況： <%= @loan_case.house_condition %> </li>
-                        <li>頂樓是否有加蓋： <%= @loan_case.is_top_built %> 有</li>
-                        <li>加蓋坪數： <%= @loan_case.top_building_area %> 坪</li>
-                        <li>是否有車位: <%= @loan_case.parking_type %> </li>
-                        <li>車位樓層: <%= @loan_case.parking_layer %> </li>
-                        <li>車位坪數: <%= @loan_case.parking_area %> </li>
+                        <% if  @loan_case.is_top_built == true %>
+                            <li>頂樓是否有加蓋：有</li>
+                            <li>加蓋坪數： <%= @loan_case.top_building_area %> 坪</li>
+                        <% else %>
+                            <li>頂樓是否有加蓋：否</li>
+                        <% end %>
+                        <% if  @loan_case.parking_type != "無" %>
+                            <li>是否有車位：有</li>
+                            <li>車位形態: <%= @loan_case.parking_type %> </li>
+                            <li>車位坪數: <%= @loan_case.parking_area %>坪</li>
+                        <% else %>
+                            <li>是否有車位：無</li>
+                        <% end %>
                     </ul>
                     
                     <div class="blankline20"></div>
                     <h2>個人資訊</h2>
                     <hr>
                     <ul class="demand" id="demand-3">
-                        <li>年齡:40歲</li>
-                        <li>公司名稱：104科技</li>
-                        <li>是否為公司負責人：否</li>
-                        <li>職稱：專案經理</li>
-                        <li>年資：3年</li>
-                        <li>年薪：80萬</li>
-                        <li>其他收入：20萬</li>
-                        <li>公司屬性：上市櫃公司</li>
-                        <li>名下是否有房子：無</li>
-                        <li>名下其他負債：房貸：無；信貸：無；車貸：20萬；助學貸款：15萬</li>
-                        <li>過去半年是否有動用過信用卡或現金卡循環利息：無</li>
-                        <li>是否有使用支票：無</li>
-                        <li>過去三年是否有跳票記錄：無</li>
+                        <li>年齡:  <%= @loan_case.applicant_age %> 年</li>
+                        <li>公司名稱： <%= @loan_case.applicant_company_name %> </li>
+                        <li>職稱： <%= @loan_case.applicant_title %> </li>
+                        <li>年資： <%= @loan_case.applicant_serve_year %> 年</li>
+                        <li>年薪： <%= @loan_case.applicant_year_earning %>萬</li>
+                        <li>其他收入： <%= @loan_case.applicant_other_earning %></li>
+                        <% if @loan_case.applicant_is_have_house == true %>
+                            <li>名下是否有房子： 是 </li>
+                        <% else %>
+                            <li>名下是否有房子： 否 </li>
+                        <% end %>
+                        <li>名下其他負債：房貸：<%= @loan_case.applicant_other_house_loan %> 萬；信貸： <%= @loan_case.applicant_other_credit_loan %> </li>
+                        <% if @loan_case.is_credit_ok == true %>
+                            <li>是否有信用瑕疵： 否 </li>
+                        <% else %>
+                            <li>是否有信用瑕疵： 是 </li>
+                        <% end %>
                     </ul>
                     <div class="blankline20"></div>
 				</div>
 				
-				<div class="span6">
-					
+				<div class="span6">	
 					<aside class="">
-                                            <form id="load-replay" action="contact/contact.php" method="post" class="form-horizontal" name="send-contact">
-						<div class="widget">
-							<h2 class="widgetheading">貸款條件回覆表單<span></span></h5>
-							<hr>
-                                                        <div class="control-group">
-                                                            <label class="control-label" for="">可貸款金額*</label>
-                                                            <div class="controls">
-                                                              <input id="" type="text" class="input-medium" placeholder="800" />萬
-                                                            </div>
-                                                        </div>
-                                                        <div class="control-group">
-                                                            <label class="control-label" for="">貸款年限*</label>
-                                                            <div class="controls">
-                                                              <input id="" type="text" class="input-medium" placeholder="20" />年
-                                                            </div>
-                                                        </div>
-                                                        <div class="control-group">
-                                                            <label class="control-label" for="">寬限期*</label>
-                                                            <div class="controls">
-                                                              <input id="" type="text" class="input-medium" placeholder="無、1年、2年" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="control-group">
-                                                            <label class="control-label" for="">利率說明*</label>
-                                                            <div class="controls">
-                                                              <textarea rows="5" class="input-xlarge" placeholder=""></textarea>
-                                                            </div>
-                                                        </div>
-                                                        
-                                                        <div class="control-group">
-                                                            <label class="control-label" for="">是否有綁約*</label>
-                                                            <div class="controls">
-                                                              <label class="radio">
-                                                                <input type="radio" name="" id="" value="0" checked>
-                                                                    否
-                                                                </label>
-                                                                <label class="radio">
-                                                                    <input type="radio" name="" id="" value="1">
-                                                                    是
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="control-group">
-                                                            <label class="control-label" for="">費用說明*</label>
-                                                            <div class="controls">
-                                                                <textarea rows="5" class="input-xlarge" placeholder=""></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="control-group">
-                                                            <label class="control-label" for="">其他說明*</label>
-                                                            <div class="controls">
-                                                               <textarea rows="5" class="input-xlarge" placeholder="如可提供保證人或其他財力證明，或特別說明"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="control-group">
-                                                            <div class="controls">
-                                                                <div class="form-actions">
-                                                                  <button class="btn btn-success input-medium" type="submit">送出</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-						</div>
-                                            </form>    
+            <% if @loan_response.present? %>         
+              <%= form_for @loan_response, :url => loan_case_responses_path, html: {class: "form-horizontal"} do |f| %>
+    						<div class="widget">
+                  <input type="hidden" name="key" value=<%= @key %>>
+    							<h2 class="widgetheading">貸款條件回覆表單<span></span></h5>
+    							<hr>
+                  <div class="control-group">
+                      <label class="control-label" for="">可貸款金額*</label>
+                      <div class="controls">
+                        <%= f.text_field :loan_money, :class => "input-medium" %>萬
+                      </div>
+                  </div>
+                  <div class="control-group">
+                      <label class="control-label" for="">貸款年限*</label>
+                      <div class="controls">
+                        <%= f.text_field :loan_years, :class => "input-medium" %>年
+                      </div>
+                  </div>
+                  <div class="control-group">
+                      <label class="control-label" for="">寬限期*</label>
+                      <div class="controls">
+                        <%= f.text_field :grace_period, :class => "input-medium", :placeholder => "無、1年、2年" %>年
+                      </div>
+                  </div>
+                  <div class="control-group">
+                      <label class="control-label" for="">利率說明*</label>
+                      <div class="controls">
+                        <%= f.text_area :interest_explaination, :class => "input-xlarge", :rows => "5" %>
+                      </div>
+                  </div>
+                  
+                  <div class="control-group">
+                      <label class="control-label" for="">是否有綁約*</label>
+                      <div class="controls">
+                          <label class="radio">
+                              <%= radio_button_tag("loan_response[is_binded]", "0",checked = true) %>否
+                          </label>
+                          <label class="radio">
+                              <%= radio_button_tag("loan_response[is_binded]", "1") %>是
+                          </label>
+                      </div>
+                  </div>
+                  <div class="control-group">
+                      <label class="control-label" for="">費用說明*</label>
+                      <div class="controls">
+                          <%= f.text_area :expense_explaination, :class => "input-xlarge", :rows => "5" %>
+                      </div>
+                  </div>
+                  <div class="control-group">
+                      <label class="control-label" for="">其他說明*</label>
+                      <div class="controls">
+                          <%= f.text_area :other_info, :class => "input-xlarge", :rows => "5", :placeholder => "其他條件或優惠說明" %>
+                      </div>
+                  </div>
+                  <div class="control-group">
+                      <div class="controls">
+                          <div class="form-actions">
+                            <button class="btn btn-success input-medium" type="submit">送出</button>
+                          </div>
+                      </div>
+                  </div>
+    						</div>
+              </form>
+              <% end %>  
+            <% end %>
 					</aside>
 				</div>	
 			</div>
