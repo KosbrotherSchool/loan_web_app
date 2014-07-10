@@ -13,11 +13,20 @@ list-style-type: decimal;
     <h2>貸款需求</h2>
     <hr>
     <ul class="demand" id="demand-1">
-        <li>是否成交：<%= @loan_case.is_dealed %></li>
+        <% if  @loan_case.is_dealed == true %>
+            <li>是否成交：已簽約成交</li>
+        <% else %>
+            <li>是否成交：準備議價，尚未成交</li>
+        <% end %>
         <li>成交總價/預計成交總價: <%= @loan_case.to_buy_price %> 萬（如有車位，含車位價格)</li>
         <li>車位購買價: <%= @loan_case.parking_price %> 萬</li>
         <li>欲貸款金額： <%= @loan_case.to_loan_price %> 萬</li>
-        <li>是否需要寬限期： <%= @loan_case.is_need_grace_period %> ，寬限期： <%= @loan_case.grace_period_years %> 年</li>
+        <% if  @loan_case.is_need_grace_period == true %>
+            <li>是否需要寬限期：
+            是, ，寬限期： <%= @loan_case.grace_period_years %> 年</li>
+        <% else %>
+            <li>是否需要寬限期：否</li>
+        <% end %> 
         <li>貸款期限： <%= @loan_case.to_loan_period_years %> </li>
         <li>備註： <%= @loan_case.other_info %> </li>
     </ul>
@@ -30,16 +39,22 @@ list-style-type: decimal;
         <li>建築類型： <%= @loan_case.building_type %> </li>
         <li>格局： <%= @loan_case.rooms %> 房/ <%= @loan_case.living_rooms %> 廳/ <%= @loan_case.rest_rooms %> 衛</li>
         <li>建物權狀坪數: <%= @loan_case.building_area %> 坪（不含車位）</li>
-        <li>公設坪數： <%= @loan_case.public_area %> 坪（非必填）</li>
-        <li>土地持分坪數： <%= @loan_case.land_area %> 坪（非必填）</li>
         <li>屋齡： <%= @loan_case.building_age %> 年（填0為新成屋）</li>
         <li>裝潢： <%= @loan_case.house_decoration %> </li>
         <li>屋況： <%= @loan_case.house_condition %> </li>
-        <li>頂樓是否有加蓋： <%= @loan_case.is_top_built %> 有</li>
-        <li>加蓋坪數： <%= @loan_case.top_building_area %> 坪</li>
-        <li>是否有車位: <%= @loan_case.parking_type %> </li>
-        <li>車位樓層: <%= @loan_case.parking_layer %> </li>
-        <li>車位坪數: <%= @loan_case.parking_area %> </li>
+        <% if  @loan_case.is_top_built == true %>
+            <li>頂樓是否有加蓋：有</li>
+            <li>加蓋坪數： <%= @loan_case.top_building_area %> 坪</li>
+        <% else %>
+            <li>頂樓是否有加蓋：否</li>
+        <% end %>
+        <% if  @loan_case.parking_type != "無" %>
+            <li>是否有車位：有</li>
+            <li>車位形態: <%= @loan_case.parking_type %> </li>
+            <li>車位坪數: <%= @loan_case.parking_area %>坪</li>
+        <% else %>
+            <li>是否有車位：無</li>
+        <% end %>
     </ul>
     
     <h2>個人資訊</h2>
@@ -47,17 +62,33 @@ list-style-type: decimal;
     <ul class="demand" id="demand-3">
         <li>年齡: <%= @loan_case.applicant_age %> </li>
         <li>公司名稱： <%= @loan_case.applicant_company_name %> </li>
-        <li>是否為公司負責人： <%= @loan_case.is_applicant_company_founder %> </li>
         <li>職稱： <%= @loan_case.applicant_title %> </li>
         <li>年資： <%= @loan_case.applicant_serve_year %> 年</li>
         <li>年薪： <%= @loan_case.applicant_year_earning %>萬</li>
         <li>其他收入： <%= @loan_case.applicant_other_earning %></li>
-        <li>公司屬性： <%= @loan_case.applicant_company_type %></li>
-        <li>名下是否有房子： <%= @loan_case.applicant_is_have_house %> </li>
-        <li>名下其他負債：房貸：<%= @loan_case.applicant_other_house_loan %> 萬；信貸： <%= @loan_case.applicant_other_credit_loan %> ；車貸： <%= @loan_case.applicant_other_car_loan %> 萬；助學貸款： <%= @loan_case.applicant_other_learning_loan %> 萬</li>
-        <li>過去半年是否有動用過信用卡或現金卡循環利息： <%= @loan_case.is_applicant_use_revolving_interest %> </li>
-        <li>是否有使用支票： <%= @loan_case.is_applicant_use_check %> </li>
-        <li>過去三年是否有跳票記錄： <%= @loan_case.is_applicant_have_bounce_check %> </li>
+        <% if @loan_case.applicant_is_have_house == true %>
+            <li>名下是否有房子： 是 </li>
+        <% else %>
+            <li>名下是否有房子： 否 </li>
+        <% end %>
+        <li>名下其他負債：房貸：
+            <% if @loan_case.applicant_other_house_loan != nil %>
+                <%= @loan_case.applicant_other_house_loan %> 萬；
+            <% else %>
+                0萬
+            <% end %>
+            信貸：
+            <% if @loan_case.applicant_other_credit_loan != nil %> 
+                <%= @loan_case.applicant_other_credit_loan %> 萬
+            <% else %>
+                0萬
+            <% end %>
+        </li>
+        <% if @loan_case.is_credit_ok == true %>
+            <li>是否有信用瑕疵： 否 </li>
+        <% else %>
+            <li>是否有信用瑕疵： 是 </li>
+        <% end %>
     </ul>
     
 </div>
