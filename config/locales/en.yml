@@ -78,5 +78,12 @@ en:
         is_applicant_use_revolving_interest: ""
         is_applicant_use_check: ""
         is_applicant_have_bounce_check: ""
+    attributes:
+      loan_response:
+        loan_money: ""
+        loan_years: ""
+        interest_explaination: ""
+        grace_period: ""
+        expense_explaination: ""
 
 

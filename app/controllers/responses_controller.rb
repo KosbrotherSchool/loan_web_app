@@ -15,14 +15,14 @@ class ResponsesController < ApplicationController
 
   def create
   	# use key to find lender
-  	key = params[:key]
-  	@lender = Lender.find(key)
-
+  	@key = params[:key]
+  	@lender = Lender.find(@key)
+    @loan_case = LoanCase.find(params[:loan_case_id])
   	@loan_response = LoanResponse.new(response_param)
   	if @loan_response.save
 			redirect_to :controller => "responses", :action => "lender_response", :msg => 'success'
 		else
-			render "responses/lenders" 
+			render :lender_response
 		end
 
   end

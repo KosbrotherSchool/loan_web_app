@@ -105,12 +105,23 @@
 				
 				<div class="span6">	
 					<aside class="">
-            <% if @loan_response.present? %>         
+            <% if @loan_response.present? %>
+
+              <% if @loan_response.errors.any? %>
+                <h2>資料格式錯誤: </h2>
+                <ul>
+                  <% @loan_response.errors.full_messages.each do |message|%>
+                    <li style="color:#FF8000"><%= message %></li>
+                  <% end %>
+                </ul>
+              <% end %>
+
               <%= form_for @loan_response, :url => loan_case_responses_path, html: {class: "form-horizontal"} do |f| %>
     						<div class="widget">
                   <input type="hidden" name="key" value=<%= @key %>>
-    							<h2 class="widgetheading">貸款條件回覆表單<span></span></h5>
+    							<h2 class="widgetheading">貸款條件回覆表單<span></span></h2>
     							<hr>
+
                   <div class="control-group">
                       <label class="control-label" for="">可貸款金額*</label>
                       <div class="controls">
@@ -154,7 +165,7 @@
                       </div>
                   </div>
                   <div class="control-group">
-                      <label class="control-label" for="">其他說明*</label>
+                      <label class="control-label" for="">其他說明</label>
                       <div class="controls">
                           <%= f.text_area :other_info, :class => "input-xlarge", :rows => "5", :placeholder => "其他條件或優惠說明" %>
                       </div>
