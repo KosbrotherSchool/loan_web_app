@@ -145,15 +145,13 @@ class HouseLoanController < ApplicationController
 				lenderCountyShip.save
 			end
 
-
+			ConfirmLenderMailer.mail_content(@lender.id).deliver
 
 			# push_lender_data_to_gdoc(lender_params[:name],lender_params[:email],lender_params[:contact_company_phone],lender_params[:fax_phone],lender_params[:contact_personal_phone],lender_params[:bank],lender_params[:bank_branch],lender_params[:work_title])
 			redirect_to :controller => 'house_loan', :action => 'join_us', :msg => 'success'
 		else
 			render :join_us
 		end
-		
-		# params[:taipei]
 		
 	end
 
