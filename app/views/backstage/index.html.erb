@@ -137,15 +137,31 @@
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 4").each do |f|%>
+						<%= form_for f, :controller =>"loan_cases", :action => "update"  , html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
-							<td><%= f.created_at %></td>
+							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
 							<td><%= f.applicant_name %></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td><%= f.applicant_phone %></td>
+							<% if f.lender_id != nil %>
+								<td><%= f.lender.bank %></td>
+							<% else %>
+								<td></td>
+							<% end %>
+							<% if f.lender_id != nil %>
+								<td><%= f.lender.name %></td>
+							<% else %>
+								<td></td>
+							<% end %>
+							<% if f.lender_id != nil %>
+								<td><%= f.lender.contact_personal_phone %></td>
+							<% else %>
+								<td></td>
+							<% end %>
+							<td><%= form.text_field :notes, :placeholder => f.notes, :class => "input-large"%></td>
+							<td><%= form.select(:building_type, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "評估中"}, { :class => 'span2'}) %></td>
 							<td><button type="button">送出</button></td>
 						</tr>
+						<% end %>
 					<% end %>
 				</table>			
 
