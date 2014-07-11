@@ -59,15 +59,21 @@
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 2").each do |f|%>
+						<%= form_for f, :controller =>"loan_cases", :action => "update"  , html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
-							<td><%= f.created_at %></td>
+							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
+							<% if f.deliver_time != nil %>
+								<td><%= f.deliver_time.strftime("%m/%d/%y") %></td>
+							<% else %>
+								<td></td>
+							<% end %>
 							<td><%= f.applicant_name %></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td><%= f.applicant_phone %></td>
+							<td><%= form.text_field :notes, :placeholder => f.notes, :class => "input-large"%></td>
+							<td><%= form.select(:building_type, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "評估中"}, { :class => 'span2'}) %></td>
 							<td><button type="button">送出</button></td>
 						</tr>
+						<% end %>
 					<% end %>
 				</table>			
 
@@ -91,15 +97,22 @@
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 3").each do |f|%>
+						<%= form_for f, :controller =>"loan_cases", :action => "update"  , html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
-							<td><%= f.created_at %></td>
+							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
+							<% if f.deliver_time != nil %>
+								<td><%= f.deliver_time.strftime("%m/%d/%y") %></td>
+							<% else %>
+								<td></td>
+							<% end %>
 							<td><%= f.applicant_name %></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td><%= f.applicant_phone %></td>
+							<td><%= form.text_field :notes, :placeholder => f.notes, :class => "input-large"%></td>
+							<td><%= form.select(:building_type, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "評估中"}, { :class => 'span2'}) %></td>
+							<td><%= form.select(:building_type, Lender.all.map{|l| l.name}, {}, { :class => 'span2'}) %></td>
 							<td><button type="button">送出</button></td>
 						</tr>
+						<% end %>
 					<% end %>
 				</table>			
 

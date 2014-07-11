@@ -41,6 +41,7 @@ namespace :fake_data do
 			loan_case.applicant_other_house_loan = 50
 			loan_case.applicant_other_credit_loan = 20
 			loan_case.is_credit_ok = true
+			loan_case.deliver_time = Time.now
 
 			loan_case.county_id = 2
 			loan_case.status_id = num
@@ -82,7 +83,7 @@ namespace :fake_data do
 			res.loan_money = 500
 			res.loan_years = 20
 			res.loan_interest = "2.37%"
-			res.interest_explaination = "一段式"
+			res.interest_explaination = "2.37%一段式"
 			res.is_binded = false
 			res.grace_period = "20年"
 			res.expense_explaination = "5000開辦費"
@@ -95,7 +96,7 @@ namespace :fake_data do
 			res.loan_money = 500
 			res.loan_years = 20
 			res.loan_interest = "2.37%"
-			res.interest_explaination = "一段式"
+			res.interest_explaination = "2.37%一段式"
 			res.is_binded = false
 			res.grace_period = "20年"
 			res.expense_explaination = "5000開辦費"
@@ -108,7 +109,7 @@ namespace :fake_data do
 			res.loan_money = 500
 			res.loan_years = 20
 			res.loan_interest = "2.37%"
-			res.interest_explaination = "一段式"
+			res.interest_explaination = "2.37%一段式"
 			res.is_binded = false
 			res.grace_period = "20年"
 			res.expense_explaination = "5000開辦費"

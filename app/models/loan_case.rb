@@ -3,6 +3,7 @@ class LoanCase < ActiveRecord::Base
 	has_many :loan_responses
 	has_many :lender_loan_case_ships
 	has_many :lenders, :through => :lender_loan_case_ships
+	belongs_to :lender
 
 	validates :to_buy_price, :presence => {:message => "請填寫成交總價"}
 	validates :to_loan_price, :presence => {:message => "請填寫預計貸款金額"}
