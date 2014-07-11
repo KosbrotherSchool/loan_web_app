@@ -158,7 +158,7 @@
 								<td></td>
 							<% end %>
 							<td><%= form.text_field :notes, :placeholder => f.notes, :class => "input-large"%></td>
-							<td><%= form.select(:building_type, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "評估中"}, { :class => 'span2'}) %></td>
+							<td><%= form.select(:building_type, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "送件中"}, { :class => 'span2'}) %></td>
 							<td><button type="button">送出</button></td>
 						</tr>
 						<% end %>
@@ -168,7 +168,7 @@
 			</div>
 
 			<div class="row">
-				<h2>已核貸回覆</h2>
+				<h2>已核貸</h2>
 			</div>
 
 			<div class="row">
@@ -189,19 +189,59 @@
 						</tr>
 					<% @loan_cases.where("status_id = 5").each do |f|%>
 					 	<tr>
-							<td><%= f.created_at %></td>
+					 		<%= form_for f, :controller =>"loan_cases", :action => "update"  , html: {class: "form-horizontal"} do |form| %>
+							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
 							<td><%= f.applicant_name %></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td><%= f.applicant_phone %></td>
+							<% if f.lender_id != nil %>
+								<td><%= f.lender.bank %></td>
+							<% else %>
+								<td></td>
+							<% end %>
+							<% if f.lender_id != nil %>
+								<td><%= f.lender.name %></td>
+							<% else %>
+								<td></td>
+							<% end %>
+							<% if f.lender_id != nil %>
+								<td><%= f.lender.contact_personal_phone %></td>
+							<% else %>
+								<td></td>
+							<% end %>
+							<td><%= form.select(:building_type, ['是','否'], {:selected  => "是"}, { :class => 'span1'}) %></td>
+							<td><%= form.select(:building_type, ['是','否'], {:selected  => "是"}, { :class => 'span1'}) %></td>
+							<td><%= form.text_field :notes, :placeholder => f.notes, :class => "input-large"%></td>
+							<td><%= form.select(:building_type, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "已核貸"}, { :class => 'span2'}) %></td>
 							<td><button type="button">送出</button></td>
 						</tr>
+						<% end %>
 					<% end %>
 				</table>			
 
 			</div>
 			
+
+			<div class="row">
+				<h2>失敗案件</h2>
+			</div>
+
+			<div class="row">
+
+				<table border=1>
+						<tr>
+							<td>狀態更新時間</td>
+							<td>申請人</td>
+						</tr>
+					<% @loan_cases.where("status_id = 6").each do |f|%>
+					 	<tr>
+							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
+							<td><%= f.applicant_name %></td>
+						</tr>
+					<% end %>
+				</table>			
+
+			</div>
+
 			<!-- divider -->
 			<div class="row">
 				<div class="span12">

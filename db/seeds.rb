@@ -103,7 +103,11 @@ case_status.name = "核貸中"
 case_status.save
 
 case_status = CaseStatus.new
-case_status.name = "已核貸回覆"
+case_status.name = "已核貸"
+case_status.save
+
+case_status = CaseStatus.new
+case_status.name = "失敗"
 case_status.save
 
 
