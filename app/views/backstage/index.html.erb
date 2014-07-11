@@ -15,21 +15,27 @@
 						<tr>
 							<td>申請填表時間</td>
 							<td>申請人</td>
-							<td>寄出專員數/已回覆專員數</td>
+							<td>已回覆專員數/寄出專員數</td>
 							<td>回覆率</td>
-							<td>申請填表時間</td>
 							<td>剩下幾天到期</td>
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 1").each do |f|%>
 					 	<tr>
-							<td><%= f.created_at %></td>
+							<td><%= f.created_at.strftime("%m/%d/%y")%></td>
 							<td><%= f.applicant_name %></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><button type="button">送出</button></td>
+							<%  num_responded = LenderLoanCaseShip.where("loan_case_id = #{f.id} and is_responded = true").size()%>
+							<%  num_sended = LenderLoanCaseShip.where("loan_case_id = #{f.id}").size()%>
+							<td> <%= num_responded %> / <%= num_sended %></td>
+							<% if num_responded == 0%>
+								<td> 0%</td>
+							<% else %>			
+								<% percent = num_responded.to_d / num_sended * 100 %>
+								<% ps = percent.to_s %>
+								<td> <%= ps[0..1] %> %</td>
+							<% end %>				
+							<td><%= (3 - (Time.now - f.created_at)/1.day).to_s[0..3]%> 天</td>
+							<td><button type="button">送出回覆信</button></td>
 						</tr>
 					<% end %>
 				</table>			
@@ -44,12 +50,12 @@
 
 				<table border=1>
 						<tr>
-							<td>申請填表時間</td>
+							<td>狀態更新時間</td>
+							<td>送出回覆時間</td>
 							<td>申請人</td>
-							<td>寄出專員數/已回覆專員數</td>
-							<td>回覆率</td>
-							<td>申請填表時間</td>
-							<td>剩下幾天到期</td>
+							<td>申請人電話</td>
+							<td>備註</td>
+							<td>案件狀態</td>
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 2").each do |f|%>
@@ -75,12 +81,13 @@
 
 				<table border=1>
 						<tr>
-							<td>申請填表時間</td>
+							<td>狀態更新時間</td>
+							<td>送出回覆時間</td>
 							<td>申請人</td>
-							<td>寄出專員數/已回覆專員數</td>
-							<td>回覆率</td>
-							<td>申請填表時間</td>
-							<td>剩下幾天到期</td>
+							<td>申請人電話</td>
+							<td>備註</td>
+							<td>案件狀態</td>
+							<td>核貸專員</td>
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 3").each do |f|%>
@@ -106,12 +113,14 @@
 
 				<table border=1>
 						<tr>
-							<td>申請填表時間</td>
+							<td>狀態更新時間</td>
 							<td>申請人</td>
-							<td>寄出專員數/已回覆專員數</td>
-							<td>回覆率</td>
-							<td>申請填表時間</td>
-							<td>剩下幾天到期</td>
+							<td>申請人電話</td>
+							<td>銀行/壽險</td>
+							<td>核貸專員</td>
+							<td>專員電話</td>
+							<td>備註</td>
+							<td>案件狀態</td>
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 4").each do |f|%>
@@ -137,12 +146,16 @@
 
 				<table border=1>
 						<tr>
-							<td>申請填表時間</td>
+							<td>狀態更新時間</td>
 							<td>申請人</td>
-							<td>寄出專員數/已回覆專員數</td>
-							<td>回覆率</td>
-							<td>申請填表時間</td>
-							<td>剩下幾天到期</td>
+							<td>申請人電話</td>
+							<td>銀行/壽險</td>
+							<td>核貸專員</td>
+							<td>專員電話</td>
+							<td>是否收費</td>
+							<td>是否回饋</td>
+							<td>備註</td>
+							<td>案件狀態</td>
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 5").each do |f|%>
