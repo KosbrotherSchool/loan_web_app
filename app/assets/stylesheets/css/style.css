@@ -31,7 +31,7 @@
 
 body {
 	font-family:'Open Sans', sans-serif;
-	font-size:16px;
+	font-size:18px;
 	font-weight:400;
 	line-height:1.6em;
 	color:#656565;
@@ -1237,8 +1237,8 @@ blockquote cite a:visited 				{ color:#555; }
 
 .pullquote-left {
 	display:block;
-	color:#a2a2a2;
-	font-size:14px;
+	
+	
 	line-height:1.6em;
 	padding-left:20px;
 }
@@ -1622,13 +1622,6 @@ aside{
 .sidebar-nav{
 	float:left;
 	width:100%;
-}
-
-.right-sidebar{
-	border-left:1px solid #e9e9e9;
-	padding:0 0 0 30px;
-        position:fixed;
-	width: 330px;
 }
 
 
@@ -2454,7 +2447,7 @@ ul.the-icons {
 		padding-bottom:10px;
 		margin-bottom:40px;
 	}
-	
+	/*
 	.right-sidebar{
 		margin-top:30px;
 		border-left:none;
@@ -2462,6 +2455,7 @@ ul.the-icons {
 		padding:0 0 0 0;
 		padding-top:50px;
 	}
+	*/
 	
 	
 	footer .span1, footer .span2, footer .span3, footer .span4, footer .span5, footer .span6, 
@@ -2811,6 +2805,10 @@ ul.the-icons {
 	list-style-type: decimal;
 }
 
-
+.underline {
+	text-decoration: none;
+	background: url(../img/underline.png) repeat-x 100% 100%;
+	padding-bottom: 5px;
+}
 
 
