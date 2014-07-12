@@ -28,13 +28,17 @@
 							<%  num_responded = LenderLoanCaseShip.where("loan_case_id = #{f.id} and is_responded = true").size()%>
 							<%  num_sended = LenderLoanCaseShip.where("loan_case_id = #{f.id}").size()%>
 							<td> <%= num_responded %> / <%= num_sended %></td>
+
 							<% if num_responded == 0%>
 								<td> 0%</td>
+							<% elsif num_responded != 0 &&  num_responded == num_sended %>
+								<td> 100%</td>
 							<% else %>			
 								<% percent = num_responded.to_d / num_sended * 100 %>
 								<% ps = percent.to_s %>
 								<td> <%= ps[0..1] %> %</td>
-							<% end %>				
+							<% end %>
+
 							<td><%= (3 - (Time.now - f.created_at)/1.day).to_s[0..3]%> 天</td>
 							<td><%= form.submit "送出回覆信" %></td>
 						</tr>
