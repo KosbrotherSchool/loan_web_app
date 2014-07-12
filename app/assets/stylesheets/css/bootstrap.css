@@ -5587,7 +5587,7 @@ a.thumbnail:focus {
 }
 
 .thumbnail .caption {
-  padding: 9px;
+  padding: 20px 0 2px 0;
   color: #555555;
 }
 

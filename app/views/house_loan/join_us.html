@@ -45,31 +45,31 @@
 							<div class="control-group">
 							    <label class="control-label" for="">專員姓名*<br /></label>
 							    <div class="controls">
-										<%= f.text_field :name, :placeholder => "請填寫真實姓名。"%>
+										<%= f.text_field :name, :placeholder => "請填寫真實姓名"%>
 							    </div>
 							</div>
 							<div class="control-group">
 							    <label class="control-label" for="">電子信箱/Email*<br /></label>
 							    <div class="controls">
-										<%= f.text_field :email, :placeholder => "請填寫您的公司信箱。"%>
+										<%= f.text_field :email, :placeholder => "格式：edux@company.com"%>
 							    </div>
 							</div>
 							<div class="control-group">
 							    <label class="control-label" for="">公司電話*<br /></label>
 							    <div class="controls">
-										<%= f.text_field :contact_company_phone, :placeholder => "請填寫您的公司電話。"%>
+										<%= f.text_field :contact_company_phone, :placeholder => "格式：0283948533"%>
 							    </div>
 							</div>
 							<div class="control-group">
 							    <label class="control-label" for="">公司傳真*<br /></label>
 							    <div class="controls">
-										<%= f.text_field :fax_phone, :placeholder => "請填寫您的公司傳真號碼。"%>
+										<%= f.text_field :fax_phone, :placeholder => "格式：0283763774"%>
 							    </div>
 							</div>
 							<div class="control-group">
 							    <label class="control-label" for="">個人電話*<br /></label>
 							    <div class="controls">
-										<%= f.text_field :contact_personal_phone, :placeholder => "格式如右：0912-345-678"%>
+										<%= f.text_field :contact_personal_phone, :placeholder => "格式：0912345678"%>
 							    </div>
 							</div>
 							<div class="control-group">
@@ -104,7 +104,7 @@
 										    <input type="checkbox" name="keelung" id="region" value="true"> 基隆市
 										</label>
 										<label class="checkbox inline">
-										    <input type="checkbox" name="taoyuan" id="region" value="true"> 桃園線市
+										    <input type="checkbox" name="taoyuan" id="region" value="true"> 桃園縣市
 										</label>
 										<label class="checkbox inline">
 										    <input type="checkbox" name="hsinchu" id="region" value="true"> 新竹縣市
@@ -180,19 +180,19 @@
 					<aside class="right-sidebar">
 					   <div class="widget">
 						  <h5 class="widgetheading">收費說明<span></span></h5>
-						  目前本服務針對每一筆成功核貸案件，向貸款專員收取服務費新台幣2000元整。
+						  目前本服務在試營運中免費，未來針對每筆成功核貸案件，收取媒合費。
 						  <br />
-						  客服確認成功媒合後，會提供帳戶供專員繳交服務費。
+						  客服確認成功媒合後，會提供帳戶供專員繳交媒合費。
 					  </div>
 					  <div class="widget">
 						  <h5 class="widgetheading">申請說明<span></span></h5>
-						  請據實填寫您的「公司Email信箱」以及「公司電話」，我們將用此兩項方式與您聯繫認證。
+						  請據實填寫您的「公司Email信箱」以及「公司電話」，將用此兩項方式與您聯繫認證。
 						  <br />
-						  我們不接受個人名義申請！
+						  我們不接受個人信箱申請。
 					  </div>
 					  <div class="widget">
 						  <h5 class="widgetheading">公司團隊大量加入<span></span></h5>
-						  請<a href="" class="btn btn-theme">點此下載EXCEL</a>，填寫後寄至service@e-loan.com.tw，我們客服將與負責人聯繫，為貴公司團隊一次加入！
+						  請<a href="group_apply.xls" class="btn btn-theme">點此下載EXCEL</a>，填寫後寄至service@e-loan.com.tw，客服將與負責人聯繫，為貴公司團隊一次加入！
 					  </div>
 					</aside>
 				</div>	
@@ -205,18 +205,19 @@
 <script type="text/javascript">
     $(function(){
        　$(window).load(function(){
-       　　$(window).bind('scroll resize', function(){
-       　　var $this = $(this);
-       　　var $this_Top=$this.scrollTop();
-       
-       　　//當高度小於100時，關閉區塊 
-       　　if($this_Top < 150){
-       　　　$('.right-sidebar').stop().animate({top:"270px"});
-       　　　}
-       　　　　if($this_Top > 150){
-       　　　　$('.right-sidebar').stop().animate({top:"40px"});
-       　　　 }
-       　　}).scroll();
+		$(window).bind('scroll resize', function(){
+			var $this = $(this);
+			var $this_Top=$this.scrollTop();
+	       
+			//當高度小於100時，關閉區塊 
+			if($this_Top < 150){
+				$('.right-sidebar').stop().animate({top:"270px"});
+			}else if($this_Top > 150 && $this_Top < 500){
+				$('.right-sidebar').stop().animate({top:"40px"});
+			}else{
+				$('.right-sidebar').stop().animate({top:"-30px"});
+			}
+		}).scroll(); 
        　});
     });
 </script>
