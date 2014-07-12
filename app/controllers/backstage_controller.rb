@@ -5,4 +5,8 @@ class BackstageController < ApplicationController
 		@loan_cases = LoanCase.all
 	end
 
+	def deliver_mail
+		ff
+	end
+
 end

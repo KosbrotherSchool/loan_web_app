@@ -2,7 +2,7 @@ namespace :fake_data do
 
 	task :loan_cases => :environment do
 
-		1.upto 5 do |num|
+		1.upto 6 do |num|
 			loan_case = LoanCase.new
 			loan_case.is_dealed = true
 			loan_case.to_buy_price = 1200

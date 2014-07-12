@@ -21,6 +21,7 @@
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 1").each do |f|%>
+						<%= form_for f, :url => backstage_deliver_mail_path, html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
 							<td><%= f.created_at.strftime("%m/%d/%y")%></td>
 							<td><%= f.applicant_name %></td>
@@ -35,8 +36,9 @@
 								<td> <%= ps[0..1] %> %</td>
 							<% end %>				
 							<td><%= (3 - (Time.now - f.created_at)/1.day).to_s[0..3]%> 天</td>
-							<td><button type="button">送出回覆信</button></td>
+							<td><%= form.submit "送出回覆信" %></td>
 						</tr>
+						<% end %>
 					<% end %>
 				</table>			
 
@@ -137,7 +139,7 @@
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 4").each do |f|%>
-						<%= form_for f, :controller =>"loan_cases", :action => "update"  , html: {class: "form-horizontal"} do |form| %>
+						<%= form_for f, :controller =>"backstage", :action => "deliver_mail"  , html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
 							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
 							<td><%= f.applicant_name %></td>

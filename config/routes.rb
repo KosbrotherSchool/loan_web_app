@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   get "backstage" => "backstage#index"
   get "apply_mortgage" => "loan_cases#apply_mortgage"
+  patch "backstage/deliver_mail" => "backstage#deliver_mail"
 
   resources :loan_cases do
     get "responses/lenders" => "responses#lender_response"
