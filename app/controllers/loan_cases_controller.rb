@@ -27,10 +27,10 @@ class LoanCasesController < ApplicationController
 			ConfirmMailer.mail_content(@loan_case.id).deliver
 
 			Lender.joins(:lender_county_ships).where("county_id = #{@loan_case.county_id}").each do |lender|
-				MailToLenderMailer.mail_content(@loan_case.id, lender.email).deliver
+				MailToLenderMailer.mail_content(@loan_case.id, lender.id).deliver
 				lenderLoanCaseShip = LenderLoanCaseShip.new
 				lenderLoanCaseShip.lender_id = lender.id
-				lenderLoanCaseShip.county_id = @loan_case.county_id
+				lenderLoanCaseShip.loan_case_id = @loan_case.id
 				lenderLoanCaseShip.save
 			end
 			redirect_to :controller => 'loan_cases', :action => 'apply_mortgage', :msg => 'success'
