@@ -40,6 +40,7 @@
 							<% end %>
 
 							<td><%= (3 - (Time.now - f.created_at)/1.day).to_s[0..3]%> 天</td>
+							<input type="hidden" name="key" value=<%= f.id %>>
 							<td><%= form.submit "送出回覆信" %></td>
 						</tr>
 						<% end %>
@@ -65,7 +66,7 @@
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 2").each do |f|%>
-						<%= form_for f, :controller =>"loan_cases", :action => "update"  , html: {class: "form-horizontal"} do |form| %>
+						<%= form_for f, :url => backstage_update_evaluate_case_path , html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
 							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
 							<% if f.deliver_time != nil %>
@@ -76,8 +77,9 @@
 							<td><%= f.applicant_name %></td>
 							<td><%= f.applicant_phone %></td>
 							<td><%= form.text_field :notes, :placeholder => f.notes, :class => "input-large"%></td>
-							<td><%= form.select(:building_type, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "評估中"}, { :class => 'span2'}) %></td>
-							<td><button type="button">送出</button></td>
+							<td><%= form.select(:status, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "評估中"}, { :class => 'span2'}) %></td>
+							<input type="hidden" name="key" value=<%= f.id %>>
+							<td><%= form.submit "送出" %></td>
 						</tr>
 						<% end %>
 					<% end %>
@@ -103,7 +105,7 @@
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 3").each do |f|%>
-						<%= form_for f, :controller =>"loan_cases", :action => "update"  , html: {class: "form-horizontal"} do |form| %>
+						<%= form_for f, :url => backstage_update_delivering_case_path , html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
 							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
 							<% if f.deliver_time != nil %>
@@ -114,9 +116,10 @@
 							<td><%= f.applicant_name %></td>
 							<td><%= f.applicant_phone %></td>
 							<td><%= form.text_field :notes, :placeholder => f.notes, :class => "input-large"%></td>
-							<td><%= form.select(:building_type, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "評估中"}, { :class => 'span2'}) %></td>
-							<td><%= form.select(:building_type, Lender.all.map{|l| l.name}, {}, { :class => 'span2'}) %></td>
-							<td><button type="button">送出</button></td>
+							<td><%= form.select(:status, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "送件中"}, { :class => 'span2'}) %></td>
+							<td><%= form.select(:lender_id, Lender.all.collect {|p| [ p.name, p.id ] } ) %></td>
+							<input type="hidden" name="key" value=<%= f.id %>>
+							<td><%= form.submit "送出" %></td>
 						</tr>
 						<% end %>
 					<% end %>
@@ -143,7 +146,7 @@
 							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 4").each do |f|%>
-						<%= form_for f, :controller =>"backstage", :action => "deliver_mail"  , html: {class: "form-horizontal"} do |form| %>
+						<%= form_for f, :url => backstage_update_loaning_case_path  , html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
 							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
 							<td><%= f.applicant_name %></td>
@@ -164,8 +167,9 @@
 								<td></td>
 							<% end %>
 							<td><%= form.text_field :notes, :placeholder => f.notes, :class => "input-large"%></td>
-							<td><%= form.select(:building_type, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "送件中"}, { :class => 'span2'}) %></td>
-							<td><button type="button">送出</button></td>
+							<td><%= form.select(:status, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "核貸中"}, { :class => 'span2'}) %></td>
+							<input type="hidden" name="key" value=<%= f.id %>>
+							<td><%= form.submit "送出" %></td>
 						</tr>
 						<% end %>
 					<% end %>
@@ -195,7 +199,7 @@
 						</tr>
 					<% @loan_cases.where("status_id = 5").each do |f|%>
 					 	<tr>
-					 		<%= form_for f, :controller =>"loan_cases", :action => "update"  , html: {class: "form-horizontal"} do |form| %>
+					 		<%= form_for f, :url => backstage_update_loanded_case_path  , html: {class: "form-horizontal"} do |form| %>
 							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
 							<td><%= f.applicant_name %></td>
 							<td><%= f.applicant_phone %></td>
@@ -214,11 +218,20 @@
 							<% else %>
 								<td></td>
 							<% end %>
-							<td><%= form.select(:building_type, ['是','否'], {:selected  => "是"}, { :class => 'span1'}) %></td>
-							<td><%= form.select(:building_type, ['是','否'], {:selected  => "是"}, { :class => 'span1'}) %></td>
+							<% if f.is_charged == nil || f.is_charged == false %>
+								<td><%= form.select(:is_charged, ['是','否'], {:selected  => "否"}, { :class => 'span1'}) %></td>
+							<% else %>
+								<td><%= form.select(:is_charged, ['是','否'], {:selected  => "是"}, { :class => 'span1'}) %></td>
+							<% end %>
+							<% if f.is_feedbacked == nil || f.is_feedbacked == false %>
+								<td><%= form.select(:is_feedbacked, ['是','否'], {:selected  => "否"}, { :class => 'span1'}) %></td>
+							<% else %>
+								<td><%= form.select(:is_feedbacked, ['是','否'], {:selected  => "是"}, { :class => 'span1'}) %></td>
+							<% end %>
 							<td><%= form.text_field :notes, :placeholder => f.notes, :class => "input-large"%></td>
-							<td><%= form.select(:building_type, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "已核貸"}, { :class => 'span2'}) %></td>
-							<td><button type="button">送出</button></td>
+							<td><%= form.select(:status, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "已核貸"}, { :class => 'span2'}) %></td>
+							<input type="hidden" name="key" value=<%= f.id %>>
+							<td><%= form.submit "送出" %></td>
 						</tr>
 						<% end %>
 					<% end %>

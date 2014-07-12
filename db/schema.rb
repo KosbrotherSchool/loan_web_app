@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140711065536) do
+ActiveRecord::Schema.define(version: 20140712155447) do
 
   create_table "case_statuses", force: true do |t|
     t.string   "name"
@@ -104,6 +104,8 @@ ActiveRecord::Schema.define(version: 20140711065536) do
     t.string   "notes"
     t.datetime "deliver_time"
     t.integer  "lender_id"
+    t.boolean  "is_charged"
+    t.boolean  "is_feedbacked"
   end
 
   create_table "loan_responses", force: true do |t|

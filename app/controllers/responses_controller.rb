@@ -20,6 +20,7 @@ class ResponsesController < ApplicationController
     @loan_case = LoanCase.find(params[:loan_case_id])
   	@loan_response = LoanResponse.new(response_param)
     @loan_response.lender_id = @lender.id
+    @loan_response.loan_case_id = @loan_case.id
   	if @loan_response.save
       lenderLoanCaseShip = LenderLoanCaseShip.where("lender_id = #{@lender.id} and loan_case_id = #{@loan_case.id}").first
 			lenderLoanCaseShip.is_responded = true
