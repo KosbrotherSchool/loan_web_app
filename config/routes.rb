@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   get "lender_response" => "house_loan#lender_response"
 
   post "create_lender" => "house_loan#create_lender"
-  post "create_loan_case" => "house_loan#create_loan_case"
 
   get "backstage" => "backstage#index"
   get "apply_mortgage" => "loan_cases#apply_mortgage"

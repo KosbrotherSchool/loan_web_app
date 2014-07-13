@@ -74,7 +74,7 @@
 								</ul>
 					<% end %>
 				  
-				  <%= form_for @loan_case, :controller =>"loan_cases", :action => "create"  , html: {class: "form-horizontal"} do |f| %>
+				  <%= form_for @loan_case, :url => loan_cases_path  , html: {class: "form-horizontal"} do |f| %>
 
 				  <div class="row-fluid">
 				    <div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
