@@ -12,7 +12,12 @@ class LoanCasesController < ApplicationController
   def create
   	@loan_case = LoanCase.new(loan_case_params)
 
-		@loan_case.address = params[:county] + params[:district] + @loan_case.address
+  	begin
+  		@loan_case.address = params[:county] + params[:district] + @loan_case.address
+  	rescue Exception => e
+  		
+  	end
+		
 
 		@loan_case.status_id = 1
 		County.all.each do |county|
