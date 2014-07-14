@@ -8,7 +8,7 @@ list-style-type: decimal;
 <p>
 以下為新進詢問案件資料，請於 <%= (Time.now + 3.days).strftime("%Y/%m/%d") %> 18:00前到此連結回覆：
 
-<a href="www.e-loan.com.tw/<%= @loan_case.id %>/responses/lenders?key=<%= @lender.id%>" >案件編號：<%= @loan_case.id %></a>
+<a href="www.e-loan.com.tw/loan_cases/<%= @loan_case.id %>/responses/lenders?key=<%= @key %>&token=<%= @token%>" >案件編號：<%= @loan_case.id %></a>
 </p>
 <div>
     <h2>貸款需求</h2>

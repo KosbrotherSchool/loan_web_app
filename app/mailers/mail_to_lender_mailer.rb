@@ -9,6 +9,8 @@ class MailToLenderMailer < ActionMailer::Base
   def mail_content(case_id, lender_id)
     @loan_case = LoanCase.find(case_id)
     @lender = Lender.find(lender_id)
+    @key = AES.encrypt(@lender.id.to_s, ENV["KEY"])
+    @token = AES.encrypt(@loan_case.id.to_s, ENV["KEY"])
     mail to: @lender.email, subject: "e貸宗師案件媒合"
   end
 end

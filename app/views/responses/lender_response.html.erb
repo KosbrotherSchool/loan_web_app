@@ -119,6 +119,7 @@
               <%= form_for @loan_response, :url => loan_case_responses_path, html: {class: "form-horizontal"} do |f| %>
     						<div class="widget">
                   <input type="hidden" name="key" value=<%= @key %>>
+                  <input type="hidden" name="token" value=<%= @token %>>
     							<h2 class="widgetheading">貸款條件回覆表單<span></span></h2>
     							<hr>
 

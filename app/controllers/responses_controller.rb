@@ -4,19 +4,30 @@ class ResponsesController < ApplicationController
   end
 
   def lender_response
-  	@loan_case = LoanCase.find(params[:loan_case_id])
-  	if params[:msg] == 'success'
-			
-		else
-	  	@key = params[:key]
-	  	@loan_response = LoanResponse.new
-  	end 	
+    @token = params[:token]
+    loan_case_id = params[:loan_case_id]
+    if loan_case_id == AES.decrypt(@token, ENV["KEY"])
+      @loan_case = LoanCase.find(loan_case_id)
+
+      if params[:msg] == 'success'
+      
+      else
+        @key = params[:key]
+        @loan_response = LoanResponse.new
+      end   
+    else
+
+      redirect_to root_path
+
+    end
+  	
   end
 
   def create
   	# use key to find lender
-  	@key = params[:key]
-  	@lender = Lender.find(@key)
+  	key = params[:key]
+    lender_id = AES.decrypt(key, ENV["KEY"])
+  	@lender = Lender.find(lender_id)
     @loan_case = LoanCase.find(params[:loan_case_id])
   	@loan_response = LoanResponse.new(response_param)
     @loan_response.lender_id = @lender.id
@@ -25,7 +36,7 @@ class ResponsesController < ApplicationController
       lenderLoanCaseShip = LenderLoanCaseShip.where("lender_id = #{@lender.id} and loan_case_id = #{@loan_case.id}").first
 			lenderLoanCaseShip.is_responded = true
       lenderLoanCaseShip.save
-      redirect_to :controller => "responses", :action => "lender_response", :msg => 'success'
+      redirect_to :controller => "responses", :action => "lender_response", :msg => 'success', :token => params[:token]
 		else
 			render :lender_response
 		end

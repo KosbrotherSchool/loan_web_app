@@ -54,3 +54,5 @@ gem 'google_drive'
 gem 'rest-client', '~> 1.6.7'
 
 gem "paperclip", "~> 4.1"
+
+gem 'aes'
