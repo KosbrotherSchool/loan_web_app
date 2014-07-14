@@ -22,7 +22,9 @@ namespace :deploy do
 
   task :copy_config_files, :roles => [:app] do
     db_config = "#{shared_path}/config/database.yml"
+    env_config = "#{shared_path}/config/local_env.yml"
     run "cp #{db_config} #{release_path}/config/database.yml"
+    run "cp #{env_config} #{release_path}/config/local_env.yml"
   end
   
   task :update_symlink do

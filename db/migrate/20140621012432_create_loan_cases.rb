@@ -44,5 +44,7 @@ class CreateLoanCases < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    execute "ALTER TABLE loan_cases AUTO_INCREMENT = 666"
   end
 end
