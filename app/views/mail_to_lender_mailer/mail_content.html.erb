@@ -29,7 +29,11 @@ list-style-type: decimal;
             <li>是否需要寬限期：否</li>
         <% end %> 
         <li>貸款期限： <%= @loan_case.to_loan_period_years %> </li>
-        <li>備註： <%= @loan_case.other_info %> </li>
+        <% if @loan_case.other_info != nil && @loan_case.other_info != "" %>
+            <li>備註： <%= @loan_case.other_info %> </li>
+        <% else %>
+            <li>備註： 無</li>
+        <% end %> 
     </ul>
     
     <h2>房屋資訊</h2>
@@ -66,20 +70,26 @@ list-style-type: decimal;
         <li>職稱： <%= @loan_case.applicant_title %> </li>
         <li>年資： <%= @loan_case.applicant_serve_year %> 年</li>
         <li>年薪： <%= @loan_case.applicant_year_earning %>萬</li>
-        <li>其他收入： <%= @loan_case.applicant_other_earning %></li>
+        
+        <% if @loan_case.applicant_other_earning != nil && @loan_case.applicant_other_earning != "" %>
+            <li>其他收入： <%= @loan_case.applicant_other_earning %></li>
+        <% else %>
+            
+        <% end %>
+
         <% if @loan_case.applicant_is_have_house == true %>
             <li>名下是否有房子： 是 </li>
         <% else %>
             <li>名下是否有房子： 否 </li>
         <% end %>
         <li>名下其他負債：房貸：
-            <% if @loan_case.applicant_other_house_loan != nil %>
+            <% if @loan_case.applicant_other_house_loan != nil && @loan_case.applicant_other_house_loan != ""%>
                 <%= @loan_case.applicant_other_house_loan %> 萬；
             <% else %>
                 0萬
             <% end %>
             信貸：
-            <% if @loan_case.applicant_other_credit_loan != nil %> 
+            <% if @loan_case.applicant_other_credit_loan != nil && @loan_case.applicant_other_credit_loan !="" %> 
                 <%= @loan_case.applicant_other_credit_loan %> 萬
             <% else %>
                 0萬
