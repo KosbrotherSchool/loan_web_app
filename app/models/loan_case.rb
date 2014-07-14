@@ -24,4 +24,6 @@ class LoanCase < ActiveRecord::Base
 	validates :applicant_serve_year, :presence => {:message => "請填寫您的年資"}
 	validates :applicant_year_earning, :presence => {:message => "請填寫您的年薪"}
 
+	validates :county_id, :presence => {:message => "縣市位址有錯誤"}
+
 end

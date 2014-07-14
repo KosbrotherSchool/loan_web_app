@@ -67,6 +67,7 @@ en:
         applicant_other_house_loan: ""
         applicant_other_credit_loan: ""
         is_credit_ok: ""
+        county_id: ""
       loan_response:
         loan_money: ""
         loan_years: ""
