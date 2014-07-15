@@ -230,15 +230,15 @@
 												<p></p>
 
 												<ul class="social-network">
-													<% if lender.is_phone_confirmed %>
+													<% if lender.is_phone_confirmed == true %>
 														<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
 													<% end %>
 
-													<% if lender.is_mail_confirmed %>
+													<% if lender.is_mail_confirmed == true %>
 														<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
 													<% end %>
 
-													<% if lender.is_mail_confirmed %>
+													<% if lender.is_person_confirmed == true %>
 														<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
 													<% end %>
 
