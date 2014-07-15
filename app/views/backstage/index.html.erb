@@ -23,7 +23,7 @@
 					<% @loan_cases.where("status_id = 1").each do |f|%>
 						<%= form_for f, :url => backstage_deliver_mail_path, html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
-							<td><%= f.created_at.strftime("%m/%d/%y")%></td>
+							<td><%= f.created_at.strftime("%m/%d/%y-%H:%M")%></td>
 							<td><%= f.applicant_name %></td>
 							<%  num_responded = LenderLoanCaseShip.where("loan_case_id = #{f.id} and is_responded = true").size()%>
 							<%  num_sended = LenderLoanCaseShip.where("loan_case_id = #{f.id}").size()%>
@@ -68,9 +68,9 @@
 					<% @loan_cases.where("status_id = 2").each do |f|%>
 						<%= form_for f, :url => backstage_update_evaluate_case_path , html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
-							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
+							<td><%= f.updated_at.strftime("%m/%d/%y-%H:%M") %></td>
 							<% if f.deliver_time != nil %>
-								<td><%= f.deliver_time.strftime("%m/%d/%y") %></td>
+								<td><%= f.deliver_time.strftime("%m/%d/%y-%H:%M") %></td>
 							<% else %>
 								<td></td>
 							<% end %>
@@ -107,9 +107,9 @@
 					<% @loan_cases.where("status_id = 3").each do |f|%>
 						<%= form_for f, :url => backstage_update_delivering_case_path , html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
-							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
+							<td><%= f.updated_at.strftime("%m/%d/%y-%H:%M") %></td>
 							<% if f.deliver_time != nil %>
-								<td><%= f.deliver_time.strftime("%m/%d/%y") %></td>
+								<td><%= f.deliver_time.strftime("%m/%d/%y-%H:%M") %></td>
 							<% else %>
 								<td></td>
 							<% end %>
@@ -148,7 +148,7 @@
 					<% @loan_cases.where("status_id = 4").each do |f|%>
 						<%= form_for f, :url => backstage_update_loaning_case_path  , html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
-							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
+							<td><%= f.updated_at.strftime("%m/%d/%y-%H:%M") %></td>
 							<td><%= f.applicant_name %></td>
 							<td><%= f.applicant_phone %></td>
 							<% if f.lender_id != nil %>
@@ -200,7 +200,7 @@
 					<% @loan_cases.where("status_id = 5").each do |f|%>
 					 	<tr>
 					 		<%= form_for f, :url => backstage_update_loanded_case_path  , html: {class: "form-horizontal"} do |form| %>
-							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
+							<td><%= f.updated_at.strftime("%m/%d/%y-%H:%M") %></td>
 							<td><%= f.applicant_name %></td>
 							<td><%= f.applicant_phone %></td>
 							<% if f.lender_id != nil %>
@@ -253,7 +253,7 @@
 						</tr>
 					<% @loan_cases.where("status_id = 6").each do |f|%>
 					 	<tr>
-							<td><%= f.updated_at.strftime("%m/%d/%y") %></td>
+							<td><%= f.updated_at.strftime("%m/%d/%y-%H:%M") %></td>
 							<td><%= f.applicant_name %></td>
 						</tr>
 					<% end %>
@@ -268,6 +268,17 @@
 				</div>
 			</div>
 			<!-- end divider -->
+
+			<% @lenders.each do |lender|%>
+				<%= form_for lender, :url => backstage_update_lender_path  , html: {class: "form-horizontal"} do |form| %>
+					<tr>
+						<input type="hidden" name="lender[id]" value=<%= lender.id %>>
+						<td><%= lender.name %></td>
+						<td><%= form.file_field :avatar %></td>
+						<td><%= form.submit "送出" %></td>
+					</tr>
+				<% end %>
+			<% end %>
 			
 	<div class="blankline30"></div>
 

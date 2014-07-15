@@ -3,6 +3,7 @@ class BackstageController < ApplicationController
 	
 	def index
 		@loan_cases = LoanCase.all
+		@lenders = Lender.all
 	end
 
 	def deliver_mail
@@ -52,6 +53,13 @@ class BackstageController < ApplicationController
 		redirect_to :controller => 'backstage', :action => 'index'
 	end
 
+	def update_lender
+		lender = Lender.find(params[:lender][:id])
+		lender.avatar = params[:lender][:avatar]
+		lender.save
+		redirect_to :controller => 'backstage', :action => 'index'
+	end
+
 	private 
 
 	def getStausIdByName(status_string)
@@ -68,6 +76,10 @@ class BackstageController < ApplicationController
 		else
 			return false
 		end
+	end
+
+	def lender_params
+		params.require(:lender).permit(:name,:email,:contact_company_phone, :fax_phone, :contact_personal_phone, :bank, :bank_branch, :work_title, :avatar, :card, :is_male)
 	end
 
 end
