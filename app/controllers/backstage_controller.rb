@@ -3,7 +3,6 @@ class BackstageController < ApplicationController
 	
 	def index
 		@loan_cases = LoanCase.all
-		@lenders = Lender.all
 	end
 
 	def deliver_mail
@@ -53,11 +52,15 @@ class BackstageController < ApplicationController
 		redirect_to :controller => 'backstage', :action => 'index'
 	end
 
+	def lenders
+		@lenders = Lender.all
+	end
+
 	def update_lender
 		lender = Lender.find(params[:lender][:id])
 		lender.avatar = params[:lender][:avatar]
 		lender.save
-		redirect_to :controller => 'backstage', :action => 'index'
+		redirect_to backstage_lenders_path
 	end
 
 	private 

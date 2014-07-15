@@ -1,0 +1,21 @@
+<div id="wrapper">
+	
+	<%= render "devise/shared/nevigation_links" %>
+	
+	<section id="content">
+		<div class="container">
+
+			<% @lenders.each do |lender|%>
+				<%= form_for lender, :url => backstage_update_lender_path  , html: {class: "form-horizontal"} do |form| %>
+					<tr>
+						<input type="hidden" name="lender[id]" value=<%= lender.id %>>
+						<td><%= lender.name %></td>
+						<td><%= form.file_field :avatar %></td>
+						<td><%= form.submit "送出" %></td>
+					</tr>
+				<% end %>
+			<% end %>
+
+		</div>
+	</section>
+</div>

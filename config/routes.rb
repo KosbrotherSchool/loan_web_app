@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   patch "backstage/update_loaning_case" => "backstage#update_loaning_case"
   patch "backstage/update_loanded_case" => "backstage#update_loanded_case"
 
+  get "backstage/lenders" => "backstage#lenders"
   patch "backstage/update_lender" => "backstage#update_lender"
 
   resources :loan_cases do
