@@ -21,35 +21,37 @@
 								<% else %>
 									<li>
 								<% end %>
-										<a href="index.html"><i class="icon-home"></i> 首頁</a>
+										<%= link_to(root_path) do %>
+											<i class="icon-home"></i>首頁
+										<% end %>
 									</li>
 								<% if action_name == "apply_mortgage" || action_name == "create_loan_case"  %>					
 									<li class="dropdown active">
 								<% else %>
 									<li>
 								<% end %>
-									<a href="apply-mortgage.html">申請新房貸</a>
+										<%= link_to "申請新房貸", apply_mortgage_path %>
 								</li>
 								<% if action_name == "join_us" ||  action_name == "create_lender"%>					
 									<li class="dropdown active">
 								<% else %>
 									<li>
 								<% end %>
-									<a href="join-us.html">貸款專員申請加入</a>
+									<%= link_to "貸款專員申請加入", join_us_path %>
 									</li>
 								<% if action_name == "faq" %>					
 									<li class="dropdown active">
 								<% else %>
 									<li>
 								<% end %>
-									<a href="faq.html">常見問題</a>
+									<%= link_to "常見問題", faq_path %>
 									</li>
 								<% if action_name == "about_us" %>					
 									<li class="dropdown active">
 								<% else %>
 									<li>
 								<% end %>
-									<a href="about-us.html">關於我們</a>
+									<%= link_to "關於我們", about_us_path %>
 									</li>						
 						</ul>
 						</nav>
