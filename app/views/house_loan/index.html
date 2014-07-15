@@ -213,25 +213,34 @@
 									<li class="item-thumbs span3 " data-id="id-4" data-type="kaohsiung">
 										<div class="team-box thumbnail">
 										  
-										  <%= image_tag lender.avatar.url(:medium) %>
+											<% if lender.avatar_file_name != nil %>
+										  	<%= image_tag lender.avatar.url(:medium) %>
+										  <% else %>
+										  	<% if lender.is_male %>
+										  		<!-- show male pic -->
+										  	<% else %>
+										  		<!-- show female pic -->
+										  	<% end %>
+										  <% end %>
+
 										  <div class="caption">
-											<h6><%= lender.bank %> <%= lender.name[0]%><%= lender.work_title %></h6>
-											<p></p>
+												<h6><%= lender.bank %> <%= lender.name[0]%><%= lender.work_title %></h6>
+												<p></p>
 
-											<ul class="social-network">
-												<% if lender.is_phone_confirmed %>
-													<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
-												<% end %>
+												<ul class="social-network">
+													<% if lender.is_phone_confirmed %>
+														<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
+													<% end %>
 
-												<% if lender.is_mail_confirmed %>
-													<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
-												<% end %>
+													<% if lender.is_mail_confirmed %>
+														<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
+													<% end %>
 
-												<% if lender.is_mail_confirmed %>
-													<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
-												<% end %>
+													<% if lender.is_mail_confirmed %>
+														<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
+													<% end %>
 
-											</ul>
+												</ul>
 										  </div>
 										</div>
 									</li>
