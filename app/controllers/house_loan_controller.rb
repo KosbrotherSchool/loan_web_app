@@ -1,7 +1,7 @@
 class HouseLoanController < ApplicationController
 
 	def index
-		@lenders = Lender.all	
+		@lenders = Lender.where("is_person_confirmed = true")
 	end
 
 	def new
@@ -16,7 +16,12 @@ class HouseLoanController < ApplicationController
 	end
 
 	def create_lender
+		
 		@lender = Lender.new(lender_params)
+		@lender.is_phone_confirmed = false
+		@lender.is_mail_confirmed = false
+		@lender.is_person_confirmed = false
+
 		if @lender.save
 			
 			if params[:taipei] == "true"
