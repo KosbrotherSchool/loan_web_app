@@ -1,6 +1,7 @@
 class HouseLoanController < ApplicationController
 
-	def index		
+	def index
+		@lenders = Lender.all	
 	end
 
 	def new

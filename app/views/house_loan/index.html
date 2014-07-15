@@ -264,6 +264,29 @@
 									</div>
 								</li>
 								<!-- End Item Project -->
+
+								<% @lenders.all.each do |lender| %>
+
+									<!-- Item Project and Filter Name -->
+									<li class="item-thumbs span3 " data-id="id-4" data-type="kaohsiung">
+										<div class="team-box thumbnail">
+										  <%= image_tag lender.avatar.url(:medium) %>
+										  <div class="caption">
+											<h6><%= lender.bank %> <%= lender.name[0]%><%= lender.work_title %></h6>
+											<p>
+											
+											</p>
+											<ul class="social-network">
+												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
+												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
+												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
+											</ul>
+										  </div>
+										</div>
+									</li>
+									<!-- End Item Project -->
+
+								<% end %>
 								
 								
 								
