@@ -218,13 +218,15 @@
 										  <% else %>
 										  	<% if lender.is_male %>
 										  		<!-- show male pic -->
+												<%= image_tag("img/dummies/team/man.jpg") %>
 										  	<% else %>
 										  		<!-- show female pic -->
+												<%= image_tag("img/dummies/team/woman.jpg") %>
 										  	<% end %>
 										  <% end %>
 
 										  <div class="caption">
-												<h6><%= lender.bank %> <%= lender.name[0]%><%= lender.work_title %></h6>
+												<h6><%= lender.bank %> <%= lender.name[0]%>專員</h6>
 												<p></p>
 
 												<ul class="social-network">
