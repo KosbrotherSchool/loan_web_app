@@ -1,7 +1,7 @@
 class HouseLoanController < ApplicationController
 
 	def index
-		@lenders = Lender.where("is_person_confirmed = true")
+		@lenders = Lender.where("is_show = true")
 	end
 
 	def new
@@ -20,6 +20,7 @@ class HouseLoanController < ApplicationController
 		@lender.is_phone_confirmed = false
 		@lender.is_mail_confirmed = false
 		@lender.is_person_confirmed = false
+		@lender.is_show = false
 
 		if @lender.save
 			
