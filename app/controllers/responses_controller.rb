@@ -7,14 +7,18 @@ class ResponsesController < ApplicationController
     @token = params[:token]
     loan_case_id = params[:loan_case_id]
     if loan_case_id == AES.decrypt(@token, ENV["KEY"])
-      @loan_case = LoanCase.find(loan_case_id)
+      begin
+        @loan_case = LoanCase.find(loan_case_id)
 
-      if params[:msg] == 'success'
-      
-      else
-        @key = params[:key]
-        @loan_response = LoanResponse.new
-      end   
+        if params[:msg] == 'success'
+        
+        else
+          @key = params[:key]
+          @loan_response = LoanResponse.new
+        end 
+      rescue Exception => e
+        redirect_to root_path
+      end
     else
 
       redirect_to root_path
