@@ -52,6 +52,14 @@ class BackstageController < ApplicationController
 		redirect_to :controller => 'backstage', :action => 'index'
 	end
 
+	def update_failed_case
+		loan_case = LoanCase.find(params[:key])
+		loan_case.notes = params[:loan_case][:notes]
+		loan_case.status_id = getStausIdByName(params[:loan_case][:status])
+		loan_case.save
+		redirect_to :controller => 'backstage', :action => 'index'
+	end
+
 	def lenders
 		@lenders = Lender.all
 	end

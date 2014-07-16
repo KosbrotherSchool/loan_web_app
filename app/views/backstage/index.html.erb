@@ -250,14 +250,25 @@
 						<tr>
 							<td>狀態更新時間</td>
 							<td>申請人</td>
+							<td>申請人電話</td>
+							<td>備註</td>
+							<td>案件狀態</td>
+							<td>送出</td>
 						</tr>
 					<% @loan_cases.where("status_id = 6").each do |f|%>
-					 	<tr>
-							<td><%= f.updated_at.strftime("%m/%d/%y-%H:%M") %></td>
-							<td><%= f.applicant_name %></td>
-						</tr>
-					<% end %>
-				</table>			
+						 	<tr>
+						 		<%= form_for f, :url => backstage_update_loanded_case_path  , html: {class: "form-horizontal"} do |form| %>
+								<td><%= f.updated_at.strftime("%m/%d/%y-%H:%M") %></td>
+								<td><%= f.applicant_name %></td>
+								<td><%= f.applicant_phone %></td>
+								<td><%= form.text_field :notes, :placeholder => f.notes, :class => "input-large"%></td>
+								<td><%= form.select(:status, ['評估中','送件中', '核貸中','已核貸','失敗'], {:selected  => "失敗"}, { :class => 'span2'}) %></td>
+								<input type="hidden" name="key" value=<%= f.id %>>
+								<td><%= form.submit "送出" %></td>
+							</tr>
+							<% end %>
+						<% end %>
+					</table>			
 
 			</div>
 

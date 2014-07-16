@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   patch "backstage/update_delivering_case" => "backstage#update_delivering_case"
   patch "backstage/update_loaning_case" => "backstage#update_loaning_case"
   patch "backstage/update_loanded_case" => "backstage#update_loanded_case"
+  patch "backstage/update_failed_case" => "backstage#update_failed_case"
 
   get "backstage/lenders" => "backstage#lenders"
   patch "backstage/update_lender" => "backstage#update_lender"
