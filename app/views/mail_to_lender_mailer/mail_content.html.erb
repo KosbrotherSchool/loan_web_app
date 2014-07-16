@@ -6,10 +6,16 @@ list-style-type: decimal;
 <p><%= @lender.name %>專員您好,</p>
 
 <p>
-以下為新進詢問案件資料，請於 <%= (Time.now + 3.days).strftime("%Y/%m/%d") %> 18:00前到此連結回覆：
+以下為新進詢問案件資料，請於 <%= (Time.now + 3.days).strftime("%Y/%m/%d %H:%M") %>前到此連結回覆：
 
 <a href="www.e-loan.com.tw/loan_cases/<%= @loan_case.id %>/responses/lenders?key=<%= @key %>&token=<%= @token%>" >案件編號：<%= @loan_case.id %></a>
 </p>
+
+<p>
+<a href="www.e-loan.com.tw/loan_cases/<%= @loan_case.id %>/responses/lenders?key=<%= @key %>&token=<%= @token%>" >www.e-loan.com.tw/loan_cases/<%= @loan_case.id %>/responses/lenders?key=<%= @key %>&token=<%= @token%></a>
+</p>
+
+
 <div>
     <h2>貸款需求</h2>
     <hr>
@@ -28,7 +34,11 @@ list-style-type: decimal;
         <% else %>
             <li>是否需要寬限期：否</li>
         <% end %> 
-        <li>貸款期限： <%= @loan_case.to_loan_period_years %> </li>
+        <% if @loan_case.to_loan_period_years == 0 %>
+            <li>貸款期限： 皆可 </li>
+        <% else %>
+            <li>貸款期限： <%= @loan_case.to_loan_period_years %> 年</li>
+        <% end %>
         <% if @loan_case.other_info != nil && @loan_case.other_info != "" %>
             <li>備註： <%= @loan_case.other_info %> </li>
         <% else %>
@@ -65,7 +75,7 @@ list-style-type: decimal;
     <h2>個人資訊</h2>
     <hr>
     <ul class="demand" id="demand-3">
-        <li>年齡: <%= @loan_case.applicant_age %> </li>
+        <li>年齡: <%= @loan_case.applicant_age %> 歲</li>
         <li>公司名稱： <%= @loan_case.applicant_company_name %> </li>
         <li>職稱： <%= @loan_case.applicant_title %> </li>
         <li>年資： <%= @loan_case.applicant_serve_year %> 年</li>
