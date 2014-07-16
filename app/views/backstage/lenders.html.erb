@@ -4,18 +4,47 @@
 	
 	<section id="content">
 		<div class="container">
+			<table border=1>
+				<tr>
+					<td>在前台顯示</td>
+					<td>專員照片</td>
+					<td>原圖連結</td>
+					<td>專員名稱</td>
+					<td>選新圖片</td>
+					<td></td>
+				</tr>
 
-			<% @lenders.each do |lender|%>
-				<%= form_for lender, :url => backstage_update_lender_path  , html: {class: "form-horizontal"} do |form| %>
-					<tr>
-						<input type="hidden" name="lender[id]" value=<%= lender.id %>>
-						<td><%= lender.name %></td>
-						<td><%= form.file_field :avatar %></td>
-						<td><%= form.submit "送出" %></td>
-					</tr>
+				<% @lenders.each do |lender|%>
+					<%= form_for lender, :url => backstage_update_lender_path  , html: {class: "form-horizontal"} do |form| %>
+						<tr>
+							<input type="hidden" name="lender[id]" value=<%= lender.id %>>
+							<% if lender.is_show == true %>
+								<td>是</td>
+							<% else %>
+								<td>否</td>
+							<% end %>
+							<% if lender.avatar_file_name != nil%>
+								<td><%= image_tag lender.avatar.url(:thumb) %></td>
+								<td><%= link_to "連結", lender.avatar.url(:original),  {:style => 'color: #09B3DD'}%></td>
+							<% else %>
+								<td></td>
+								<td>無圖片</td>
+							<% end %>
+							<td><%= lender.name %></td>
+							<td><%= form.file_field :avatar %></td>
+							<td><%= form.submit "送出" %></td>
+						</tr>
+					<% end %>
 				<% end %>
-			<% end %>
-
+			</table>	
 		</div>
 	</section>
+
+	<!-- divider -->
+		<div class="row">
+			<div class="span12">
+			</div>
+		</div>
+	<!-- end divider -->
+
 </div>
