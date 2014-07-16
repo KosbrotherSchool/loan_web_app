@@ -1,14 +1,16 @@
 <%# add navigation links to this file %>
 <div style="width:800px; margin:0 auto;">
-<% if user_signed_in? %>
-  <li><%= link_to '編輯帳號', edit_user_registration_path %></li>
-  <li><%= link_to '登出', destroy_user_session_path, :method=>'delete' %></li>
-<% else %>
-  <li><%= link_to '登入', new_user_session_path %></li>
-  <li><%= link_to '註冊', new_user_registration_path %></li>
+<tr>
+	<% if user_signed_in? %>
+	  <td>*<%= link_to '編輯帳號', edit_user_registration_path %></td>
+	  <td>*<%= link_to '登出', destroy_user_session_path, :method=>'delete' %></td>
+	<% else %>
+	  <td>*<%= link_to '登入', new_user_session_path %></td>
+	  <td>*<%= link_to '註冊', new_user_registration_path %></td>
+	<% end %>
+	<% if user_signed_in? %>
+	  <td>*<%= link_to '後台管理', backstage_path %></td>
+	  <td>*<%= link_to '專員管理', backstage_lenders_path %></td>
 <% end %>
-<% if user_signed_in? %>
-  <li><%= link_to '後台管理', backstage_path %></li>
-  <li><%= link_to '專員管理', backstage_lenders_path %></li>
-<% end %>
+</tr>
 </div>
