@@ -6,11 +6,16 @@ class ResponsesController < ApplicationController
   def lender_response
     @token = params[:token]
     loan_case_id = params[:loan_case_id]
-    @key = params[:key]
-    lender_id = AES.decrypt(@key, ENV["KEY"])
-    lenderLoanCaseShip = LenderLoanCaseShip.where("lender_id = #{lender_id} and loan_case_id = #{loan_case_id}").first
-    lenderLoanCaseShip.view_nums = lenderLoanCaseShip.view_nums + 1
-    lenderLoanCaseShip.save
+
+    begin
+      @key = params[:key]
+      lender_id = AES.decrypt(@key, ENV["KEY"])
+      lenderLoanCaseShip = LenderLoanCaseShip.where("lender_id = #{lender_id} and loan_case_id = #{loan_case_id}").first
+      lenderLoanCaseShip.view_nums = lenderLoanCaseShip.view_nums + 1
+      lenderLoanCaseShip.save
+    rescue Exception => e
+      
+    end
 
     if loan_case_id == AES.decrypt(@token, ENV["KEY"])
       begin
