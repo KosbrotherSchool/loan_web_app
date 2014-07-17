@@ -6,15 +6,18 @@ class ResponsesController < ApplicationController
   def lender_response
     @token = params[:token]
     loan_case_id = params[:loan_case_id]
+    @key = params[:key]
+    lender_id = AES.decrypt(@key, ENV["KEY"])
+    lenderLoanCaseShip = LenderLoanCaseShip.where("lender_id = #{lender_id} and loan_case_id = #{loan_case_id}").first
+    lenderLoanCaseShip.view_nums = lenderLoanCaseShip.view_nums + 1
+    lenderLoanCaseShip.save
+
     if loan_case_id == AES.decrypt(@token, ENV["KEY"])
       begin
         @loan_case = LoanCase.find(loan_case_id)
-
         if params[:msg] == 'success'
-        
-        else
-          @key = params[:key]
-          lender_id = AES.decrypt(@key, ENV["KEY"])
+          #show success msg in view 
+        else    
           if LoanResponse.where("loan_case_id = #{loan_case_id} and lender_id = #{lender_id}").first != nil
             @loan_response = LoanResponse.where("loan_case_id = #{loan_case_id} and lender_id = #{lender_id}").first
           else
@@ -26,7 +29,7 @@ class ResponsesController < ApplicationController
       end
     else
 
-      redirect_to root_path
+    redirect_to root_path
 
     end
   	
