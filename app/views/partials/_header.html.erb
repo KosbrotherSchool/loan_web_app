@@ -1,67 +1,67 @@
 <header>	
-		<div class="top">
+	<div class="top">
 
-		</div>	
-		<div class="container-fluid">
-			
+	</div>	
+	<div class="container-fluid">
+		
 
-			<div class="row-fluid nomargin">
-				<div class="span4">
-					<div class="logo">
-						<%= link_to(root_path) do %>
-							<%= image_tag("img/logo_5.png") %>
-						<% end %>
-					</div>
-				</div>
-			<div class="span8">
-				<div class="navbar navbar-static-top">
-					<div class="navigation">
-						<nav>
-						<ul class="nav topnav">
-								<% if action_name == "index" || action_name == "privacy" || action_name == "term"%>					
-									<li class="dropdown active">
-								<% else %>
-									<li>
-								<% end %>
-										<%= link_to(root_path) do %>
-											<i class="icon-home"></i>首頁
-										<% end %>
-									</li>
-								<% if action_name == "apply_mortgage" || action_name == "create_loan_case"  %>					
-									<li class="dropdown active">
-								<% else %>
-									<li>
-								<% end %>
-										<%= link_to "申請新房貸", apply_mortgage_path %>
-								</li>
-								<% if action_name == "join_us" ||  action_name == "create_lender"%>					
-									<li class="dropdown active">
-								<% else %>
-									<li>
-								<% end %>
-									<%= link_to "貸款專員申請加入", join_us_path %>
-									</li>
-								<% if action_name == "faq" %>					
-									<li class="dropdown active">
-								<% else %>
-									<li>
-								<% end %>
-									<%= link_to "常見問題", faq_path %>
-									</li>
-								<% if action_name == "about_us" %>					
-									<li class="dropdown active">
-								<% else %>
-									<li>
-								<% end %>
-									<%= link_to "關於我們", about_us_path %>
-									</li>						
-						</ul>
-						</nav>
-					</div>
-					<!-- end navigation -->
+		<div class="row-fluid nomargin">
+			<div class="span4">
+				<div class="logo">
+					<%= link_to(root_path) do %>
+						<%= image_tag("img/logo_7.png") %>
+					<% end %>
 				</div>
 			</div>
+		<div class="span8">
+			<div class="navbar navbar-static-top">
+				<div class="navigation">
+					<nav>
+					<ul class="nav topnav">
+							<% if action_name == "index" || action_name == "privacy" || action_name == "term"%>					
+								<li class="dropdown active">
+							<% else %>
+								<li>
+							<% end %>
+									<%= link_to(root_path) do %>
+										<i class="icon-home"></i>首頁
+									<% end %>
+								</li>
+							<% if action_name == "apply_mortgage" || action_name == "create_loan_case"  %>					
+								<li class="dropdown active">
+							<% else %>
+								<li>
+							<% end %>
+									<%= link_to "申請新房貸", apply_mortgage_path %>
+							</li>
+							<% if action_name == "join_us" ||  action_name == "create_lender"%>					
+								<li class="dropdown active">
+							<% else %>
+								<li>
+							<% end %>
+								<%= link_to "貸款專員申請加入", join_us_path %>
+								</li>
+							<% if action_name == "faq" %>					
+								<li class="dropdown active">
+							<% else %>
+								<li>
+							<% end %>
+								<%= link_to "常見問題", faq_path %>
+								</li>
+							<% if action_name == "about_us" %>					
+								<li class="dropdown active">
+							<% else %>
+								<li>
+							<% end %>
+								<%= link_to "關於我們", about_us_path %>
+								</li>						
+					</ul>
+					</nav>
+				</div>
+				<!-- end navigation -->
 			</div>
 		</div>
-	</header>	
-	<!-- end header -->
+		</div>
+	</div>
+</header>	
+<!-- end header -->

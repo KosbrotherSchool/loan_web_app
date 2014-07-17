@@ -14,7 +14,12 @@ class ResponsesController < ApplicationController
         
         else
           @key = params[:key]
-          @loan_response = LoanResponse.new
+          lender_id = AES.decrypt(@key, ENV["KEY"])
+          if LoanResponse.where("loan_case_id = #{loan_case_id} and lender_id = #{lender_id}").first != nil
+            @loan_response = LoanResponse.where("loan_case_id = #{loan_case_id} and lender_id = #{lender_id}").first
+          else
+            @loan_response = LoanResponse.new
+          end  
         end 
       rescue Exception => e
         redirect_to root_path
@@ -42,8 +47,26 @@ class ResponsesController < ApplicationController
       lenderLoanCaseShip.save
       redirect_to :controller => "responses", :action => "lender_response", :msg => 'success', :token => params[:token]
 		else
+      @token = params[:token]
+      @key = params[:key]
 			render :lender_response
 		end
+
+  end
+
+  def lender_response_update
+    loan_case_id = AES.decrypt(params[:token], ENV["KEY"])
+    lender_id = AES.decrypt(params[:key], ENV["KEY"])
+    @loan_response = LoanResponse.where("loan_case_id = #{loan_case_id} and lender_id = #{lender_id}").first
+    @loan_case = LoanCase.find(loan_case_id)
+    begin
+      @loan_response.update! (response_param)
+      redirect_to :controller => "responses", :action => "lender_response", :msg => 'success', :token => params[:token]
+    rescue Exception => e
+      @token = params[:token]
+      @key = params[:key]
+      render :lender_response
+    end
 
   end
 

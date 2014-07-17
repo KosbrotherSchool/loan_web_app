@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   resources :loan_cases do
     get "responses/lenders" => "responses#lender_response"
+    patch "responses/lenders" =>  "responses#lender_response_update"
     resources :responses
   end
 
