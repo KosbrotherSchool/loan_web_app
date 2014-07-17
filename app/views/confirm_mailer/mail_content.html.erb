@@ -75,8 +75,10 @@ e貸宗師 客服中心敬上
     <hr>
     <ul class="demand" id="demand-3">
         <li>年齡: <%= @loan_case.applicant_age %> 歲</li>
-        <li>公司名稱： <%= @loan_case.applicant_company_name %> </li>
-        <li>職稱： <%= @loan_case.applicant_title %> </li>
+        <li>公司名稱： <%= @loan_case.applicant_company_name %></li>
+        <% if @loan_case.applicant_title != nil %>
+            <li>職稱： <%= @loan_case.applicant_title %></li>
+        <% end %>
         <li>年資： <%= @loan_case.applicant_serve_year %> 年</li>
         <li>年薪： <%= @loan_case.applicant_year_earning %>萬</li>
         

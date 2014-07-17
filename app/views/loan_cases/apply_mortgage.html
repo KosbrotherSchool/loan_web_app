@@ -266,7 +266,7 @@
 					      <label class="control-label">頂樓是否有加蓋<span class="text-error">*</span></label>
 					      <div class="controls">
 						  <label class="radio">
-						      <%= radio_button_tag("loan_case[is_top_built]", checked = true ,"false") %>
+						      <%= radio_button_tag("loan_case[is_top_built]", "false",checked = true ) %>
 						      無
 						  </label>
 						  <label class="radio">
@@ -387,7 +387,7 @@
 					      <label class="control-label">名下是否有房子<span class="text-error">*</span></label>
 					      <div class="controls">
 								  <label class="radio">
-								      <%= radio_button_tag("loan_case[applicant_is_have_house]", checked = true ,"false") %>
+								      <%= radio_button_tag("loan_case[applicant_is_have_house]", "false", checked = true ) %>
 								      無
 								  </label>
 								  <label class="radio">
@@ -417,11 +417,11 @@
 					      <label class="control-label">是否有信用瑕疵<span class="text-error">*</span></label>
 					      <div class="controls">
 							  <label class="radio">
-							      <%= radio_button_tag("loan_case[is_credit_ok]", checked = true ,"false") %>
+							      <%= radio_button_tag("loan_case[is_credit_ok]", "true", checked = true ) %>
 							      無
 							  </label>
 							  <label class="radio">
-							      <%= radio_button_tag("loan_case[is_credit_ok]","true") %>
+							      <%= radio_button_tag("loan_case[is_credit_ok]","false") %>
 							      有
 							  </label>
 					      </div>
