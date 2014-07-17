@@ -18,6 +18,7 @@ class ResponsesController < ApplicationController
     end
 
     if loan_case_id == AES.decrypt(@token, ENV["KEY"])
+      
       begin
         @loan_case = LoanCase.find(loan_case_id)
         if params[:msg] == 'success'
@@ -32,9 +33,10 @@ class ResponsesController < ApplicationController
       rescue Exception => e
         redirect_to root_path
       end
+
     else
 
-    redirect_to root_path
+      redirect_to root_path
 
     end
   	
