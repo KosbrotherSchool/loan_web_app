@@ -56,3 +56,6 @@ gem 'rest-client', '~> 1.6.7'
 gem "paperclip", "~> 4.1"
 
 gem 'aes'
+
+gem 'sidekiq'
+gem 'sinatra', require: false

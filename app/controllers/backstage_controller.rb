@@ -12,7 +12,7 @@ class BackstageController < ApplicationController
 		loan_case.save
 
 		# deliver reply mail
-		ReplyApplierMailer.mail_content(loan_case.id).deliver
+		ReplyApplierMailer.delay.mail_content(loan_case.id).deliver
 
 		redirect_to :controller => 'backstage', :action => 'index'
 	end
