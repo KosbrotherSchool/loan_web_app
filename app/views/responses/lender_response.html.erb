@@ -117,12 +117,14 @@
               <% if @loan_response.present? %>
 
                 <% if @loan_response.errors.any? %>
-                  <h2>資料格式錯誤: </h2>
-                  <ul>
-                    <% @loan_response.errors.full_messages.each do |message|%>
-                      <li style="color:#FF8000"><%= message %></li>
-                    <% end %>
-                  </ul>
+                  <div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px; margin-bottom:30px">
+                    <h2>資料格式錯誤: </h2>
+                    <ul>
+                      <% @loan_response.errors.full_messages.each do |message|%>
+                        <li style="color:#FF8000"><%= message %></li>
+                      <% end %>
+                    </ul>
+                  </div>
                 <% end %>
 
                 <% if @loan_response.new_record? %>

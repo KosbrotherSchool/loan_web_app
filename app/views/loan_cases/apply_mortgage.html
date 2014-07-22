@@ -66,12 +66,14 @@
 				  <h4>詳細填寫需求，專員針對個人條件、房屋條件、貸款需求來評估。越詳細，專員才能提供最精準的評估！</h4>
 				  
 				 	<% if @loan_case.errors.any? %>
+				 		<div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px; margin-bottom:30px">
 								<h2>資料格式錯誤: </h2>
 								<ul>
 									<% @loan_case.errors.full_messages.each do |message|%>
 										<li><%= message %></li>
 									<% end %>
 								</ul>
+						</div>
 					<% end %>
 				  
 				  <%= form_for @loan_case, :url => loan_cases_path  , html: {class: "form-horizontal"} do |f| %>
