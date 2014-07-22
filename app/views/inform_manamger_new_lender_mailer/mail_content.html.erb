@@ -1,0 +1,18 @@
+<h1>新專員加入:</h1>
+<br>
+<p>專員姓名: <%= @lender.name %></p>
+<% if @lender.is_male %>
+<p>性別: 先生</p>
+<% else %>
+<p>性別: 女士</p>
+<% end %>
+<p>Email: <%= @lender.email %></p>
+<p>公司電話: <%= @lender.contact_company_phone %></p>
+<p>公司傳真: <%= @lender.fax_phone %></p>
+<p>個人電話: <%= @lender.contact_personal_phone %></p>
+<p>公司名稱: <%= @lender.bank %></p>
+<p>分行/通訊處名稱: <%= @lender.bank_branch %></p>
+<p>職稱: <%= @lender.work_title %></p>
+<br>
+<p>此為系統管理員自動發信!</p>
+
