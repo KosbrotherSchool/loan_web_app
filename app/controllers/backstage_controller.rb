@@ -1,5 +1,5 @@
 class BackstageController < ApplicationController
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, :check_user
 	
 	def index
 		@loan_cases = LoanCase.all
@@ -72,6 +72,12 @@ class BackstageController < ApplicationController
 	end
 
 	private 
+
+	def check_user
+		if !(current_user.id <= 3)
+			redirect_to root_path
+		end
+	end
 
 	def getStausIdByName(status_string)
 		CaseStatus.all.each do |case_status|
