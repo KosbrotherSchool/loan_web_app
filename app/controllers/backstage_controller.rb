@@ -66,8 +66,10 @@ class BackstageController < ApplicationController
 
 	def update_lender
 		lender = Lender.find(params[:lender][:id])
-		lender.avatar = params[:lender][:avatar]
+		lender.is_show = checkTrueFalseByName(params[:lender][:is_show])
+		lender.is_person_confirmed = checkTrueFalseByName(params[:lender][:is_person_confirmed])
 		lender.save
+		lender.update(lender_avatar_params)
 		redirect_to backstage_lenders_path
 	end
 
@@ -93,6 +95,10 @@ class BackstageController < ApplicationController
 		else
 			return false
 		end
+	end
+
+	def lender_avatar_params
+		params.require(:lender).permit(:avatar, :email)
 	end
 
 	def lender_params

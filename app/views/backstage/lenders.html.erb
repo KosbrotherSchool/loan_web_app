@@ -6,11 +6,13 @@
 		<div class="container">
 			<table class="table" border=1>
 				<tr>
-					<td>在前台顯示</td>
+					<td>前台顯示</td>
 					<td>專員照片</td>
-					<td>原圖連結</td>
 					<td>專員名稱</td>
-					<td>選新圖片</td>
+					<td>Email</td>
+					<td>個人電話</td>
+					<td>公司</td>
+					<td>確認可收信</td>
 					<td></td>
 				</tr>
 
@@ -18,20 +20,37 @@
 					<%= form_for lender, :url => backstage_update_lender_path  , html: {class: "form-horizontal"} do |form| %>
 						<tr>
 							<input type="hidden" name="lender[id]" value=<%= lender.id %>>
-							<% if lender.is_show == true %>
-								<td>是</td>
+							
+							<% if lender.is_show == false %>
+								<td><%= form.select(:is_show, ['是','否'], {:selected  => "否"}, { :class => 'span1'}) %></td>
 							<% else %>
-								<td>否</td>
+								<td><%= form.select(:is_show, ['是','否'], {:selected  => "是"}, { :class => 'span1'}) %></td>
 							<% end %>
+
 							<% if lender.avatar_file_name != nil%>
-								<td><%= image_tag lender.avatar.url(:thumb) %></td>
-								<td><%= link_to "連結", lender.avatar.url(:original),  {:style => 'color: #09B3DD'}%></td>
+								<td>
+									<%= image_tag lender.avatar.url(:thumb) %>
+									<p>原圖連結:<%= link_to "連結", lender.avatar.url(:original),  {:style => 'color: #09B3DD'}%></p>
+									<p>選新圖片: <%= form.file_field :avatar %></p>
+								</td>
 							<% else %>
-								<td></td>
-								<td>無圖片</td>
+								<td>
+									<p>原圖連結:無圖片</p>
+									<p>選新圖片: </p>
+									<%= form.file_field :avatar %>
+								</td>
 							<% end %>
 							<td><%= lender.name %></td>
-							<td><%= form.file_field :avatar %></td>
+							<td><%= form.text_field :email, :placeholder => lender.email, :class => "input-large"%></td>
+							<td><%= lender.contact_personal_phone %></td>
+							<td><%= lender.bank %></td>
+
+							<% if lender.is_person_confirmed == false %>
+								<td><%= form.select(:is_person_confirmed, ['是','否'], {:selected  => "否"}, { :class => 'span1'}) %></td>
+							<% else %>
+								<td><%= form.select(:is_person_confirmed, ['是','否'], {:selected  => "是"}, { :class => 'span1'}) %></td>
+							<% end %>
+
 							<td><%= form.submit "送出" %></td>
 						</tr>
 					<% end %>
