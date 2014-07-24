@@ -1,0 +1,185 @@
+<div id="wrapper">
+	
+	<%= render "devise/shared/nevigation_links" %>
+	
+	<section id="content">
+		<div class="container">
+			
+			<div class="row">
+				<h2>申請人資料</h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>申請人</td>
+					<td>電話</td>
+					<td>Email</td>
+					<td>公司名稱/職稱</td>
+					<td>年資/年薪/其他收入</td>
+					<td>是否有房子</td>
+					<td>房貸/信貸</td>
+					<td>信用瑕疵</td>
+				</tr>
+
+				<tr>
+					<td><%= @loan_case.applicant_name %></td>
+					<td><%= @loan_case.applicant_phone %></td>
+					<td><%= @loan_case.applicant_email %></td>
+
+					<td><%= @loan_case.applicant_company_name %>/<%= @loan_case.applicant_title %></td>
+
+					<td><%= @loan_case.applicant_serve_year %>年/<%= @loan_case.applicant_year_earning %>萬/<%= @loan_case.applicant_other_earning %>萬</td>
+
+					<% if @loan_case.applicant_is_have_house == true %>
+            <td>是</td>
+	        <% else %>
+	          <td>否</td>
+	        <% end %>
+
+					<td>
+            <% if @loan_case.applicant_other_house_loan != nil && @loan_case.applicant_other_house_loan != ""%>
+                <%= @loan_case.applicant_other_house_loan %> 萬；
+            <% else %>
+                0萬
+            <% end %>
+            /
+            <% if @loan_case.applicant_other_credit_loan != nil && @loan_case.applicant_other_credit_loan !="" %> 
+                <%= @loan_case.applicant_other_credit_loan %> 萬
+            <% else %>
+                0萬
+            <% end %>
+	        </td>
+	        <% if @loan_case.is_credit_ok == true %>
+	            <td>否</td>
+	        <% else %>
+	            <td>是</td>
+	        <% end %>
+				</tr>
+			</table>
+
+			<div class="row">
+				<h2>房屋資料</h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>地址</td>
+					<td>樓層</td>
+					<td>建築類型</td>
+					<td>格局</td>
+					<td>建物權狀坪數</td>
+					<td>屋齡</td>
+					<td>裝潢</td>
+					<td>屋況</td>
+					<td>加蓋</td>
+					<td>車位</td>
+				</tr>
+
+				<tr>
+					<td><%= @loan_case.address %></td>
+					<td><%= @loan_case.layer %> 樓</td>
+					<td><%= @loan_case.building_type %> </td>
+					<td> <%= @loan_case.rooms %> 房/ <%= @loan_case.living_rooms %> 廳/ <%= @loan_case.rest_rooms %> 衛</td>
+					<td><%= @loan_case.building_area %> 坪（不含車位）</td>
+					<td><%= @loan_case.building_age %> 年</td>
+					<td><%= @loan_case.house_decoration %></td>
+					<td><%= @loan_case.house_condition %></td>
+					<% if @loan_case.is_top_built == true %>
+						<td><%= @loan_case.top_building_area %> 坪</td>
+					<% else %>
+						<td>否</td>
+					<% end %>
+					<% if @loan_case.parking_type == "無"%>
+						<td>無</td>
+					<% else %>
+						<td><%= @loan_case.parking_type %>,<%= @loan_case.parking_area %>坪</td>
+					<% end %>
+				</tr>
+			</table>
+
+
+			<div class="row">
+				<h2>貸款需求</h2>
+			</div>
+
+
+			<table class="table" border=1>
+				<tr>
+					<td>是否成交</td>
+					<td>(預計)成交總價</td>
+					<td>車位購買價</td>
+					<td>欲貸款金額</td>
+					<td>寬限期</td>
+					<td>貸款期限</td>
+					<td>備註</td>
+				</tr>
+
+				<tr>
+					<% if  @loan_case.is_dealed == true %>
+            <td>是</td>
+		      <% else %>
+		        <td>否</td>
+		      <% end %>
+					<td><%= @loan_case.to_buy_price %>萬</td>
+					<td><%= @loan_case.parking_price %> 萬</td>
+					<td><%= @loan_case.to_loan_price %> 萬</td>
+					<% if  @loan_case.is_need_grace_period == true %>
+		          <td>是,<%= @loan_case.grace_period_years %>年</td>
+		      <% else %>
+		          <td>否</td>
+		      <% end %> 
+		      <% if @loan_case.to_loan_period_years == 0 %>
+		          <td>皆可 </td>
+		      <% else %>
+		          <td><%= @loan_case.to_loan_period_years %> 年</td>
+		      <% end %>
+		       <td><%= @loan_case.other_info %> </td>
+				</tr>
+			</table>
+
+			<div class="row">
+				<h2>已寄信專員</h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>是否已回覆</td>
+					<td>專員照片</td>
+					<td>專員名稱</td>
+					<td>Email</td>
+					<td>個人電話</td>
+					<td>公司</td>
+				</tr>
+
+				<% @lenders.each do |lender|%>
+						<tr>
+							
+							<% is_responded = LenderLoanCaseShip.where("lender_id = #{lender.id} and loan_case_id = #{@loan_case.id}").first.is_responded%>
+
+							<% if is_responded == true %>
+								<td>是</td>
+							<% else %>
+								<td>否</td>
+							<% end %>
+
+							<% if lender.avatar_file_name != nil%>
+								<td>
+									<%= image_tag lender.avatar.url(:thumb) %>
+								</td>
+							<% else %>
+								<td>
+								</td>
+							<% end %>
+
+							<td><%= lender.name %></td>
+							<td><%= lender.email %></td>
+							<td><%= lender.contact_personal_phone %></td>
+							<td><%= lender.bank %></td>
+						</tr>
+				<% end %>
+			</table>	
+
+		</div>
+	</section>
+
+</div>

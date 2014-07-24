@@ -30,7 +30,7 @@ list-style-type: decimal;
         <li>欲貸款金額： <%= @loan_case.to_loan_price %> 萬</li>
         <% if  @loan_case.is_need_grace_period == true %>
             <li>是否需要寬限期：
-            是, ，寬限期： <%= @loan_case.grace_period_years %> 年</li>
+            是, 寬限期： <%= @loan_case.grace_period_years %> 年</li>
         <% else %>
             <li>是否需要寬限期：否</li>
         <% end %> 
@@ -84,7 +84,7 @@ list-style-type: decimal;
         <li>年薪： <%= @loan_case.applicant_year_earning %>萬</li>
         
         <% if @loan_case.applicant_other_earning != nil && @loan_case.applicant_other_earning != "" %>
-            <li>其他收入： <%= @loan_case.applicant_other_earning %></li>
+            <li>其他收入： <%= @loan_case.applicant_other_earning %>萬</li>
         <% else %>
             
         <% end %>

@@ -73,6 +73,11 @@ class BackstageController < ApplicationController
 		redirect_to backstage_lenders_path
 	end
 
+	def loan_case_detail
+		@loan_case = LoanCase.find(params[:loan_case_id])
+		@lenders = Lender.joins(:lender_loan_case_ships).where("loan_case_id = #{@loan_case.id}")
+	end
+
 	private 
 
 	def check_user

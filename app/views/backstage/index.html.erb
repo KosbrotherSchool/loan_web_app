@@ -24,11 +24,20 @@
 						<%= form_for f, :url => backstage_deliver_mail_path, html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
 							<td><%= f.created_at.strftime("%m/%d/%y-%H:%M")%></td>
-							<td><%= f.applicant_name %></td>
+							<td>
+								<%= link_to(root_path+"backstage/loan_cases/#{f.id}") do %>
+									<%= f.applicant_name %>
+								<% end %>
+							</td>
 							<%  num_responded = LenderLoanCaseShip.where("loan_case_id = #{f.id} and is_responded = true").size()%>
 							<%  num_sended = LenderLoanCaseShip.where("loan_case_id = #{f.id}").size()%>
-							<td> <%= num_responded %> / <%= num_sended %></td>
-
+							
+							<td>
+								<%= link_to(root_path+"backstage/loan_cases/#{f.id}") do %>
+							 	<%= num_responded %> / <%= num_sended %>
+							 	<% end %>
+							</td>
+							
 							<% if num_responded == 0%>
 								<td> 0%</td>
 							<% elsif num_responded != 0 &&  num_responded == num_sended %>
