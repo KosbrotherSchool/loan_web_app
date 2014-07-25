@@ -11,7 +11,10 @@
 
 			<div class="row">
 				<% County.all.each do |county| %>
-					<%= county.name %>： <%= county.lenders.size() %>
+					<%= county.name %>：
+					<%= link_to(root_path+"backstage/counties/#{county.id}", {:style => 'color: #09B3DD'}) do %>
+							 	<%= county.lenders.size() %>
+					<% end %>				
 				<% end %>
 			</div>
 

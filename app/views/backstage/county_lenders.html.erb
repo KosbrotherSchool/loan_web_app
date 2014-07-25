@@ -1,0 +1,48 @@
+<div id="wrapper">
+	
+	<%= render "devise/shared/nevigation_links" %>
+	
+	<section id="content">
+		<div class="container">
+			
+			<div class="row">
+				<h2>區域：<%= @county.name %></h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>專員照片</td>
+					<td>專員名稱</td>
+					<td>職稱</td>
+					<td>Email</td>
+					<td>公司電話</td>
+					<td>個人電話</td>
+					<td>公司</td>
+					<td>分行</td>
+				</tr>
+
+				<% @lenders.each do |lender|%>
+						<tr>
+							<% if lender.avatar_file_name != nil%>
+								<td>
+									<%= image_tag lender.avatar.url(:thumb) %>
+								</td>
+							<% else %>
+								<td>
+								</td>
+							<% end %>
+							<td><%= lender.name %></td>
+							<td><%= lender.work_title %></td>
+							<td><%= lender.email %></td>
+							<td><%= lender.contact_company_phone %></td>
+							<td><%= lender.contact_personal_phone %></td>
+							<td><%= lender.bank %></td>
+							<td><%= lender.bank_branch %></td>
+						</tr>
+				<% end %>
+			</table>	
+
+		</div>
+	</section>
+
+</div>

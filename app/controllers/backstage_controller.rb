@@ -78,6 +78,11 @@ class BackstageController < ApplicationController
 		@lenders = Lender.joins(:lender_loan_case_ships).where("loan_case_id = #{@loan_case.id}")
 	end
 
+	def county_lenders
+		@county = County.find(params[:county_id])
+		@lenders = @county.lenders
+	end
+
 	private 
 
 	def check_user
