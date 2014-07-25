@@ -1,0 +1,144 @@
+<div id="wrapper">
+	
+	<%= render "devise/shared/nevigation_links" %>
+	
+	<section id="content">
+		<div class="container">
+
+			<div class="row" style="margin-bottom:0px">
+				<h4>專員資料編輯</h4>
+			</div>
+
+			<%= form_for @lender, url: root_path+"backstage/lenders/#{@lender.id}/update", html: {class: "form-horizontal"} do |f| %>
+						  
+				<div class="row-fluid">
+					
+						<div class="control-group">
+						    <label class="control-label" for="">專員姓名<span class="text-error">*</span><br /></label>
+						    <div class="controls">
+									<%= f.text_field :name%>
+						    </div>
+						</div>
+
+						<div class="control-group">
+							<label class="control-label" for="">性別<span class="text-error">*</span><br /></label>
+						  <label class="controls radio">
+						  		<%= radio_button_tag("lender[is_male]", "true", checked = @lender.is_male) %>
+						      先生
+						  </label>
+						  <label class="controls radio">
+						      <%= radio_button_tag("lender[is_male]", "false",checked = !@lender.is_male ) %>
+						      女士
+						  </label>
+			      </div>
+						
+						<div class="control-group">
+						    <label class="control-label" for="">電子信箱/Email<span class="text-error">*</span><br /></label>
+						    <div class="controls">
+									<%= f.text_field :email%>
+						    </div>
+						</div>
+						<div class="control-group">
+						    <label class="control-label" for="">公司電話<span class="text-error">*</span><br /></label>
+						    <div class="controls">
+									<%= f.text_field :contact_company_phone %>
+						    </div>
+						</div>
+						<div class="control-group">
+						    <label class="control-label" for="">公司傳真<span class="text-error">*</span><br /></label>
+						    <div class="controls">
+									<%= f.text_field :fax_phone %>
+						    </div>
+						</div>
+						<div class="control-group">
+						    <label class="control-label" for="">個人電話<span class="text-error">*</span><br /></label>
+						    <div class="controls">
+									<%= f.text_field :contact_personal_phone%>
+						    </div>
+						</div>
+						<div class="control-group">
+						    <label class="control-label" for="">公司名稱<span class="text-error">*</span><br /></label>
+						    <div class="controls">
+									<%= f.text_field :bank%>
+						    </div>
+						</div>
+						<div class="control-group">
+						    <label class="control-label" for="">分行/通訊處名稱<span class="text-error">*</span><br /></label>
+						    <div class="controls">
+									<%= f.text_field :bank_branch%>
+						    </div>
+						</div>
+						
+						<div class="control-group">
+						    <label class="control-label" for="">職稱<span class="text-error">*</span><br /></label>
+						    <div class="controls">
+									<%= f.text_field :work_title%>
+						    </div>
+						</div>
+
+						<div class="control-group">
+						    <label class="control-label" for="">承做區域<span class="text-error">*</span><br /></label>
+						    <div class="controls">
+						    	<% County.all.each do |county| %>
+						    		<% county_check = false %>
+						    		<% @lender.counties.each do |couty_l|%>
+						    			<% if couty_l.id == county.id %>
+						    				<% county_check = true %>
+						    			<% end %>
+						    		<% end %>
+						    		<%= check_box_tag 'county_'+county.id.to_s, 'true', county_check %><%= county.name%>
+						    	<% end %>
+						    </div>
+						</div>
+						<div class="control-group">
+						    <label class="control-label" for="">上傳名片<span class="text-error">*</span><br /></label>
+
+						    <div class="controls">
+									<% if @lender.card_file_name != nil%>
+										<td>
+											<%= image_tag @lender.card.url(:thumb) %>
+											<p>原圖連結:<%= link_to "連結", @lender.card.url(:original),  {:style => 'color: #09B3DD'}%></p>
+											<p>選新圖片: <%= f.file_field :card %></p>
+										</td>
+									<% else %>
+										<td>
+											<p>原圖連結:無圖片</p>
+											<p>選新圖片: </p>
+											<%= f.file_field :card %>
+										</td>
+									<% end %>
+						    </div>
+						</div>
+						<div class="control-group">
+						    <label class="control-label" for="">上傳2吋大頭照<span class="text-error">*</span><br /></label>
+						    <div class="controls">
+									<% if @lender.avatar_file_name != nil%>
+										<td>
+											<%= image_tag @lender.avatar.url(:thumb) %>
+											<p>原圖連結:<%= link_to "連結", @lender.avatar.url(:original),  {:style => 'color: #09B3DD'}%></p>
+											<p>選新圖片: <%= f.file_field :avatar %></p>
+										</td>
+									<% else %>
+										<td>
+											<p>原圖連結:無圖片</p>
+											<p>選新圖片: </p>
+											<%= f.file_field :avatar %>
+										</td>
+									<% end %>
+						    </div>
+						</div>
+
+						<div class="control-group">
+						    <div class="controls">
+								<div class="form-actions">
+								  <%= f.submit "確定修改" %>
+								</div>
+						    </div>
+						</div>
+					</div>	
+
+				<% end %>
+		
+		</div>
+	</section>
+</div>

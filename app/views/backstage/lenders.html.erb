@@ -58,7 +58,13 @@
 									<%= form.file_field :avatar %>
 								</td>
 							<% end %>
-							<td><%= lender.name %></td>
+
+							<td>
+								<%= link_to(root_path+"backstage/lenders/#{lender.id}", {:style => 'color: #09B3DD'}) do %>
+									<%= lender.name %>
+								<% end %>
+							</td>
+
 							<td><%= form.text_field :email, :placeholder => lender.email, :class => "input-large"%></td>
 							<td><%= lender.contact_personal_phone %></td>
 							<td><%= lender.bank %></td>

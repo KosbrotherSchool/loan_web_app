@@ -100,6 +100,31 @@ class BackstageController < ApplicationController
 		redirect_to :controller => 'backstage', :action => 'index'
 	end
 
+	def lender_edit
+		@lender = Lender.find(params[:lender_id])
+	end
+
+	def update_lender
+		lender = Lender.find(params[:lender_id])
+		lender.update(lender_params)
+		County.all.each do |county|
+			if params["county_#{county.id}"]
+				if LenderCountyShip.where("lender_id = #{lender.id} and county_id = #{county.id}").size() == 0
+					lenderCountyShip = LenderCountyShip.new
+					lenderCountyShip.lender_id = lender.id
+					lenderCountyShip.county_id = county.id
+					lenderCountyShip.save
+				end
+			else
+				if LenderCountyShip.where("lender_id = #{lender.id} and county_id = #{county.id}").size() != 0
+					lenderCountyShip = LenderCountyShip.where("lender_id = #{lender.id} and county_id = #{county.id}").first
+					lenderCountyShip.delete
+				end
+			end
+		end
+		redirect_to root_path+"backstage/lenders/#{lender.id}"
+	end
+
 	private 
 
 	def check_user
