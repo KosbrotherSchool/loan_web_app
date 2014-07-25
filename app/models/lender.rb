@@ -14,7 +14,7 @@ class Lender < ActiveRecord::Base
   validates_attachment_content_type :card, :content_type => /\Aimage\/.*\Z/
 
 	validates :name, :presence => {:message => "請填入姓名"}
-	validates :email, :presence => { :message => "未填入郵件信箱" } 
+	validates :email, :presence => { :message => "請填入郵件信箱" } 
 	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :message => "信箱的格式錯誤"
 	validates :contact_company_phone, :presence => {:message => "請填入公司電話"}
 	validates :fax_phone, :presence => {:message => "請填入傳真電話"}
