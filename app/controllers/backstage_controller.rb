@@ -83,6 +83,23 @@ class BackstageController < ApplicationController
 		@lenders = @county.lenders
 	end
 
+	def mail_to_lenders
+		
+		@loan_case = LoanCase.find(params[:loan_case_id])
+		@loan_case.is_mailed_lenders = true
+		@loan_case.save
+
+		Lender.joins(:lender_county_ships).where("county_id = #{@loan_case.county_id} and is_person_confirmed = true").each do |lender|
+			MailToLenderMailer.delay.mail_content(@loan_case.id, lender.id)
+			lenderLoanCaseShip = LenderLoanCaseShip.new
+			lenderLoanCaseShip.lender_id = lender.id
+			lenderLoanCaseShip.loan_case_id = @loan_case.id
+			lenderLoanCaseShip.save
+		end
+
+		redirect_to :controller => 'backstage', :action => 'index'
+	end
+
 	private 
 
 	def check_user

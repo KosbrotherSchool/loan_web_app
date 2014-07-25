@@ -32,11 +32,21 @@
 							<%  num_responded = LenderLoanCaseShip.where("loan_case_id = #{f.id} and is_responded = true").size()%>
 							<%  num_sended = LenderLoanCaseShip.where("loan_case_id = #{f.id}").size()%>
 							
-							<td>
-								<%= link_to(root_path+"backstage/loan_cases/#{f.id}", {:style => 'color: #09B3DD'}) do %>
-							 	<%= num_responded %> / <%= num_sended %>
-							 	<% end %>
-							</td>
+							<% if f.is_mailed_lenders == nil || f.is_mailed_lenders == false %>
+								<td>
+									<%= link_to(root_path+"backstage/loan_cases/#{f.id}", {:style => 'color: #09B3DD'}) do %>
+										尚未寄信
+									<% end %>
+								</td>
+							<% else %>
+								<td>
+									<%= link_to(root_path+"backstage/loan_cases/#{f.id}", {:style => 'color: #09B3DD'}) do %>
+								 	<%= num_responded %> / <%= num_sended %>
+								 	<% end %>
+								</td>
+							<% end %>
+
+							
 							
 							<% if num_responded == 0%>
 								<td> 0%</td>
