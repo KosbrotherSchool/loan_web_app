@@ -4,6 +4,21 @@
 	
 	<section id="content">
 		<div class="container">
+
+			<div class="row" style="margin-bottom:0px">
+				<h4>區域專員</h4>
+			</div>
+
+			<div class="row">
+				<% County.all.each do |county| %>
+					<%= county.name %>： <%= county.lenders.size() %>
+				<% end %>
+			</div>
+
+			<div class="row">
+				<h4>專員列表</h4>
+			</div>
+
 			<table class="table" border=1>
 				<tr>
 					<td>前台顯示</td>
