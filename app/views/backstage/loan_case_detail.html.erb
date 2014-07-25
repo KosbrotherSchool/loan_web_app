@@ -5,7 +5,7 @@
 	<section id="content">
 		<div class="container">
 			
-			<div class="row">
+			<div class="row" style="margin-bottom:0px">
 				<h2>申請人資料</h2>
 			</div>
 
@@ -57,7 +57,7 @@
 				</tr>
 			</table>
 
-			<div class="row">
+			<div class="row" style="margin-bottom:0px">
 				<h2>房屋資料</h2>
 			</div>
 
@@ -98,7 +98,7 @@
 			</table>
 
 
-			<div class="row">
+			<div class="row" style="margin-bottom:0px">
 				<h2>貸款需求</h2>
 			</div>
 
@@ -137,21 +137,21 @@
 				</tr>
 			</table>
 
-			<div class="row">
+			<div class="row" style="margin-bottom:0px">
 				<h2>已寄信專員</h2>
 			</div>
 	
 			<% if @loan_case.is_mailed_lenders == nil || @loan_case.is_mailed_lenders == false %>
 				<p>是否已寄信: 尚未寄信</p>
+				<%= form_for @loan_case, :url => backstage_mail_to_lenders_path , html: {class: "form-horizontal"} do |form| %>
+					<input type="hidden" name="loan_case_id" value=<%= @loan_case.id %>>
+					<p>將寄出<%= @loan_case.county.lenders.where("is_person_confirmed = true").size() %> 封信 <%= form.submit "寄出專員信" %></p>	
+				<% end %>
 			<% else %>
 				<p>是否已寄信: 已寄信</p>
 			<% end %>
 
-			<%= form_for @loan_case, :url => backstage_mail_to_lenders_path , html: {class: "form-horizontal"} do |form| %>
-				<input type="hidden" name="loan_case_id" value=<%= @loan_case.id %>>
-				<p>將寄出<%= @loan_case.county.lenders.where("is_person_confirmed = true").size() %> 封信 <%= form.submit "寄出專員信" %></p>
-				
-			<% end %>
+			
 
 			<table class="table" border=1>
 				<tr>
