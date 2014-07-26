@@ -44,9 +44,7 @@
 								 	<%= num_responded %> / <%= num_sended %>
 								 	<% end %>
 								</td>
-							<% end %>
-
-							
+							<% end %>						
 							
 							<% if num_responded == 0%>
 								<td> 0%</td>
@@ -58,7 +56,16 @@
 								<td> <%= ps[0..1] %> %</td>
 							<% end %>
 
-							<td><%= (3 - (Time.now - f.created_at)/1.day).to_s[0..3]%> 天</td>
+							<% if (5 - (Time.now - f.created_at)/1.day) >= 0 %>
+								<td>
+									<%= (5 - (Time.now - f.created_at)/1.day).to_s[0..3]%> 天
+								</td>
+							<% else %>
+								<td>
+									已到期
+								</td>
+							<% end %>
+
 							<input type="hidden" name="key" value=<%= f.id %>>
 							<td><%= form.submit "送出回覆信" %></td>
 						</tr>
