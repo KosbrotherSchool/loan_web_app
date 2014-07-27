@@ -371,9 +371,6 @@ background:#fcfcfc;
 float:left;	
 }
 
-#camera-slide {
-height:425px !important;
-}
 
 .camera_caption p {
 	margin-bottom: 20px;
@@ -2404,7 +2401,6 @@ ul.the-icons {
 		margin-bottom: 10px;
 	}
 	
-	#camera-slide {height:400px !important;}
 	
 	.camera_caption img {
 		max-width:50%;
@@ -2502,7 +2498,7 @@ ul.the-icons {
 		display:none;
 	}
 	
-	#camera-slide {height:200px !important;}
+
 	.camera_caption {
 		text-align:center;
 	}	
@@ -2511,7 +2507,7 @@ ul.the-icons {
 	}
 	
 	.camera_caption p,.camera_caption form,.camera_caption a.btn {
-		display: none;
+		/*display: none;*/
 	}
 	
 	article .post-entry {
@@ -2536,7 +2532,18 @@ ul.the-icons {
 		margin:0 auto;
 		text-align:center;
 	}
+	h2{
+		font-size:24px;
+		
+	}
+	.camera_commands,.camera_prev,.camera_next{
+		display: none;
+	}
 
+	.copyright ul>li{
+	  margin-left: 0px;
+	  clear: both;
+	}
 
 }
 
@@ -2814,3 +2821,43 @@ ul.the-icons {
 .form-submit-minal-height{
 	margin-bottom: 700px;
 }
+
+
+      /*
+      .item-thumbs {
+	margin-left: 0 !important;
+      }
+      */
+      .service-box {
+	padding: 20px 0px;
+      }
+     
+      .team-box ul.social-network{
+	margin-bottom: 6px;
+	
+      }
+      .media-logo img{
+	height: 80px;
+	
+      }
+      .camera_caption {
+	padding-top: 4%;
+      }
+      .white{
+	color: white;
+      }
+      
+      .slogan-btn {
+	float: right;
+	padding: 18px;
+	margin-top: 10px;
+	
+      }
+      .slogan-btn a{
+	font-size: 25px;
+	padding: 20px;
+	line-height: 30px;
+      }
+      .team-box{
+	margin-left: 5%;
+      }

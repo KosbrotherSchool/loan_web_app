@@ -9,6 +9,7 @@ jQuery(document).ready(function($) {
 		time: 7000,
 		transPeriod: 1500,
 		pagination: false,
-		loader: 'none'
+		loader: 'none',
+		height: '30%'
 	});
 });
