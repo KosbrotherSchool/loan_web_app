@@ -908,7 +908,7 @@
 	border-left:1px solid #e9e9e9;
 	padding:0 0 0 50px;
         position: inherit;
-	width: 330px;
+	width: inherit;
   } 
 }
 
@@ -975,6 +975,11 @@
   }
 }
 
+@media (min-width: 979px) and (max-width: 1200px)  {
+  .row-fluid .span4 {
+    width: 30%;
+  }
+}
 @media (max-width: 979px) {
   body {
     padding-top: 0;
@@ -1137,6 +1142,6 @@
 	border-left:1px solid #e9e9e9;
 	padding:0 0 0 30px;
         position:fixed;
-	width: 330px;
+	width: inherit;
   }   
 }
