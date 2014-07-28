@@ -64,7 +64,7 @@ class BackstageController < ApplicationController
 		@lenders = Lender.all
 	end
 
-	def update_lender
+	def lenders_update_lender
 		lender = Lender.find(params[:lender][:id])
 		lender.is_show = checkTrueFalseByName(params[:lender][:is_show])
 		lender.is_person_confirmed = checkTrueFalseByName(params[:lender][:is_person_confirmed])

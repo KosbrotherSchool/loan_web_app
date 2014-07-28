@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   patch "backstage/update_failed_case" => "backstage#update_failed_case"
 
   get "backstage/lenders" => "backstage#lenders"
-  patch "backstage/update_lender" => "backstage#update_lender"
+  patch "backstage/update_lender" => "backstage#lenders_update_lender"
   get "backstage/loan_cases/:loan_case_id" => "backstage#loan_case_detail"
   get "backstage/loan_cases/:loan_case_id/edit" => "backstage#loan_case_detail_edit"
   patch "backstage/loan_cases/:loan_case_id/loan_case_update" => "backstage#loan_case_detail_update"
