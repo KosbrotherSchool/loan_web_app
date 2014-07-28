@@ -1,0 +1,179 @@
+<div id="wrapper">
+	
+	<%= render "devise/shared/nevigation_links" %>
+	
+	<section id="content">
+		<div class="container">
+				
+			<%= form_for @loan_case, url: root_path+"backstage/loan_cases/#{@loan_case.id}/loan_case_update", html: {class: "form-horizontal"} do |f| %>
+
+				<div class="row" style="margin-bottom:0px">		
+					<h2>
+						申請人資料
+					</h2>
+				</div>
+
+				<table class="table" border=1>
+					<tr>
+						<td>申請人</td>
+						<td>年齡</td>
+						<td>電話</td>
+						<td>Email</td>
+						<td>公司名稱/職稱</td>
+						<td>年資/年薪/其他收入</td>
+						<td>是否有房子</td>
+						<td>房貸/信貸</td>
+						<td>信用瑕疵</td>
+					</tr>
+
+					<tr>
+						<td><%= f.text_field :applicant_name,:style=> "width:50px"%></td>
+						<td><%= f.text_field :applicant_age,:style=> "width:20px"%></td>
+						<td><%= f.text_field :applicant_phone,:style=> "width:70px"%></td>
+						<td><%= f.text_field :applicant_email,:style=> "width:120px"%></td>
+
+						<td><%= f.text_field :applicant_company_name,:style=> "width:40px"%>/<%= f.text_field :applicant_title,:style=> "width:40px"%></td>
+
+						<td>
+							<%= f.text_field :applicant_serve_year,:style=> "width:20px"%>
+							年/
+							<%= f.text_field :applicant_year_earning,:style=> "width:30px"%>
+							萬
+							/
+							<%= f.text_field :applicant_other_earning,:style=> "width:30px"%>
+							萬
+						</td>
+
+						<% if @loan_case.applicant_is_have_house == true %>
+	            <td>是</td>
+		        <% else %>
+		          <td>否</td>
+		        <% end %>
+
+						<td>
+							<%= f.text_field :applicant_other_house_loan,:style=> "width:20px"%>
+							萬
+							/
+							<%= f.text_field :applicant_other_credit_loan,:style=> "width:20px"%>
+							萬
+		        </td>
+
+		        <% if @loan_case.is_credit_ok == true %>
+		            <td>否</td>
+		        <% else %>
+		            <td>是</td>
+		        <% end %>
+					</tr>
+				</table>
+
+				<div class="row" style="margin-bottom:0px">
+					<h2>房屋資料</h2>
+				</div>
+
+				<table class="table" border=1>
+					<tr>
+						<td>地址</td>
+						<td>樓層</td>
+						<td>建築類型</td>
+						<td>格局</td>
+						<td>建物權狀坪數</td>
+						<td>屋齡</td>
+						<td>裝潢</td>
+						<td>屋況</td>
+						<td>加蓋</td>
+						<td>車位</td>
+					</tr>
+
+					<tr>
+						<td><%= f.text_field :address,:style=> "width:70px"%></td>
+						<td><%= f.text_field :layer,:style=> "width:15px"%>樓</td>
+						<td><%= f.text_field :building_type,:style=> "width:50px"%></td>
+						<td> <%= f.text_field :rooms,:style=> "width:15px"%>房
+							/ 
+							<%= f.text_field :living_rooms,:style=> "width:15px"%>廳
+							/ 
+							<%= f.text_field :rest_rooms,:style=> "width:15px"%>衛
+						</td>
+						<td><%= f.text_field :building_area,:style=> "width:40px"%>坪（不含車位）</td>
+						<td><%= f.text_field :building_age,:style=> "width:20px"%>年</td>
+						<td><%= f.text_field :house_decoration,:style=> "width:50px"%></td>
+						<td><%= f.text_field :house_condition,:style=> "width:50px"%></td>
+						<% if @loan_case.is_top_built == true %>
+							<td><%= @loan_case.top_building_area %> 坪</td>
+						<% else %>
+							<td>否</td>
+						<% end %>
+						<% if @loan_case.parking_type == "無"%>
+							<td>無</td>
+						<% else %>
+							<td><%= @loan_case.parking_type %>,<%= @loan_case.parking_area %>坪</td>
+						<% end %>
+					</tr>
+				</table>
+
+
+				<div class="row" style="margin-bottom:0px">
+					<h2>貸款需求</h2>
+				</div>
+
+
+				<table class="table" border=1>
+					<tr>
+						<td>是否成交</td>
+						<td>(預計)成交總價</td>
+						<td>車位購買價</td>
+						<td>欲貸款金額</td>
+						<td>寬限期</td>
+						<td>貸款期限</td>			
+					</tr>
+
+					<tr>
+						<% if  @loan_case.is_dealed == true %>
+	            <td>是</td>
+			      <% else %>
+			        <td>否</td>
+			      <% end %>
+						<td><%= f.text_field :to_buy_price,:style=> "width:70px"%> 萬</td>
+						<td><%= f.text_field :parking_price,:style=> "width:70px"%> 萬</td>
+						<td><%= f.text_field :to_loan_price,:style=> "width:70px"%> 萬</td>
+						<% if  @loan_case.is_need_grace_period == true %>
+			          <td>是,<%= @loan_case.grace_period_years %>年</td>
+			      <% else %>
+			          <td>否</td>
+			      <% end %> 
+			      <% if @loan_case.to_loan_period_years == 0 %>
+			          <td>皆可 </td>
+			      <% else %>
+			          <td><%= @loan_case.to_loan_period_years %> 年</td>
+			      <% end %>    
+					</tr>
+				</table>
+
+				<div class="row" style="margin-bottom:0px">
+					<h2>備註</h2>
+				</div>
+
+				<table class="table" border=1>
+					<tr>
+						<td>備註</td>
+					</tr>
+
+					<tr>
+						<td>
+							<%= f.text_area :other_info,:style=> "width:95%"%>
+						</td>
+					</tr>
+				</table>
+
+
+				<div class="form-actions" style="padding-left:5%">
+					<%= f.submit "確定修改" %>
+				</div>
+
+
+			<% end %>
+
+		</div>
+	</section>
+
+</div>

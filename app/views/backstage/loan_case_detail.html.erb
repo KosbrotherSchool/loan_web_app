@@ -4,14 +4,21 @@
 	
 	<section id="content">
 		<div class="container">
-			
-			<div class="row" style="margin-bottom:0px">
-				<h2>申請人資料</h2>
+
+			<div class="row" style="margin-bottom:0px">		
+				<h2>
+					申請人資料
+
+					<%= link_to(root_path+"backstage/loan_cases/#{@loan_case.id}/edit", {:style => 'color: #09B3DD'}) do %>
+							<button>修改資料</button>
+					<% end %>
+				</h2>
 			</div>
 
 			<table class="table" border=1>
 				<tr>
 					<td>申請人</td>
+					<td>年齡</td>
 					<td>電話</td>
 					<td>Email</td>
 					<td>公司名稱/職稱</td>
@@ -23,6 +30,7 @@
 
 				<tr>
 					<td><%= @loan_case.applicant_name %></td>
+					<td><%= @loan_case.applicant_age %></td>
 					<td><%= @loan_case.applicant_phone %></td>
 					<td><%= @loan_case.applicant_email %></td>
 
@@ -110,8 +118,7 @@
 					<td>車位購買價</td>
 					<td>欲貸款金額</td>
 					<td>寬限期</td>
-					<td>貸款期限</td>
-					<td>備註</td>
+					<td>貸款期限</td>			
 				</tr>
 
 				<tr>
@@ -132,8 +139,21 @@
 		          <td>皆可 </td>
 		      <% else %>
 		          <td><%= @loan_case.to_loan_period_years %> 年</td>
-		      <% end %>
-		       <td><%= @loan_case.other_info %> </td>
+		      <% end %>    
+				</tr>
+			</table>
+
+			<div class="row" style="margin-bottom:0px">
+				<h2>備註</h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>備註</td>
+				</tr>
+
+				<tr>
+					<td><%= @loan_case.other_info %> </td>
 				</tr>
 			</table>
 

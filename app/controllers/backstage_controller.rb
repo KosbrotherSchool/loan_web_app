@@ -78,6 +78,16 @@ class BackstageController < ApplicationController
 		@lenders = Lender.joins(:lender_loan_case_ships).where("loan_case_id = #{@loan_case.id}")
 	end
 
+	def loan_case_detail_edit
+		@loan_case = LoanCase.find(params[:loan_case_id])
+	end
+
+	def loan_case_detail_update
+		loan_case = LoanCase.find(params[:loan_case_id])
+		loan_case.update(loan_case_params)
+		redirect_to :controller => 'backstage', :action => 'loan_case_detail'
+	end
+
 	def county_lenders
 		@county = County.find(params[:county_id])
 		@lenders = @county.lenders
@@ -155,6 +165,10 @@ class BackstageController < ApplicationController
 
 	def lender_params
 		params.require(:lender).permit(:name,:email,:contact_company_phone, :fax_phone, :contact_personal_phone, :bank, :bank_branch, :work_title, :avatar, :card, :is_male)
+	end
+
+	def loan_case_params
+		params.require(:loan_case).permit(:is_dealed, :is_need_grace_period, :to_loan_period_years, :to_buy_price,:parking_price, :to_loan_price, :grace_period_years, :other_info, :address, :layer, :building_type, :rooms, :living_rooms, :rest_rooms, :building_area, :building_age, :house_decoration, :house_condition, :is_top_built,:top_building_area,:parking_type, :parking_layer, :parking_area, :applicant_name, :applicant_email, :applicant_phone, :applicant_age, :applicant_company_name, :applicant_title, :applicant_serve_year, :applicant_year_earning, :applicant_other_earning, :applicant_is_have_house,:applicant_other_house_loan, :applicant_other_credit_loan, :is_credit_ok)
 	end
 
 end

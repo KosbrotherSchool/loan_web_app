@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   get "backstage/lenders" => "backstage#lenders"
   patch "backstage/update_lender" => "backstage#update_lender"
   get "backstage/loan_cases/:loan_case_id" => "backstage#loan_case_detail"
+  get "backstage/loan_cases/:loan_case_id/edit" => "backstage#loan_case_detail_edit"
+  patch "backstage/loan_cases/:loan_case_id/loan_case_update" => "backstage#loan_case_detail_update"
   get "backstage/counties/:county_id" => "backstage#county_lenders"
   patch "backstage/mail_to_lenders" => "backstage#mail_to_lenders"
   get "backstage/lenders/:lender_id" => "backstage#lender_edit"
