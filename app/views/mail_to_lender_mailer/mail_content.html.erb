@@ -5,8 +5,10 @@ list-style-type: decimal;
 </style>
 <p><%= @lender.name %>專員您好,</p>
 
+<% deadline = @loan_case.created_at + 5.days %>
+
 <p>
-以下為新進詢問案件資料，請於 <%= (@loan_case.created_at + 5.days).strftime("%Y/%m/%d %H:%M") %>前到此連結回覆：
+以下為新進詢問案件資料，請於 <%= deadline.strftime("%Y/%m/%d %H:%M") %> 前到此連結回覆：
 
 <a href="www.e-loan.com.tw/loan_cases/<%= @loan_case.id %>/responses/lenders?key=<%= @key %>&token=<%= @token%>" >案件編號：<%= @loan_case.id %></a>
 </p>
