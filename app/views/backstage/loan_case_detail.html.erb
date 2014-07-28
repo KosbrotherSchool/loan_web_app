@@ -169,9 +169,7 @@
 				<% end %>
 			<% else %>
 				<p>是否已寄信: 已寄信</p>
-			<% end %>
-
-			
+			<% end %>		
 
 			<table class="table" border=1>
 				<tr>
@@ -210,6 +208,44 @@
 						</tr>
 				<% end %>
 			</table>	
+
+			<div class="row" style="margin-bottom:0px">
+				<h2>專員回覆</h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>銀行/專員</td>
+					<td>可貸金額</td>
+					<td>貸款年限</td>
+					<td>寬限期</td>
+					<td>利率說明</td>
+					<td>是否綁約</td>
+					<td>費用說明</td>
+					<td>其他說明</td>
+				</tr>
+
+				<% responses = LoanResponse.where(" loan_case_id = #{@loan_case.id}") %>
+				<% responses.each do |r| %>
+					<tr>
+						<td><%= r.lender.bank %>/<%= r.lender.name %></td>
+						<td><%= r.loan_money %> 萬</td>
+						<td><%= r.loan_years %> 年</td>
+						<td><%= r.grace_period %></td>
+						<td><%= r.interest_explaination %></td>
+						<% if r.is_binded == true %>
+							<td>是</td>
+						<% else %>
+							<td>否</td>
+						<% end %>
+						<td><%= r.expense_explaination %></td>
+						<td><%= r.other_info %></td>
+					</tr>
+				<% end %>
+				
+			</table>
+
+
 
 		</div>
 	</section>
