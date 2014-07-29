@@ -75,7 +75,8 @@ class BackstageController < ApplicationController
 
 	def loan_case_detail
 		@loan_case = LoanCase.find(params[:loan_case_id])
-		@lenders = Lender.joins(:lender_loan_case_ships).where("loan_case_id = #{@loan_case.id}")
+		@lenders = Lender.joins(:lender_county_ships).where("county_id = #{@loan_case.county_id}")
+		# @lenders = Lender.joins(:lender_loan_case_ships).where("loan_case_id = #{@loan_case.id}")
 	end
 
 	def loan_case_detail_edit
@@ -93,8 +94,7 @@ class BackstageController < ApplicationController
 		@lenders = @county.lenders
 	end
 
-	def mail_to_lenders
-		
+	def mail_to_lenders	
 		@loan_case = LoanCase.find(params[:loan_case_id])
 		@loan_case.is_mailed_lenders = true
 		@loan_case.save
@@ -108,6 +108,21 @@ class BackstageController < ApplicationController
 		end
 
 		redirect_to :controller => 'backstage', :action => 'index'
+	end
+
+	def mail_to_the_lender
+		loan_case = LoanCase.find(params[:loan_case_id])
+		lender = Lender.find(params[:lender_id])
+
+		if LenderLoanCaseShip.where("lender_id=#{lender.id}  and loan_case_id = #{loan_case.id}").first == nil
+			lenderLoanCaseShip = LenderLoanCaseShip.new
+			lenderLoanCaseShip.lender_id = lender.id
+			lenderLoanCaseShip.loan_case_id = loan_case.id
+			lenderLoanCaseShip.save
+		end
+		MailToLenderMailer.delay.mail_content(loan_case.id, lender.id)
+
+		redirect_to :controller => 'backstage', :action => 'loan_case_detail'
 	end
 
 	def lender_edit

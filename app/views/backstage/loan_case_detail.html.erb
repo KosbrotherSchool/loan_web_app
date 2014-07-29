@@ -162,17 +162,18 @@
 			</div>
 	
 			<% if @loan_case.is_mailed_lenders == nil || @loan_case.is_mailed_lenders == false %>
-				<p>是否已寄信: 尚未寄信</p>
+				<p>是否已群發寄信: 尚未群發寄信</p>
 				<%= form_for @loan_case, :url => backstage_mail_to_lenders_path , html: {class: "form-horizontal"} do |form| %>
 					<input type="hidden" name="loan_case_id" value=<%= @loan_case.id %>>
-					<p>將寄出<%= @loan_case.county.lenders.where("is_person_confirmed = true").size() %> 封信 <%= form.submit "寄出專員信" %></p>	
+					<p>將寄出<%= @loan_case.county.lenders.where("is_person_confirmed = true").size() %> 封信 <%= form.submit "群發寄出專員信" %></p>	
 				<% end %>
 			<% else %>
-				<p>是否已寄信: 已寄信</p>
+				<p>是否已群發寄信: 已群發寄信</p>
 			<% end %>		
 
 			<table class="table" border=1>
 				<tr>
+					<td>是否已寄信</td>
 					<td>是否已回覆</td>
 					<td>專員照片</td>
 					<td>專員名稱</td>
@@ -183,13 +184,31 @@
 
 				<% @lenders.each do |lender|%>
 						<tr>
-							
-							<% is_responded = LenderLoanCaseShip.where("lender_id = #{lender.id} and loan_case_id = #{@loan_case.id}").first.is_responded%>
-
-							<% if is_responded == true %>
-								<td>是</td>
+							<% lender_county_ship = LenderLoanCaseShip.where("lender_id=#{lender.id}  and loan_case_id = #{@loan_case.id}").first %>
+							<% if lender_county_ship != nil %>
+								<td>
+									已寄信
+									<%= link_to(root_path+"backstage/loan_cases/#{@loan_case.id}/lenders/#{lender.id}/mail_to_the_lender") do %>
+										<button>再寄信</button>
+									<% end %>
+								</td>
 							<% else %>
-								<td>否</td>
+								<td>
+									未寄信
+									<%= link_to(root_path+"backstage/loan_cases/#{@loan_case.id}/lenders/#{lender.id}/mail_to_the_lender") do %>
+										<button>寄信</button>
+									<% end %>
+								</td>
+							<% end %>
+
+							<% if lender_county_ship != nil and  lender_county_ship.is_responded == true%>
+								<td>
+									已回覆
+								</td>
+							<% else %>
+								<td>
+									未回覆
+								</td>
 							<% end %>
 
 							<% if lender.avatar_file_name != nil%>
