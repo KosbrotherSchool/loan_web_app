@@ -1,6 +1,10 @@
 class Onlending < ActiveRecord::Base
 
 	has_many :onlending_responses
+	has_many :lender_onlending_ships
+	has_many :lenders, :through => :lender_onlending_ships
+	belongs_to :lender
+	belongs_to :county
 	
 	validates :current_bank, :presence => {:message => "請填寫目前貸款銀行"}
 	validates :current_loan_price, :presence => {:message => "請填寫剩餘貸款金額"}
