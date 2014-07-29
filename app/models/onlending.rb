@@ -1,5 +1,7 @@
 class Onlending < ActiveRecord::Base
 
+	has_many :onlending_responses
+	
 	validates :current_bank, :presence => {:message => "請填寫目前貸款銀行"}
 	validates :current_loan_price, :presence => {:message => "請填寫剩餘貸款金額"}
 	validates :more_loan_price, :presence => {:message => "請填寫預計多增貸金額"}
