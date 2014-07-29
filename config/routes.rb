@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get "term" => "house_loan#term"
   
   get "apply-mortgage" => "loan_cases#apply_mortgage"
-  get "onlending" => "loan_cases#onlending"
+  get "apply-onlending" => "onlendings#apply_onlending"
 
   get "backstage" => "backstage#index"
   patch "backstage/deliver_mail" => "backstage#deliver_mail"
@@ -43,6 +43,11 @@ Rails.application.routes.draw do
     get "responses/lenders" => "responses#lender_response"
     patch "responses/lenders" =>  "responses#lender_response_update"
     resources :responses
+  end
+
+  resources :onlendings do
+    get "/response" => "onlending#response"
+    patch "/response" => "onlending#response_update"
   end
 
 end

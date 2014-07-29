@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140725063948) do
+ActiveRecord::Schema.define(version: 20140729055528) do
 
   create_table "case_statuses", force: true do |t|
     t.string   "name"
@@ -126,6 +126,47 @@ ActiveRecord::Schema.define(version: 20140725063948) do
     t.text     "other_info"
     t.integer  "lender_id"
     t.integer  "loan_case_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "onlendings", force: true do |t|
+    t.string   "current_bank"
+    t.integer  "current_loan_price"
+    t.integer  "more_loan_price"
+    t.boolean  "is_need_grace_period"
+    t.integer  "grace_period_years"
+    t.integer  "to_loan_period_years"
+    t.text     "other_info"
+    t.string   "address"
+    t.string   "layer"
+    t.string   "building_type"
+    t.integer  "rooms"
+    t.integer  "living_rooms"
+    t.integer  "rest_rooms"
+    t.decimal  "building_area",               precision: 10, scale: 2
+    t.integer  "building_age"
+    t.string   "house_decoration"
+    t.string   "house_condition"
+    t.boolean  "is_top_built"
+    t.decimal  "top_building_area",           precision: 10, scale: 2
+    t.string   "parking_type"
+    t.decimal  "parking_area",                precision: 10, scale: 0
+    t.string   "applicant_name"
+    t.string   "applicant_email"
+    t.string   "applicant_phone"
+    t.integer  "applicant_age"
+    t.string   "applicant_company_name"
+    t.string   "applicant_title"
+    t.integer  "applicant_serve_year"
+    t.integer  "applicant_year_earning"
+    t.integer  "applicant_other_earning"
+    t.boolean  "applicant_is_have_house"
+    t.string   "applicant_other_house_loan"
+    t.string   "applicant_other_credit_loan"
+    t.boolean  "is_credit_ok"
+    t.integer  "county_id"
+    t.integer  "status_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
