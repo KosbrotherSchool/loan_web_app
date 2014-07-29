@@ -4,3 +4,5 @@
  User-agent: *
  Disallow: /backstage/
  Disallow: /tmp/
+ Disallow: /users/
+ Disallow: /loan_cases/
