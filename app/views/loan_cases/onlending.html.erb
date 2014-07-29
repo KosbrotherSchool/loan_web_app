@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<head>
+    <style>
+
+        .page-header {
+            padding-bottom: 2px;
+            margin: 10px 0 20px;
+            border-bottom: 1px solid #eeeeee;
+        }
+        
+        .addr-county, .addr-area{width:auto;}
+        .addr-county{
+        }
+        .addr-area{
+            
+        }
+        .addr-zip{
+	    			display: none !important;
+            width:30px;
+            border:1px solid #666;
+        }
+				form#contactform input[type="text"]{
+				  /*width: 50%;*/
+				}
+        #twzipcode > select {
+	  					margin-right: 9px;
+				}
+
+    </style>
+    <script type="text/javascript">
+      function nextstep(tabNum){
+				var selectTab = '#myTab a[href="#tab'+tabNum+'"]';
+				$(selectTab).tab('show');
+				location.hash="tab"+tabNum;
+				event.preventDefault();
+      }
+    </script>
+</head>
+
+<body>
+
+<div id="wrapper">
+		
+	<section id="inner-headline">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="inner-heading">
+					<h2>申請新房貸</h2>
+					</div>
+				</div>	
+			</div>			
+		</div>
+	</section>
+
+	<section id="content">
+		
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span9">
+				<% if @loan_case.present? %>				
+				  <h4>詳細填寫需求，專員針對個人條件、房屋條件、貸款需求來評估。越詳細，專員才能提供最精準的評估！</h4>
+				  <h5><span class="text-error">*</span> 星記號為必填</h5>
+
+				 	<% if @loan_case.errors.any? %>
+				 		<div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px; margin-bottom:30px">
+								<h2>資料填寫不完整: </h2>
+								<ul>
+									<% @loan_case.errors.full_messages.each do |message|%>
+										<li><%= message %></li>
+									<% end %>
+								</ul>
+						</div>
+					<% end %>
+				  
+				  <%= form_for @loan_case, :url => loan_cases_path  , html: {class: "form-horizontal"} do |f| %>
+
+				  <div class="row-fluid">
+				    <div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
+				      <ul class="nav nav-tabs" id="myTab">
+					<li class="active"><a href="#tab1" data-toggle="tab">步驟一：貸款需求</a></li>
+					<li><a href="#tab2" data-toggle="tab">步驟二：房屋資訊</a></li>
+					<li><a href="#tab3" data-toggle="tab">步驟三：個人資訊</a></li>
+				      </ul>
+				      <div class="tab-content">
+					<div class="tab-pane active" id="tab1">
+					  <div class="page-header">
+					      <h2>步驟一：貸款需求</h2>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label">是否成交<span class="text-error">*</span></label>
+					      <div class="controls">
+								  <label class="radio">
+								  		<%= radio_button_tag("loan_case[is_dealed]", "true", checked = true) %>
+								      已簽約成交
+								  </label>
+								  <label class="radio">
+								      <%= radio_button_tag("loan_case[is_dealed]", "false") %>
+								      準備議價，尚未成交
+								  </label>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">成交總價/預計成交總價<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :to_buy_price,  :class => "input-small"%>
+					      	萬（如有車位，含車位價格）
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">車位購買價 <br /></label>
+					      <div class="controls">
+					      <%= f.text_field :parking_price,  :class => "input-small"%>
+						  	萬（僅供專員參考）
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">預計貸款金額<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      <%= f.text_field :to_loan_price,  :class => "input-small"%>
+						  	萬
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label">是否需要寬限期<span class="text-error">*</span> <a href="#" data-toggle="tooltip" data-placement="bottom" data-original-title="寬限期：寬限期內，每期只需繳交貸款利息，不需要攤還本金"><i class="icon-circled icon-bgsuccess icon-info"></i></a>
+					      </label>
+					      <div class="controls">
+						  <label class="radio">
+						      <%= radio_button_tag("loan_case[is_need_grace_period]","false", checked = true) %>
+						      否
+						  </label>
+						  <label class="radio">
+						  		<%= radio_button_tag("loan_case[is_need_grace_period]", "true") %>
+						      是，需要
+						      <%= f.text_field :grace_period_years, :placeholder => "0", :class => "input-small"%>
+						      年
+						  </label>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">貸款期限<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+						  <label class="radio">
+						  		<%= radio_button_tag("loan_case[to_loan_period_years]", "0",checked = true) %>
+						      皆可
+						  </label>
+						  <label class="radio">
+						  		<%= radio_button_tag("loan_case[to_loan_period_years]", "20") %>
+						      20年
+						  </label>
+						  <label class="radio">
+						      <%= radio_button_tag("loan_case[to_loan_period_years]", "30") %>
+						      30年
+						  </label>
+						  <label class="radio">
+						      <%= radio_button_tag("loan_case[to_loan_period_years]", "40") %>
+						      40年
+						  </label>
+						  
+					      </div>
+					  </div>
+					   <div class="control-group">
+					      <label class="control-label">特殊需求與說明：</label>
+					      <div class="controls">
+					      	<%= f.text_area :other_info, :placeholder => "如有特別需求,可加以說明"%>
+					      </div>
+					  </div>
+					   
+					  <div class="control-group">
+					      <div class="controls">
+						  <div class="form-actions">
+						    
+						    <button class="btn btn-success input-medium" onclick="nextstep(2)">下一步</button>
+						  </div>
+					      </div>
+					  </div> 
+					   
+					   
+					</div>
+					<div class="tab-pane" id="tab2">
+					  <!-- house info -->
+					  <div class="page-header">
+					      <h2>步驟二：房屋資訊</h2>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">地址<span class="text-error">*</span><br /></label>
+					      <div class="controls" >
+						  		<!-- twzipcode plugin-->
+								  <div id="twzipcode"></div>
+								  <%= f.text_field :address, :placeholder => "請輸入地址", :class => "input-xlarge", :style => "margin-top: 5px;"%>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">樓層<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :layer, :placeholder => "", :class => "input-small"%>
+						  		樓
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">建築類型<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.select(:building_type, ['公寓', '電梯大樓','套房','透天'], {}, { :class => 'span3' }) %>
+					      </div>
+					  </div>
+					   <div class="control-group">
+					      <label class="control-label" for="">格局<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.select(:rooms, [['請選擇',nil],'1', '2','3','4','5','6','7','8','9'], {}, { :class => 'span3' }) %>
+								  房 / 
+								  <%= f.select(:living_rooms, [['請選擇',nil],'1', '2','3','4','5','6','7','8','9'], {}, { :class => 'span3' }) %>
+								  廳 /
+								  <%= f.select(:rest_rooms, [['請選擇',nil],'1', '2','3','4','5','6','7','8','9'], {}, { :class => 'span3' }) %>衛 
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">建物權狀坪數<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :building_area, :placeholder => "", :class => "input-small"%>
+						  		坪（不含車位）
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">屋齡<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+								  <%= f.text_field :building_age, :placeholder => "", :class => "input-small"%>
+								  年（新成屋請填0）
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label">裝潢<span class="text-error">*</span></label>
+					      <div class="controls">
+								  <label class="radio">
+								  		<%= radio_button_tag("loan_case[house_decoration]", "無裝潢", checked = true) %>
+								      無裝潢
+								  </label>
+								  <label class="radio">
+								      <%= radio_button_tag("loan_case[house_decoration]", "裝潢仍新") %>
+								      裝潢仍新
+								  </label>
+								  <label class="radio">
+								      <%= radio_button_tag("loan_case[house_decoration]", "裝潢較舊") %>
+								      裝潢較舊
+								  </label>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label">屋況<span class="text-error">*</span></label>
+					      <div class="controls">
+						  <label class="radio">
+						      <%= radio_button_tag("loan_case[house_condition]","佳，且無滲漏水或壁癌", checked = true) %>
+						      佳，且無滲漏水或壁癌
+						  </label>
+						  <label class="radio">
+						      <%= radio_button_tag("loan_case[house_condition]", "中等，有些許滲漏水或壁癌情況") %>
+						      中等，有些許滲漏水或壁癌情況
+						  </label>
+						  <label class="radio">
+						      <%= radio_button_tag("loan_case[house_condition]", "不佳，有嚴重滲漏水或壁癌") %>
+						      不佳，有嚴重滲漏水或壁癌
+						  </label>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label">頂樓是否有加蓋<span class="text-error">*</span></label>
+					      <div class="controls">
+						  <label class="radio">
+						      <%= radio_button_tag("loan_case[is_top_built]", "false",checked = true ) %>
+						      無
+						  </label>
+						  <label class="radio">
+						      <%= radio_button_tag("loan_case[is_top_built]","true") %>
+						      有
+						  </label>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">加蓋坪數<br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :top_building_area, :placeholder => "", :class => "input-small"%>
+						  		坪
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label">是否有車位<span class="text-error">*</span></label>
+					      <div class="controls">
+						  <label class="radio">
+						      <%= radio_button_tag("loan_case[parking_type]","無",checked = true ) %>
+						      無
+						  </label>
+						  <label class="radio">
+						      <%= radio_button_tag("loan_case[parking_type]","機械車位") %>
+						      機械車位
+						  </label>
+						  <label class="radio">
+						      <%= radio_button_tag("loan_case[parking_type]","平面車位") %>
+						      平面車位
+						  </label>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">車位坪數<br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :parking_area, :placeholder => "", :class => "input-small"%>
+						 			坪
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <div class="controls">
+						  <div class="form-actions">
+						      <button class="btn btn-info" onclick="nextstep(1)">上一步</button>
+						      <button class="btn btn-success input-medium" onclick="nextstep(3)">下一步</button>
+						  </div>
+					      </div>
+					  </div> 
+					</div>
+					
+					
+					<div class="tab-pane" id="tab3">
+					<!-- user info -->
+					  <div class="page-header">
+					      <h2>步驟三：個人資訊</h2>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">您的稱呼<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_name, :placeholder => "如：林先生、陳小姐"%>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">電子信箱/Email<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_email, :placeholder => "格式：xxxname@gmail.com"%>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">聯絡電話<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_phone, :placeholder => "格式：0912918938"%>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">年齡<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_age, :placeholder => "", :class => "input-small"%>
+						  		歲
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">公司名稱<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_company_name, :placeholder => "", :class => "input-large"%>
+					      </div>
+					  </div>
+					  
+					  
+					  <div class="control-group">
+					      <label class="control-label" for="">職稱<br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_title, :placeholder => "", :class => "input-small"%>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">年資<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_serve_year, :placeholder => "", :class => "input-small"%>
+						  		年
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">年薪<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_year_earning, :placeholder => "", :class => "input-small"%>
+						  		萬
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">其他收入<br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_other_earning, :placeholder => "", :class => "input-small"%>
+						  		萬
+					      </div>
+					  </div>
+					  
+					  <div class="control-group">
+					      <label class="control-label">名下是否有房子<span class="text-error">*</span></label>
+					      <div class="controls">
+								  <label class="radio">
+								      <%= radio_button_tag("loan_case[applicant_is_have_house]", "false", checked = true ) %>
+								      無
+								  </label>
+								  <label class="radio">
+								      <%= radio_button_tag("loan_case[applicant_is_have_house]" ,"true") %>
+								      有
+								  </label>
+					      </div>
+					  </div>
+					  
+					  <div class="control-group">
+					      <label class="control-label">名下其他負債</label>
+					      <div class="controls">
+								  <label class="">
+								      房貸
+								      <%= f.text_field :applicant_other_house_loan, :placeholder => "", :class => "input-small"%> 
+								      萬
+								  </label>
+								  <label class="">
+								      信貸 
+								      <%= f.text_field :applicant_other_credit_loan, :placeholder => "", :class => "input-small"%> 
+								      萬
+								  </label>
+					      </div>
+					  </div>
+					  
+					  <div class="control-group">
+					      <label class="control-label">是否有信用瑕疵<span class="text-error">*</span></label>
+					      <div class="controls">
+							  <label class="radio">
+							      <%= radio_button_tag("loan_case[is_credit_ok]", "true", checked = true ) %>
+							      無
+							  </label>
+							  <label class="radio">
+							      <%= radio_button_tag("loan_case[is_credit_ok]","false") %>
+							      有
+							  </label>
+					      </div>
+					  </div>
+					  
+					  <div class="control-group">
+					      
+					      <div class="controls">
+								  <label class="checkbox inline">
+								      <input type="checkbox" name="" id="" value="" checked="true"> <span class="text-error">*</span>我同意，e貸宗師貸款媒合平台的「
+								      <a href="privacy.html" target="_blank" >隱私權聲明</a>
+								      」。
+								  </label>
+					      </div>
+					  </div>
+					  
+					  <div class="control-group">
+					      <div class="controls">
+								  <div class="form-actions">
+								    <button class="btn btn-info" onclick="nextstep(2)">上一步</button>
+								    <button class="btn btn-success input-medium" type="submit">送出</button>
+								    <p style="margin-top:10px">若資料有缺漏，我們會盡快與您聯絡，感謝您。</p>
+								  </div>
+					      </div>
+					  </div>
+						
+						
+					</div>
+					
+					<% end %>
+					
+				      </div>
+				    </div>				
+				  </div>	
+				  </form>
+				  <% else %>
+				  	<h4 class="form-submit-minal-height">您的需求已送出，感謝您，專員將儘快回覆您的需求。</h4>		  	
+				  <% end %>
+				</div>
+				
+				<div class="span3">
+					<div class="clearfix"></div>
+					<aside class="right-sidebar">
+
+						<div class="widget">
+							<h5 class="widgetheading">個人資料保護說明<span></span></h5>
+							您同意資料將傳送與我們合作的專員。
+							<br />
+							未經您的同意，我們絕對不會將您的資料販售給其他個人或公司。
+							<br />
+							詳細內容請見「<a href="privacy.html" target="_blank" >隱私權聲明</a>」。
+						</div>					
+					</aside>
+				</div>	
+			</div>
+		</div>
+	</section>
+</div>
+<a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bglight icon-2x active"></i></a>	
+
+    <!-- javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+  <%= javascript_include_tag "js/jquery.twzipcode.js" %>  
+	<!-- <script type="text/javascript" src="assets/js/jquery.twzipcode.js"></script> -->
+	
+	<script type="text/javascript">
+	    $('#twzipcode').twzipcode({
+		css: ['addr-county', 'addr-area', 'addr-zip']
+	    });
+	    $(function () {
+	      $("[data-toggle='tooltip']").tooltip();
+	    });
+
+	</script>
+	
+</body>
+</html>

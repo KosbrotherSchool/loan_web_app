@@ -11,15 +11,16 @@ Rails.application.routes.draw do
   get "index" => "house_loan#index"
 
   get "join-us" => "house_loan#join_us"
+  post "create_lender" => "house_loan#create_lender"
+
   get "faq" => "house_loan#faq"
   get "privacy" => "house_loan#privacy"
   get "term" => "house_loan#term"
-  # get "lender_response" => "house_loan#lender_response"
-
-  post "create_lender" => "house_loan#create_lender"
+  
+  get "apply-mortgage" => "loan_cases#apply_mortgage"
+  get "onlending" => "loan_cases#onlending"
 
   get "backstage" => "backstage#index"
-  get "apply-mortgage" => "loan_cases#apply_mortgage"
   patch "backstage/deliver_mail" => "backstage#deliver_mail"
   patch "backstage/update_evaluate_case" => "backstage#update_evaluate_case"
   patch "backstage/update_delivering_case" => "backstage#update_delivering_case"

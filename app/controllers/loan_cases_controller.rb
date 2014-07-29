@@ -38,6 +38,10 @@ class LoanCasesController < ApplicationController
 		end
   end
 
+  def onlending
+  	
+  end
+
   def show
   end
 
