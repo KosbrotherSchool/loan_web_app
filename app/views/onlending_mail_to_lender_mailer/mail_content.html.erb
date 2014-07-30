@@ -10,11 +10,11 @@ list-style-type: decimal;
 <p>
 以下為新進詢問[增轉貸]案件資料，請於 <%= deadline.strftime("%Y/%m/%d %H:%M") %> 前到此連結回覆：
 
-<a href="www.e-loan.com.tw/onlendings/<%= @onlending.id %>/responses/lenders?key=<%= @key %>&token=<%= @token%>" >案件編號：<%= @onlending.id %></a>
+<a href="www.e-loan.com.tw/onlendings/<%= @onlending.id %>/response?key=<%= @key %>&token=<%= @token%>" >案件編號：<%= @onlending.id %></a>
 </p>
 
 <p>
-<a href="www.e-loan.com.tw/onlendings/<%= @onlending.id %>/responses/lenders?key=<%= @key %>&token=<%= @token%>" >www.e-loan.com.tw/onlendings/<%= @onlending.id %>/responses/lenders?key=<%= @key %>&token=<%= @token%></a>
+<a href="www.e-loan.com.tw/onlendings/<%= @onlending.id %>/response?key=<%= @key %>&token=<%= @token%>" >www.e-loan.com.tw/onlendings/<%= @onlending.id %>/responses/lenders?key=<%= @key %>&token=<%= @token%></a>
 </p>
 
 
@@ -23,9 +23,9 @@ list-style-type: decimal;
     <hr>
     <ul class="demand" id="demand-1">
        
-    		<li>目前貸款銀行： <%= @onlending.current_bank %></li>
-    		<li>剩餘貸款金額： <%= @onlending.current_loan_price %> 萬</li>
-				<li>預計增貸金額： <%= @onlending.more_loan_price %> 萬</li>
+    	<li>目前貸款銀行： <%= @onlending.current_bank %></li>
+    	<li>剩餘貸款金額： <%= @onlending.current_loan_price %> 萬</li>
+		<li>預計增貸金額： <%= @onlending.more_loan_price %> 萬</li>
         <% if  @onlending.is_need_grace_period == true %>
             <li>是否需要寬限期：
             是, 寬限期： <%= @onlending.grace_period_years %> 年</li>

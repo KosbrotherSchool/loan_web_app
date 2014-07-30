@@ -36,6 +36,44 @@ class OnlendingsController < ApplicationController
 		end
 	end
 
+	def lender_response
+		@token = params[:token]
+    onlending_id = params[:onlending_id]
+
+    begin
+      @key = params[:key]
+      lender_id = AES.decrypt(@key, ENV["KEY"])
+      lenderOnlendingShip = LenderOnlendingShip.where("lender_id = #{lender_id} and onlending_id = #{onlending_id}").first
+      lenderOnlendingShip.view_nums = lenderLoanCaseShip.view_nums + 1
+      lenderOnlendingShip.save
+    rescue Exception => e
+      
+    end
+
+    if onlending_id == AES.decrypt(@token, ENV["KEY"])
+      
+      begin
+        @onlending = Onlending.find(onlending_id)
+        if params[:msg] == 'success'
+          #show success msg in view 
+        else    
+          if OnlendingResponse.where("onlending_id = #{onlending_id} and lender_id = #{lender_id}").first != nil
+            @onlending_response = OnlendingResponse.where("onlending_id = #{onlending_id} and lender_id = #{lender_id}").first
+          else
+            @onlending_response = OnlendingResponse.new
+          end  
+        end 
+      rescue Exception => e
+        redirect_to root_path
+      end
+
+    else
+
+      redirect_to root_path
+
+    end
+	end
+
 	private
 
   def onlending_params
