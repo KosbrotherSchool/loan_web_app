@@ -152,6 +152,20 @@
 			</table>
 
 			<div class="row" style="margin-bottom:0px">
+				<h2>建議</h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>建議</td>
+				</tr>
+
+				<tr>
+					<td><%= @onlending.advise.gsub(/\n/, '<br/>').html_safe %></td>
+				</tr>
+			</table>
+
+			<div class="row" style="margin-bottom:0px">
 				<h2>已寄信專員</h2>
 			</div>
 	
