@@ -1,0 +1,39 @@
+<p><%= @onlending.applicant_name %> 您好，</p>
+
+<p>謝謝您使用e貸宗師。</p>
+<p>以下為貸款專員的回覆，並提供其連絡資訊供您進一步提供申請。</p>
+<p>如您有任何問題或需要其他服務，歡迎隨時連繫我們：service@e-loan.com.tw</p>
+<p>感謝您的申請，祝　順心！</p>
+
+<br>
+<% @onlending.onlending_responses.each_with_index do |r, index| %>
+
+<p>回覆 <%= (index + 1)%> :</p>
+
+<ul class="demand">
+	<li><%= r.lender.bank%> <%= r.lender.name%>專員</li>
+	<li>專員聯絡電話: <%= r.lender.contact_company_phone %> / <%= r.lender.contact_personal_phone %></li>
+	<li>專員Email: <%= r.lender.email %></li>
+	<li>可增貸貸金額：<%= r.more_loan_money %> 萬</li>
+	<li>貸款年限：<%= r.loan_years %> 年</li>
+	<li>利率說明：<%= r.interest_explaination %> </li>
+	<li>寬限期：<%= r.grace_period %> 年</li>
+	<% if  r.is_binded == true %>
+		<li>是否有綁約：是 </li>
+	<% else %>
+		<li>是否有綁約：否 </li>
+	<% end %>
+	<li>費用說明：<%= r.expense_explaination %></li>
+	<li>其他說明：<%= r.other_info.gsub(/\n/, '<br/>').html_safe  %></li>
+</ul>
+
+<% end %>
+
+<br>
+<p>
+e貸宗師 客服中心敬上
+</p>
+<p>
+官方網站：<a href="http://e-loan.com.tw">http://e-loan.com.tw</a>
+客服信箱：service@e-loan.com.tw
+</p>

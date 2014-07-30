@@ -71,8 +71,7 @@ class BackstageController < ApplicationController
 		onlending.status_id = 2
 		onlending.save
 
-		# deliver reply mail
-		# ReplyApplierMailer.delay.mail_content(loan_case.id)
+		OnlendingReplyApplierMailer.delay.mail_content(onlending.id)
 
 		redirect_to root_path+"backstage/onlendings"
 	end
@@ -142,7 +141,7 @@ class BackstageController < ApplicationController
 		@onlending.save
 
 		Lender.joins(:lender_county_ships).where("county_id = #{@onlending.county_id} and is_person_confirmed = true").each do |lender|
-			# MailToLenderMailer.delay.mail_content(@loan_case.id, lender.id)
+			OnlendingMailToLenderMailer.delay.mail_content(@onlending.id, lender.id)
 			lenderOnlendingShip = LenderOnlendingShip.new
 			lenderOnlendingShip.lender_id = lender.id
 			lenderOnlendingShip.onlending_id = @onlending.id
