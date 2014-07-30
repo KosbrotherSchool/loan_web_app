@@ -135,7 +135,7 @@
 							<td>送出</td>
 						</tr>
 					<% @onlendings.where("status_id = 3").each do |f|%>
-						<%= form_for f, :url => backstage_update_delivering_case_path , html: {class: "form-horizontal"} do |form| %>
+						<%= form_for f, :url => backstage_update_delivering_onlending_path , html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
 							<td><%= f.updated_at.strftime("%m/%d/%y-%H:%M") %></td>
 							<% if f.deliver_time != nil %>
@@ -180,7 +180,7 @@
 							<td>送出</td>
 						</tr>
 					<% @onlendings.where("status_id = 4").each do |f|%>
-						<%= form_for f, :url => backstage_update_loaning_case_path  , html: {class: "form-horizontal"} do |form| %>
+						<%= form_for f, :url => backstage_update_loaning_onlending_path  , html: {class: "form-horizontal"} do |form| %>
 					 	<tr>
 							<td><%= f.updated_at.strftime("%m/%d/%y-%H:%M") %></td>
 							<td>
@@ -237,7 +237,7 @@
 						</tr>
 					<% @onlendings.where("status_id = 5").each do |f|%>
 					 	<tr>
-					 		<%= form_for f, :url => backstage_update_loanded_case_path  , html: {class: "form-horizontal"} do |form| %>
+					 		<%= form_for f, :url => backstage_update_loanded_onlending_path  , html: {class: "form-horizontal"} do |form| %>
 							<td><%= f.updated_at.strftime("%m/%d/%y-%H:%M") %></td>
 							<td>
 								<%= link_to(root_path+"backstage/onlendings/#{f.id}", {:style => 'color: #09B3DD'}) do %>
@@ -299,7 +299,7 @@
 						</tr>
 					<% @onlendings.where("status_id = 6").each do |f|%>
 						 	<tr>
-						 		<%= form_for f, :url => backstage_update_loanded_case_path  , html: {class: "form-horizontal"} do |form| %>
+						 		<%= form_for f, :url => backstage_update_failed_onlending_path  , html: {class: "form-horizontal"} do |form| %>
 								<td><%= f.updated_at.strftime("%m/%d/%y-%H:%M") %></td>
 								<td>
 									<%= link_to(root_path+"backstage/onlendings/#{f.id}", {:style => 'color: #09B3DD'}) do %>

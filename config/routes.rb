@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get "apply-mortgage" => "loan_cases#apply_mortgage"
   get "apply-onlending" => "onlendings#apply_onlending"
 
+  get "backstage/counties/:county_id" => "backstage#county_lenders"
+
   get "backstage" => "backstage#index"
   patch "backstage/deliver_mail" => "backstage#deliver_mail"
   patch "backstage/update_evaluate_case" => "backstage#update_evaluate_case"
@@ -38,14 +40,20 @@ Rails.application.routes.draw do
 
   get "backstage/lenders" => "backstage#lenders" 
   patch "backstage/update_lender" => "backstage#lenders_update_lender"
-  get "backstage/loan_cases/:loan_case_id" => "backstage#loan_case_detail"
-  get "backstage/loan_cases/:loan_case_id/edit" => "backstage#loan_case_detail_edit"
-  get "backstage/loan_cases/:loan_case_id/lenders/:lender_id/mail_to_the_lender" => "backstage#mail_to_the_lender"
-  patch "backstage/loan_cases/:loan_case_id/loan_case_update" => "backstage#loan_case_detail_update"
-  get "backstage/counties/:county_id" => "backstage#county_lenders"
-  patch "backstage/mail_to_lenders" => "backstage#mail_to_lenders"
   get "backstage/lenders/:lender_id" => "backstage#lender_edit"
   patch "backstage/lenders/:lender_id/update" => "backstage#update_lender"
+
+  get "backstage/loan_cases/:loan_case_id" => "backstage#loan_case_detail"
+  get "backstage/loan_cases/:loan_case_id/edit" => "backstage#loan_case_detail_edit" 
+  patch "backstage/loan_cases/:loan_case_id/loan_case_update" => "backstage#loan_case_detail_update"
+  patch "backstage/mail_to_lenders" => "backstage#mail_to_lenders"
+  get "backstage/loan_cases/:loan_case_id/lenders/:lender_id/mail_to_the_lender" => "backstage#mail_to_the_lender"
+
+  get "backstage/onlendings/:onlending_id" => "backstage#onlending_detail"
+  get "backstage/onlendings/:onlending_id/edit" => "backstage#onlending_detail_edit" 
+  patch "backstage/onlendings/:onlending_id/onlending_update" => "backstage#onlending_detail_update"
+  patch "backstage/onlendings/:onlending_id/mail_to_lenders" => "backstage#onlending_mail_to_lenders"
+  get "backstage/onlendings/:onlending_id/lenders/:lender_id/mail_to_the_lender" => "backstage#onlending_mail_to_the_lender"
 
   resources :loan_cases do
     get "responses/lenders" => "responses#lender_response"

@@ -1,0 +1,265 @@
+<div id="wrapper">
+	
+	<%= render "devise/shared/nevigation_links" %>
+	
+	<section id="content">
+		<div class="container">
+
+			<div class="row" style="margin-bottom:0px">		
+				<h2>
+					申請人資料
+
+					<%= link_to(root_path+"backstage/onlendings/#{@onlending.id}/edit", {:style => 'color: #09B3DD'}) do %>
+							<button>修改資料</button>
+					<% end %>
+				</h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>申請人</td>
+					<td>年齡</td>
+					<td>電話</td>
+					<td>Email</td>
+					<td>公司名稱/職稱</td>
+					<td>年資/年薪/其他收入</td>
+					<td>是否有房子</td>
+					<td>房貸/信貸</td>
+					<td>信用瑕疵</td>
+				</tr>
+
+				<tr>
+					<td><%= @onlending.applicant_name %></td>
+					<td><%= @onlending.applicant_age %></td>
+					<td><%= @onlending.applicant_phone %></td>
+					<td><%= @onlending.applicant_email %></td>
+
+					<td><%= @onlending.applicant_company_name %>/<%= @onlending.applicant_title %></td>
+
+					<td><%= @onlending.applicant_serve_year %>年/<%= @onlending.applicant_year_earning %>萬/<%= @onlending.applicant_other_earning %>萬</td>
+
+					<% if @onlending.applicant_is_have_house == true %>
+            <td>是</td>
+	        <% else %>
+	          <td>否</td>
+	        <% end %>
+
+					<td>
+            <% if @onlending.applicant_other_house_loan != nil && @onlending.applicant_other_house_loan != ""%>
+                <%= @onlending.applicant_other_house_loan %> 萬；
+            <% else %>
+                0萬
+            <% end %>
+            /
+            <% if @onlending.applicant_other_credit_loan != nil && @onlending.applicant_other_credit_loan !="" %> 
+                <%= @onlending.applicant_other_credit_loan %> 萬
+            <% else %>
+                0萬
+            <% end %>
+	        </td>
+	        <% if @onlending.is_credit_ok == true %>
+	            <td>否</td>
+	        <% else %>
+	            <td>是</td>
+	        <% end %>
+				</tr>
+			</table>
+
+			<div class="row" style="margin-bottom:0px">
+				<h2>房屋資料</h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>地址</td>
+					<td>樓層</td>
+					<td>建築類型</td>
+					<td>格局</td>
+					<td>建物權狀坪數</td>
+					<td>屋齡</td>
+					<td>裝潢</td>
+					<td>屋況</td>
+					<td>加蓋</td>
+					<td>車位</td>
+				</tr>
+
+				<tr>
+					<td><%= @onlending.address %></td>
+					<td><%= @onlending.layer %> 樓</td>
+					<td><%= @onlending.building_type %> </td>
+					<td> <%= @onlending.rooms %> 房/ <%= @onlending.living_rooms %> 廳/ <%= @onlending.rest_rooms %> 衛</td>
+					<td><%= @onlending.building_area %> 坪（不含車位）</td>
+					<td><%= @onlending.building_age %> 年</td>
+					<td><%= @onlending.house_decoration %></td>
+					<td><%= @onlending.house_condition %></td>
+					<% if @onlending.is_top_built == true %>
+						<td><%= @onlending.top_building_area %> 坪</td>
+					<% else %>
+						<td>否</td>
+					<% end %>
+					<% if @onlending.parking_type == "無"%>
+						<td>無</td>
+					<% else %>
+						<td><%= @onlending.parking_type %>,<%= @onlending.parking_area %>坪</td>
+					<% end %>
+				</tr>
+			</table>
+
+
+			<div class="row" style="margin-bottom:0px">
+				<h2>貸款需求</h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>目前銀行</td>
+					<td>剩餘貸款金額</td>
+					<td>預計多增貸金額</td>
+					<td>寬限期</td>
+					<td>貸款期限</td>			
+				</tr>
+
+				<tr>
+					<td><%= @onlending.current_bank %></td>
+					<td><%= @onlending.current_loan_price %> 萬</td>
+					<td><%= @onlending.more_loan_price %> 萬</td>
+
+					<% if  @onlending.is_need_grace_period == true %>
+		          <td>是,<%= @onlending.grace_period_years %>年</td>
+		      <% else %>
+		          <td>否</td>
+		      <% end %> 
+		      <% if @onlending.to_loan_period_years == 0 %>
+		          <td>皆可 </td>
+		      <% else %>
+		          <td><%= @onlending.to_loan_period_years %> 年</td>
+		      <% end %>    
+				</tr>
+			</table>
+
+			<div class="row" style="margin-bottom:0px">
+				<h2>備註</h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>備註</td>
+				</tr>
+
+				<tr>
+					<td><%= @onlending.other_info.gsub(/\n/, '<br/>').html_safe %></td>
+				</tr>
+			</table>
+
+			<div class="row" style="margin-bottom:0px">
+				<h2>已寄信專員</h2>
+			</div>
+	
+			<% if @onlending.is_mailed_lenders == nil || @onlending.is_mailed_lenders == false %>
+				<p>是否已群發寄信: 尚未群發寄信</p>
+				<%= form_for @onlending, :url => root_path+"backstage/onlendings/#{@onlending.id}/mail_to_lenders" , html: {class: "form-horizontal"} do |form| %>
+					<p>將寄出<%= @onlending.county.lenders.where("is_person_confirmed = true").size() %> 封信 <%= form.submit "群發寄出專員信" %></p>	
+				<% end %>
+			<% else %>
+				<p>是否已群發寄信: 已群發寄信</p>
+			<% end %>		
+
+			<table class="table" border=1>
+				<tr>
+					<td>是否已寄信</td>
+					<td>是否已回覆</td>
+					<td>專員照片</td>
+					<td>專員名稱</td>
+					<td>Email</td>
+					<td>個人電話</td>
+					<td>公司</td>
+				</tr>
+
+				<% @lenders.each do |lender|%>
+						<tr>
+							<% lender_county_ship = LenderOnlendingShip.where("lender_id=#{lender.id}  and onlending_id = #{@onlending.id}").first %>
+							<% if lender_county_ship != nil %>
+								<td>
+									已寄信
+									<%= link_to(root_path+"backstage/onlendings/#{@onlending.id}/lenders/#{lender.id}/mail_to_the_lender") do %>
+										<button>再寄信</button>
+									<% end %>
+								</td>
+							<% else %>
+								<td>
+									未寄信
+									<%= link_to(root_path+"backstage/onlendings/#{@onlending.id}/lenders/#{lender.id}/mail_to_the_lender") do %>
+										<button>寄信</button>
+									<% end %>
+								</td>
+							<% end %>
+
+							<% if lender_county_ship != nil and  lender_county_ship.is_responded == true%>
+								<td>
+									已回覆
+								</td>
+							<% else %>
+								<td>
+									未回覆
+								</td>
+							<% end %>
+
+							<% if lender.avatar_file_name != nil%>
+								<td>
+									<%= image_tag lender.avatar.url(:thumb) %>
+								</td>
+							<% else %>
+								<td>
+								</td>
+							<% end %>
+
+							<td><%= lender.name %></td>
+							<td><%= lender.email %></td>
+							<td><%= lender.contact_personal_phone %></td>
+							<td><%= lender.bank %></td>
+						</tr>
+				<% end %>
+			</table>	
+
+			<div class="row" style="margin-bottom:0px">
+				<h2>專員回覆</h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>銀行/專員</td>
+					<td>可貸金額</td>
+					<td>貸款年限</td>
+					<td>寬限期</td>
+					<td>利率說明</td>
+					<td>是否綁約</td>
+					<td>費用說明</td>
+					<td>其他說明</td>
+				</tr>
+
+				<% responses = OnlendingResponse.where(" onlending_id = #{@onlending.id}") %>
+				<% responses.each do |r| %>
+					<tr>
+						<td><%= r.lender.bank %>/<%= r.lender.name %></td>
+						<td><%= r.loan_money %> 萬</td>
+						<td><%= r.loan_years %> 年</td>
+						<td><%= r.grace_period %></td>
+						<td><%= r.interest_explaination %></td>
+						<% if r.is_binded == true %>
+							<td>是</td>
+						<% else %>
+							<td>否</td>
+						<% end %>
+						<td><%= r.expense_explaination %></td>
+						<td><%= r.other_info.gsub(/\n/, '<br/>').html_safe %></td>
+					</tr>
+				<% end %>
+				
+			</table>
+
+
+
+		</div>
+	</section>
+
+</div>
