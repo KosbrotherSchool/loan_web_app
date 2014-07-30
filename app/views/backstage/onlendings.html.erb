@@ -32,7 +32,7 @@
 							<%  num_responded = LenderOnlendingShip.where("onlending_id = #{f.id} and is_responded = true").size()%>
 							<%  num_sended = LenderOnlendingShip.where("onlending_id = #{f.id}").size()%>
 							
-							<% if f.is_mailed_lenders == nil || f.is_mailed_lenders == false %>
+							<% if num_sended == 0 %>
 								<td>
 									<%= link_to(root_path+"backstage/onlendings/#{f.id}", {:style => 'color: #09B3DD'}) do %>
 										尚未寄信
