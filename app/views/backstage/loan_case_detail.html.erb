@@ -110,7 +110,6 @@
 				<h2>貸款需求</h2>
 			</div>
 
-
 			<table class="table" border=1>
 				<tr>
 					<td>是否成交</td>
@@ -153,7 +152,7 @@
 				</tr>
 
 				<tr>
-					<td><%= @loan_case.other_info %> </td>
+					<td><%= @loan_case.other_info.gsub(/\n/, '<br/>').html_safe %></td>
 				</tr>
 			</table>
 
@@ -258,7 +257,7 @@
 							<td>否</td>
 						<% end %>
 						<td><%= r.expense_explaination %></td>
-						<td><%= r.other_info %></td>
+						<td><%= r.other_info.gsub(/\n/, '<br/>').html_safe %></td>
 					</tr>
 				<% end %>
 				

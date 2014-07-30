@@ -60,6 +60,31 @@ class BackstageController < ApplicationController
 		redirect_to :controller => 'backstage', :action => 'index'
 	end
 
+
+	def onlendings
+		@onlendings = Onlending.all
+	end
+
+	def deliver_onlending_mail
+		onlending = Onlending.find(params[:key])
+		onlending.deliver_time = Time.now
+		onlending.status_id = 2
+		onlending.save
+
+		# deliver reply mail
+		# ReplyApplierMailer.delay.mail_content(loan_case.id)
+
+		redirect_to root_path+"backstage/onlendings"
+	end
+
+	def update_evaluate_onlending
+		onlending = Onlending.find(params[:key])
+		onlending.notes = params[:loan_case][:notes]
+		onlending.status_id = getStausIdByName(params[:loan_case][:status])
+		onlending.save
+		redirect_to root_path+"backstage/onlendings"
+	end
+
 	def lenders
 		@lenders = Lender.all
 	end

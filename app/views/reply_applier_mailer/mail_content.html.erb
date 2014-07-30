@@ -25,7 +25,7 @@
 		<li>是否有綁約：否 </li>
 	<% end %>
 	<li>費用說明：<%= r.expense_explaination %></li>
-	<li>其他說明：<%= r.other_info %></li>
+	<li>其他說明：<%= r.other_info.gsub(/\n/, '<br/>').html_safe  %></li>
 </ul>
 
 <% end %>

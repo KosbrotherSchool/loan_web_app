@@ -42,7 +42,7 @@ list-style-type: decimal;
             <li>貸款期限： <%= @loan_case.to_loan_period_years %> 年</li>
         <% end %>
         <% if @loan_case.other_info != nil && @loan_case.other_info != "" %>
-            <li>備註： <%= @loan_case.other_info %> </li>
+            <li>備註： <%= @loan_case.other_info.gsub(/\n/, '<br/>').html_safe  %> </li>
         <% else %>
             <li>備註： 無</li>
         <% end %> 

@@ -28,7 +28,15 @@ Rails.application.routes.draw do
   patch "backstage/update_loanded_case" => "backstage#update_loanded_case"
   patch "backstage/update_failed_case" => "backstage#update_failed_case"
 
-  get "backstage/lenders" => "backstage#lenders"
+  get "backstage/onlendings" => "backstage#onlendings"
+  patch "backstage/deliver_onlending_mail" => "backstage#deliver_onlending_mail"
+  patch "backstage/update_evaluate_onlending" => "backstage#update_evaluate_onlending"
+  patch "backstage/update_delivering_onlending" => "backstage#update_delivering_onlending"
+  patch "backstage/update_loaning_onlending" => "backstage#update_loaning_onlending"
+  patch "backstage/update_loanded_onlending" => "backstage#update_loanded_onlending"
+  patch "backstage/update_failed_onlending" => "backstage#update_failed_onlending"
+
+  get "backstage/lenders" => "backstage#lenders" 
   patch "backstage/update_lender" => "backstage#lenders_update_lender"
   get "backstage/loan_cases/:loan_case_id" => "backstage#loan_case_detail"
   get "backstage/loan_cases/:loan_case_id/edit" => "backstage#loan_case_detail_edit"

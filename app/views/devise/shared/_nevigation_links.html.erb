@@ -3,18 +3,28 @@
 	<div class="container">
 	<ul class="nav nav-tabs" style="border-bottom:0px">		
 		<% if user_signed_in? %>
+			
 			<% if action_name == "index" %>
 				<li class="active">
 			<% else %>
 				<li>
 			<% end %>
-		  <%= link_to '後台管理', backstage_path %></li>
+		  <%= link_to '新房貸案件管理', backstage_path %></li>
+
+		  <% if action_name == "onlendings" %>
+				<li class="active">
+			<% else %>
+				<li>
+			<% end %>
+		  <%= link_to '增貸案件管理', backstage_onlendings_path %></li>
+
 		  <% if action_name == "lenders" %>
 				<li class="active">
 			<% else %>
 				<li>
 			<% end %>
 		  <%= link_to '專員管理', backstage_lenders_path %></li>
+
 		<% end %>
 		<% if user_signed_in? %>
 			<!-- <% if action_name == "edit" %>

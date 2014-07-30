@@ -1,7 +1,11 @@
 class OnlendingsController < ApplicationController
 
 	def apply_onlending
-  	@onlending = Onlending.new
+		if params[:msg] == 'success'
+			
+		else
+  		@onlending = Onlending.new
+  	end
   end
 
   def create
@@ -25,7 +29,7 @@ class OnlendingsController < ApplicationController
 		@onlending.status_id = 1
 
 		if @onlending.save
-			# ConfirmMailer.delay.mail_content(@onlending.id)
+			OnlendingConfirmMailer.delay.mail_content(@onlending.id)
 			redirect_to :controller => 'onlendings', :action => 'apply_onlending', :msg => 'success'
 		else
 			render :apply_onlending
