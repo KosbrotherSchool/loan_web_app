@@ -9,6 +9,6 @@ class ConfirmMailer < ActionMailer::Base
   #
   def mail_content(case_id)
     @loan_case = LoanCase.find(case_id)
-    mail to: @loan_case.applicant_email, subject: "e貸宗師感謝您的申請~"
+    mail to: @loan_case.applicant_email, subject: "e貸宗師感謝您的申請[房貸][#{@loan_case.address}]"
   end
 end

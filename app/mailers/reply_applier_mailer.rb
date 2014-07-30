@@ -9,6 +9,6 @@ class ReplyApplierMailer < ActionMailer::Base
   def mail_content(loan_case_id)
     @loan_case = LoanCase.find(loan_case_id)
 
-    mail to: @loan_case.applicant_email, subject: "e貸宗師咨詢回覆"
+    mail to: @loan_case.applicant_email, subject: "e貸宗師諮詢回覆[房貸][#{@loan_case.address}]"
   end
 end

@@ -38,10 +38,19 @@ class CreateOnlendings < ActiveRecord::Migration
       t.string :applicant_other_credit_loan
       t.boolean :is_credit_ok
 
+      t.string   :notes
+      t.datetime :deliver_time
+      t.integer  :lender_id
+      t.boolean  :is_charged
+      t.boolean  :is_feedbacked
+      t.boolean  :is_mailed_lenders
+
       t.integer :county_id
       t.integer :status_id
       
       t.timestamps
     end
+
+    execute "ALTER TABLE onlendings AUTO_INCREMENT = 666"
   end
 end

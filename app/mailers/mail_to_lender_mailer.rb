@@ -17,6 +17,6 @@ class MailToLenderMailer < ActionMailer::Base
     while @token.index("+")
       @token = AES.encrypt(@loan_case.id.to_s, ENV["KEY"])
     end
-    mail to: @lender.email, subject: "e貸宗師案件媒合"
+    mail to: @lender.email, subject: "[e貸宗師-新房貸][#{@loan_case.address}]"
   end
 end

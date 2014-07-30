@@ -50,7 +50,7 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="inner-heading">
-					<h2>申請新房貸</h2>
+					<h2>申請房屋增轉貸</h2>
 					</div>
 				</div>	
 			</div>			
@@ -62,22 +62,22 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span9">
-				<% if @loan_case.present? %>				
+				<% if @onlending.present? %>				
 				  <h4>詳細填寫需求，專員針對個人條件、房屋條件、貸款需求來評估。越詳細，專員才能提供最精準的評估！</h4>
 				  <h5><span class="text-error">*</span> 星記號為必填</h5>
 
-				 	<% if @loan_case.errors.any? %>
+				 	<% if @onlending.errors.any? %>
 				 		<div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px; margin-bottom:30px">
 								<h2>資料填寫不完整: </h2>
 								<ul>
-									<% @loan_case.errors.full_messages.each do |message|%>
+									<% @onlending.errors.full_messages.each do |message|%>
 										<li><%= message %></li>
 									<% end %>
 								</ul>
 						</div>
 					<% end %>
 				  
-				  <%= form_for @loan_case, :url => loan_cases_path  , html: {class: "form-horizontal"} do |f| %>
+				  <%= form_for @onlending, :url => onlendings_path  , html: {class: "form-horizontal"} do |f| %>
 
 				  <div class="row-fluid">
 				    <div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
@@ -91,50 +91,40 @@
 					  <div class="page-header">
 					      <h2>步驟一：貸款需求</h2>
 					  </div>
+					  
 					  <div class="control-group">
-					      <label class="control-label">是否成交<span class="text-error">*</span></label>
+					      <label class="control-label" for="">目前貸款銀行<span class="text-error">*</span><br /></label>
 					      <div class="controls">
-								  <label class="radio">
-								  		<%= radio_button_tag("loan_case[is_dealed]", "true", checked = true) %>
-								      已簽約成交
-								  </label>
-								  <label class="radio">
-								      <%= radio_button_tag("loan_case[is_dealed]", "false") %>
-								      準備議價，尚未成交
-								  </label>
+					      <%= f.text_field :current_bank,  :class => "input-small"%>
 					      </div>
 					  </div>
+					  
 					  <div class="control-group">
-					      <label class="control-label" for="">成交總價/預計成交總價<span class="text-error">*</span><br /></label>
+					      <label class="control-label" for="">剩餘貸款金額<span class="text-error">*</span><br /></label>
 					      <div class="controls">
-					      	<%= f.text_field :to_buy_price,  :class => "input-small"%>
-					      	萬（如有車位，含車位價格）
-					      </div>
-					  </div>
-					  <div class="control-group">
-					      <label class="control-label" for="">車位購買價 <br /></label>
-					      <div class="controls">
-					      <%= f.text_field :parking_price,  :class => "input-small"%>
-						  	萬（僅供專員參考）
-					      </div>
-					  </div>
-					  <div class="control-group">
-					      <label class="control-label" for="">預計貸款金額<span class="text-error">*</span><br /></label>
-					      <div class="controls">
-					      <%= f.text_field :to_loan_price,  :class => "input-small"%>
+					      <%= f.text_field :current_loan_price, :placeholder => "ex. 800",  :class => "input-small"%>
 						  	萬
 					      </div>
 					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label" for="">預計多增貸金額(不含剩餘貸款)<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      <%= f.text_field :more_loan_price, :placeholder => "ex. 80",  :class => "input-small"%>
+						  	萬
+					      </div>
+					  </div>
+
 					  <div class="control-group">
 					      <label class="control-label">是否需要寬限期<span class="text-error">*</span> <a href="#" data-toggle="tooltip" data-placement="bottom" data-original-title="寬限期：寬限期內，每期只需繳交貸款利息，不需要攤還本金"><i class="icon-circled icon-bgsuccess icon-info"></i></a>
 					      </label>
 					      <div class="controls">
 						  <label class="radio">
-						      <%= radio_button_tag("loan_case[is_need_grace_period]","false", checked = true) %>
+						      <%= radio_button_tag("onlending[is_need_grace_period]","false", checked = true) %>
 						      否
 						  </label>
 						  <label class="radio">
-						  		<%= radio_button_tag("loan_case[is_need_grace_period]", "true") %>
+						  		<%= radio_button_tag("onlending[is_need_grace_period]", "true") %>
 						      是，需要
 						      <%= f.text_field :grace_period_years, :placeholder => "0", :class => "input-small"%>
 						      年
@@ -145,19 +135,19 @@
 					      <label class="control-label" for="">貸款期限<span class="text-error">*</span><br /></label>
 					      <div class="controls">
 						  <label class="radio">
-						  		<%= radio_button_tag("loan_case[to_loan_period_years]", "0",checked = true) %>
+						  		<%= radio_button_tag("onlending[to_loan_period_years]", "0",checked = true) %>
 						      皆可
 						  </label>
 						  <label class="radio">
-						  		<%= radio_button_tag("loan_case[to_loan_period_years]", "20") %>
+						  		<%= radio_button_tag("onlending[to_loan_period_years]", "20") %>
 						      20年
 						  </label>
 						  <label class="radio">
-						      <%= radio_button_tag("loan_case[to_loan_period_years]", "30") %>
+						      <%= radio_button_tag("onlending[to_loan_period_years]", "30") %>
 						      30年
 						  </label>
 						  <label class="radio">
-						      <%= radio_button_tag("loan_case[to_loan_period_years]", "40") %>
+						      <%= radio_button_tag("onlending[to_loan_period_years]", "40") %>
 						      40年
 						  </label>
 						  
@@ -235,15 +225,15 @@
 					      <label class="control-label">裝潢<span class="text-error">*</span></label>
 					      <div class="controls">
 								  <label class="radio">
-								  		<%= radio_button_tag("loan_case[house_decoration]", "無裝潢", checked = true) %>
+								  		<%= radio_button_tag("onlending[house_decoration]", "無裝潢", checked = true) %>
 								      無裝潢
 								  </label>
 								  <label class="radio">
-								      <%= radio_button_tag("loan_case[house_decoration]", "裝潢仍新") %>
+								      <%= radio_button_tag("onlending[house_decoration]", "裝潢仍新") %>
 								      裝潢仍新
 								  </label>
 								  <label class="radio">
-								      <%= radio_button_tag("loan_case[house_decoration]", "裝潢較舊") %>
+								      <%= radio_button_tag("onlending[house_decoration]", "裝潢較舊") %>
 								      裝潢較舊
 								  </label>
 					      </div>
@@ -252,15 +242,15 @@
 					      <label class="control-label">屋況<span class="text-error">*</span></label>
 					      <div class="controls">
 						  <label class="radio">
-						      <%= radio_button_tag("loan_case[house_condition]","佳，且無滲漏水或壁癌", checked = true) %>
+						      <%= radio_button_tag("onlending[house_condition]","佳，且無滲漏水或壁癌", checked = true) %>
 						      佳，且無滲漏水或壁癌
 						  </label>
 						  <label class="radio">
-						      <%= radio_button_tag("loan_case[house_condition]", "中等，有些許滲漏水或壁癌情況") %>
+						      <%= radio_button_tag("onlending[house_condition]", "中等，有些許滲漏水或壁癌情況") %>
 						      中等，有些許滲漏水或壁癌情況
 						  </label>
 						  <label class="radio">
-						      <%= radio_button_tag("loan_case[house_condition]", "不佳，有嚴重滲漏水或壁癌") %>
+						      <%= radio_button_tag("onlending[house_condition]", "不佳，有嚴重滲漏水或壁癌") %>
 						      不佳，有嚴重滲漏水或壁癌
 						  </label>
 					      </div>
@@ -269,11 +259,11 @@
 					      <label class="control-label">頂樓是否有加蓋<span class="text-error">*</span></label>
 					      <div class="controls">
 						  <label class="radio">
-						      <%= radio_button_tag("loan_case[is_top_built]", "false",checked = true ) %>
+						      <%= radio_button_tag("onlending[is_top_built]", "false",checked = true ) %>
 						      無
 						  </label>
 						  <label class="radio">
-						      <%= radio_button_tag("loan_case[is_top_built]","true") %>
+						      <%= radio_button_tag("onlending[is_top_built]","true") %>
 						      有
 						  </label>
 					      </div>
@@ -289,15 +279,15 @@
 					      <label class="control-label">是否有車位<span class="text-error">*</span></label>
 					      <div class="controls">
 						  <label class="radio">
-						      <%= radio_button_tag("loan_case[parking_type]","無",checked = true ) %>
+						      <%= radio_button_tag("onlending[parking_type]","無",checked = true ) %>
 						      無
 						  </label>
 						  <label class="radio">
-						      <%= radio_button_tag("loan_case[parking_type]","機械車位") %>
+						      <%= radio_button_tag("onlending[parking_type]","機械車位") %>
 						      機械車位
 						  </label>
 						  <label class="radio">
-						      <%= radio_button_tag("loan_case[parking_type]","平面車位") %>
+						      <%= radio_button_tag("onlending[parking_type]","平面車位") %>
 						      平面車位
 						  </label>
 					      </div>
@@ -390,11 +380,11 @@
 					      <label class="control-label">名下是否有房子<span class="text-error">*</span></label>
 					      <div class="controls">
 								  <label class="radio">
-								      <%= radio_button_tag("loan_case[applicant_is_have_house]", "false", checked = true ) %>
+								      <%= radio_button_tag("onlending[applicant_is_have_house]", "false", checked = true ) %>
 								      無
 								  </label>
 								  <label class="radio">
-								      <%= radio_button_tag("loan_case[applicant_is_have_house]" ,"true") %>
+								      <%= radio_button_tag("onlending[applicant_is_have_house]" ,"true") %>
 								      有
 								  </label>
 					      </div>
@@ -420,11 +410,11 @@
 					      <label class="control-label">是否有信用瑕疵<span class="text-error">*</span></label>
 					      <div class="controls">
 							  <label class="radio">
-							      <%= radio_button_tag("loan_case[is_credit_ok]", "true", checked = true ) %>
+							      <%= radio_button_tag("onlending[is_credit_ok]", "true", checked = true ) %>
 							      無
 							  </label>
 							  <label class="radio">
-							      <%= radio_button_tag("loan_case[is_credit_ok]","false") %>
+							      <%= radio_button_tag("onlending[is_credit_ok]","false") %>
 							      有
 							  </label>
 					      </div>

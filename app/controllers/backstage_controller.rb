@@ -60,23 +60,115 @@ class BackstageController < ApplicationController
 		redirect_to :controller => 'backstage', :action => 'index'
 	end
 
-	def lenders
-		@lenders = Lender.all
+
+	def onlendings
+		@onlendings = Onlending.all
 	end
 
-	def lenders_update_lender
-		lender = Lender.find(params[:lender][:id])
-		lender.is_show = checkTrueFalseByName(params[:lender][:is_show])
-		lender.is_person_confirmed = checkTrueFalseByName(params[:lender][:is_person_confirmed])
-		lender.save
-		lender.update(lender_avatar_params)
-		redirect_to backstage_lenders_path
+	def deliver_onlending_mail
+		onlending = Onlending.find(params[:key])
+		onlending.deliver_time = Time.now
+		onlending.status_id = 2
+		onlending.save
+
+		OnlendingReplyApplierMailer.delay.mail_content(onlending.id)
+
+		redirect_to root_path+"backstage/onlendings"
+	end
+
+	def update_evaluate_onlending
+		onlending = Onlending.find(params[:key])
+		onlending.notes = params[:onlending][:notes]
+		onlending.status_id = getStausIdByName(params[:onlending][:status])
+		onlending.save
+		redirect_to root_path+"backstage/onlendings"
+	end
+
+
+	def update_delivering_onlending
+		onlending = Onlending.find(params[:key])
+		onlending.notes = params[:onlending][:notes]
+		onlending.status_id = getStausIdByName(params[:onlending][:status])
+		onlending.lender_id = params[:onlending][:lender_id]
+		onlending.save
+		redirect_to root_path+"backstage/onlendings"
+	end
+
+	def update_loaning_onlending
+		loan_case = Onlending.find(params[:key])
+		loan_case.notes = params[:onlending][:notes]
+		loan_case.status_id = getStausIdByName(params[:onlending][:status])
+		loan_case.save
+		redirect_to root_path+"backstage/onlendings"
+	end
+
+	def update_loanded_onlending
+		onlending = Onlending.find(params[:key])
+		onlending.notes = params[:onlending][:notes]
+		onlending.status_id = getStausIdByName(params[:onlending][:status])
+		onlending.is_charged = checkTrueFalseByName(params[:onlending][:is_charged])
+		onlending.is_feedbacked = checkTrueFalseByName(params[:onlending][:is_feedbacked])
+		onlending.save
+		redirect_to root_path+"backstage/onlendings"
+	end
+
+	def update_failed_onlending
+		onlending = Onlending.find(params[:key])
+		onlending.notes = params[:onlending][:notes]
+		onlending.status_id = getStausIdByName(params[:onlending][:status])
+		onlending.save
+		redirect_to root_path+"backstage/onlendings"
+	end
+
+	def onlending_detail
+		@onlending = Onlending.find(params[:onlending_id])
+		@lenders = Lender.joins(:lender_county_ships).where("county_id = #{@onlending.county_id}")
+	end
+
+	def onlending_detail_edit
+		@onlending = Onlending.find(params[:onlending_id])
+	end
+
+	def onlending_detail_update
+		@onlending = Onlending.find(params[:onlending_id])
+		@onlending.update(onlending_params)
+		redirect_to :controller => 'backstage', :action => 'onlending_detail'
+	end
+	
+	def onlending_mail_to_lenders
+		@onlending = Onlending.find(params[:onlending_id])
+		@onlending.is_mailed_lenders = true
+		@onlending.save
+
+		Lender.joins(:lender_county_ships).where("county_id = #{@onlending.county_id} and is_person_confirmed = true").each do |lender|
+			OnlendingMailToLenderMailer.delay.mail_content(@onlending.id, lender.id)
+			lenderOnlendingShip = LenderOnlendingShip.new
+			lenderOnlendingShip.lender_id = lender.id
+			lenderOnlendingShip.onlending_id = @onlending.id
+			lenderOnlendingShip.save
+		end
+
+		redirect_to :controller => 'backstage', :action => 'onlending_detail'
+	end
+
+	def onlending_mail_to_the_lender
+		onlending = Onlending.find(params[:onlending_id])
+		lender = Lender.find(params[:lender_id])
+
+		if LenderOnlendingShip.where("lender_id=#{lender.id}  and onlending_id = #{onlending.id}").first == nil
+			lenderOnlendingShip = LenderOnlendingShip.new
+			lenderOnlendingShip.lender_id = lender.id
+			lenderOnlendingShip.onlending_id = @onlending.id
+			lenderOnlendingShip.save
+		end
+		# MailToLenderMailer.delay.mail_content(loan_case.id, lender.id)
+
+		redirect_to :controller => 'backstage', :action => 'onlending_detail'
 	end
 
 	def loan_case_detail
 		@loan_case = LoanCase.find(params[:loan_case_id])
 		@lenders = Lender.joins(:lender_county_ships).where("county_id = #{@loan_case.county_id}")
-		# @lenders = Lender.joins(:lender_loan_case_ships).where("loan_case_id = #{@loan_case.id}")
 	end
 
 	def loan_case_detail_edit
@@ -107,7 +199,7 @@ class BackstageController < ApplicationController
 			lenderLoanCaseShip.save
 		end
 
-		redirect_to :controller => 'backstage', :action => 'index'
+		redirect_to :controller => 'backstage', :action => 'loan_case_detail'
 	end
 
 	def mail_to_the_lender
@@ -123,6 +215,19 @@ class BackstageController < ApplicationController
 		MailToLenderMailer.delay.mail_content(loan_case.id, lender.id)
 
 		redirect_to :controller => 'backstage', :action => 'loan_case_detail'
+	end
+
+	def lenders
+		@lenders = Lender.all
+	end
+
+	def lenders_update_lender
+		lender = Lender.find(params[:lender][:id])
+		lender.is_show = checkTrueFalseByName(params[:lender][:is_show])
+		lender.is_person_confirmed = checkTrueFalseByName(params[:lender][:is_person_confirmed])
+		lender.save
+		lender.update(lender_avatar_params)
+		redirect_to backstage_lenders_path
 	end
 
 	def lender_edit
@@ -184,6 +289,10 @@ class BackstageController < ApplicationController
 
 	def loan_case_params
 		params.require(:loan_case).permit(:is_dealed, :is_need_grace_period, :to_loan_period_years, :to_buy_price,:parking_price, :to_loan_price, :grace_period_years, :other_info, :address, :layer, :building_type, :rooms, :living_rooms, :rest_rooms, :building_area, :building_age, :house_decoration, :house_condition, :is_top_built,:top_building_area,:parking_type, :parking_layer, :parking_area, :applicant_name, :applicant_email, :applicant_phone, :applicant_age, :applicant_company_name, :applicant_title, :applicant_serve_year, :applicant_year_earning, :applicant_other_earning, :applicant_is_have_house,:applicant_other_house_loan, :applicant_other_credit_loan, :is_credit_ok)
+	end
+
+	def onlending_params
+		params.require(:onlending).permit(:current_bank, :current_loan_price, :more_loan_price, :is_need_grace_period, :grace_period_years, :to_loan_period_years, :other_info, :address, :layer, :building_type, :rooms, :living_rooms, :rest_rooms, :building_area, :building_age, :house_decoration, :house_condition, :is_top_built,:top_building_area,:parking_type, :parking_layer, :parking_area, :applicant_name, :applicant_email, :applicant_phone, :applicant_age, :applicant_company_name, :applicant_title, :applicant_serve_year, :applicant_year_earning, :applicant_other_earning, :applicant_is_have_house,:applicant_other_house_loan, :applicant_other_credit_loan, :is_credit_ok)
 	end
 
 end

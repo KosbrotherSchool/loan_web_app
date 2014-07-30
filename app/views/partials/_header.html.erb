@@ -57,7 +57,7 @@
 										<i class="icon-home"></i>首頁
 									<% end %>
 								</li>
-							<% if action_name == "apply_mortgage" || action_name == "create_loan_case"  %>					
+							<% if action_name == "apply_mortgage" %>					
 								<li class="dropdown active">
 							<% else %>
 								<li>
@@ -65,12 +65,12 @@
 									<%= link_to "申請新房貸", apply_mortgage_path %>
 							</li>
 
-							<% if action_name == "onlending" %>					
+							<% if action_name == "apply_onlending" %>					
 								<li class="dropdown active">
 							<% else %>
 								<li>
 							<% end %>
-									<%= link_to "申請房屋增轉貸", onlending_path %>
+									<%= link_to "申請房屋增轉貸", apply_onlending_path %>
 							</li>
 
 							<% if action_name == "join_us" ||  action_name == "create_lender"%>					
