@@ -132,7 +132,7 @@ class BackstageController < ApplicationController
 	def onlending_detail_update
 		@onlending = Onlending.find(params[:onlending_id])
 		@onlending.update(onlending_params)
-		redirect_to :controller => 'backstage', :action => 'onlending_detail_edit'
+		redirect_to :controller => 'backstage', :action => 'onlending_detail'
 	end
 	
 	def onlending_mail_to_lenders

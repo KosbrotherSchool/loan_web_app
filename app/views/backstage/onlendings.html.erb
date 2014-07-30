@@ -29,8 +29,8 @@
 									<%= f.applicant_name %>
 								<% end %>
 							</td>
-							<%  num_responded = LenderLoanCaseShip.where("loan_case_id = #{f.id} and is_responded = true").size()%>
-							<%  num_sended = LenderLoanCaseShip.where("loan_case_id = #{f.id}").size()%>
+							<%  num_responded = LenderOnlendingShip.where("onlending_id = #{f.id} and is_responded = true").size()%>
+							<%  num_sended = LenderOnlendingShip.where("onlending_id = #{f.id}").size()%>
 							
 							<% if f.is_mailed_lenders == nil || f.is_mailed_lenders == false %>
 								<td>
