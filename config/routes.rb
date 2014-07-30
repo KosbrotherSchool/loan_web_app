@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   resources :onlendings do
     get "/response" => "onlendings#lender_response"
     patch "/response" => "onlendings#lender_response_update"
+    post "/response" => "onlendings#lender_response_update"
   end
 
 end

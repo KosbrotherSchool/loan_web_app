@@ -110,5 +110,11 @@ en:
         applicant_other_credit_loan: ""
         is_credit_ok: ""
         county_id: ""
+      onlending_response:
+        more_loan_money: ""
+        loan_years: ""
+        interest_explaination: ""
+        grace_period: ""
+        expense_explaination: ""
 
 

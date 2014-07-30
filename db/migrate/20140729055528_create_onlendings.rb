@@ -50,5 +50,7 @@ class CreateOnlendings < ActiveRecord::Migration
       
       t.timestamps
     end
+
+    execute "ALTER TABLE onlendings AUTO_INCREMENT = 666"
   end
 end
