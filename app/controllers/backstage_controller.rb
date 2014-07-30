@@ -158,10 +158,10 @@ class BackstageController < ApplicationController
 		if LenderOnlendingShip.where("lender_id=#{lender.id}  and onlending_id = #{onlending.id}").first == nil
 			lenderOnlendingShip = LenderOnlendingShip.new
 			lenderOnlendingShip.lender_id = lender.id
-			lenderOnlendingShip.onlending_id = @onlending.id
+			lenderOnlendingShip.onlending_id = onlending.id
 			lenderOnlendingShip.save
 		end
-		# MailToLenderMailer.delay.mail_content(loan_case.id, lender.id)
+		OnlendingMailToLenderMailer.delay.mail_content(onlending.id, lender.id)
 
 		redirect_to :controller => 'backstage', :action => 'onlending_detail'
 	end
