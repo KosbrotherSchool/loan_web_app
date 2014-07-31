@@ -6,3 +6,4 @@
  Disallow: /tmp/
  Disallow: /users/
  Disallow: /loan_cases/
+ Disallow: /onlendings/
