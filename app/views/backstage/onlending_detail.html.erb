@@ -207,9 +207,15 @@
 				<p>是否已群發寄信: 已群發寄信</p>
 			<% end %>		
 
+			<% token = "+" %>
+    	<%	while token.index("+") %>
+      <% 		token = AES.encrypt(@onlending.id.to_s, ENV["KEY"]) %>
+    	<%	end %>
+
 			<table class="table" border=1>
 				<tr>
 					<td>是否已寄信</td>
+					<td>回覆連結</td>
 					<td>是否已回覆</td>
 					<td>專員照片</td>
 					<td>專員名稱</td>
@@ -219,6 +225,12 @@
 				</tr>
 
 				<% @lenders.each do |lender|%>
+
+						<% key = "+" %>
+		    		<%	while key.index("+") %>
+		      	<%		key = AES.encrypt(lender.id.to_s, ENV["KEY"]) %>
+		    		<%	end %>
+
 						<tr>
 							<% lender_county_ship = LenderOnlendingShip.where("lender_id=#{lender.id}  and onlending_id = #{@onlending.id}").first %>
 							<% if lender_county_ship != nil %>
@@ -228,6 +240,9 @@
 										<button>再寄信</button>
 									<% end %>
 								</td>
+								<td>
+									<%= link_to("回覆連結", root_path+"onlendings/#{@onlending.id}/response?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+								</td>
 							<% else %>
 								<td>
 									未寄信
@@ -235,6 +250,7 @@
 										<button>寄信</button>
 									<% end %>
 								</td>
+								<td>無</td>
 							<% end %>
 
 							<% if lender_county_ship != nil and  lender_county_ship.is_responded == true%>

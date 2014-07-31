@@ -217,6 +217,7 @@
 			<table class="table" border=1>
 				<tr>
 					<td>是否已寄信</td>
+					<td>回覆連結</td>
 					<td>是否已回覆</td>
 					<td>專員照片</td>
 					<td>專員名稱</td>
@@ -225,8 +226,20 @@
 					<td>公司</td>
 				</tr>
 
+				
+    		<% token = "+" %>
+	    	<%	while token.index("+") %>
+	      <% 		token = AES.encrypt(@loan_case.id.to_s, ENV["KEY"]) %>
+	    	<%	end %>
+
 				<% @lenders.each do |lender|%>
-						<tr>
+									
+				    	<% key = "+" %>
+			    		<%	while key.index("+") %>
+			      	<%		key = AES.encrypt(lender.id.to_s, ENV["KEY"]) %>
+			    		<%	end %>
+
+				    <tr>		
 							<% lender_county_ship = LenderLoanCaseShip.where("lender_id=#{lender.id}  and loan_case_id = #{@loan_case.id}").first %>
 							<% if lender_county_ship != nil %>
 								<td>
@@ -235,6 +248,9 @@
 										<button>再寄信</button>
 									<% end %>
 								</td>
+								<td>
+									<%= link_to("回覆連結", root_path+"loan_cases/#{@loan_case.id}/responses/lenders?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+								</td>
 							<% else %>
 								<td>
 									未寄信
@@ -242,6 +258,7 @@
 										<button>寄信</button>
 									<% end %>
 								</td>
+								<td>無</td>
 							<% end %>
 
 							<% if lender_county_ship != nil and  lender_county_ship.is_responded == true%>
