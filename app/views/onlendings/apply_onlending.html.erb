@@ -153,12 +153,6 @@
 						  
 					      </div>
 					  </div>
-					   <div class="control-group">
-					      <label class="control-label">特殊需求與說明：</label>
-					      <div class="controls">
-					      	<%= f.text_area :other_info, :placeholder => "如有特別需求,可加以說明"%>
-					      </div>
-					  </div>
 					   
 					  <div class="control-group">
 					      <div class="controls">
@@ -418,7 +412,7 @@
 							      有
 							  </label>
 					      </div>
-					  </div>
+					  </div>				  
 					  
 					  <div class="control-group">
 					      
@@ -428,6 +422,13 @@
 								      <a href="privacy.html" target="_blank" >隱私權聲明</a>
 								      」。
 								  </label>
+					      </div>
+					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label">特殊需求與說明：</label>
+					      <div class="controls">
+					      	<%= f.text_area :other_info, :placeholder => "如有特別需求,可加以說明", :style=> "width:95%; height:100px"%>
 					      </div>
 					  </div>
 					  
