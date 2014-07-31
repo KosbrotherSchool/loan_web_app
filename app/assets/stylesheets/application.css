@@ -23,5 +23,6 @@
  *= require css/shortcodes.css
  *= require css/style.css
  *= require color/default.css
+ *= require bootstrap-datepicker
  */
 

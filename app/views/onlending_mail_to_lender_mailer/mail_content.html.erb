@@ -5,7 +5,7 @@ list-style-type: decimal;
 </style>
 <p><%= @lender.name %>專員您好,</p>
 
-<% deadline = @onlending.created_at + 5.days %>
+<% deadline = @onlending.dead_time %>
 
 <p>
 以下為新進詢問[增轉貸]案件資料，請於 <%= deadline.strftime("%Y/%m/%d %H:%M") %> 前到此連結回覆：

@@ -33,3 +33,4 @@
 //= require js/validate.js
 
 //= require js/jquery.cookie.js
+//= require bootstrap-datepicker

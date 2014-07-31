@@ -129,6 +129,19 @@ class BackstageController < ApplicationController
 		@onlending = Onlending.find(params[:onlending_id])
 	end
 
+	def onlending_update_time
+		@onlending = Onlending.find(params[:onlending_id])
+		begin
+			ymdArray = params[:yymmdd].split("-")
+			hhmmArray = params[:hhmm].split(":")
+			@onlending.dead_time = Time.new(ymdArray[0], ymdArray[1], ymdArray[2],hhmmArray[0],hhmmArray[1])
+			@onlending.save
+		rescue Exception => e
+			
+		end	
+		redirect_to :controller => 'backstage', :action => 'onlending_detail'
+	end
+
 	def onlending_detail_update
 		@onlending = Onlending.find(params[:onlending_id])
 		@onlending.update(onlending_params)
@@ -173,6 +186,19 @@ class BackstageController < ApplicationController
 
 	def loan_case_detail_edit
 		@loan_case = LoanCase.find(params[:loan_case_id])
+	end
+
+	def loan_case_update_time
+		@loan_case = LoanCase.find(params[:loan_case_id])
+		begin
+			ymdArray = params[:yymmdd].split("-")
+			hhmmArray = params[:hhmm].split(":")
+			@loan_case.dead_time = Time.new(ymdArray[0], ymdArray[1], ymdArray[2],hhmmArray[0],hhmmArray[1])
+			@loan_case.save
+		rescue Exception => e
+			
+		end
+		redirect_to :controller => 'backstage', :action => 'loan_case_detail'
 	end
 
 	def loan_case_detail_update

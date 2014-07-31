@@ -11,6 +11,8 @@ class LoanCasesController < ApplicationController
 
   def create
   	@loan_case = LoanCase.new(loan_case_params)
+  	@loan_case.advise = ""
+  	@loan_case.dead_time = Time.now + 5.days
 
   	begin
   		if params[:county] != nil && params[:county] != ""

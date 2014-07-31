@@ -48,13 +48,15 @@ Rails.application.routes.draw do
   patch "backstage/loan_cases/:loan_case_id/loan_case_update" => "backstage#loan_case_detail_update"
   patch "backstage/mail_to_lenders" => "backstage#mail_to_lenders"
   get "backstage/loan_cases/:loan_case_id/lenders/:lender_id/mail_to_the_lender" => "backstage#mail_to_the_lender"
+  post "backstage/loan_cases/:loan_case_id/loan_case_update_time" => "backstage#loan_case_update_time"
 
   get "backstage/onlendings/:onlending_id" => "backstage#onlending_detail"
   get "backstage/onlendings/:onlending_id/edit" => "backstage#onlending_detail_edit" 
   patch "backstage/onlendings/:onlending_id/onlending_update" => "backstage#onlending_detail_update"
   patch "backstage/onlendings/:onlending_id/mail_to_lenders" => "backstage#onlending_mail_to_lenders"
   get "backstage/onlendings/:onlending_id/lenders/:lender_id/mail_to_the_lender" => "backstage#onlending_mail_to_the_lender"
-
+  post "backstage/onlendings/:onlending_id/onlending_update_time" => "backstage#onlending_update_time"
+  
   resources :loan_cases do
     get "responses/lenders" => "responses#lender_response"
     patch "responses/lenders" =>  "responses#lender_response_update"

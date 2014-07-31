@@ -10,6 +10,8 @@ class OnlendingsController < ApplicationController
 
   def create
   	@onlending = Onlending.new(onlending_params)
+  	@onlending.advise = ""
+  	@onlending.dead_time = Time.now + 5.days
 
   	begin
   		if params[:county] != nil && params[:county] != ""

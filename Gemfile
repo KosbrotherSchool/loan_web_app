@@ -59,3 +59,5 @@ gem 'aes'
 
 gem 'sidekiq'
 gem 'sinatra', require: false
+
+gem 'bootstrap-datepicker-rails'

@@ -1,7 +1,7 @@
 <div id="wrapper">
 		
   <% now = Time.now%>
-  <% deadline = @loan_case.created_at + 5.days %>
+  <% deadline = @loan_case.dead_time %>
 
 	<section id="inner-headline">
 		<div class="container-fluid">
