@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # resources :users
   
   root :to => "house_loan#index"
+  get "msg" => "house_loan#index"
   get "about-us" => "house_loan#about_us"
   get "index" => "house_loan#index"
 
