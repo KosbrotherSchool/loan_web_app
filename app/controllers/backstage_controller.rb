@@ -225,7 +225,7 @@ class BackstageController < ApplicationController
 			lenderLoanCaseShip.save
 		end
 
-		redirect_to :controller => 'backstage', :action => 'loan_case_detail'
+		redirect_to root_path + "backstage/loan_cases/#{@loan_case.id}"
 	end
 
 	def mail_to_the_lender
