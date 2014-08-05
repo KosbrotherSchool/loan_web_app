@@ -64,6 +64,15 @@
 										<i class="icon-home"></i>首頁
 									<% end %>
 								</li>
+
+                            <% if action_name == "banks" %>
+								<li class="dropdown active">
+							<% else %>
+								<li>
+							<% end %>
+									<%= link_to "查詢房貸", banks_path %>
+							</li>
+
 							<% if action_name == "apply_mortgage" %>					
 								<li class="dropdown active">
 							<% else %>
