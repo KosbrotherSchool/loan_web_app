@@ -13,6 +13,7 @@
 //= require js/jquery.js
 //= require js/jquery.easing.1.3.js
 //= require js/bootstrap.js
+//= require ckeditor-jquery
 
 //= require js/modernizr.custom.js
 //= require js/toucheffects.js

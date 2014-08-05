@@ -43,6 +43,8 @@ GEM
       capistrano (>= 1.0.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
+    ckeditor_rails (4.4.2)
+      railties (>= 3.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.4)
@@ -205,6 +207,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   capistrano (~> 2.15)
   capistrano-ext
+  ckeditor_rails
   coffee-rails (~> 4.0.0)
   devise
   google_drive

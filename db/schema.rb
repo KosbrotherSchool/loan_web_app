@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731093704) do
+ActiveRecord::Schema.define(version: 20140805120925) do
+
+  create_table "bank_products", force: true do |t|
+    t.integer  "bank_id"
+    t.string   "title"
+    t.text     "interest"
+    t.string   "binding"
+    t.string   "break_money"
+    t.string   "grace_year"
+    t.string   "portion"
+    t.text     "other_info"
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "banks", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "case_statuses", force: true do |t|
     t.string   "name"

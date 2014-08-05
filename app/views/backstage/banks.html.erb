@@ -1,0 +1,37 @@
+<div id="wrapper">
+	
+	<%= render "devise/shared/nevigation_links" %>
+	
+	<section id="content">
+		<div class="container">
+			
+			
+			<p><%= link_to "bank_products", root_path+"backstage/banks/1" %></p>
+
+			<p><%= link_to "bank_product_detail", root_path+"backstage/banks/1/bank_products/1" %></p>
+
+			<div class="row">
+				<h2>產品列表：</h2>
+			</div>
+
+			<table class="table" border=1>
+				<tr>
+					<td>專員照片</td>
+					<td>專員名稱</td>
+					<td>職稱</td>
+					<td>Email</td>
+					<td>公司電話</td>
+					<td>個人電話</td>
+					<td>公司</td>
+					<td>分行</td>
+				</tr>
+			</table>	
+
+			<%= text_area_tag 'comment', nil, class: 'ckeditor' %>	
+
+			<div class="row"></div>
+
+		</div>
+	</section>
+
+</div>

@@ -25,6 +25,13 @@
 			<% end %>
 		  <%= link_to '專員管理', backstage_lenders_path %></li>
 
+		  <% if action_name == "banks" %>
+				<li class="active">
+			<% else %>
+				<li>
+			<% end %>
+		  <%= link_to '銀行產品', backstage_banks_path %></li>
+
 		<% end %>
 		<% if user_signed_in? %>
 			<!-- <% if action_name == "edit" %>

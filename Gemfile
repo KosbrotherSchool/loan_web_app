@@ -61,3 +61,4 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 
 gem 'bootstrap-datepicker-rails'
+gem 'ckeditor_rails'

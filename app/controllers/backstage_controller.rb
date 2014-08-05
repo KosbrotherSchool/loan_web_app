@@ -281,6 +281,18 @@ class BackstageController < ApplicationController
 		redirect_to root_path+"backstage/lenders/#{lender.id}"
 	end
 
+	def banks
+
+	end
+
+	def bank_products
+		
+	end
+
+	def band_product_detail
+		
+	end
+
 	private 
 
 	def check_user

@@ -62,6 +62,10 @@ Rails.application.routes.draw do
   get "backstage/onlendings/:onlending_id/lenders/:lender_id/mail_to_the_lender" => "backstage#onlending_mail_to_the_lender"
   post "backstage/onlendings/:onlending_id/onlending_update_time" => "backstage#onlending_update_time"
   
+  get "backstage/banks" => "backstage#banks"
+  get "backstage/banks/:bank_id/bank_products/:bank_product_id" => "backstage#band_product_detail"
+  get "backstage/banks/:bank_id" => "backstage#bank_products"
+
   resources :loan_cases do
     get "responses/lenders" => "responses#lender_response"
     patch "responses/lenders" =>  "responses#lender_response_update"
