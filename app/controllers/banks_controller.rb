@@ -1,4 +1,4 @@
 class BanksController < ApplicationController
-  def index
+  def banks_list
   end
 end
