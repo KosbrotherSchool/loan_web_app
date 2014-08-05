@@ -65,28 +65,17 @@
 									<% end %>
 								</li>
 
-                            <% if action_name == "banks" %>
+							<% if action_name == "apply_mortgage" ||action_name == "apply_onlending" %>					
 								<li class="dropdown active">
 							<% else %>
 								<li>
 							<% end %>
-									<%= link_to "查詢房貸", banks_path %>
-							</li>
-
-							<% if action_name == "apply_mortgage" %>					
-								<li class="dropdown active">
-							<% else %>
-								<li>
-							<% end %>
-									<%= link_to "申請新房貸", apply_mortgage_path %>
-							</li>
-
-							<% if action_name == "apply_onlending" %>					
-								<li class="dropdown active">
-							<% else %>
-								<li>
-							<% end %>
-									<%= link_to "申請房屋增轉貸", apply_onlending_path %>
+								<a href="#">申請房貸 <i class="icon-angle-down"></i></a>
+								<ul class="dropdown-menu">
+								         <li><%= link_to "申請新房貸", apply_mortgage_path %></li>
+								         <li><%= link_to "申請房屋增轉貸", apply_onlending_path %></li>
+								</ul>
+								
 							</li>
 
 							<% if action_name == "join_us" ||  action_name == "create_lender"%>					
@@ -103,6 +92,15 @@
 							<% end %>
 								<%= link_to "常見問題", faq_path %>
 								</li>
+								
+							<% if action_name == "banks_list" %>
+								<li class="dropdown active">
+							<% else %>
+								<li>
+							<% end %>
+								<%= link_to "查詢房貸", banks_path %>
+							</li>	
+								
 							<% if action_name == "about_us" %>					
 								<li class="dropdown active">
 							<% else %>
