@@ -17,30 +17,18 @@
 					<h5 class="widgetheading">銀行列表</h5>
 					<hr>
 					<ul class="unstyled bank-list" >
-					    <li><a href="join-us.html">全部</a> <i class="icon-circled icon-bgdanger icon">45</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
-					    <li><a href="join-us.html">中國信託</a> <i class="icon-circled icon-bgdanger icon">3</i></li>
+					    <li>
+					    	<%= link_to("全部",join_us_path)%>
+								<i class="icon-circled icon-bgdanger icon"><%= BankProduct.all.size %></i>
+					    </li>
+					    <% @banks.each do |bank|%>
+					    	<li>
+					    		<%= link_to(bank.name,"banks/#{bank.id}")%>
+					    		<i class="icon-circled icon-bgdanger icon">
+					    			<%= bank.bank_products.size %>
+					    		</i>
+					    	</li>
+					    <% end %>	
 					</ul>
 				</div>
 			</div>
@@ -75,166 +63,44 @@
 						</th>
 					    </tr>
 					    </thead>
-					    <tbody>
-					    <tr>
-						<td>
-						    1
-						</td>
-						<td>
-						    兆豐銀行
-						</td>
-						<td>
-						    <a href="https://www.megabank.com.tw/news/news_01.asp?kind=1&sno=481&channel=F190" target="_blank">青年安心成家方案[詳細內容]</a>
-						</td>
-						<td>
-						    二段式：第 1~24 期 1.72% 機動利率；第 25 期起 2.02% 機動利率
-						</td>
-						<td>
-						    2 年
-						</td>
-						<td>
-						    最長三年
-						</td>
-						<td>
-						    最高八成
-						</td>
-						<td>
-						    限首戶自住；每案貸款金額上限 500 萬，超過部份依銀行提供貸款利率。
-						</td>
-					    </tr>
-					    <tr>
-						<td>
-						    1
-						</td>
-						<td>
-						    兆豐銀行
-						</td>
-						<td>
-						    <a href="https://www.megabank.com.tw/news/news_01.asp?kind=1&sno=481&channel=F190" target="_blank">青年安心成家方案[詳細內容]</a>
-						</td>
-						<td>
-						    二段式：第 1~24 期 1.72% 機動利率；第 25 期起 2.02% 機動利率
-						</td>
-						<td>
-						    2 年
-						</td>
-						<td>
-						    最長三年
-						</td>
-						<td>
-						    最高八成
-						</td>
-						<td>
-						    限首戶自住；每案貸款金額上限 500 萬，超過部份依銀行提供貸款利率。
-						</td>
-					    </tr>
-					    <tr>
-						<td>
-						    1
-						</td>
-						<td>
-						    兆豐銀行
-						</td>
-						<td>
-						    <a href="https://www.megabank.com.tw/news/news_01.asp?kind=1&sno=481&channel=F190" target="_blank">青年安心成家方案[詳細內容]</a>
-						</td>
-						<td>
-						    二段式：第 1~24 期 1.72% 機動利率；第 25 期起 2.02% 機動利率
-						</td>
-						<td>
-						    2 年
-						</td>
-						<td>
-						    最長三年
-						</td>
-						<td>
-						    最高八成
-						</td>
-						<td>
-						    限首戶自住；每案貸款金額上限 500 萬，超過部份依銀行提供貸款利率。
-						</td>
-					    </tr>
-					    <tr>
-						<td>
-						    1
-						</td>
-						<td>
-						    兆豐銀行
-						</td>
-						<td>
-						    <a href="https://www.megabank.com.tw/news/news_01.asp?kind=1&sno=481&channel=F190" target="_blank">青年安心成家方案[詳細內容]</a>
-						</td>
-						<td>
-						    二段式：第 1~24 期 1.72% 機動利率；第 25 期起 2.02% 機動利率
-						</td>
-						<td>
-						    2 年
-						</td>
-						<td>
-						    最長三年
-						</td>
-						<td>
-						    最高八成
-						</td>
-						<td>
-						    限首戶自住；每案貸款金額上限 500 萬，超過部份依銀行提供貸款利率。
-						</td>
-					    </tr>
-					    <tr>
-						<td>
-						    1
-						</td>
-						<td>
-						    兆豐銀行
-						</td>
-						<td>
-						    <a href="https://www.megabank.com.tw/news/news_01.asp?kind=1&sno=481&channel=F190" target="_blank">青年安心成家方案[詳細內容]</a>
-						</td>
-						<td>
-						    二段式：第 1~24 期 1.72% 機動利率；第 25 期起 2.02% 機動利率
-						</td>
-						<td>
-						    2 年
-						</td>
-						<td>
-						    最長三年
-						</td>
-						<td>
-						    最高八成
-						</td>
-						<td>
-						    限首戶自住；每案貸款金額上限 500 萬，超過部份依銀行提供貸款利率。
-						</td>
-					    </tr>
-					    <tr>
-						<td>
-						    1
-						</td>
-						<td>
-						    兆豐銀行
-						</td>
-						<td>
-						    <a href="https://www.megabank.com.tw/news/news_01.asp?kind=1&sno=481&channel=F190" target="_blank">青年安心成家方案[詳細內容]</a>
-						</td>
-						<td>
-						    二段式：第 1~24 期 1.72% 機動利率；第 25 期起 2.02% 機動利率
-						</td>
-						<td>
-						    2 年
-						</td>
-						<td>
-						    最長三年
-						</td>
-						<td>
-						    最高八成
-						</td>
-						<td>
-						    限首戶自住；每案貸款金額上限 500 萬，超過部份依銀行提供貸款利率。
-						</td>
-					    </tr>
-					    
-					    
-					    </tbody>
+					  
+					  <tbody>
+					  	<% @banks.each do |bank|%>
+					  		<% products = bank.bank_products %>
+					  		<% products.each do |p|%>
+						  		<tr>
+						  			<td>
+									    <%= p.id %>
+										</td>
+										<td>
+									    <%= p.bank.name %>
+										</td>
+										
+											<td>
+											<%= link_to(root_path) do %>										
+									     <%= p.title %>[詳細內容]
+									     <% end %>
+									   	</td>
+										
+										<td width="20%">
+									    <%= p.interest %>
+										</td>
+										<td>
+									    <%= p.binding %>
+										</td>
+										<td>
+									    <%= p.grace_year %>
+										</td>
+										<td>
+									    <%= p.portion %>
+										</td>
+										<td width="40%">
+									    <%= p.other_info %>
+										</td>
+						  		</tr>
+					  		<% end %>
+					  	<% end %>	
+					  </tbody>
 					</table>
 					<div class="cta-box">
 						<div class="row-fluid">

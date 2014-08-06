@@ -1,6 +1,5 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
-  get 'banks/index'
 
   mount Sidekiq::Web, at: '/sidekiq'
 
@@ -14,6 +13,7 @@ Rails.application.routes.draw do
   get "index" => "house_loan#index"
   
   get "banks" => "banks#banks_list"
+  get "banks/:bank_id" => "banks#bank_products"
 
   get "join-us" => "house_loan#join_us"
   post "create_lender" => "house_loan#create_lender"
