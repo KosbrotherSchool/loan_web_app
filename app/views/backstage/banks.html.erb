@@ -11,13 +11,13 @@
 					<hr>
 					<ul class="unstyled bank-list" >
 					    <li>
-					    	<%= link_to("全部",join_us_path)%>
+					    	<%= link_to("全部",backstage_banks_path)%>
 								<i class="icon-circled icon-bgdanger icon"><%= BankProduct.all.size %></i>
 					    </li>
 					    <% @banks.each do |bank|%>
 					    	<li>
 					    		<img alt="Icon" src=<%= bank.icon_link %> height="19" width="19"/>
-					    		<%= link_to(bank.name,"banks/#{bank.id}")%>
+					    		<%= link_to(bank.name,root_path+"backstage/banks/#{bank.id}")%>
 					    		<i class="icon-circled icon-bgdanger icon">
 					    			<%= bank.bank_products.size %>
 					    		</i>

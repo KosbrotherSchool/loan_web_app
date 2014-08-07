@@ -311,7 +311,7 @@ class BackstageController < ApplicationController
 	end
 
 	def bank_products
-		
+		@bank = Bank.find(params[:bank_id])
 	end
 
 	def bank_product_detail
