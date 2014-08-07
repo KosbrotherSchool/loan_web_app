@@ -76,15 +76,16 @@
 						  			<td>
 									    <%= p.id %>
 										</td>
-										<td>
+										<td width="10%">
+											<img alt="Icon" src=<%= bank.icon_link %> height="19" width="19"/>
 									    <%= p.bank.name %>
 										</td>
 										
-											<td>
-											<%= link_to p.link,:target => "_blank" do %>
-									     <%= p.title %>[詳細內容]
-									     <% end %>
-									   	</td>
+										<td>
+										<%= link_to p.link,:target => "_blank" do %>
+								     <%= p.title %>[詳細內容]
+								     <% end %>
+								   	</td>
 										
 										<td width="20%">
 									    <%= p.interest %>
