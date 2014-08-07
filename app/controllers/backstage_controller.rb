@@ -282,14 +282,39 @@ class BackstageController < ApplicationController
 	end
 
 	def banks
+		@banks = Bank.all
+	end
 
+	def bank_product_edit
+		@bank_product = BankProduct.find(params[:bank_product_id])
+	end
+
+	def bank_product_update
+		bank_product = BankProduct.find(params[:bank_product_id])
+		bank_product.update(bank_product_params)
+		redirect_to root_path+"backstage/banks"
+	end
+
+	def bank_product_new
+		@bank_product = BankProduct.new
+	end
+
+	def bank_product_create
+		BankProduct.create(bank_product_params)
+		redirect_to root_path+"backstage/banks"
+	end
+
+	def bank_product_delete
+		bank_product = BankProduct.find(params[:bank_product_id])
+		bank_product.delete
+		redirect_to root_path+"backstage/banks"
 	end
 
 	def bank_products
-		
+		@bank = Bank.find(params[:bank_id])
 	end
 
-	def band_product_detail
+	def bank_product_detail
 		
 	end
 
@@ -331,6 +356,10 @@ class BackstageController < ApplicationController
 
 	def onlending_params
 		params.require(:onlending).permit(:current_bank, :current_loan_price, :more_loan_price, :is_need_grace_period, :grace_period_years, :to_loan_period_years, :other_info, :address, :layer, :building_type, :rooms, :living_rooms, :rest_rooms, :building_area, :building_age, :house_decoration, :house_condition, :is_top_built,:top_building_area,:parking_type, :parking_layer, :parking_area, :applicant_name, :applicant_email, :applicant_phone, :applicant_age, :applicant_company_name, :applicant_title, :applicant_serve_year, :applicant_year_earning, :applicant_other_earning, :applicant_is_have_house,:applicant_other_house_loan, :applicant_other_credit_loan, :is_credit_ok, :advise)
+	end
+
+	def bank_product_params
+		params.require(:bank_product).permit(:bank_id, :title, :interest, :binding, :grace_year, :portion, :other_info)
 	end
 
 end

@@ -1,5 +1,6 @@
 require 'bundler/capistrano'
 # require 'hoptoad_notifier/capistrano'
+require 'capistrano/local_precompile'
 
 set :application, "loan_query_app"
 set :rails_env, "production"
@@ -13,6 +14,10 @@ set :user, "apps" # 一個伺服器上的帳戶用來放你的應用程式，不
 set :deploy_to, "/home/apps/loan_query_app"
 # set :deploy_via, :remote_cache
 set :use_sudo, false
+
+# set :precompile_cmd             # default: bundle exec rake assets:precompile
+# set :assets_dir                 # default: "public/assets"
+# set :rsync_cmd                  # default: "rsync -av"
 
 role :web, "106.187.50.158"
 role :app, "106.187.50.158"
