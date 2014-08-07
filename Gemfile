@@ -62,3 +62,7 @@ gem 'sinatra', require: false
 
 gem 'bootstrap-datepicker-rails'
 gem 'ckeditor_rails'
+
+group :development do
+  gem 'capistrano-local-precompile', require: false
+end

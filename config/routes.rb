@@ -65,6 +65,11 @@ Rails.application.routes.draw do
   get "backstage/banks" => "backstage#banks"
   get "backstage/banks/:bank_id/bank_products/:bank_product_id" => "backstage#band_product_detail"
   get "backstage/banks/:bank_id" => "backstage#bank_products"
+  get "backstage/bank_products/:bank_product_id/edit" => "backstage#bank_product_edit"
+  get "backstage/bank_products/new" => "backstage#bank_product_new"
+  patch "backstage/bank_products/:bank_product_id/update" => "backstage#bank_product_update"
+  post "backstage/bank_products/create" => "backstage#bank_product_create"
+  get "backstage/bank_products/:bank_product_id/delete" => "backstage#bank_product_delete"
 
   resources :loan_cases do
     get "responses/lenders" => "responses#lender_response"

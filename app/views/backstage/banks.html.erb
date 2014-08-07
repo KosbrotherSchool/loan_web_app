@@ -3,34 +3,115 @@
 	<%= render "devise/shared/nevigation_links" %>
 	
 	<section id="content">
-		<div class="container">
-			
-			
-			<p><%= link_to "bank_products", root_path+"backstage/banks/1" %></p>
-
-			<p><%= link_to "bank_product_detail", root_path+"backstage/banks/1/bank_products/1" %></p>
-
-			<div class="row">
-				<h2>產品列表：</h2>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<h5 class="widgetheading">銀行列表</h5>
+					
+					<hr>
+					<ul class="unstyled bank-list" >
+					    <li>
+					    	<%= link_to("全部",join_us_path)%>
+								<i class="icon-circled icon-bgdanger icon"><%= BankProduct.all.size %></i>
+					    </li>
+					    <% @banks.each do |bank|%>
+					    	<li>
+					    		<img alt="Icon" src=<%= bank.icon_link %> height="19" width="19"/>
+					    		<%= link_to(bank.name,"banks/#{bank.id}")%>
+					    		<i class="icon-circled icon-bgdanger icon">
+					    			<%= bank.bank_products.size %>
+					    		</i>
+					    	</li>
+					    <% end %>	
+					</ul>
+				</div>
 			</div>
-
-			<table class="table" border=1>
-				<tr>
-					<td>專員照片</td>
-					<td>專員名稱</td>
-					<td>職稱</td>
-					<td>Email</td>
-					<td>公司電話</td>
-					<td>個人電話</td>
-					<td>公司</td>
-					<td>分行</td>
-				</tr>
-			</table>	
-
-			<%= text_area_tag 'comment', nil, class: 'ckeditor' %>	
-
-			<div class="row"></div>
-
+			<div class="blankline30"></div>
+			<div class="row-fluid">
+				<div class="span12">
+					<h5 class="widgetheading">方案列表
+						<%= link_to "建立新貸款方案", root_path+"backstage/bank_products/new", {:class =>"btn btn-theme"}  %>  
+					</h5>
+					<hr>
+					<table class="table table-bordered table-striped table-hover">
+					    <thead>
+					    <tr>
+						<th>
+						    編號
+						</th>
+						<th>
+						    銀行名稱
+						</th>
+						<th>
+						    方案名稱
+						</th>
+						<th>
+						    房貸利率
+						</th>
+						<th>
+						    綁約
+						</th>
+						<th>
+						    寬限期
+						</th>
+						<th>
+						    貸款成數
+						</th>
+						<th>
+						    其他貸款條件
+						</th>
+						<th>
+						    
+						</th>
+					    </tr>
+					    </thead>
+					  
+					  <tbody>
+					  	<% @banks.each do |bank|%>
+					  		<% products = bank.bank_products %>
+					  		<% products.each do |p|%>
+						  		<tr>
+						  			<td>
+									    <%= p.id %>
+										</td>
+										<td width="10%">
+											
+									    <%= p.bank.name %>
+										</td>
+										
+										<td>			
+								     <%= p.title %>
+								   	</td>
+										
+										<td width="20%">
+									    <%= p.interest %>
+										</td>
+										<td>
+									    <%= p.binding %>
+										</td>
+										<td>
+									    <%= p.grace_year %>
+										</td>
+										<td>
+									    <%= p.portion %>
+										</td>
+										<td width="40%">
+									    <%= p.other_info %>
+										</td>
+										<td>
+											<%= link_to(root_path+"backstage/bank_products/#{p.id}/edit") do %>
+												<button>編輯</button>
+											<% end %>
+										</td>
+						  		</tr>
+					  		<% end %>
+					  	<% end %>	
+					  </tbody>
+					</table>
+				
+					<div class="blankline30"></div>
+				</div>	
+			</div>
 		</div>
 	</section>
 
