@@ -1,0 +1,123 @@
+<div id="wrapper">
+	
+	<%= render "user_lenders/nevigation_links" %>
+	
+	<section id="content">
+		<div class="container">
+
+			<div class="row" style="margin-bottom:0px">
+				<h4>未回復案件</h4>
+			</div>
+
+			<h5>新房貸</h5>
+
+			<table class="table" border=1>
+				<tr>
+					<td>截止日期</td>
+					<td>申請人</td>
+					<td>地址</td>
+					<td>欲貸款金額</td>
+					<td>詳細資料</td>
+					<td>回覆連結</td>
+				</tr>
+				
+				<% loan_cases = @lender.loan_cases.select {|l| l.deliver_time == nil} %>
+
+				<% loan_cases.each do |loan_case| %>
+					<tr>
+						<td><%= loan_case.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
+						<td><%= loan_case.applicant_name %></td>
+						<td><%= loan_case.address %></td>
+						<td><%= loan_case.to_loan_price %>萬</td>
+						<td></td>
+						<td></td>
+					</tr>
+				<% end %>
+			</table>
+
+
+			<h5>增轉貸</h5>
+
+			<table class="table" border=1>
+				<tr>
+					<td>截止日期</td>
+					<td>申請人</td>
+					<td>地址</td>
+					<td>欲貸款金額</td>
+					<td>詳細資料</td>
+					<td>回覆連結</td>
+				</tr>
+				
+				<% onlendings = @lender.onlendings.select {|l| l.deliver_time == nil} %>
+
+				<% onlendings.each do |onlending| %>
+					<tr>
+						<td><%= onlending.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
+						<td><%= onlending.applicant_name %></td>
+						<td><%= onlending.address %></td>
+						<td><%= onlending.more_loan_price %>萬</td>
+						<td></td>
+						<td></td>
+					</tr>
+				<% end %>
+			</table>
+				
+
+			<div class="row" style="margin-bottom:0px">
+				<h4>已回復案件</h4>
+			</div>
+
+			<h5>新房貸</h5>
+			<table class="table" border=1>
+				<tr>
+					<td>截止日期</td>
+					<td>申請人</td>
+					<td>地址</td>
+					<td>欲貸款金額</td>
+					<td>詳細資料</td>
+					<td>回覆連結</td>
+				</tr>
+				
+				<% responses = @lender.loan_responses %>
+
+				<% responses.each do |response| %>
+					<tr>
+						<% loan_case = response.loan_case %>
+						<td><%= loan_case.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
+						<td><%= loan_case.applicant_name %></td>
+						<td><%= loan_case.address %></td>
+						<td><%= loan_case.to_loan_price %>萬</td>
+						<td></td>
+						<td></td>
+					</tr>
+				<% end %>
+			</table>
+
+			<h5>增轉貸</h5>
+			<table class="table" border=1>
+				<tr>
+					<td>截止日期</td>
+					<td>申請人</td>
+					<td>地址</td>
+					<td>欲多貸金額</td>
+					<td>詳細資料</td>
+				</tr>
+				
+				<% onlending_responses = @lender.onlending_responses %>
+
+				<% onlending_responses.each do |response| %>
+					<tr>
+						<% onlending = response.onlending %>
+						<td><%= onlending.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
+						<td><%= onlending.applicant_name %></td>
+						<td><%= onlending.address %></td>
+						<td><%= onlending.more_loan_price %>萬</td>
+						<td></td>
+					</tr>
+				<% end %>
+			</table>
+
+		</div>
+	</section>
+
+</div>

@@ -8,6 +8,10 @@ class Lender < ActiveRecord::Base
 	has_many :lender_loan_case_ships
 	has_many :loan_cases, :through => :lender_loan_case_ships
 
+	has_many :onlending_responses
+	has_many :lender_onlending_ships
+	has_many :onlendings, :through => :lender_onlending_ships
+
 	has_attached_file :avatar, :styles => { :medium => "350>x264", :thumb => "175>x132" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 

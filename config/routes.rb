@@ -89,5 +89,7 @@ Rails.application.routes.draw do
   end
 
   get "user_lenders/:lender_id/user_center" => "user_lenders#user_center"
+  get "user_lenders/:lender_id/user_cases" => "user_lenders#user_cases"
+
 
 end

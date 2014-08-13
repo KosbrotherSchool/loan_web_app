@@ -1,1 +1,26 @@
-_nevigation_links
+<%# add navigation links to this file %>
+<div class="tabbable" >
+	<div class="container">
+	<ul class="nav nav-tabs" style="border-bottom:0px">		
+		<% if user_signed_in? %>
+			
+			<% if action_name == "user_center" %>
+				<li class="active">
+			<% else %>
+				<li>
+			<% end %>
+		  <%= link_to '我的檔案', root_path+"user_lenders/#{@lender.id}/user_center" %></li>
+
+		  <% if action_name == "user_cases" %>
+				<li class="active">
+			<% else %>
+				<li>
+			<% end %>
+		  <%= link_to '我的案件', root_path+"user_lenders/#{@lender.id}/user_cases" %></li>
+
+		  <li><%= link_to '登出', destroy_user_lender_session_path, :method=>'delete' %></li>
+
+		<% end %>
+	</ul>
+	</div>
+</div>

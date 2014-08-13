@@ -1,2 +1,61 @@
-<h1>UserLenders#user_center</h1>
-<p>Find me in app/views/user_lenders/user_center.html.erb</p>
+<div id="wrapper">
+	
+	<%= render "user_lenders/nevigation_links" %>
+	
+	<section id="content">
+		<div class="container">
+
+			<div class="row-fluid form-horizontal">
+
+				<div class="control-group">
+					<label class="control-label " for="">我的圖片<br /></label>
+
+					<div class="controls">
+						<% if @lender.card_file_name != nil%>
+							<%= image_tag @lender.card.url(:thumb) %>
+						<% end %>
+					</div>
+				</div>
+
+				<div class="control-group">
+				    <label class="control-label" for="">專員姓名<br /></label>
+				    <div class="controls">
+							<%= @lender.name %>
+				    </div>
+				</div>
+
+				<div class="control-group">
+				    <label class="control-label" for="">信箱<br /></label>
+				    <div class="controls">
+							<%= @lender.email %>
+				    </div>
+				</div>
+
+				<div class="control-group">
+				    <label class="control-label" for="">公司電話<br /></label>
+				    <div class="controls">
+							<%= @lender.contact_company_phone %>
+				    </div>
+				</div>
+
+				<div class="control-group">
+				    <label class="control-label" for="">個人電話<br /></label>
+				    <div class="controls">
+							<%= @lender.contact_personal_phone %>
+				    </div>
+				</div>
+
+				<div class="control-group">
+				    <label class="control-label" for="">公司名稱<br /></label>
+				    <div class="controls">
+							<%= @lender.bank %>
+				    </div>
+				</div>
+
+			</div>
+
+
+		</div>
+	</section>
+
+</div>

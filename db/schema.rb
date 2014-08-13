@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140813080315) do
+ActiveRecord::Schema.define(version: 20140813102109) do
 
   create_table "bank_products", force: true do |t|
     t.integer  "bank_id"
@@ -77,7 +77,8 @@ ActiveRecord::Schema.define(version: 20140813080315) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_responded"
-    t.integer  "view_nums",    default: 0
+    t.integer  "view_nums",        default: 0
+    t.integer  "loan_response_id"
   end
 
   create_table "lender_onlending_ships", force: true do |t|
@@ -87,6 +88,7 @@ ActiveRecord::Schema.define(version: 20140813080315) do
     t.integer  "view_nums"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "onlending_response_id"
   end
 
   create_table "lenders", force: true do |t|
