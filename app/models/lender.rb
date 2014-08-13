@@ -1,4 +1,5 @@
 class Lender < ActiveRecord::Base
+	belongs_to :user_lender
 
 	has_many :lender_county_ships
 	has_many :counties, :through => :lender_county_ships

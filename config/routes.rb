@@ -1,8 +1,13 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+ 
+  get 'user_lenders/user_center'
+
+  get 'user_lenders_controller/user_center'
 
   mount Sidekiq::Web, at: '/sidekiq'
 
+  devise_for :user_lenders, controllers: { sessions: "sessions" }
   devise_for :users, controllers: { sessions: "sessions" }
   # :skip => :registrations
   # resources :users
@@ -82,5 +87,7 @@ Rails.application.routes.draw do
     patch "/response" => "onlendings#lender_response_update"
     post "/response" => "onlendings#lender_response_update"
   end
+
+  get "user_lenders/:lender_id/user_center" => "user_lenders#user_center"
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807030435) do
+ActiveRecord::Schema.define(version: 20140813080315) do
 
   create_table "bank_products", force: true do |t|
     t.integer  "bank_id"
@@ -45,6 +45,24 @@ ActiveRecord::Schema.define(version: 20140807030435) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "devise_lenders", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "devise_lenders", ["email"], name: "index_devise_lenders_on_email", unique: true, using: :btree
+  add_index "devise_lenders", ["reset_password_token"], name: "index_devise_lenders_on_reset_password_token", unique: true, using: :btree
 
   create_table "lender_county_ships", force: true do |t|
     t.integer  "lender_id"
@@ -95,6 +113,7 @@ ActiveRecord::Schema.define(version: 20140807030435) do
     t.boolean  "is_mail_confirmed"
     t.boolean  "is_person_confirmed"
     t.boolean  "is_show"
+    t.integer  "user_lender_id"
   end
 
   create_table "loan_cases", force: true do |t|
@@ -225,6 +244,24 @@ ActiveRecord::Schema.define(version: 20140807030435) do
     t.text     "advise",                                               null: false
     t.datetime "dead_time"
   end
+
+  create_table "user_lenders", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_lenders", ["email"], name: "index_user_lenders_on_email", unique: true, using: :btree
+  add_index "user_lenders", ["reset_password_token"], name: "index_user_lenders_on_reset_password_token", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
