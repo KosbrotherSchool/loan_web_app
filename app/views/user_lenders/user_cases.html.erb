@@ -43,7 +43,7 @@
 					<td>截止日期</td>
 					<td>申請人</td>
 					<td>地址</td>
-					<td>欲貸款金額</td>
+					<td>欲多貸金額</td>
 					<td>詳細資料</td>
 					<td>回覆連結</td>
 				</tr>
@@ -75,7 +75,6 @@
 					<td>地址</td>
 					<td>欲貸款金額</td>
 					<td>詳細資料</td>
-					<td>回覆連結</td>
 				</tr>
 				
 				<% responses = @lender.loan_responses %>
@@ -87,7 +86,6 @@
 						<td><%= loan_case.applicant_name %></td>
 						<td><%= loan_case.address %></td>
 						<td><%= loan_case.to_loan_price %>萬</td>
-						<td></td>
 						<td></td>
 					</tr>
 				<% end %>
