@@ -88,20 +88,30 @@
 								<%= link_to "查詢房貸", banks_path %>
 							</li>	
 
-							<% if action_name == "join_us" ||  action_name == "create_lender"%>					
-								<li class="dropdown active">
-							<% else %>
-								<li class="dropdown">
-							<% end %>
-								<%= link_to(root_path+"user_lenders/sign_in") do %>
-										銀行專員登入 <i class="icon-angle-down"></i>
+							
+							<% if current_user_lender == nil %>
+								<% if request.original_url.index("user_lenders") %>
+									<li class="dropdown active">
+								<% else %>
+									<li class="dropdown">
 								<% end %>
-								<ul class="dropdown-menu">
-					         <li><%= link_to "銀行專員登入", root_path+"user_lenders/sign_in" %></li>
-					         <li><%= link_to "銀行專員註冊", root_path+"user_lenders/sign_up" %></li>
-								</ul>
-							</li>
-
+									<%= link_to(root_path+"user_lenders/sign_in") do %>
+											專員登入/註冊 <i class="icon-angle-down"></i>
+									<% end %>
+									<ul class="dropdown-menu">
+						         <li><%= link_to "銀行專員登入", root_path+"user_lenders/sign_in" %></li>
+						         <li><%= link_to "銀行專員註冊", root_path+"user_lenders/sign_up" %></li>
+									</ul>
+								</li>
+							<% else %>
+									<% if request.original_url.index("user_lenders") %>
+										<li class="active">
+									<% else %>
+										<li>
+									<% end %>
+										<%= link_to "#{current_user_lender.lender.name}專員,您好", root_path+"user_lenders/#{current_user_lender.id}/user_center" %>
+									<li>
+							<% end %>
 
 							<!-- 	
 							<% if action_name == "faq" %>					
