@@ -1,20 +1,13 @@
-<div style="width:800px; margin:0 auto;">
-<h2>後台註冊</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
-
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-  <div><%= f.submit "註冊" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div id="wrapper">
+<section id="content">
+		<div class="container">
+			<% if request.original_url.index("users/sign_up") %>
+				<%= render "devise/registrations/new_user" %>
+			<% elsif request.original_url.index("user_lenders/sign_up") %>
+				<%= render "devise/registrations/new_user_lender" %>
+			<% end %>
+		</div>
+	</section>
 </div>
+
+
