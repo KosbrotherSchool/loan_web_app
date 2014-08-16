@@ -38,7 +38,7 @@ body {
 }
 
 a {
-	color:#4b5056;
+	color:#e96b56;
 }
 a:active {
 	outline:0;
@@ -465,7 +465,7 @@ float:left;
 	position:relative;
 	background:#fff;
 	border-top:1px solid #f2f2f2;
-	padding:50px 0 0 0;
+	padding:20px 0 0 0;
 }
 
 #content img {
@@ -1688,7 +1688,7 @@ ul.contact-info li label {
 }
 
 ul.cat li a, ul.folio-detail li a{
-	color:#656565;
+    color:#e96b56;
 	text-decoration:none;
 }
 
@@ -2867,3 +2867,13 @@ ul.the-icons {
 	margin-right: 30px;
 	margin-bottom: 20px;
       }
+
+      .tabbable{
+      	margin-top:20px;
+      	margin-bottom:25px;
+      }
+
+      .span3 > .service-box{
+      	margin-bottom: 12px;
+      } 
+
