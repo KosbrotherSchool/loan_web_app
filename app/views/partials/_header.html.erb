@@ -74,8 +74,8 @@
 										申請房貸 <i class="icon-angle-down"></i>
 								<% end %>
 								<ul class="dropdown-menu">
-					         <li><%= link_to "申請新房貸", apply_mortgage_path %></li>
-					         <li><%= link_to "申請房屋增轉貸", apply_onlending_path %></li>
+							         <li><%= link_to "申請新房貸", apply_mortgage_path %></li>
+							         <li><%= link_to "申請房屋增轉貸", apply_onlending_path %></li>
 								</ul>
 								
 							</li>
@@ -99,8 +99,8 @@
 											專員登入/註冊 <i class="icon-angle-down"></i>
 									<% end %>
 									<ul class="dropdown-menu">
-						         <li><%= link_to "銀行專員登入", root_path+"user_lenders/sign_in" %></li>
-						         <li><%= link_to "銀行專員註冊", root_path+"user_lenders/sign_up" %></li>
+								         <li><%= link_to "銀行專員登入", root_path+"user_lenders/sign_in" %></li>
+								         <li><%= link_to "銀行專員註冊", root_path+"user_lenders/sign_up" %></li>
 									</ul>
 								</li>
 							<% else %>
@@ -109,7 +109,7 @@
 									<% else %>
 										<li>
 									<% end %>
-										<%= link_to "#{current_user_lender.lender.name}專員,您好", root_path+"user_lenders/#{current_user_lender.id}/user_center" %>
+										<%= link_to "#{current_user_lender.lender.name}專員,您好", root_path+"user_lenders/#{current_user_lender.id}/user_cases" %>
 									<li>
 							<% end %>
 
