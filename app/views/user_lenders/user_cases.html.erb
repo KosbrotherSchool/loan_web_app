@@ -1,157 +1,205 @@
 <div id="wrapper">
-	
-	<%= render "user_lenders/nevigation_links" %>
-	
+	<section id="inner-headline">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="inner-heading">
+					<h2>我的案件</h2>
+					</div>
+				</div>
+			</div>			
+		</div>
+	</section>
 	<section id="content">
-		<div class="container">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span9">
+					<div class="tabbable">
+						<ul class="nav nav-tabs">		
+							<% if user_lender_signed_in? %>
+								
+								<% if action_name == "user_cases" %>
+									<li class="active">
+								<% else %>
+									<li>
+								<% end %>
+							  <%= link_to '新房貸申請(20)', root_path+"user_lenders/#{@lender.id}/user_cases" %></li>
 
-			<% key = "+" %>
-  		<%	while key.index("+") %>
-    	<%		key = AES.encrypt(@lender.id.to_s, ENV["KEY"]) %>
-  		<%	end %>
+							  <% if action_name == "user_center" %>
+									<li class="active">
+								<% else %>
+									<li>
+								<% end %>
+							  <%= link_to '增轉貸申請(12)', root_path+"user_lenders/#{@lender.id}/user_center" %></li>
+							<% end %>
+						</ul>
+					</div>
+					<% key = "+" %>
+				  		<%	while key.index("+") %>
+				    	<%		key = AES.encrypt(@lender.id.to_s, ENV["KEY"]) %>
+				  		<%	end %>
 
-			<div class="row" style="margin-bottom:0px">
-				<h4>未回復案件</h4>
+					<div class="row-fluid">
+						<h4>尚未回覆案件</h4>
+						<hr />
+					</div>
+					<h5>新房貸</h5>
+					<table class="table" border=1>
+						<tr>
+							<td>截止日期</td>
+							<td>申請人</td>
+							<td>地址</td>
+							<td>欲貸款金額</td>
+							<td>詳細資料</td>
+							<td>回覆連結</td>
+						</tr>
+						
+						<% loan_cases = @lender.loan_cases.select {|l| l.deliver_time == nil} %>
+
+						<% loan_cases.each do |loan_case| %>
+
+							<% token = "+" %>
+				    	<%	while token.index("+") %>
+				      <% 		token = AES.encrypt(loan_case.id.to_s, ENV["KEY"]) %>
+				    	<%	end %>
+
+							<tr>
+								<td><%= loan_case.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
+								<td><%= loan_case.applicant_name %></td>
+								<td><%= loan_case.address %></td>
+								<td><%= loan_case.to_loan_price %>萬</td>
+								<td>
+									<%= link_to("詳細資料", root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+								</td>
+								<td>
+									<%= link_to("回覆連結", root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+								</td>
+							</tr>
+						<% end %>
+					</table>
+
+
+					<h5>增轉貸</h5>
+
+					<table class="table" border=1>
+						<tr>
+							<td>截止日期</td>
+							<td>申請人</td>
+							<td>地址</td>
+							<td>欲多貸金額</td>
+							<td>詳細資料</td>
+							<td>回覆連結</td>
+						</tr>
+						
+						<% onlendings = @lender.onlendings.select {|l| l.deliver_time == nil} %>
+
+						<% onlendings.each do |onlending| %>
+
+							<% token = "+" %>
+				    	<%	while token.index("+") %>
+				      <% 		token = AES.encrypt(onlending.id.to_s, ENV["KEY"]) %>
+				    	<%	end %>
+
+							<tr>
+								<td><%= onlending.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
+								<td><%= onlending.applicant_name %></td>
+								<td><%= onlending.address %></td>
+								<td><%= onlending.more_loan_price %>萬</td>
+								<td>
+									<%= link_to("詳細資料", root_path+"onlendings/#{onlending.id}/response?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+								</td>
+								<td>
+									<%= link_to("回覆連結", root_path+"onlendings/#{onlending.id}/response?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+								</td>
+							</tr>
+						<% end %>
+					</table>
+						
+
+					<div class="row-fluid" style="margin-bottom:0px;margin-top:50px;">
+						<h4>已回覆案件</h4>
+						<hr />
+					</div>
+
+					<h5>新房貸</h5>
+					<table class="table" border=1>
+						<tr>
+							<td>截止日期</td>
+							<td>申請人</td>
+							<td>地址</td>
+							<td>欲貸款金額</td>
+							<td>詳細資料</td>
+						</tr>
+						
+						<% responses = @lender.loan_responses %>
+
+						<% responses.each do |response| %>
+							<tr>
+								<% loan_case = response.loan_case %>
+								<% token = "+" %>
+					    	<%	while token.index("+") %>
+					      <% 		token = AES.encrypt(loan_case.id.to_s, ENV["KEY"]) %>
+					    	<%	end %>
+								<td><%= loan_case.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
+								<td><%= loan_case.applicant_name %></td>
+								<td><%= loan_case.address %></td>
+								<td><%= loan_case.to_loan_price %>萬</td>
+								<td>
+									<%= link_to("詳細資料", root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+								</td>
+							</tr>
+						<% end %>
+					</table>
+
+					<h5>增轉貸</h5>
+					<table class="table" border=1>
+						<tr>
+							<td>截止日期</td>
+							<td>申請人</td>
+							<td>地址</td>
+							<td>欲多貸金額</td>
+							<td>詳細資料</td>
+						</tr>
+						
+						<% onlending_responses = @lender.onlending_responses %>
+
+						<% onlending_responses.each do |response| %>
+							<tr>
+								<% onlending = response.onlending %>
+								<% token = "+" %>
+					    	<%	while token.index("+") %>
+					      <% 		token = AES.encrypt(onlending.id.to_s, ENV["KEY"]) %>
+					    	<%	end %>
+								<td><%= onlending.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
+								<td><%= onlending.applicant_name %></td>
+								<td><%= onlending.address %></td>
+								<td><%= onlending.more_loan_price %>萬</td>
+								<td>
+									<%= link_to("詳細資料", root_path+"onlendings/#{onlending.id}/response?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+								</td>
+							</tr>
+						<% end %>
+					</table>
+				</div>
+				<div class="span3">
+					<%= render "user_lenders/nevigation_links2" %>
+					<div class="service-box aligncenter">
+						<div class="">
+							尚有點數：<i class="icon-circled icon-bgprimary icon ">3</i>
+						</div>
+						<span class="colored"><a href="">點此[獲得更多點數]</a></span>
+					</div>
+					
+					<div class="service-box aligncenter">
+						<h5 class="">點數說明</h5>
+						<ul class="cat">
+							<li>1件新房貸需求單=1點</li>
+							<li>1件增轉貸需求單=1點</li>
+							<li>取得潛在客戶聯絡資訊=1點</li>
+						</ul>
+					</div>
+				</div>
 			</div>
-
-			<h5>新房貸</h5>
-
-			<table class="table" border=1>
-				<tr>
-					<td>截止日期</td>
-					<td>申請人</td>
-					<td>地址</td>
-					<td>欲貸款金額</td>
-					<td>詳細資料</td>
-					<td>回覆連結</td>
-				</tr>
-				
-				<% loan_cases = @lender.loan_cases.select {|l| l.deliver_time == nil} %>
-
-				<% loan_cases.each do |loan_case| %>
-
-					<% token = "+" %>
-		    	<%	while token.index("+") %>
-		      <% 		token = AES.encrypt(loan_case.id.to_s, ENV["KEY"]) %>
-		    	<%	end %>
-
-					<tr>
-						<td><%= loan_case.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
-						<td><%= loan_case.applicant_name %></td>
-						<td><%= loan_case.address %></td>
-						<td><%= loan_case.to_loan_price %>萬</td>
-						<td>
-							<%= link_to("詳細資料", root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
-						</td>
-						<td>
-							<%= link_to("回覆連結", root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
-						</td>
-					</tr>
-				<% end %>
-			</table>
-
-
-			<h5>增轉貸</h5>
-
-			<table class="table" border=1>
-				<tr>
-					<td>截止日期</td>
-					<td>申請人</td>
-					<td>地址</td>
-					<td>欲多貸金額</td>
-					<td>詳細資料</td>
-					<td>回覆連結</td>
-				</tr>
-				
-				<% onlendings = @lender.onlendings.select {|l| l.deliver_time == nil} %>
-
-				<% onlendings.each do |onlending| %>
-
-					<% token = "+" %>
-		    	<%	while token.index("+") %>
-		      <% 		token = AES.encrypt(onlending.id.to_s, ENV["KEY"]) %>
-		    	<%	end %>
-
-					<tr>
-						<td><%= onlending.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
-						<td><%= onlending.applicant_name %></td>
-						<td><%= onlending.address %></td>
-						<td><%= onlending.more_loan_price %>萬</td>
-						<td>
-							<%= link_to("詳細資料", root_path+"onlendings/#{onlending.id}/response?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
-						</td>
-						<td>
-							<%= link_to("回覆連結", root_path+"onlendings/#{onlending.id}/response?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
-						</td>
-					</tr>
-				<% end %>
-			</table>
-				
-
-			<div class="row" style="margin-bottom:0px">
-				<h4>已回復案件</h4>
-			</div>
-
-			<h5>新房貸</h5>
-			<table class="table" border=1>
-				<tr>
-					<td>截止日期</td>
-					<td>申請人</td>
-					<td>地址</td>
-					<td>欲貸款金額</td>
-					<td>詳細資料</td>
-				</tr>
-				
-				<% responses = @lender.loan_responses %>
-
-				<% responses.each do |response| %>
-					<tr>
-						<% loan_case = response.loan_case %>
-						<% token = "+" %>
-			    	<%	while token.index("+") %>
-			      <% 		token = AES.encrypt(loan_case.id.to_s, ENV["KEY"]) %>
-			    	<%	end %>
-						<td><%= loan_case.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
-						<td><%= loan_case.applicant_name %></td>
-						<td><%= loan_case.address %></td>
-						<td><%= loan_case.to_loan_price %>萬</td>
-						<td>
-							<%= link_to("詳細資料", root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
-						</td>
-					</tr>
-				<% end %>
-			</table>
-
-			<h5>增轉貸</h5>
-			<table class="table" border=1>
-				<tr>
-					<td>截止日期</td>
-					<td>申請人</td>
-					<td>地址</td>
-					<td>欲多貸金額</td>
-					<td>詳細資料</td>
-				</tr>
-				
-				<% onlending_responses = @lender.onlending_responses %>
-
-				<% onlending_responses.each do |response| %>
-					<tr>
-						<% onlending = response.onlending %>
-						<% token = "+" %>
-			    	<%	while token.index("+") %>
-			      <% 		token = AES.encrypt(onlending.id.to_s, ENV["KEY"]) %>
-			    	<%	end %>
-						<td><%= onlending.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
-						<td><%= onlending.applicant_name %></td>
-						<td><%= onlending.address %></td>
-						<td><%= onlending.more_loan_price %>萬</td>
-						<td>
-							<%= link_to("詳細資料", root_path+"onlendings/#{onlending.id}/response?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
-						</td>
-					</tr>
-				<% end %>
-			</table>
-
 		</div>
 	</section>
 

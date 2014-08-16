@@ -1,60 +1,72 @@
 <div id="wrapper">
-	
-	<%= render "user_lenders/nevigation_links" %>
-	
-	<section id="content">
-		<div class="container">
-
-			<div class="row-fluid form-horizontal">
-
-				<div class="control-group">
-					<label class="control-label " for="">我的圖片<br /></label>
-
-					<div class="controls">
-						<% if @lender.card_file_name != nil%>
-							<%= image_tag @lender.card.url(:thumb) %>
-						<% end %>
+	<section id="inner-headline">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="inner-heading">
+					<h2>我的檔案</h2>
 					</div>
 				</div>
+			</div>			
+		</div>
+	</section>
+	<section id="content">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span9">
 
-				<div class="control-group">
-				    <label class="control-label" for="">專員姓名<br /></label>
-				    <div class="controls">
-							<%= @lender.name %>
-				    </div>
+					<div class="row-fluid form-horizontal">
+
+						<div class="control-group">
+							<label class="control-label " for="">我的圖片<br /></label>
+
+							<div class="controls">
+								<% if @lender.card_file_name != nil%>
+									<%= image_tag @lender.card.url(:thumb) %>
+								<% end %>
+							</div>
+						</div>
+
+						<div class="control-group">
+						    <label class="control-label" for="">專員姓名<br /></label>
+						    <div class="controls">
+									<%= @lender.name %>
+						    </div>
+						</div>
+
+						<div class="control-group">
+						    <label class="control-label" for="">信箱<br /></label>
+						    <div class="controls">
+									<%= @lender.email %>
+						    </div>
+						</div>
+
+						<div class="control-group">
+						    <label class="control-label" for="">公司電話<br /></label>
+						    <div class="controls">
+									<%= @lender.contact_company_phone %>
+						    </div>
+						</div>
+
+						<div class="control-group">
+						    <label class="control-label" for="">個人電話<br /></label>
+						    <div class="controls">
+									<%= @lender.contact_personal_phone %>
+						    </div>
+						</div>
+
+						<div class="control-group">
+						    <label class="control-label" for="">公司名稱<br /></label>
+						    <div class="controls">
+									<%= @lender.bank %>
+						    </div>
+						</div>
+
+					</div>
 				</div>
-
-				<div class="control-group">
-				    <label class="control-label" for="">信箱<br /></label>
-				    <div class="controls">
-							<%= @lender.email %>
-				    </div>
+				<div class="span3">
+					<%= render "user_lenders/nevigation_links2" %>
 				</div>
-
-				<div class="control-group">
-				    <label class="control-label" for="">公司電話<br /></label>
-				    <div class="controls">
-							<%= @lender.contact_company_phone %>
-				    </div>
-				</div>
-
-				<div class="control-group">
-				    <label class="control-label" for="">個人電話<br /></label>
-				    <div class="controls">
-							<%= @lender.contact_personal_phone %>
-				    </div>
-				</div>
-
-				<div class="control-group">
-				    <label class="control-label" for="">公司名稱<br /></label>
-				    <div class="controls">
-							<%= @lender.bank %>
-				    </div>
-				</div>
-
-			</div>
-
-
 		</div>
 	</section>
 
