@@ -20,12 +20,12 @@
 					<ul class="unstyled bank-list" >
 					    <li>
 					    	<%= link_to("全部",banks_path)%>
-								<i class="icon-circled icon-bgdanger icon"><%= BankProduct.all.size %></i>
+								<i class="icon-circled icon-bgprimary icon"><%= BankProduct.all.size %></i>
 					    </li>
 					    <% @banks.each do |bank|%>
 					    	<li>
 					    		<%= link_to(bank.name,"banks/#{bank.id}")%>
-					    		<i class="icon-circled icon-bgdanger icon">
+					    		<i class="icon-circled icon-bgprimary icon">
 					    			<%= bank.bank_products.size %>
 					    		</i>
 					    	</li>
