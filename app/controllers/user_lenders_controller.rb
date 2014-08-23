@@ -9,6 +9,10 @@ class UserLendersController < ApplicationController
   	@lender = Lender.find(params[:lender_id])
   end
 
+  def user_onlendings
+  	@lender = Lender.find(params[:lender_id])
+  end
+
   def user_edit
   	@lender = Lender.find(params[:lender_id])
   end

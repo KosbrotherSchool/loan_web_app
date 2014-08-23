@@ -1,0 +1,84 @@
+<section id="content">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span6">      
+          <h2>貸款需求</h2>
+          <hr>
+          <ul class="demand" id="demand-1">
+              
+          		<li>目前貸款銀行： <%= @onlending.current_bank %></li>
+				    	<li>剩餘貸款金額： <%= @onlending.current_loan_price %> 萬</li>
+							<li>預計增貸金額： <%= @onlending.more_loan_price %> 萬</li>
+
+              <% if  @onlending.is_need_grace_period == true %>
+                  <li>是否需要寬限期：
+                  是, ，寬限期： <%= @onlending.grace_period_years %> 年</li>
+              <% else %>
+                  <li>是否需要寬限期：否</li>
+              <% end %> 
+              <% if  @onlending.grace_period_years != 0 %>
+                  <li>貸款期限： <%= @onlending.to_loan_period_years %> 年</li>
+              <% else %>
+                  <li>貸款期限：皆可</li>
+              <% end %>
+              <% if  @onlending.other_info != "" %>
+                  <li>特殊需求與說明： <%= @onlending.other_info %> </li>
+              <% else %>
+                  <li>特殊需求與說明：無</li>
+              <% end %>              
+          </ul>
+          
+          <div class="blankline20"></div>
+          <h2>房屋資訊</h2>
+          <hr>
+          <ul class="demand" id="demand-2">
+              <li>地址: <%= @onlending.address %> </li>
+              <li>樓層：<%= @onlending.layer %> 樓</li>
+              <li>建築類型： <%= @onlending.building_type %> </li>
+              <li>格局： <%= @onlending.rooms %> 房/ <%= @onlending.living_rooms %> 廳/ <%= @onlending.rest_rooms %> 衛</li>
+              <li>建物權狀坪數: <%= @onlending.building_area %> 坪（不含車位）</li>
+              <li>屋齡： <%= @onlending.building_age %> 年（填0為新成屋）</li>
+              <li>裝潢： <%= @onlending.house_decoration %> </li>
+              <li>屋況： <%= @onlending.house_condition %> </li>
+              <% if  @onlending.is_top_built == true %>
+                  <li>頂樓是否有加蓋：有</li>
+                  <li>加蓋坪數： <%= @onlending.top_building_area %> 坪</li>
+              <% else %>
+                  <li>頂樓是否有加蓋：否</li>
+              <% end %>
+              <% if  @onlending.parking_type != "無" %>
+                  <li>是否有車位：有</li>
+                  <li>車位形態: <%= @onlending.parking_type %> </li>
+                  <li>車位坪數: <%= @onlending.parking_area %>坪</li>
+              <% else %>
+                  <li>是否有車位：無</li>
+              <% end %>
+          </ul>
+          
+          <div class="blankline20"></div>
+          <h2>個人資訊</h2>
+          <hr>
+          <ul class="demand" id="demand-3">
+              <li>年齡:  <%= @onlending.applicant_age %> 年</li>
+              <li>公司名稱： <%= @onlending.applicant_company_name %> </li>
+              <li>職稱： <%= @onlending.applicant_title %> </li>
+              <li>年資： <%= @onlending.applicant_serve_year %> 年</li>
+              <li>年薪： <%= @onlending.applicant_year_earning %>萬</li>
+              <li>其他收入： <%= @onlending.applicant_other_earning %></li>
+              <% if @onlending.applicant_is_have_house == true %>
+                  <li>名下是否有房子： 是 </li>
+              <% else %>
+                  <li>名下是否有房子： 否 </li>
+              <% end %>
+              <li>名下其他負債：房貸：<%= @onlending.applicant_other_house_loan %> 萬；信貸： <%= @onlending.applicant_other_credit_loan %> 萬 </li>
+              <% if @onlending.is_credit_ok == true %>
+                  <li>是否有信用瑕疵： 否 </li>
+              <% else %>
+                  <li>是否有信用瑕疵： 是 </li>
+              <% end %>
+          </ul>
+          <div class="blankline20"></div>
+				</div>
+			</div>
+	</div>
+</section>

@@ -39,6 +39,17 @@ class OnlendingsController < ApplicationController
 		end
 	end
 
+  def onlending_detail
+    @token = params[:token]
+    onlending_id = params[:onlending_id]
+
+    if onlending_id == AES.decrypt(@token, ENV["KEY"])   
+      @onlending = Onlending.find(onlending_id) 
+    else
+      redirect_to root_path
+    end
+  end
+
 	def lender_response
 		@token = params[:token]
     onlending_id = params[:onlending_id]

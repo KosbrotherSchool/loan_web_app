@@ -87,11 +87,13 @@ Rails.application.routes.draw do
     get "/response" => "onlendings#lender_response"
     patch "/response" => "onlendings#lender_response_update"
     post "/response" => "onlendings#lender_response_update"
+    get "onlending_detail" => "onlendings#onlending_detail"
   end
 
   get "user_lenders/:lender_id/user_center" => "user_lenders#user_center"
   get "user_lenders/:lender_id/user_cases" => "user_lenders#user_cases"
   get "user_lenders/:lender_id/user_edit" => "user_lenders#user_edit"
+  get "user_lenders/:lender_id/user_onlendings" => "user_lenders#user_onlendings"
   patch "user_lenders/:lender_id/user_update" => "user_lenders#user_update"
 
 end
