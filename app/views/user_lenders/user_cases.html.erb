@@ -126,7 +126,7 @@
 							
 					</table>
 
-					<h5 class="user-cases-h5">處理中</h5>
+					<h5 class="user-cases-h5">已回覆</h5>
 					
 					<table class="table table-striped">
 						<tr>
@@ -136,7 +136,7 @@
 							<td>聯絡電話</td>
 							<td>地址</td>
 							<td>欲貸款金額</td>
-							<td>回覆連結</td>
+							<td>詳細資料</td>
 						</tr>
 						
 						<% loan_cases = @lender.loan_cases.select {|l| l.deliver_time == nil} %>
@@ -156,201 +156,7 @@
 								<td><%= loan_case.address %></td>
 								<td><%= loan_case.to_loan_price %>萬</td>
 								<td>
-									<%= link_to("回覆連結", root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
-								</td>
-							</tr>
-						<% end %>
-							
-							<tr class="info">
-								<td>2014-05-20 12:30</td>
-								<td>已回覆</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							<tr class="success">
-								<td>2014-05-20 12:30</td>
-								<td>核貸中</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							<tr class="info">
-								<td>2014-05-20 12:30</td>
-								<td>已回覆</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							<tr class="success">
-								<td>2014-05-20 12:30</td>
-								<td>核貸中</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							<tr class="info">
-								<td>2014-05-20 12:30</td>
-								<td>已回覆</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							<tr class="info">
-								<td>2014-05-20 12:30</td>
-								<td>已回覆</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							<tr class="info">
-								<td>2014-05-20 12:30</td>
-								<td>已回覆</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							<tr class="success">
-								<td>2014-05-20 12:30</td>
-								<td>核貸中</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-					</table>
-
-					<h5 class="user-cases-h5">成功核貸</h5>
-					
-					<table class="table table-striped">
-						<tr>
-							<td>截止日期</td>
-							<td>案件狀態</td>
-							<td>申請人</td>
-							<td>聯絡電話</td>
-							<td>地址</td>
-							<td>欲貸款金額</td>
-							<td>回覆連結</td>
-						</tr>
-						
-						<% loan_cases = @lender.loan_cases.select {|l| l.deliver_time == nil} %>
-
-						<% loan_cases.each do |loan_case| %>
-
-							<% token = "+" %>
-				    	<%	while token.index("+") %>
-				      <% 		token = AES.encrypt(loan_case.id.to_s, ENV["KEY"]) %>
-				    	<%	end %>
-
-							<tr>
-								<td><%= loan_case.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
-								<td>待回覆</td>
-								<td><%= loan_case.applicant_name %></td>
-								<td><a href="#" class="btn btn-warning btn-rounded">取得聯絡電話</a></td>
-								<td><%= loan_case.address %></td>
-								<td><%= loan_case.to_loan_price %>萬</td>
-								<td>
-									<%= link_to("回覆連結", root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
-								</td>
-							</tr>
-						<% end %>
-							<tr class="success">
-								<td>2014-05-20 12:30</td>
-								<td>成功核貸</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							<tr class="success">
-								<td>2014-05-20 12:30</td>
-								<td>成功核貸</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							<tr class="success">
-								<td>2014-05-20 12:30</td>
-								<td>成功核貸</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-					</table>
-
-					<h5 class="user-cases-h5">已結束</h5>
-					
-					<table class="table table-striped">
-						<tr>
-							<td>截止日期</td>
-							<td>案件狀態</td>
-							<td>申請人</td>
-							<td>聯絡電話</td>
-							<td>地址</td>
-							<td>欲貸款金額</td>
-							<td>回覆連結</td>
-						</tr>
-						
-						<% loan_cases = @lender.loan_cases.select {|l| l.deliver_time == nil} %>
-
-						<% loan_cases.each do |loan_case| %>
-
-							<% token = "+" %>
-				    	<%	while token.index("+") %>
-				      <% 		token = AES.encrypt(loan_case.id.to_s, ENV["KEY"]) %>
-				    	<%	end %>
-
-							<tr>
-								<td><%= loan_case.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
-								<td>待回覆</td>
-								<td><%= loan_case.applicant_name %></td>
-								<td><a href="#" class="btn btn-warning btn-rounded">取得聯絡電話</a></td>
-								<td><%= loan_case.address %></td>
-								<td><%= loan_case.to_loan_price %>萬</td>
-								<td>
-									<%= link_to("回覆連結", root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+									<%= link_to("詳細資料", root_path+"loan_cases/#{loan_case.id}/case_detail?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
 								</td>
 							</tr>
 						<% end %>
@@ -362,7 +168,7 @@
 								<td>台北市大安區新生南路二段23巷6號</td>
 								<td>3234萬</td>
 								<td>
-									<a href="#" class="btn">點此回覆</a>
+									<a href="#" class="btn">詳細資料</a>
 								</td>
 							</tr>
 							<tr class="">
@@ -373,7 +179,7 @@
 								<td>台北市大安區新生南路二段23巷6號</td>
 								<td>3234萬</td>
 								<td>
-									<a href="#" class="btn">點此回覆</a>
+									<a href="#" class="btn">詳細資料</a>
 								</td>
 							</tr>
 							<tr class="">
@@ -384,7 +190,7 @@
 								<td>台北市大安區新生南路二段23巷6號</td>
 								<td>3234萬</td>
 								<td>
-									<a href="#" class="btn">點此回覆</a>
+									<a href="#" class="btn">詳細資料</a>
 								</td>
 							</tr>
 					</table>

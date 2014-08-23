@@ -42,7 +42,15 @@ class LoanCasesController < ApplicationController
   end
 
 
-  def show
+  def case_detail
+  	@token = params[:token]
+    loan_case_id = params[:loan_case_id]
+
+    if loan_case_id == AES.decrypt(@token, ENV["KEY"])   
+      @loan_case = LoanCase.find(loan_case_id) 
+    else
+      redirect_to root_path
+    end
   end
 
   private
