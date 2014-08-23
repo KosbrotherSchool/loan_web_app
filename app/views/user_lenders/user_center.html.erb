@@ -62,6 +62,45 @@
 						    </div>
 						</div>
 
+						<div class="control-group">
+						    <label class="control-label" for="">分行/通訊處<br /></label>
+						    <div class="controls">
+									<%= @lender.bank_branch %>
+						    </div>
+						</div>
+
+						<div class="control-group">
+						    <label class="control-label" for="">職稱<br /></label>
+						    <div class="controls">
+									<%= @lender.work_title %>
+						    </div>
+						</div>
+
+						<div class="control-group">
+						    <label class="control-label" for="">承做區域<br /></label>
+						    <div class="controls">
+									<% County.all.each do |county| %>
+						    		<% county_check = false %>
+						    		<% @lender.counties.each do |couty_l|%>
+						    			<% if couty_l.id == county.id %>
+						    				<%= county.name%>
+						    			<% end %>
+						    		<% end %>
+						    	<% end %>
+						    </div>
+						</div>
+
+						<div class="control-group">
+						    <label class="control-label" for="">修改個人資料<br /></label>
+						    <div class="controls">
+						    	<%= link_to root_path+"user_lenders/#{@lender.id}/user_edit" do %>
+						    		<button>修改</button>
+						    	<% end %>
+						    </div>
+						</div>
+
+						
+
 					</div>
 				</div>
 				<div class="span3">

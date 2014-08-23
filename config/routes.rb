@@ -90,6 +90,7 @@ Rails.application.routes.draw do
 
   get "user_lenders/:lender_id/user_center" => "user_lenders#user_center"
   get "user_lenders/:lender_id/user_cases" => "user_lenders#user_cases"
-
+  get "user_lenders/:lender_id/user_edit" => "user_lenders#user_edit"
+  patch "user_lenders/:lender_id/user_update" => "user_lenders#user_update"
 
 end
