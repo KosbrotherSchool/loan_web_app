@@ -70,6 +70,8 @@ GEM
     execjs (2.2.1)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    friendly_id (5.0.4)
+      activerecord (>= 4.0.0)
     google_drive (0.3.10)
       nokogiri (>= 1.4.4, != 1.5.2, != 1.5.1)
       oauth (>= 0.3.6)
@@ -213,6 +215,7 @@ DEPENDENCIES
   ckeditor_rails
   coffee-rails (~> 4.0.0)
   devise
+  friendly_id (~> 5.0.0)
   google_drive
   jbuilder (~> 2.0)
   jquery-rails

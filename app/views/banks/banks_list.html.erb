@@ -24,7 +24,7 @@
 					    </li>
 					    <% @banks.each do |bank|%>
 					    	<li>
-					    		<%= link_to(bank.name,"banks/#{bank.id}")%>
+					    		<%= link_to(bank.name,"banks/#{bank.name}")%>
 					    		<i class="icon-circled icon-bgprimary icon">
 					    			<%= bank.bank_products.size %>
 					    		</i>
