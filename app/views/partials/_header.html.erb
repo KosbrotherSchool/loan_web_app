@@ -109,7 +109,11 @@
 									<% else %>
 										<li>
 									<% end %>
-										<%= link_to "#{current_user_lender.lender.name}專員,您好", root_path+"user_lenders/#{current_user_lender.id}/user_cases" %>
+										<% begin %>
+											<%= link_to "#{current_user_lender.lender.name}專員,您好", root_path+"user_lenders/#{current_user_lender.id}/user_cases" %>
+										<% rescue Exception => e %>
+											<%= link_to "專員,您好", root_path+"user_lenders/#{current_user_lender.id}/user_cases" %>
+										<% end %>
 									<li>
 							<% end %>
 

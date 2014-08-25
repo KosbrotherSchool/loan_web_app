@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web, at: '/sidekiq'
 
-  devise_for :user_lenders, controllers: { sessions: "sessions" }
+  devise_for :user_lenders, controllers: { sessions: "sessions", registrations: "registrations"}
   devise_for :users, controllers: { sessions: "sessions" }
   # :skip => :registrations
   # resources :users
