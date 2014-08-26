@@ -70,7 +70,7 @@
 								<th>回覆連結</th>
 						    </tr>
 						</thead>
-						<tbody>				
+						<tbody>			
 						<% loan_cases = @lender.loan_cases.select {|l| l.deliver_time == nil} %>
 
 						<% loan_cases.each do |loan_case| %>
