@@ -1,31 +1,71 @@
-<div style="width:800px; margin:0 auto;">
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<style type="text/css">
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+</style>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+<div id="wrapper">
+<section id="content">
+    <div class="container">
+      <div class="form-signin">
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= devise_error_messages! %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+          <h2 class="form-signin-heading">更新密碼</h2>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+          <div>
+            <label>信箱</label>
+            <p><%= resource.email %></p> 
+          </div>
 
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %></div>
+          <div>
+            <label>目前的密碼</label>
+            <%= f.password_field :current_password, autocomplete: "off", placeholder: "目前的密碼" %>
+          </div>
 
-  <div><%= f.submit "Update" %></div>
-<% end %>
+          <div>
+            <label>輸入新密碼</label>
+            <%= f.password_field :password, autocomplete: "off", placeholder: "請輸入密碼" %>
+          </div>
 
-<h3>Cancel my account</h3>
+          <div>
+            <label>請再次輸入密碼</label>
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "請再次輸入密碼" %>
+          </div>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+          <div><%= f.submit "更新", class: "btn btn-large btn-primary" %></div>
 
-<%= link_to "Back", :back %>
+        <% end %>
+
+        <%= link_to "Back", :back %>
+
+      </div>
+    </div>
+  </section>
 </div>
