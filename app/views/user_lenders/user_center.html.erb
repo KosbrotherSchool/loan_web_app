@@ -12,7 +12,6 @@
 	</section>
 	<section id="content">
 		<div class="container-fluid">
-			<div class="row-fluid">
 				<div class="span2">
 					<%= render "user_lenders/nevigation_links2" %>
 				</div>
@@ -94,15 +93,14 @@
 						</div>
 
 						<div class="control-group">
-						    <label class="control-label" for="">修改個人資料<br /></label>
 						    <div class="controls">
+						    	<div class="form-actions">
 						    	<%= link_to root_path+"user_lenders/#{@lender.id}/user_edit" do %>
-						    		<button>修改</button>
+						    		<button class="btn btn-success btn-rounded">個人資料修改</button>
 						    	<% end %>
+						    	</div>
 						    </div>
 						</div>
-
-						
 
 					</div>
 				</div>

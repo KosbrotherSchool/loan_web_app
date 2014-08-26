@@ -67,17 +67,19 @@
 					</div>
 					-->
 					<h5 class="user-cases-h5">待回覆</h5>
-					
+					<hr >
 					<table class="table table-striped">
-						<tr>
-							<td>截止日期</td>
-							<td>案件狀態</td>
-							<td>申請人</td>
-							<td>地址</td>
-							<td>欲多貸金額</td>
-							<td>回覆連結</td>
-						</tr>
-						
+						<thead>
+						    <tr>
+						    	<th>截止日期</th>
+								<th>案件狀態</th>
+								<th>申請人</th>
+								<th>地址</th>
+								<th>欲多貸金額</th>
+								<th>回覆連結</th>
+						    </tr>
+						</thead>
+						<tbody>						
 						<% onlendings = @lender.onlendings.select {|l| l.deliver_time == nil} %>
 
 						<% onlendings.each do |onlending| %>
@@ -88,41 +90,36 @@
 				    	<%	end %>
 
 							<tr>
-								<td><%= onlending.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
+								<td class="span2"><%= onlending.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
 								<td>待回覆</td>
 								<td><%= onlending.applicant_name %></td>
 								<td><%= onlending.address %></td>
 								<td><%= onlending.more_loan_price %>萬</td>
 								<td>
-									<%= link_to("回覆連結", root_path+"onlendings/#{onlending.id}/response?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+									<%= link_to root_path+"onlendings/#{onlending.id}/response?key=#{key}&token=#{token}" , :target => "_blank" do %>
+						    		<button class="btn btn-rounded btn-success">點此回覆</button>
+						    		<% end %>
 								</td>
 							</tr>
 						<% end %>
-							<tr class="warning">
-								<td class="span2">2014-05-20 12:30</td>
-								<td class="">待回覆</td>
-								<td class="">吳先生</td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td class="">3234萬</td>
-								<td class="">
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							
+						</tbody>
 					</table>
 
 					<h5 class="user-cases-h5">已回覆</h5>
-					
+					<hr >
 					<table class="table table-striped">
-						<tr>
-							<td>截止日期</td>
-							<td>案件狀態</td>
-							<td>申請人</td>
-							<td>聯絡電話</td>
-							<td>地址</td>
-							<td>欲多貸金額</td>
-							<td>詳細資料</td>
-						</tr>
+						<thead>
+						    <tr>
+						    	<th>截止日期</th>
+								<th>案件狀態</th>
+								<th>申請人</th>
+								<th>聯絡電話</th>
+								<th>地址</th>
+								<th>欲多貸金額</th>
+								<th>詳細資料</th>
+						    </tr>
+						</thead>
+						<tbody>
 						
 						<% onlendings = @lender.onlendings.select {|l| l.deliver_time != nil} %>
 
@@ -134,29 +131,21 @@
 				    	<%	end %>
 
 							<tr>
-								<td class=""><%= onlending.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
+								<td class="span2"><%= onlending.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
 								<td class="">已回覆</td>
 								
 								<td class=""><%= onlending.applicant_name %></td>
 								<td class=""><a href="#" class="btn btn-warning btn-rounded">取得聯絡電話</a></td>
 								<td><%= onlending.address %></td>
 								<td class=""><%= onlending.more_loan_price %>萬</td>
-								<td class="">
-									<%= link_to("詳細資料", root_path+"onlendings/#{onlending.id}/onlending_detail?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+								<td>
+									<%= link_to root_path+root_path+"onlendings/#{onlending.id}/onlending_detail?key=#{key}&token=#{token}" , :target => "_blank" do %>
+						    		<button class="btn btn-rounded">詳細資料</button>
+						    		<% end %>
 								</td>
 							</tr>
 						<% end %>
-							<tr class="">
-								<td class="span2">2014-05-20 12:30</td>
-								<td>已回覆</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">詳細資料</a>
-								</td>
-							</tr>
+						</tbody>
 					</table>
 				</div>
 
