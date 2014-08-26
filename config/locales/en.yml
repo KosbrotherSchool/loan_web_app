@@ -23,21 +23,17 @@ en:
   activerecord:
     errors:
       models:
-        user_lender:
+        user:
           attributes:
             email:
-              blank: "Email不能空白"
-              taken: "Please use a different Email id"
-              invalid: "Please Specify a valid Email id"
+              blank: "請輸入 Email "
+              taken: "此 Email 已經被使用"
+              invalid: "請輸入有效的 Email "
             password:
-              blank: "Please Specify a Password"
-              confirmation: "Password does not match"
+              blank: "請輸入密碼"
+              confirmation: "密碼與確認密碼沒有一致"
             password_confirmation:
-              blank: "Please Specify a Password Confirmation"
-            first_name:
-              blank: "Please Specify First Name"
-            last_name:
-              blank: "Please Specify Last Name"
+              blank: "請輸入確認密碼"
     attributes:
       lender:
         email: ""

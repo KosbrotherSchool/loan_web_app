@@ -1,9 +1,9 @@
 <div id="wrapper">
 <section id="content">
 		<div class="container">
-			<% if request.original_url.index("users/sign_up") %>
+			<% if request.original_url.index("users") %>
 				<%= render "devise/registrations/new_user" %>
-			<% elsif request.original_url.index("user_lenders/sign_up") %>
+			<% elsif request.original_url.index("user_lenders") %>
 				<%= render "devise/registrations/new_user_lender" %>
 			<% end %>
 		</div>
