@@ -66,6 +66,8 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-async (0.9.0)
+      devise (~> 3.2)
     erubis (2.7.0)
     execjs (2.2.1)
     faraday (0.9.0)
@@ -215,6 +217,7 @@ DEPENDENCIES
   ckeditor_rails
   coffee-rails (~> 4.0.0)
   devise
+  devise-async
   friendly_id (~> 5.0.0)
   google_drive
   jbuilder (~> 2.0)
