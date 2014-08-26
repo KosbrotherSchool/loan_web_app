@@ -155,4 +155,9 @@ jQuery(document).ready(function($) {
 			slideshowSpeed: 5500
 		});
 
+		//tooltips
+		$(function () {
+	      $("[data-toggle='tooltip']").tooltip();
+	    });
+
 });
