@@ -43,6 +43,7 @@ namespace :fake_data do
 			loan_case.is_credit_ok = true
 			loan_case.deliver_time = Time.now
 			loan_case.lender_id = 1
+			loan_case.advise = ""
 
 			loan_case.county_id = 2
 			loan_case.status_id = num

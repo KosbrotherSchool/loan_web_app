@@ -1,4 +1,8 @@
 <%# add navigation links to this file %>
+<div class="service-box aligncenter ">
+	<span class="btn btn-warning">尚未認證</span>
+	<a href="#" data-toggle="tooltip" data-placement="bottom" data-original-title="提醒您：認證後才能收到需求單。"><i class="icon-circled icon-bgsuccess icon-info"></i></a>
+</div>
 <div class="service-box aligncenter">
 
 	<h5 class="">管理選單</h5>
@@ -6,7 +10,9 @@
 	<ul class="cat">
 		<li><i class="icon-angle-right"></i> <%= link_to '我的案件', root_path+"user_lenders/#{@lender.id}/user_cases" %></li>
 		<li><i class="icon-angle-right"></i> <%= link_to '我的檔案', root_path+"user_lenders/#{@lender.id}/user_center" %></li>
+		<!--
 		<li><i class="icon-angle-right"></i> <%= link_to '我的點數', root_path+"user_lenders/#{@lender.id}/user_points" %></li>
+		-->
 		<li><i class="icon-angle-right"></i> <%= link_to '登出', destroy_user_lender_session_path, :method=>'delete' %></li>
 	</ul>
 </div>

@@ -13,7 +13,19 @@
 	<section id="content">
 		<div class="container-fluid">
 			<div class="row-fluid">
-				<div class="span9">
+				<div class="span2">
+					<%= render "user_lenders/nevigation_links2" %>
+					<!--
+					<div class="service-box aligncenter">
+						<div class="">
+							尚有點數：<i class="icon-circled icon-bgprimary icon ">3</i>
+						</div>
+						<span class="colored"><a href="">點此[獲得更多點數]</a></span>
+					</div>
+					-->
+				</div>
+
+				<div class="span10">
 					<div class="tabs">
 						<ul class="nav nav-tabs">		
 							<% if user_lender_signed_in? %>
@@ -52,26 +64,25 @@
 							<td>截止日期</td>
 							<td>案件狀態</td>
 							<td>申請人</td>
-							<td>聯絡電話</td>
 							<td>地址</td>
 							<td>欲貸款金額</td>
 							<td>回覆連結</td>
 						</tr>
+						
 						
 						<% loan_cases = @lender.loan_cases.select {|l| l.deliver_time == nil} %>
 
 						<% loan_cases.each do |loan_case| %>
 
 							<% token = "+" %>
-				    	<%	while token.index("+") %>
-				      <% 		token = AES.encrypt(loan_case.id.to_s, ENV["KEY"]) %>
-				    	<%	end %>
+					    	<%	while token.index("+") %>
+					      		<% token = AES.encrypt(loan_case.id.to_s, ENV["KEY"]) %>
+					    	<%	end %>
 
 							<tr>
 								<td><%= loan_case.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
 								<td>待回覆</td>
 								<td><%= loan_case.applicant_name %></td>
-								<td><a href="#" class="btn btn-warning btn-rounded">取得聯絡電話</a></td>
 								<td><%= loan_case.address %></td>
 								<td><%= loan_case.to_loan_price %>萬</td>
 								<td>
@@ -79,51 +90,6 @@
 								</td>
 							</tr>
 						<% end %>
-							<tr class="warning">
-								<td>2014-05-20 12:30</td>
-								<td>待回覆</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							<tr class="warning">
-								<td>2014-05-20 12:30</td>
-								<td>待回覆</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							<tr class="warning">
-								<td>2014-05-20 12:30</td>
-								<td>待回覆</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							<tr class="warning">
-								<td>2014-05-20 12:30</td>
-								<td>待回覆</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">點此回覆</a>
-								</td>
-							</tr>
-							
 					</table>
 
 					<h5 class="user-cases-h5">已回覆</h5>
@@ -150,7 +116,7 @@
 
 							<tr>
 								<td><%= loan_case.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
-								<td>待回覆</td>
+								<td>已回覆</td>
 								<td><%= loan_case.applicant_name %></td>
 								<td><a href="#" class="btn btn-warning btn-rounded">取得聯絡電話</a></td>
 								<td><%= loan_case.address %></td>
@@ -160,60 +126,10 @@
 								</td>
 							</tr>
 						<% end %>
-							<tr class="">
-								<td>2014-05-20 12:30</td>
-								<td>已結束</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">詳細資料</a>
-								</td>
-							</tr>
-							<tr class="">
-								<td>2014-05-20 12:30</td>
-								<td>已結束</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">詳細資料</a>
-								</td>
-							</tr>
-							<tr class="">
-								<td>2014-05-20 12:30</td>
-								<td>已結束</td>
-								<td>吳先生</td>
-								<td><a href="#" class="">取得聯絡電話</a></td>
-								<td>台北市大安區新生南路二段23巷6號</td>
-								<td>3234萬</td>
-								<td>
-									<a href="#" class="btn">詳細資料</a>
-								</td>
-							</tr>
 					</table>
 				</div>
 
-				<div class="span3">
-					<%= render "user_lenders/nevigation_links2" %>
-					<div class="service-box aligncenter">
-						<div class="">
-							尚有點數：<i class="icon-circled icon-bgprimary icon ">3</i>
-						</div>
-						<span class="colored"><a href="">點此[獲得更多點數]</a></span>
-					</div>
-					
-					<div class="service-box aligncenter">
-						<h5 class="">點數說明</h5>
-						<ul class="cat">
-							<li>1件新房貸需求單=1點</li>
-							<li>1件增轉貸需求單=1點</li>
-							<li>取得潛在客戶聯絡資訊=1點</li>
-						</ul>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</section>
