@@ -5,7 +5,8 @@ class BanksController < ApplicationController
   end
 
   def bank_products
-  	@bank = Bank.find(params[:bank_id])
+  	@bank = Bank.friendly.find(params[:bank_id])
+  	# @bank = Bank.find(params[:bank_id])
   end
 
 end

@@ -66,3 +66,5 @@ gem 'ckeditor_rails'
 group :development do
   gem 'capistrano-local-precompile', require: false
 end
+
+gem 'friendly_id', '~> 5.0.0'
