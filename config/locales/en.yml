@@ -23,6 +23,17 @@ en:
   activerecord:
     errors:
       models:
+        user_lender:
+          attributes:
+            email:
+              blank: "請輸入 Email "
+              taken: "此 Email 已經被使用"
+              invalid: "請輸入有效的 Email "
+            password:
+              blank: "請輸入密碼"
+              confirmation: "密碼與確認密碼沒有一致"
+            password_confirmation:
+              blank: "請輸入確認密碼"
         user:
           attributes:
             email:
