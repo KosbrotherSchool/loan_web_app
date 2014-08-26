@@ -96,7 +96,7 @@
 								<td><%= onlending.address %></td>
 								<td><%= onlending.more_loan_price %>萬</td>
 								<td>
-									<%= link_to root_path+"onlendings/#{onlending.id}/response?key=#{key}&token=#{token}" do %>
+									<%= link_to root_path+"onlendings/#{onlending.id}/response?key=#{key}&token=#{token}" , :target => "_blank" do %>
 						    		<button class="btn btn-rounded btn-success">點此回覆</button>
 						    		<% end %>
 								</td>
@@ -139,7 +139,7 @@
 								<td><%= onlending.address %></td>
 								<td class=""><%= onlending.more_loan_price %>萬</td>
 								<td>
-									<%= link_to root_path+root_path+"onlendings/#{onlending.id}/onlending_detail?key=#{key}&token=#{token}" do %>
+									<%= link_to root_path+root_path+"onlendings/#{onlending.id}/onlending_detail?key=#{key}&token=#{token}" , :target => "_blank" do %>
 						    		<button class="btn btn-rounded">詳細資料</button>
 						    		<% end %>
 								</td>

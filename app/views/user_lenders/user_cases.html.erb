@@ -87,7 +87,7 @@
 								<td><%= loan_case.address %></td>
 								<td><%= loan_case.to_loan_price %>萬</td>
 								<td>
-									<%= link_to root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}" do %>
+									<%= link_to root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}" , :target => "_blank" do %>
 						    		<button class="btn btn-rounded btn-success">點此回覆</button>
 						    		<% end %>
 								</td>
@@ -128,7 +128,7 @@
 								<td><%= loan_case.address %></td>
 								<td><%= loan_case.to_loan_price %>萬</td>
 								<td>
-									<%= link_to root_path+"loan_cases/#{loan_case.id}/case_detail?key=#{key}&token=#{token}" do %>
+									<%= link_to root_path+"loan_cases/#{loan_case.id}/case_detail?key=#{key}&token=#{token}" , :target => "_blank" do %>
 						    		<button class="btn btn-rounded">詳細資料</button>
 						    		<% end %>
 								</td>
