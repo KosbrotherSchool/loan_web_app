@@ -1,5 +1,5 @@
 class OnlendingInformManagerMailer < ActionMailer::Base
-  default from: "service@e-loan.com.tw"
+  default from: "service@ezbank.com.tw"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -8,6 +8,6 @@ class OnlendingInformManagerMailer < ActionMailer::Base
   #
   def mail_content(onlending_id)
     @onlending = Onlending.find(onlending_id)
-    mail to: "service@e-loan.com.tw", subject: "新案件申請[增轉貸][#{@onlending.address}]"
+    mail to: "service@ezbank.com.tw", subject: "新案件申請[增轉貸][#{@onlending.address}]"
   end
 end

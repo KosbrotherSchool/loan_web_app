@@ -1,5 +1,5 @@
 class LoancaseInfomManagerMailer < ActionMailer::Base
-  default from: "service@e-loan.com.tw"
+  default from: "service@ezbank.com.tw"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -9,6 +9,6 @@ class LoancaseInfomManagerMailer < ActionMailer::Base
   #
   def mail_content(case_id)
     @loan_case = LoanCase.find(case_id)
-    mail to: "service@e-loan.com.tw", subject: "新案件申請[房貸][#{@loan_case.address}]"
+    mail to: "service@ezbank.com.tw", subject: "新案件申請[房貸][#{@loan_case.address}]"
   end
 end

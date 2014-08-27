@@ -40,9 +40,9 @@ Rails.application.configure do
     :authentication => :plain,
     :address => "smtp.mailgun.org",
     :port => 587,
-    :domain => "e-loan.com.tw",
-    :user_name => "postmaster@e-loan.com.tw",
-    :password => "1ncfxju3mpg4"
+    :domain => "ezbank.com.tw",
+    :user_name => "postmaster@ezbank.com.tw",
+    :password => "1ea02b048e5eebd899877b1e277f6b0e"
   }
   
   Paperclip.options[:command_path] = "/usr/local/bin/"

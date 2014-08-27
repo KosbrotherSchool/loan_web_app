@@ -61,7 +61,7 @@ Rails.application.configure do
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   # config.assets.precompile += %w( search.js )
 
-  config.action_mailer.default_url_options = { :host => 'e-loan.com.tw' }
+  config.action_mailer.default_url_options = { :host => 'ezbank.com.tw' }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -70,9 +70,9 @@ Rails.application.configure do
     :authentication => :plain,
     :address => "smtp.mailgun.org",
     :port => 587,
-    :domain => "e-loan.com.tw",
-    :user_name => "postmaster@e-loan.com.tw",
-    :password => "1ncfxju3mpg4"
+    :domain => "ezbank.com.tw",
+    :user_name => "postmaster@ezbank.com.tw",
+    :password => "1ea02b048e5eebd899877b1e277f6b0e"
   }
   
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
