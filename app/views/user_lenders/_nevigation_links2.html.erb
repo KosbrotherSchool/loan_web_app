@@ -1,12 +1,15 @@
 <%# add navigation links to this file %>
 <div class="service-box aligncenter ">
-	<%= link_to root_path+"user_lenders/#{@lender.id}/user_center" do %>
-		<button class="btn btn-warning btn-rounded">尚未認證</button>
+	<% if @lender.is_person_confirmed == false || @lender.is_person_confirmed == nil %>
+		<%= link_to root_path+"user_lenders/#{@lender.id}/user_center" do %>
+			<button class="btn btn-warning btn-rounded">尚未認證</button>
+		<% end %>
+		<a href="#" data-toggle="tooltip" data-placement="bottom" data-original-title="提醒您：認證後才能收到需求單。"><i class="icon-circled icon-bgsuccess icon-info"></i></a>
+	<% else %>
+		<%= link_to root_path+"user_lenders/#{@lender.id}/user_center" do %>
+			<button class="btn btn-success btn-rounded">已認證</button>
+		<% end %>
 	<% end %>
-	<%= link_to root_path+"user_lenders/#{@lender.id}/user_center" do %>
-		<button class="btn btn-success btn-rounded">已認證</button>
-	<% end %>
-	<a href="#" data-toggle="tooltip" data-placement="bottom" data-original-title="提醒您：認證後才能收到需求單。"><i class="icon-circled icon-bgsuccess icon-info"></i></a>
 </div>
 <div class="service-box aligncenter">
 

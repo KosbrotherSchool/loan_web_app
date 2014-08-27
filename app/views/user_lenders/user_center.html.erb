@@ -23,8 +23,8 @@
 							<label class="control-label " for="">我的圖片<br /></label>
 
 							<div class="controls">
-								<% if @lender.card_file_name != nil%>
-									<%= image_tag @lender.card.url(:thumb) %>
+								<% if @lender.avatar_file_name != nil%>
+									<%= image_tag @lender.avatar.url(:thumb) %>
 								<% end %>
 							</div>
 						</div>
@@ -33,6 +33,19 @@
 						    <label class="control-label" for="">專員姓名<br /></label>
 						    <div class="controls">
 									<%= @lender.name %>
+						    </div>
+						</div>
+
+						<div class="control-group">
+						    <label class="control-label" for="">姓別<br /></label>
+						    <div class="controls">
+									<% if @lender.is_male == true %>
+										男
+									<% elsif @lender.is_male == false  %>
+										女
+									<% else %>
+									
+									<% end %>
 						    </div>
 						</div>
 
@@ -98,6 +111,10 @@
 						    	<%= link_to root_path+"user_lenders/#{@lender.id}/user_edit" do %>
 						    		<button class="btn btn-success btn-rounded">個人資料修改</button>
 						    	<% end %>
+						    	<p>
+						    		<span class="text-error">*</span>
+						    		 請先修改個人資料，我們客服隨後會為您驗證
+						    	</p>
 						    	</div>
 						    </div>
 						</div>
