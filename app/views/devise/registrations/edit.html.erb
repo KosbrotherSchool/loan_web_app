@@ -24,47 +24,54 @@
         padding: 7px 9px;
       }
 </style>
-
 <div id="wrapper">
-<section id="content">
-    <div class="container">
+  <section id="inner-headline">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="inner-heading">
+          <h2>修改密碼</h2>
+          </div>
+        </div>
+      </div>      
+    </div>
+  </section>
+  <section id="content">
+    <div class="container-fluid">
       <div class="form-signin">
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= devise_error_messages! %>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= devise_error_messages! %>
 
-          <h2 class="form-signin-heading">更新密碼</h2>
+              <div>
+                <label>帳號</label>
+                <p><%= resource.email %></p> 
+              </div>
 
-          <div>
-            <label>信箱</label>
-            <p><%= resource.email %></p> 
-          </div>
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
 
-          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-          <% end %>
+              <div>
+                <label>目前的密碼</label>
+                <%= f.password_field :current_password, autocomplete: "off", placeholder: "目前的密碼" %>
+              </div>
 
-          <div>
-            <label>目前的密碼</label>
-            <%= f.password_field :current_password, autocomplete: "off", placeholder: "目前的密碼" %>
-          </div>
+              <div>
+                <label>輸入新密碼</label>
+                <%= f.password_field :password, autocomplete: "off", placeholder: "請輸入密碼" %>
+              </div>
 
-          <div>
-            <label>輸入新密碼</label>
-            <%= f.password_field :password, autocomplete: "off", placeholder: "請輸入密碼" %>
-          </div>
+              <div>
+                <label>請再次輸入密碼</label>
+                <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "請再次輸入密碼" %>
+              </div>
 
-          <div>
-            <label>請再次輸入密碼</label>
-            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "請再次輸入密碼" %>
-          </div>
+              <div><%= f.submit "更新", class: "btn btn-medium btn-primary" %></div>
 
-          <div><%= f.submit "更新", class: "btn btn-large btn-primary" %></div>
+            <% end %>
 
-        <% end %>
-
-        <%= link_to "Back", :back %>
-
+            <%= link_to "取消", :back %>
       </div>
     </div>
   </section>

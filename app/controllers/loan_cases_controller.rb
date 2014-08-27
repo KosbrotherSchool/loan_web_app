@@ -44,10 +44,13 @@ class LoanCasesController < ApplicationController
 
   def case_detail
   	@token = params[:token]
+    @key = params[:key]
+    lender_id = AES.decrypt(@key, ENV["KEY"])
     loan_case_id = params[:loan_case_id]
 
     if loan_case_id == AES.decrypt(@token, ENV["KEY"])   
-      @loan_case = LoanCase.find(loan_case_id) 
+      @loan_case = LoanCase.find(loan_case_id)
+      @loan_response = LoanResponse.where("loan_case_id = #{loan_case_id} and lender_id = #{lender_id}").first
     else
       redirect_to root_path
     end

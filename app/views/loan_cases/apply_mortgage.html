@@ -58,7 +58,6 @@
 	</section>
 
 	<section id="content">
-		
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span9">
@@ -424,38 +423,16 @@
 					      </div>
 					  </div>
 					  
-					  <div class="control-group">
-					      <label class="control-label">同意專員主動聯絡<span class="text-error">*</span></label>
-					      <div class="controls">
-							  <label class="radio">
-							      <%= radio_button_tag("loan_case[is_lender_contact]", "true", checked = true ) %>
-							      是
-							  </label>
-							  <label class="radio">
-							      <%= radio_button_tag("loan_case[is_lender_contact]","false") %>
-							      否
-							  </label>
-					      </div>
-					  </div>	
-
-					  <div class="control-group">
-					      <label class="control-label">特殊需求與說明：</label>
-					      <div class="controls">
-					      	<%= f.text_area :other_info, :placeholder => "如有特別需求,可加以說明", :style=> "width:95%; height:100px"%>
-					      </div>
-					  </div>		  
-
-					  <div class="control-group">
-					      
+					  <div class="control-group">      
 					      <div class="controls">
 								  <label class="checkbox inline">
-								      <input type="checkbox" name="" id="" value="" checked="true">我同意，銀行貸款專員可以主動聯繫我。
+								  	<%= check_box_tag("loan_case[is_lender_contact]","true", checked =true) %>
+								      我同意，銀行貸款專員可以主動聯繫我。
 								  </label>
 					      </div>
 					  </div>
 
-					   <div class="control-group">
-					      
+					   <div class="control-group">		      
 					      <div class="controls">
 								  <label class="checkbox inline">
 								      <input type="checkbox" name="" id="" value="" checked="true"> <span class="text-error">*</span>我同意，EZBANK貸款媒合平台的「
@@ -464,7 +441,14 @@
 								  </label>
 					      </div>
 					  </div>
-					  		  
+					  
+					  <div class="control-group">
+					      <label class="control-label">特殊需求與說明：</label>
+					      <div class="controls">
+					      	<%= f.text_area :other_info, :placeholder => "如有特別需求,可加以說明", :style=> "width:95%; height:100px"%>
+					      </div>
+					  </div>
+
 					  <div class="control-group">
 					      <div class="controls">
 								  <div class="form-actions">
@@ -524,10 +508,6 @@
 	    $('#twzipcode').twzipcode({
 		css: ['addr-county', 'addr-area', 'addr-zip']
 	    });
-	    $(function () {
-	      $("[data-toggle='tooltip']").tooltip();
-	    });
-
 	</script>
 	
 </body>

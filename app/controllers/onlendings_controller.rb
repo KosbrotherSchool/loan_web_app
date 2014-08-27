@@ -42,9 +42,12 @@ class OnlendingsController < ApplicationController
   def onlending_detail
     @token = params[:token]
     onlending_id = params[:onlending_id]
+    @key = params[:key]
+    lender_id = AES.decrypt(@key, ENV["KEY"])
 
     if onlending_id == AES.decrypt(@token, ENV["KEY"])   
-      @onlending = Onlending.find(onlending_id) 
+      @onlending = Onlending.find(onlending_id)
+      @onlending_response = OnlendingResponse.where("onlending_id = #{onlending_id} and lender_id = #{lender_id}").first
     else
       redirect_to root_path
     end
@@ -125,7 +128,7 @@ class OnlendingsController < ApplicationController
 	private
 
   def onlending_params
-		params.require(:onlending).permit(:current_bank, :current_loan_price, :more_loan_price, :is_need_grace_period, :grace_period_years, :to_loan_period_years, :other_info, :address, :layer, :building_type, :rooms, :living_rooms, :rest_rooms, :building_area, :building_age, :house_decoration, :house_condition, :is_top_built,:top_building_area,:parking_type, :parking_layer, :parking_area, :applicant_name, :applicant_email, :applicant_phone, :applicant_age, :applicant_company_name, :applicant_title, :applicant_serve_year, :applicant_year_earning, :applicant_other_earning, :applicant_is_have_house,:applicant_other_house_loan, :applicant_other_credit_loan, :is_credit_ok)
+		params.require(:onlending).permit(:current_bank, :current_loan_price, :more_loan_price, :is_need_grace_period, :grace_period_years, :to_loan_period_years, :other_info, :address, :layer, :building_type, :rooms, :living_rooms, :rest_rooms, :building_area, :building_age, :house_decoration, :house_condition, :is_top_built,:top_building_area,:parking_type, :parking_layer, :parking_area, :applicant_name, :applicant_email, :applicant_phone, :applicant_age, :applicant_company_name, :applicant_title, :applicant_serve_year, :applicant_year_earning, :applicant_other_earning, :applicant_is_have_house,:applicant_other_house_loan, :applicant_other_credit_loan, :is_credit_ok, :is_lender_contact)
 	end
 
 	def onlending_response_params

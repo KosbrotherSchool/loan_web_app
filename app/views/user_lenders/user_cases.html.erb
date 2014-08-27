@@ -4,7 +4,7 @@
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="inner-heading">
-					<h2>我的案件</h2>
+					<h2>我的新房貸案件</h2>
 					</div>
 				</div>
 			</div>			
@@ -25,6 +25,13 @@
 					-->
 				</div>
 
+
+				<% unresponed_loan_cases = LoanCase.joins(:lender_loan_case_ships).where("lender_id = #{@lender.id} and is_responded is NULL ").select {|l| l.deliver_time == nil} %>
+
+				<% un_responded_onlendings = Onlending.joins(:lender_onlending_ships).where("lender_id = #{@lender.id} and is_responded is NULL ").select {|l| l.deliver_time == nil} %>
+
+				<% responded_responses = @lender.loan_responses %>
+
 				<div class="span10">
 					<div class="tabs">
 						<ul class="nav nav-tabs">		
@@ -36,14 +43,14 @@
 									<li>
 								<% end %>
 								<!--數字是待回覆的數量 -->
-							  <%= link_to '新房貸申請(20)', root_path+"user_lenders/#{@lender.id}/user_cases" %></li> 
+							  <%= link_to '新房貸申請('+unresponed_loan_cases.size.to_s+')', root_path+"user_lenders/#{@lender.id}/user_cases" %></li> 
 
 							  <% if action_name == "user_center" %>
 									<li class="active">
 								<% else %>
 									<li>
 								<% end %>
-							  <%= link_to '增轉貸申請(12)', root_path+"user_lenders/#{@lender.id}/user_onlendings" %></li>
+							  <%= link_to '增轉貸申請('+un_responded_onlendings.size.to_s+')', root_path+"user_lenders/#{@lender.id}/user_onlendings" %></li>
 							<% end %>
 						</ul>
 					</div>
@@ -57,22 +64,23 @@
 						<hr />
 					</div>
 					-->
-					<h5 class="user-cases-h5">待回覆</h5>
-					
+					<h5 class="user-cases-h5">待回覆(<%= unresponed_loan_cases.size.to_s %>)</h5>
+					<hr >
 					<table class="table table-striped">
-						<tr>
-							<td>截止日期</td>
-							<td>案件狀態</td>
-							<td>申請人</td>
-							<td>地址</td>
-							<td>欲貸款金額</td>
-							<td>回覆連結</td>
-						</tr>
+						<thead>
+						    <tr >
+						    	<th>截止日期</th>
+									<th>案件狀態</th>
+									<th>申請人</th>
+									<th>地址</th>
+									<th>欲貸款金額</th>
+									<th>回覆連結</th>
+						    </tr>
+						</thead>
+						<tbody>			
 						
-						
-						<% loan_cases = @lender.loan_cases.select {|l| l.deliver_time == nil} %>
 
-						<% loan_cases.each do |loan_case| %>
+						<% unresponed_loan_cases.each do |loan_case| %>
 
 							<% token = "+" %>
 					    	<%	while token.index("+") %>
@@ -86,28 +94,35 @@
 								<td><%= loan_case.address %></td>
 								<td><%= loan_case.to_loan_price %>萬</td>
 								<td>
-									<%= link_to("回覆連結", root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+									<%= link_to root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}" , :target => "_blank" do %>
+						    		<button class="btn btn-rounded btn-success">點此回覆</button>
+						    		<% end %>
 								</td>
 							</tr>
 						<% end %>
+						</tbody>
 					</table>
 
-					<h5 class="user-cases-h5">已回覆</h5>
-					
+					<h5 class="user-cases-h5">已回覆(<%= responded_responses.size.to_s %>)</h5>
+					<hr >
 					<table class="table table-striped">
-						<tr>
-							<td>截止日期</td>
-							<td>案件狀態</td>
-							<td>申請人</td>
-							<td>聯絡電話</td>
-							<td>地址</td>
-							<td>欲貸款金額</td>
-							<td>詳細資料</td>
-						</tr>
-						
-						<% loan_cases = @lender.loan_cases.select {|l| l.deliver_time == nil} %>
+						<thead>
+						    <tr >
+						    	<th>截止日期</th>
+									<th>案件狀態</th>
+									<th>申請人</th>
+									<td>聯絡電話</td>
+									<th>地址</th>
+									<th>欲貸款金額</th>
+									<th>詳細資料</th>
+									<th>修改回覆</th>
+						    </tr>
+						</thead>
+						<tbody>
 
-						<% loan_cases.each do |loan_case| %>
+						<% responded_responses.each do |response| %>
+
+							<% loan_case = response.loan_case %>
 
 							<% token = "+" %>
 				    	<%	while token.index("+") %>
@@ -118,14 +133,55 @@
 								<td><%= loan_case.dead_time.strftime("%Y/%m/%d %H:%M") %></td>
 								<td>已回覆</td>
 								<td><%= loan_case.applicant_name %></td>
-								<td><a href="#" class="btn btn-warning btn-rounded">取得聯絡電話</a></td>
+								<td>
+									<a href=<%= "#myModal#{loan_case.id}"%> role="button" class="btn btn-warning btn-rounded" data-toggle="modal">取得聯絡電話</a>
+								</td>
 								<td><%= loan_case.address %></td>
 								<td><%= loan_case.to_loan_price %>萬</td>
 								<td>
-									<%= link_to("詳細資料", root_path+"loan_cases/#{loan_case.id}/case_detail?key=#{key}&token=#{token}", {:style => 'color: #09B3DD'}) %>
+									<%= link_to root_path+"loan_cases/#{loan_case.id}/case_detail?key=#{key}&token=#{token}" , :target => "_blank" do %>
+						    		<button class="btn btn-rounded">詳細資料</button>
+						    		<% end %>
+								</td>
+								<td>
+									<% if loan_case.deliver_time == nil %>
+										<%= link_to root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}" , :target => "_blank" do %>
+							    		<button class="btn btn-rounded">修改回覆</button>
+							    	<% end %>
+							    <% else %>
+							    	<p>已截止回覆</p>
+							    <% end %>
 								</td>
 							</tr>
+
+							<!-- Modal -->
+							<div id="myModal<%= loan_case.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:5%">
+							  <div class="modal-header">
+							    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							    <h3 id="myModalLabel">聯絡方式</h3>
+							  </div>
+							  <% if loan_case.is_lender_contact == true %>
+								  <div class="modal-body">
+								    <p>申請者:<%= loan_case.applicant_name %></p>
+								    <p>Email:<%= loan_case.applicant_email %></p>
+								    <p>電話:<%= loan_case.applicant_phone %></p>
+								    <p>年齡:<%= loan_case.applicant_age %></p>
+								    <p>公司:<%= loan_case.applicant_company_name %></p>
+								    <p>職稱:<%= loan_case.applicant_title %></p>
+								  </div>
+								<% else %>
+									<div class="modal-body">
+								    <p>此申請者不同意專員主動聯絡</p>
+								  </div>
+								<% end %>
+							  <div class="modal-footer">
+							    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">確定</button>
+							  </div>
+							</div>
+
+
 						<% end %>
+						</tbody>
 					</table>
 				</div>
 
