@@ -28,6 +28,8 @@
 
 				<% unresponed_loan_cases = LoanCase.joins(:lender_loan_case_ships).where("lender_id = #{@lender.id} and is_responded is NULL ").select {|l| l.deliver_time == nil} %>
 
+				<% un_responded_onlendings = Onlending.joins(:lender_onlending_ships).where("lender_id = #{@lender.id} and is_responded is NULL ").select {|l| l.deliver_time == nil} %>
+
 				<% responded_responses = @lender.loan_responses %>
 
 				<div class="span10">
@@ -41,7 +43,6 @@
 									<li>
 								<% end %>
 								<!--數字是待回覆的數量 -->
-								<% un_responsed_size = %>
 							  <%= link_to '新房貸申請('+unresponed_loan_cases.size.to_s+')', root_path+"user_lenders/#{@lender.id}/user_cases" %></li> 
 
 							  <% if action_name == "user_center" %>
@@ -49,7 +50,7 @@
 								<% else %>
 									<li>
 								<% end %>
-							  <%= link_to '增轉貸申請(12)', root_path+"user_lenders/#{@lender.id}/user_onlendings" %></li>
+							  <%= link_to '增轉貸申請('+un_responded_onlendings.size.to_s+')', root_path+"user_lenders/#{@lender.id}/user_onlendings" %></li>
 							<% end %>
 						</ul>
 					</div>
