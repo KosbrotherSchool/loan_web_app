@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824145617) do
+ActiveRecord::Schema.define(version: 20140827054646) do
 
   create_table "bank_products", force: true do |t|
     t.integer  "bank_id"
@@ -141,7 +141,6 @@ ActiveRecord::Schema.define(version: 20140824145617) do
     t.datetime "updated_at"
     t.string   "notes"
     t.datetime "deliver_time"
-    t.integer  "lender_id"
     t.boolean  "is_charged"
     t.boolean  "is_feedbacked"
     t.boolean  "is_mailed_lenders"

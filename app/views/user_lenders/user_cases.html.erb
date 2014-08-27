@@ -25,6 +25,11 @@
 					-->
 				</div>
 
+
+				<% unresponed_loan_cases = LoanCase.joins(:lender_loan_case_ships).where("lender_id = #{@lender.id} and is_responded is NULL ").select {|l| l.deliver_time == nil} %>
+
+				<% responded_responses = @lender.loan_responses %>
+
 				<div class="span10">
 					<div class="tabs">
 						<ul class="nav nav-tabs">		
@@ -36,7 +41,8 @@
 									<li>
 								<% end %>
 								<!--數字是待回覆的數量 -->
-							  <%= link_to '新房貸申請(20)', root_path+"user_lenders/#{@lender.id}/user_cases" %></li> 
+								<% un_responsed_size = %>
+							  <%= link_to '新房貸申請('+unresponed_loan_cases.size.to_s+')', root_path+"user_lenders/#{@lender.id}/user_cases" %></li> 
 
 							  <% if action_name == "user_center" %>
 									<li class="active">
@@ -57,23 +63,23 @@
 						<hr />
 					</div>
 					-->
-					<h5 class="user-cases-h5">待回覆</h5>
+					<h5 class="user-cases-h5">待回覆(<%= unresponed_loan_cases.size.to_s %>)</h5>
 					<hr >
 					<table class="table table-striped">
 						<thead>
 						    <tr >
 						    	<th>截止日期</th>
-								<th>案件狀態</th>
-								<th>申請人</th>
-								<th>地址</th>
-								<th>欲貸款金額</th>
-								<th>回覆連結</th>
+									<th>案件狀態</th>
+									<th>申請人</th>
+									<th>地址</th>
+									<th>欲貸款金額</th>
+									<th>回覆連結</th>
 						    </tr>
 						</thead>
 						<tbody>			
-						<% loan_cases = @lender.loan_cases.select {|l| l.deliver_time == nil} %>
+						
 
-						<% loan_cases.each do |loan_case| %>
+						<% unresponed_loan_cases.each do |loan_case| %>
 
 							<% token = "+" %>
 					    	<%	while token.index("+") %>
@@ -96,24 +102,26 @@
 						</tbody>
 					</table>
 
-					<h5 class="user-cases-h5">已回覆</h5>
+					<h5 class="user-cases-h5">已回覆(<%= responded_responses.size.to_s %>)</h5>
 					<hr >
 					<table class="table table-striped">
 						<thead>
 						    <tr >
 						    	<th>截止日期</th>
-								<th>案件狀態</th>
-								<th>申請人</th>
-								<td>聯絡電話</td>
-								<th>地址</th>
-								<th>欲貸款金額</th>
-								<th>詳細資料</th>
+									<th>案件狀態</th>
+									<th>申請人</th>
+									<td>聯絡電話</td>
+									<th>地址</th>
+									<th>欲貸款金額</th>
+									<th>詳細資料</th>
+									<th>修改回覆</th>
 						    </tr>
 						</thead>
 						<tbody>
-						<% loan_cases = @lender.loan_cases.select {|l| l.deliver_time == nil} %>
 
-						<% loan_cases.each do |loan_case| %>
+						<% responded_responses.each do |response| %>
+
+							<% loan_case = response.loan_case %>
 
 							<% token = "+" %>
 				    	<%	while token.index("+") %>
@@ -131,6 +139,15 @@
 									<%= link_to root_path+"loan_cases/#{loan_case.id}/case_detail?key=#{key}&token=#{token}" , :target => "_blank" do %>
 						    		<button class="btn btn-rounded">詳細資料</button>
 						    		<% end %>
+								</td>
+								<td>
+									<% if loan_case.deliver_time == nil %>
+										<%= link_to root_path+"loan_cases/#{loan_case.id}/responses/lenders?key=#{key}&token=#{token}" , :target => "_blank" do %>
+							    		<button class="btn btn-rounded">修改回覆</button>
+							    	<% end %>
+							    <% else %>
+							    	<p>已截止回覆</p>
+							    <% end %>
 								</td>
 							</tr>
 						<% end %>

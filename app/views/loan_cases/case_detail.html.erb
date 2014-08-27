@@ -94,6 +94,67 @@
 				  </ul>
 				  <div class="blankline20"></div>
 				</div>
+
+				<div class="span6">	
+  					<aside class="">
+
+  
+      							<h2 class="widgetheading">我的回覆<span></span></h2>
+      							<hr>
+
+                    <div class="control-group">
+                        <label class="control-label" for="">可貸款金額*</label>
+                        <div class="controls">
+                          <%= @loan_response.loan_money %>萬
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="">貸款年限*</label>
+                        <div class="controls">
+                        	<%= @loan_response.loan_years %>年
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="">寬限期*</label>
+                        <div class="controls">
+                        	<%= @loan_response.grace_period %>年
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="">利率說明*</label>
+                        <div class="controls">
+                        	<%= @loan_response.interest_explaination %>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label class="control-label" for="">是否有綁約*</label>
+                        <div class="controls">
+                        		<% if @loan_response.is_binded == true %>
+                        			是
+                        		<% else %>
+                        			否
+                        		<% end %>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="">費用說明*</label>
+                        <div class="controls">
+                        		<%= @loan_response.expense_explaination %>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="">其他說明</label>
+                        <div class="controls">
+                        		<%= @loan_response.other_info %>
+                        </div>
+                    </div>
+
+      						</div>
+
+  					</aside>
+  				</div>
+
 			</div>
 		</div>
 	</section>
