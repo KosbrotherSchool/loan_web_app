@@ -142,7 +142,9 @@
 								<td class="">已回覆</td>
 								
 								<td class=""><%= onlending.applicant_name %></td>
-								<td class=""><a href="#" class="btn btn-warning btn-rounded">取得聯絡電話</a></td>
+								<td class="">
+									<a href=<%= "#myModal#{onlending.id}"%> role="button" class="btn btn-warning btn-rounded" data-toggle="modal">取得聯絡電話</a>
+								</td>
 								<td><%= onlending.address %></td>
 								<td class=""><%= onlending.more_loan_price %>萬</td>
 								<td>
@@ -159,8 +161,33 @@
 										<p>已截止回覆</p>
 									<% end %>
 								</td>
-
 							</tr>
+
+							<!-- Modal -->
+							<div id="myModal<%= onlending.id %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:5%">
+							  <div class="modal-header">
+							    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							    <h3 id="myModalLabel">聯絡方式</h3>
+							  </div>
+							  <% if onlending.is_lender_contact == true %>
+								  <div class="modal-body">
+								    <p>申請者:<%= onlending.applicant_name %></p>
+								    <p>Email:<%= onlending.applicant_email %></p>
+								    <p>電話:<%= onlending.applicant_phone %></p>
+								    <p>年齡:<%= onlending.applicant_age %></p>
+								    <p>公司:<%= onlending.applicant_company_name %></p>
+								    <p>職稱:<%= onlending.applicant_title %></p>
+								  </div>
+								<% else %>
+									<div class="modal-body">
+								    <p>此申請者不同意專員主動聯絡</p>
+								  </div>
+								<% end %>
+							  <div class="modal-footer">
+							    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">確定</button>
+							  </div>
+							</div>
+
 						<% end %>
 						</tbody>
 					</table>
