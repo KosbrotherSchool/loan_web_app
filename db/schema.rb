@@ -144,9 +144,9 @@ ActiveRecord::Schema.define(version: 20140827064046) do
     t.boolean  "is_charged"
     t.boolean  "is_feedbacked"
     t.boolean  "is_mailed_lenders"
-    t.text     "advise",                                                               null: false
+    t.text     "advise",                                               null: false
     t.datetime "dead_time"
-    t.boolean  "is_lender_contact",                                    default: false
+    t.boolean  "is_lender_contact"
   end
 
   create_table "loan_responses", force: true do |t|
