@@ -21,7 +21,7 @@
  *= require css/overwrite.css
  *= require css/animate.css
  *= require css/shortcodes.css
- *= require css/style.css
+ *= require css/style.css.scss
  *= require color/default.css
  *= require bootstrap-datepicker
  */
