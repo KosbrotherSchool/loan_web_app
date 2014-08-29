@@ -1,32 +1,71 @@
 <footer>
 		
-	  <div class="container-fluid">
+	  <div class="container">
 		  <div class="row-fluid">
-			 
-			  <div class="span12">
-			  <div class="copyright">
-				  <ul>
-				    <li>客服信箱：service@ezbank.com.tw</li>
-				    <li>
-				    	<%= link_to "隱私權聲明", privacy_path %>
-				    </li>
-				    <li>
-				    	<%= link_to "服務條款", term_path %>
-				    </li>
-				    <li>
-				    	<%= link_to "常見問題", faq_path %>
-				    </li>
-				    <li>
-				    	<%= link_to "關於我們", about_us_path %>
-				    </li>
-				    <li>&copy;2014 EZBANK. All right reserved</li>
-				  </ul>
-			  </div>
-			  
-			  </div>
-			  
+			 	
+		  	<div class="span4 alignleft">
+				  <div class="widget">
+				  	<h5 class="widgetheading">網站地圖</h5>
+					  <ul class="link-list">
+					    <li>
+					    	<%= link_to "首頁", privacy_path %>
+					    </li>
+					    <li>
+					    	<%= link_to "申請房貸", term_path %>
+					    </li>
+					    <li>
+					    	<%= link_to "申請增轉貸", faq_path %>
+					    </li>
+					    <li>
+					    	<%= link_to "查詢房貸", about_us_path %>
+					    </li>
+					    <li>
+					    	<%= link_to "專員登入/註冊", about_us_path %>
+					    </li>
+					  </ul>
+				  </div>
+			 	</div>
+
+				<div class="span4">
+				  <div class="widget">
+				  	<h5 class="widgetheading">關於EZBANK</h5>
+					  <ul class="link-list">
+					    <li>
+					    	<%= link_to "隱私權聲明", privacy_path %>
+					    </li>
+					    <li>
+					    	<%= link_to "服務條款", term_path %>
+					    </li>
+					    <li>
+					    	<%= link_to "常見問題", faq_path %>
+					    </li>
+					    <li>
+					    	<%= link_to "關於我們", about_us_path %>
+					    </li>
+					    <li>客服信箱：service@ezbank.com.tw</li>
+					  </ul>
+				  </div>
+			 	</div>
+
+			 	<div class="span4">
+		  		<div class="widget team-box">
+					 	<div class="fb-like-box" data-href="https://www.facebook.com/ezbank.com.tw" data-width="100%" data-height="200" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+					</div>
+				</div>
 			  
 		  </div>
 	  </div>
-				
+		
+	  <div id="sub-footer">
+			<div class="container">
+				<div class="row">
+					<div class="span6">
+					<div class="copyright">
+						<p><span>&copy;2014 EZBANK. All right reserved</span></p>
+					</div>			
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</footer>
