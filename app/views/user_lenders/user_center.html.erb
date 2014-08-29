@@ -111,10 +111,12 @@
 						    	<%= link_to root_path+"user_lenders/#{@lender.id}/user_edit" do %>
 						    		<button class="btn btn-success btn-rounded">個人資料修改</button>
 						    	<% end %>
-						    	<p>
-						    		<span class="text-error">*</span>
-						    		 請先修改個人資料，我們客服隨後會為您驗證
-						    	</p>
+						    	<% if @lender.is_person_confirmed == false || @lender.is_person_confirmed == nil %>
+							    	<p>
+							    		<span class="text-error">*</span>
+							    		 請先修改個人資料，我們客服隨後會為您驗證
+							    	</p>
+							    <% end %>
 						    	</div>
 						    </div>
 						</div>
