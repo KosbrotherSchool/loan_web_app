@@ -32,6 +32,9 @@ en:
             password:
               blank: "請輸入密碼"
               confirmation: "密碼與確認密碼沒有一致"
+              too_short: "密碼太短了(至少要8個字元)"
+              too_long: "密碼太長了"
+              invalid: "此密碼無效"
             password_confirmation:
               blank: "請輸入確認密碼"
         user:
@@ -140,5 +143,9 @@ en:
         interest_explaination: ""
         grace_period: ""
         expense_explaination: ""
+      user_lender:
+        email: ""
+        password: ""
+        password_confirmation: ""
 
 
