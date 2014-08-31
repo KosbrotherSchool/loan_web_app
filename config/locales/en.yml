@@ -37,6 +37,7 @@ en:
               invalid: "此密碼無效"
             password_confirmation:
               blank: "請輸入確認密碼"
+              confirmation: "密碼與確認密碼沒有一致"
         user:
           attributes:
             email:
