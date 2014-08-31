@@ -72,7 +72,7 @@ Rails.application.configure do
     :port => 587,
     :domain => "ezbank.com.tw",
     :user_name => "postmaster@ezbank.com.tw",
-    :password => "myezbanksmtp"
+    :password => ""
   }
   
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

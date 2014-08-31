@@ -42,7 +42,7 @@ Rails.application.configure do
     :port => 587,
     :domain => "ezbank.com.tw",
     :user_name => "postmaster@ezbank.com.tw",
-    :password => "myezbanksmtp"
+    :password => ""
   }
   
   Paperclip.options[:command_path] = "/usr/local/bin/"
