@@ -1,5 +1,5 @@
 class MailToLenderMailer < ActionMailer::Base
-  default from: "service@ezbank.com.tw"
+  default from: "\"EZBANK\" <service@ezbank.com.tw>"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -17,6 +17,6 @@ class MailToLenderMailer < ActionMailer::Base
     while @token.index("+")
       @token = AES.encrypt(@loan_case.id.to_s, ENV["KEY"])
     end
-    mail to: @lender.email, subject: "[EZBANK-新房貸][#{@loan_case.address}]"
+    mail to: "\"#{@lender.name}\" <#{@lender.email}>", subject: "[EZBANK-新房貸][#{@loan_case.address}]"
   end
 end

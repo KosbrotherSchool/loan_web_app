@@ -1,5 +1,5 @@
 class ReplyApplierMailer < ActionMailer::Base
-  default from: "service@ezbank.com.tw"
+  default from: "\"EZBANK\" <service@ezbank.com.tw>"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -8,7 +8,6 @@ class ReplyApplierMailer < ActionMailer::Base
   #
   def mail_content(loan_case_id)
     @loan_case = LoanCase.find(loan_case_id)
-
-    mail to: @loan_case.applicant_email, subject: "EZBANK諮詢回覆[房貸][#{@loan_case.address}]"
+    mail to: "\"#{@loan_case.applicant_name}\" <#{@loan_case.applicant_email}>", subject: "EZBANK諮詢回覆[房貸][#{@loan_case.address}]"
   end
 end
