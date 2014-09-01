@@ -70,9 +70,9 @@ Rails.application.configure do
     :authentication => :plain,
     :address => "smtp.mailgun.org",
     :port => 587,
-    :domain => "ezbank.com.tw",
-    :user_name => "postmaster@ezbank.com.tw",
-    :password => ""
+    :domain => ENV["domain"],
+    :user_name => ENV["user_name"],
+    :password => ENV["password"]
   }
   
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

@@ -16,4 +16,5 @@
 /tmp
 
 /config/local_env.yml
+/config/application.yml
 /public/system/lenders/*
