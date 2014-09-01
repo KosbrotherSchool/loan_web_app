@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class ConfirmMailerTest < ActionMailer::TestCase
+class LoancaseReplyApplierMailerTest < ActionMailer::TestCase
   test "mail_content" do
-    mail = ConfirmMailer.mail_content
+    mail = LoancaseReplyApplierMailer.mail_content
     assert_equal "Mail content", mail.subject
     assert_equal ["to@example.org"], mail.to
     assert_equal ["from@example.com"], mail.from

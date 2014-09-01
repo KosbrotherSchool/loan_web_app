@@ -1,4 +1,4 @@
-class ReplyApplierMailer < ActionMailer::Base
+class LoancaseReplyApplierMailer < ActionMailer::Base
   default from: "\"EZBANK\" <service@ezbank.com.tw>"
 
   # Subject can be set in your I18n file at config/locales/en.yml

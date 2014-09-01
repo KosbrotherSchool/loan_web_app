@@ -12,7 +12,7 @@ class BackstageController < ApplicationController
 		loan_case.save
 
 		# deliver reply mail
-		ReplyApplierMailer.delay.mail_content(loan_case.id)
+		LoancaseReplyApplierMailer.delay.mail_content(loan_case.id)
 
 		redirect_to :controller => 'backstage', :action => 'index'
 	end
@@ -218,7 +218,7 @@ class BackstageController < ApplicationController
 		@loan_case.save
 
 		Lender.joins(:lender_county_ships).where("county_id = #{@loan_case.county_id} and is_person_confirmed = true").each do |lender|
-			MailToLenderMailer.delay.mail_content(@loan_case.id, lender.id)
+			LoancaseMailToLenderMailer.delay.mail_content(@loan_case.id, lender.id)
 			lenderLoanCaseShip = LenderLoanCaseShip.new
 			lenderLoanCaseShip.lender_id = lender.id
 			lenderLoanCaseShip.loan_case_id = @loan_case.id
@@ -238,7 +238,7 @@ class BackstageController < ApplicationController
 			lenderLoanCaseShip.loan_case_id = loan_case.id
 			lenderLoanCaseShip.save
 		end
-		MailToLenderMailer.delay.mail_content(loan_case.id, lender.id)
+		LoancaseMailToLenderMailer.delay.mail_content(loan_case.id, lender.id)
 
 		redirect_to :controller => 'backstage', :action => 'loan_case_detail'
 	end
