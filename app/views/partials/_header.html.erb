@@ -38,10 +38,42 @@
 
 <header>	
 	<div class="top">
-
+		<div class="container">
+			<p style="color: white;margin-bottom: 0px;font-size:15px; color:white">
+				您好, 歡迎來到EZBANK!
+				<span style="float:right;">
+					<% if current_user_lender == nil %>
+						[
+						<%= link_to root_path+"user_lenders/sign_up", :style => "color:white;font-size:15px" do %>
+							專員註冊
+						<% end %>
+						]
+						[
+						<%= link_to root_path+"user_lenders/sign_in", :style => "color:white;font-size:15px" do %>
+							專員登入
+						<% end %>	
+						]
+					<% else %>
+						<% begin %>
+							<%= current_user_lender.lender.name %>專員,您好
+						<% rescue Exception => e %>
+							<%= current_user_lender.email %>專員,您好
+						<% end %>
+							[
+								<%= link_to "我的檔案", root_path+"user_lenders/#{current_user_lender.lender.id}/user_center", :style => "color:white;font-size:15px" %>									
+							]
+							[
+								<%= link_to "我的案件", root_path+"user_lenders/#{current_user_lender.lender.id}/user_cases", :style => "color:white;font-size:15px" %>									
+							]
+							[
+								<%= link_to "登出", root_path+"user_lenders/sign_out", :style => "color:white;font-size:15px" %>						
+							]	
+					<% end %>
+				</span>
+			</p>
+		</div>
 	</div>	
 	<div class="container">
-		
 
 		<div class="row-fluid nomargin">
 			<div class="span2">
@@ -50,7 +82,7 @@
 						 <div class="logo">ez<span>Bank</span></div>
 					<% end %>
 				</div>
-		        </div>
+		  </div>
 			<div class="span2">
 				<div class="fb-like" data-href="https://www.facebook.com/ezbank.com.tw" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 			</div>
@@ -91,53 +123,7 @@
 							<% end %>
 								<%= link_to "查詢房貸", banks_path %>
 							</li>	
-
-							
-							<% if current_user_lender == nil %>
-								<% if request.original_url.index("user_lenders") %>
-									<li class="dropdown active">
-								<% else %>
-									<li class="dropdown">
-								<% end %>
-									<%= link_to(root_path+"user_lenders/sign_in") do %>
-											專員登入/註冊 <i class="icon-angle-down"></i>
-									<% end %>
-									<ul class="dropdown-menu">
-								         <li><%= link_to "銀行專員登入", root_path+"user_lenders/sign_in" %></li>
-								         <li><%= link_to "銀行專員註冊", root_path+"user_lenders/sign_up" %></li>
-									</ul>
-								</li>
-							<% else %>
-									<% if request.original_url.index("user_lenders") %>
-										<li class="active">
-									<% else %>
-										<li>
-									<% end %>
-										<% begin %>
-											<%= link_to "#{current_user_lender.lender.name}專員,您好", root_path+"user_lenders/#{current_user_lender.lender.id}/user_cases" %>
-										<% rescue Exception => e %>
-											<%= link_to "專員,您好", root_path+"user_lenders/#{current_user_lender.lender.id}/user_cases" %>
-										<% end %>
-									<li>
-							<% end %>
-
-							<!-- 	
-							<% if action_name == "faq" %>					
-								<li class="dropdown active">
-							<% else %>
-								<li>
-							<% end %>
-								<%= link_to "常見問題", faq_path %>
-								</li>
-												
-							<% if action_name == "about_us" %>					
-								<li class="dropdown active">
-							<% else %>
-								<li>
-							<% end %>
-								<%= link_to "關於我們", about_us_path %>
-						        </li>
-						   -->						
+					
 					</ul>
 					</nav>
 				</div>
