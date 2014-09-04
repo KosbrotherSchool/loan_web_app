@@ -18,7 +18,7 @@
 					<div  data-src= "<%= asset_path 'img/slides/camera/slide1/img1.jpg' %>">
 						<div class="camera_caption fadeFromLeft">
 							<div class="container">
-								<div class="row-fluid">                                
+								<div class="row">                                
 									<div class="span6">
 										<h2 class="animated fadeInDown"><strong><span class="white">EZBANK<br /> 讓您「輕鬆取得優惠房貸」！</span></strong></h2>
 										
@@ -38,7 +38,7 @@
 					<div  data-src= "<%= asset_path 'img/slides/camera/slide2/img1.jpg' %>">
 						<div class="camera_caption fadeFromLeft">
 							<div class="container">
-								<div class="row-fluid"> 
+								<div class="row"> 
 									<div class="span5">
 										<%= image_tag("img/slides/camera/slide2/logo.png") %>
 									</div>								
@@ -66,58 +66,55 @@
 	
 	<section id="content">
 		<div class="container">
-			<div class="row-fluid">
-				<h2><span>服務特色</span></h2>
-				<hr />
-				<div class="span4">
+			<div class="row" style="margin-bottom:0px">
+				<div class="span12">
+					<h2><span>我們的服務</span></h2>
+					<hr/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span6">
+
 					<div class="service-box aligncenter flyLeft animated fadeInLeftBig">
 						<div class="icon">
 							<i class="icon-circled icon-bgprimary icon-user icon-4x "></i>
 						</div>
-						<h5>Pro <span class="colored">專業服務</span></h5>
+						<h5>服務項目一：<span class="colored">問房貸,房屋估價</span></h5>
 						<h6>
-						認證房貸專員直接與您聯繫<br/>絕非代辦中心！
+							填寫需求單
+							<br/>
+							回覆您銀行房貸條件
+							<br/>
+							以及銀行專員聯絡方式
 						</h6>
-						
+						<a href="#" class="btn btn-medium btn-danger">按我申請</a>				
 					</div>
 				</div>
-				<div class="span4">
-					<div class="service-box aligncenter flyIn animated fadeInUp">
-						<div class="icon">
-							<i class="icon-circled icon-bgsuccess icon-laptop icon-4x"></i>
-						</div>
-						<h5>Easy <span class="colored">方便又輕鬆</span></h5>
-						<h6>
-						填寫表格後<br/>專員提供最優惠條件給您！
-						</h6>
-						
-					</div>
-				</div>
-				<div class="span4">
-					<div class="service-box aligncenter flyIn animated fadeInUp">
-						<div class="icon">
-							<i class="icon-circled icon-bgwarning icon-envelope icon-4x"></i>
-						</div>
-						<h5>Fast <span class="colored">保證5天回覆！</span></h5>
-						<h6>
-						多家銀行專員詳細評估<br/>5天內必回覆!
 
+				<div class="span6">
+					<div class="service-box aligncenter flyIn animated fadeInUp">
+						<div class="icon">
+							<i class="icon-circled icon-bgsuccess icon-briefcase icon-4x"></i>
+						</div>
+						<h5>服務項目二：<span class="colored">找代辦</span></h5>
+						<h6>
+							合法代辦,快速回覆
+							<br/>
+							信用貸款,車輛抵押,房屋增貸, 債務整合
+							<br>
+							數家代辦供您選擇
 						</h6>
-						
+						<a href="#" class="btn btn-medium btn-danger">找代辦</a>	
 					</div>
 				</div>
 				
 			</div>
-			<div class="row-fluid">
-				<div class="span12">
-					
-				</div>			
-			</div>
-			<div class="row-fluid">
+			
+			<!-- <div class="row">
 				<h2><span>如何申請詢問房貸？</span></h2>
 				<hr />
 				<div class="span12">
-					<div class="row-fluid">
+					<div class="row">
 						<div class="span4">
 							<div class="box flyLeft">
 								<div class="icon">
@@ -161,8 +158,9 @@
 
 					</div>
 				</div>	
-			</div>
-			<div class="row-fluid">
+			</div> 
+
+			<div class="row">
 				
 			  <div class="span8">
 				  <div class="slogan-btn">
@@ -171,42 +169,35 @@
 			  </div>							
 
 			</div>
-			<div class="row-fluid">
-				<h2><span>合作專員</span></h2>
-				<hr />
+
+			-->
+
+			<div class="row">
+				<div class="span4">
+					<h2>貸款知識家</h2>
+					<hr>
+				</div>
+				<div class="span8">
+					<h2>成功申請者</h2>
+					<hr>
+				</div>
+			</div>
+
+
+			<div class="row">
+				
 				<div class="span12">
-					<!--
-					<ul class="team-categ filter">
-						<li class="all active"><a href="#" title="">所有區域</a></li>
-						<li class="taipei"><a href="#" title="">北北基</a></li>
-						<li class="taoyuan"><a href="#" title="">桃竹苗</a></li>
-						<li class="taichung"><a href="#" title="">中彰投</a></li>
-						<li class="tainan"><a href="#" title="">雲嘉南</a></li>
-						<li class="kaohsiung"><a href="#" title="">高雄屏東</a></li>
-						<li class="yilan"><a href="#" title="">宜蘭花東</a></li>
-					</ul>
-					-->
+
+					<h2>合作專員&nbsp;
+						<span style="font-size:18px">目前有 <%= Lender.all.size %> 位專員</span>
+					</h2>
+					<hr />
 
 					<div class="clearfix"></div>
-					<div class="row-fluid">
+
+					<div class="row">
 						<section id="team">
 							<ul id="thumbs" class="team">
-								
-								<!-- Item Project and Filter Name -->
-								<li class="item-thumbs span3" data-id="id-1" data-type="taoyuan">
-									<div class="team-box thumbnail">
-									  <%= image_tag("img/dummies/team/man.jpg") %>
-									  <div class="caption">
-										<h6>您是房貸專員？ </h6>
-										
-										<%= link_to new_user_lender_registration_path, :class => "btn btn-primary"  do %>
-											<i class="icon-file"></i> 立即申請加入！
-										<% end %>	
-										
-									  </div>
-									</div>
-								</li>
-								<!-- End Item Project -->
 
 								<% @lenders.all.each do |lender| %>
 
@@ -251,24 +242,17 @@
 
 								<% end %>
 								
-								
-								
-								
-
 							</ul>
 						</section>
 						
 					</div>
 				</div>			
 			</div>
-			<div class="row-fluid">
-				<div class="span12">
-					<div class="solidline"></div>
-				</div>			
-			</div>
 			
-			<div class="row-fluid">
+			<div class="row">
 				<div class="span12 aligncenter">
+					<hr />
+
 					<h3 class="title"><strong>用過的朋友都怎麼說？</strong></h3>
 					<div class="blankline20"></div>
 
