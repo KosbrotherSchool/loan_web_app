@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
  
+  get 'agencies' => 'agency#agencies'
+
   get 'user_lenders/user_center'
 
   get 'user_lenders_controller/user_center'
