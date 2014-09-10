@@ -1,12 +1,6 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
  
-  get 'agencies' => 'agency#agencies'
-
-  get 'user_lenders/user_center'
-
-  get 'user_lenders_controller/user_center'
-
   mount Sidekiq::Web, at: '/sidekiq'
 
   devise_for :user_lenders, controllers: { sessions: "sessions", registrations: "registrations"}
@@ -21,6 +15,17 @@ Rails.application.routes.draw do
   
   get "banks" => "banks#banks_list"
   get "banks/:bank_id" => "banks#bank_products"
+
+  get 'knowledges' => "knowledge#knowledges"
+  get 'knowledge/home_loan_knowledge' 
+  get 'knowledge/credit_loan_knowledge'
+  get 'knowledge/car_loan_knowledge'
+  get 'knowledge/integrate_knowledge'
+
+  get 'agencies' => 'agency#agencies'
+
+  get 'user_lenders/user_center'
+  get 'user_lenders_controller/user_center'
 
   get "join-us" => "house_loan#join_us"
   post "create_lender" => "house_loan#create_lender"
