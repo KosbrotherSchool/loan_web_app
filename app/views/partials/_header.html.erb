@@ -99,7 +99,15 @@
 									<%= link_to(root_path) do %>
 										<i class="icon-home"></i>首頁
 									<% end %>
-								</li>
+							</li>
+
+							<% if action_name == "knowledges" %>
+								<li class="dropdown active">
+							<% else %>
+								<li>
+							<% end %>
+								<%= link_to "貸款知識家", knowledges_path %>
+							</li>	
 
 							<% if action_name == "banks_list" %>
 								<li class="dropdown active">
