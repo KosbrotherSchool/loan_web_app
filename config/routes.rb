@@ -1,6 +1,6 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
- 
+
   mount Sidekiq::Web, at: '/sidekiq'
 
   devise_for :user_lenders, controllers: { sessions: "sessions", registrations: "registrations"}
@@ -36,6 +36,10 @@ Rails.application.routes.draw do
   
   get "apply-mortgage" => "loan_cases#apply_mortgage"
   get "apply-onlending" => "onlendings#apply_onlending"
+
+  get 'credit_loan/create'
+  get 'credit_loan/case_detail'
+  get 'apply_credit_loan' => "credit_loan#apply_credit_loan"
 
   get "backstage/counties/:county_id" => "backstage#county_lenders"
 

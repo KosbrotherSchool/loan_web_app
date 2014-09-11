@@ -101,22 +101,6 @@
 									<% end %>
 							</li>
 
-							<% if action_name == "knowledges" %>
-								<li class="dropdown active">
-							<% else %>
-								<li>
-							<% end %>
-								<%= link_to "貸款知識家", knowledges_path %>
-							</li>	
-
-							<% if action_name == "banks_list" %>
-								<li class="dropdown active">
-							<% else %>
-								<li>
-							<% end %>
-								<%= link_to "查詢房貸", banks_path %>
-							</li>	
-
 							<% if action_name == "apply_mortgage" ||action_name == "apply_onlending" %>					
 								<li class="dropdown active">
 							<% else %>
@@ -131,12 +115,37 @@
 								</ul>								
 							</li>
 							
+							<% if action_name == "apply_credit_loan" %>
+								<li class="dropdown active">
+							<% else %>
+								<li>
+							<% end %>
+								<%= link_to "申請信貸", apply_credit_loan_path %>
+							</li>	
+
+
 							<% if action_name == "agencies" %>
 								<li class="dropdown active">
 							<% else %>
 								<li>
 							<% end %>
 								<%= link_to "找代辦", agencies_path %>
+							</li>
+
+							<% if action_name == "knowledges" %>
+								<li class="dropdown active">
+							<% else %>
+								<li>
+							<% end %>
+								<%= link_to "貸款知識家", knowledges_path %>
+							</li>	
+
+							<% if action_name == "banks_list" %>
+								<li class="dropdown active">
+							<% else %>
+								<li>
+							<% end %>
+								<%= link_to "查詢房貸", banks_path %>
 							</li>
 
 					</ul>
