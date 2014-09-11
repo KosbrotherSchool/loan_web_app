@@ -198,7 +198,7 @@
 						<h5 style="text-align:left;margin:0 10px">Q: 我買的房子為什麼沒有銀行願意承作貸款?</h5>
 						<hr style="margin:10px 10px">
 						<pre style="height:100px; margin:10px 10px;font-size:17px;padding:10px;text-align:left">每家銀行都有承作房貸的條件，例如：有些銀行針對較偏遠的地區不承作貸款，或針對貸款金額或不動產估價太低、坪數太小、登記為工業用及商業用途者的物件不承作。</pre>
-						<%= link_to "看更多", knowledges_path, :class => "btn btn-medium btn-info" %>
+						<%= link_to "更多貸款知識", knowledges_path, :class => "btn btn-medium btn-info" %>
 					</div>		
 				</div>
 				<div class="span6">
@@ -240,49 +240,51 @@
 						<section id="team">
 							<ul id="thumbs" class="team">
 
-								<% @lenders.all.each do |lender| %>
+								<div class="span12">
 
-									<!-- Item Project and Filter Name -->
-									<li class="item-thumbs span3 " data-id="id-4" data-type="kaohsiung">
-										<div class="team-box thumbnail">
-										  
-											<% if lender.avatar_file_name != nil %>
-										  	<%= image_tag lender.avatar.url(:thumb) %>
-										  <% else %>
-										  	<% if lender.is_male %>
-										  		<!-- show male pic -->
-												<%= image_tag("img/dummies/team/man.jpg") %>
-										  	<% else %>
-										  		<!-- show female pic -->
-												<%= image_tag("img/dummies/team/woman.jpg") %>
-										  	<% end %>
-										  <% end %>
+									<% @lenders.all.each do |lender| %>
 
-										  <div class="caption">
-												<h6><%= lender.bank %> <%= lender.name[0]%><%= ( lender.is_male )? "先生" : "小姐" %> </h6>
-												<p></p>
+										<!-- Item Project and Filter Name -->
+										<li class="item-thumbs span3 " data-id="id-4" data-type="kaohsiung">
+											<div class="team-box thumbnail">
+											  
+												<% if lender.avatar_file_name != nil %>
+											  	<%= image_tag lender.avatar.url(:thumb) %>
+											  <% else %>
+											  	<% if lender.is_male %>
+											  		<!-- show male pic -->
+													<%= image_tag("img/dummies/team/man.jpg") %>
+											  	<% else %>
+											  		<!-- show female pic -->
+													<%= image_tag("img/dummies/team/woman.jpg") %>
+											  	<% end %>
+											  <% end %>
 
-												<ul class="social-network">
-													<% if lender.is_phone_confirmed == true %>
-														<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
-													<% end %>
+											  <div class="caption">
+													<h6><%= lender.bank %> <%= lender.name[0]%><%= ( lender.is_male )? "先生" : "小姐" %> </h6>
+													<p></p>
 
-													<% if lender.is_mail_confirmed == true %>
-														<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
-													<% end %>
+													<ul class="social-network">
+														<% if lender.is_phone_confirmed == true %>
+															<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
+														<% end %>
 
-													<% if lender.is_person_confirmed == true %>
-														<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
-													<% end %>
+														<% if lender.is_mail_confirmed == true %>
+															<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
+														<% end %>
 
-												</ul>
-										  </div>
-										</div>
-									</li>
-									<!-- End Item Project -->
+														<% if lender.is_person_confirmed == true %>
+															<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
+														<% end %>
 
-								<% end %>
-								
+													</ul>
+											  </div>
+											</div>
+										</li>
+										<!-- End Item Project -->
+
+									<% end %>
+								</div>
 							</ul>
 						</section>
 						
