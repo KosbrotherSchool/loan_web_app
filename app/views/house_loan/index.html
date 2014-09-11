@@ -173,7 +173,7 @@
 			-->
 
 			<div class="row">
-				<div class="span8 aligncenter">
+				<div class="span7 aligncenter">
 					<h2>貸款知識家</h2>
 					<hr>
 					<div class="service-box" style="height:250px">
@@ -181,33 +181,29 @@
 						<hr style="margin:10px 10px">
 						<h5 style="text-align:left;margin:0 10px">Ans:</h5>
 						<pre style="height:80px; margin:10px 10px;font-size:25px;padding:10px;text-align:left">ooxxx</pre>
-						<%= link_to "看更多", knowledges_path %>
-						<a href="#" class="btn btn-medium btn-info">看更多</a>	
+						<%= link_to "看更多", knowledges_path, :class => "btn btn-medium btn-info" %>
 					</div>		
 				</div>
-				<div class="span4">
-					<h2>成功申請者</h2>
+				<div class="span5">
+					<h2>最新消息</h2>
 					<hr>
-					<div class="service-box" style="height:250px">
+					<!-- <div class="service-box" style="height:250px"> -->
 
-						<p style="padding-left:10px">更新時間: 2014/09/05</p>
-						<hr style="margin: 10px 0px"/>
-						<marquee  behavior="scroll" direction="up">		
+						<!-- <p style="padding-left:10px">更新時間: 2014/09/05</p> -->
+						<!-- <hr style="margin: 10px 0px"/> -->
+						<!-- <marquee  behavior="scroll" direction="up">		 -->
 							
-							<% 30.times do |num| %>
-								<% if num % 2 == 0%>
-									<p style="background-color:#fcf8e3;margin:0 0 0;padding:5px 10px" >
-								<% else %>
-									<p style="background-color:#d9edf7;margin:0 0 0;padding:5px 10px">
-								<% end %>
-									8/25 Mark 成功申請了 500 萬新房貸
+							<% 8.times do |num| %>
+								<p>
+									<span style="font-weight: bold">2014/8/25</span> 
+									<%= link_to "Mark 成功申請了 500 萬新房貸",root_path %>
 								</p>
 							<% end %>
 							
-						</marquee>
+						<!-- </marquee> -->
 							
 						
-					</div>
+					<!-- </div> -->
 				</div>
 			</div>
 
