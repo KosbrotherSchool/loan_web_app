@@ -37,9 +37,13 @@ Rails.application.routes.draw do
   get "apply-mortgage" => "loan_cases#apply_mortgage"
   get "apply-onlending" => "onlendings#apply_onlending"
 
-  get 'credit_loan/create'
-  get 'credit_loan/case_detail'
+
   get 'apply_credit_loan' => "credit_loan#apply_credit_loan"
+  
+  resources :credit_loan do
+    get "case_detail" => "credit_loan#case_detail"
+  end
+
 
   get "backstage/counties/:county_id" => "backstage#county_lenders"
 

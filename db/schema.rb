@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912004351) do
+ActiveRecord::Schema.define(version: 20140914135718) do
 
   create_table "bank_products", force: true do |t|
     t.integer  "bank_id"
@@ -42,6 +42,31 @@ ActiveRecord::Schema.define(version: 20140912004351) do
 
   create_table "counties", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "credit_cases", force: true do |t|
+    t.integer  "loan_money"
+    t.integer  "to_loan_period_years"
+    t.string   "applicant_name"
+    t.string   "applicant_email"
+    t.string   "applicant_phone"
+    t.string   "applicant_line_id"
+    t.integer  "applicant_age"
+    t.boolean  "is_married"
+    t.string   "education"
+    t.string   "applicant_company_name"
+    t.string   "applicant_title"
+    t.integer  "applicant_serve_year"
+    t.integer  "applicant_year_earning"
+    t.boolean  "applicant_is_have_house"
+    t.string   "applicant_other_house_loan"
+    t.string   "applicant_other_credit_loan"
+    t.boolean  "is_pay_late_in_half_year"
+    t.string   "credit_card_years"
+    t.text     "other_info"
+    t.boolean  "is_lender_contact"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

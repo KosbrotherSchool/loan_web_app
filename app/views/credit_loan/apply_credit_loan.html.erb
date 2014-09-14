@@ -61,30 +61,39 @@
 		<div class="container">
 			<div class="row-fluid">
 				<div class="span9">
-				<% if @loan_case.present? %>				
+				<% if @credit_case.present? %>				
 				  <h4>詳細填寫需求，專員針對個人條件、貸款需求來評估。越詳細，專員才能提供最精準的評估！</h4>
 				  <h5><span class="text-error">*</span> 星記號為必填</h5>
 
-				 	<% if @loan_case.errors.any? %>
+				 	<% if @credit_case.errors.any? %>
 				 		<div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px; margin-bottom:30px">
 								<h2>資料填寫不完整: </h2>
 								<ul>
-									<% @loan_case.errors.full_messages.each do |message|%>
+									<% @credit_case.errors.full_messages.each do |message|%>
 										<li><%= message %></li>
 									<% end %>
 								</ul>
 						</div>
 					<% end %>
 				  
-				  <%= form_for @loan_case, :url => loan_cases_path  , html: {class: "form-horizontal"} do |f| %>
+				  <%= form_for @credit_case, :url => credit_loan_index_path  , html: {class: "form-horizontal"} do |f| %>
 
 				  <div class="row-fluid">
 				    <div class="tabbable tabs-left"> <!-- Only required for left/right tabs -->
 				      <ul class="nav nav-tabs" id="myTab">
-					<li class="active"><a href="#tab1" data-toggle="tab">步驟一：貸款需求</a></li>
-					<li><a href="#tab2" data-toggle="tab">步驟二：個人資訊</a></li>
+								<li class="active">
+									<a href="#tab1" data-toggle="tab">步驟一：貸款需求</a>
+								</li>
+								<li>
+									<a href="#tab2" data-toggle="tab">步驟二：信用資訊</a>
+								</li>
+								<li>
+									<a href="#tab3" data-toggle="tab">步驟三：聯絡資訊</a>
+								</li>
 				      </ul>
+
 				      <div class="tab-content">
+
 					<div class="tab-pane active" id="tab1">
 					  <div class="page-header">
 					      <h2>步驟一：貸款需求</h2>
@@ -93,7 +102,7 @@
 					  <div class="control-group">
 					      <label class="control-label" for="">預計貸款金額<span class="text-error">*</span><br /></label>
 					      <div class="controls">
-					      <%= f.text_field :to_loan_price,  :class => "input-small"%>
+					      <%= f.text_field :loan_money,  :class => "input-small"%>
 						  	萬
 					      </div>
 					  </div>
@@ -102,23 +111,23 @@
 					      <label class="control-label" for="">貸款期限<span class="text-error">*</span><br /></label>
 					      <div class="controls">
 								  <label class="radio">
-								  		<%= radio_button_tag("loan_case[to_loan_period_years]", "0",checked = true) %>
+								  		<%= radio_button_tag("credit_case[to_loan_period_years]", "0",checked = true) %>
 								      皆可
 								  </label>
 								  <label class="radio">
-								  		<%= radio_button_tag("loan_case[to_loan_period_years]", "1") %>
+								  		<%= radio_button_tag("credit_case[to_loan_period_years]", "1") %>
 								      1年
 								  </label>
 								  <label class="radio">
-								      <%= radio_button_tag("loan_case[to_loan_period_years]", "3") %>
+								      <%= radio_button_tag("credit_case[to_loan_period_years]", "3") %>
 								      3年
 								  </label>
 								  <label class="radio">
-								      <%= radio_button_tag("loan_case[to_loan_period_years]", "5") %>
+								      <%= radio_button_tag("credit_case[to_loan_period_years]", "5") %>
 								      5年
 								  </label>
 								  <label class="radio">
-								      <%= radio_button_tag("loan_case[to_loan_period_years]", "7") %>
+								      <%= radio_button_tag("credit_case[to_loan_period_years]", "7") %>
 								      7年
 								  </label>	  
 					      </div>
@@ -140,26 +149,9 @@
 					<div class="tab-pane" id="tab2">
 					<!-- user info -->
 					  <div class="page-header">
-					      <h2>步驟二：個人資訊</h2>
+					      <h2>步驟二：信用資訊</h2>
 					  </div>
-					  <div class="control-group">
-					      <label class="control-label" for="">您的稱呼<span class="text-error">*</span><br /></label>
-					      <div class="controls">
-					      	<%= f.text_field :applicant_name, :placeholder => "如：林先生、陳小姐"%>
-					      </div>
-					  </div>
-					  <div class="control-group">
-					      <label class="control-label" for="">電子信箱/Email<span class="text-error">*</span><br /></label>
-					      <div class="controls">
-					      	<%= f.text_field :applicant_email, :placeholder => "格式：xxxname@gmail.com"%>
-					      </div>
-					  </div>
-					  <div class="control-group">
-					      <label class="control-label" for="">聯絡電話<span class="text-error">*</span><br /></label>
-					      <div class="controls">
-					      	<%= f.text_field :applicant_phone, :placeholder => "格式：0912918938"%>
-					      </div>
-					  </div>
+					  
 					  <div class="control-group">
 					      <label class="control-label" for="">年齡<span class="text-error">*</span><br /></label>
 					      <div class="controls">
@@ -167,6 +159,28 @@
 						  		歲
 					      </div>
 					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label">婚姻<span class="text-error">*</span></label>
+					      <div class="controls">
+							  <label class="radio">
+							      <%= radio_button_tag("credit_case[is_married]", "false", checked = true ) %>
+							      未婚
+							  </label>
+							  <label class="radio">
+							      <%= radio_button_tag("credit_case[is_married]","true") %>
+							      已婚
+							  </label>
+					      </div>
+					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label" for="">學歷<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :education, :placeholder => "國中,高中,大學,研究所", :class => "input-large"%>
+					      </div>
+					  </div>
+
 					  <div class="control-group">
 					      <label class="control-label" for="">公司名稱<span class="text-error">*</span><br /></label>
 					      <div class="controls">
@@ -195,6 +209,20 @@
 						  		萬
 					      </div>
 					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label">名下是否有房<span class="text-error">*</span></label>
+					      <div class="controls">
+							  <label class="radio">
+							      <%= radio_button_tag("credit_case[applicant_is_have_house]", "false", checked = true ) %>
+							      無
+							  </label>
+							  <label class="radio">
+							      <%= radio_button_tag("credit_case[is_credit_ok]","true") %>
+							      有
+							  </label>
+					      </div>
+					  </div>
 					  
 					  <div class="control-group">
 					      <label class="control-label">名下其他負債</label>
@@ -213,23 +241,86 @@
 					  </div>
 					  
 					  <div class="control-group">
-					      <label class="control-label">是否有信用瑕疵<span class="text-error">*</span></label>
+					      <label class="control-label">近半年是否有信用卡遲繳<span class="text-error">*</span></label>
 					      <div class="controls">
 							  <label class="radio">
-							      <%= radio_button_tag("loan_case[is_credit_ok]", "true", checked = true ) %>
+							      <%= radio_button_tag("credit_case[is_pay_late_in_half_year]", "true", checked = true ) %>
 							      無
 							  </label>
 							  <label class="radio">
-							      <%= radio_button_tag("loan_case[is_credit_ok]","false") %>
+							      <%= radio_button_tag("credit_case[is_pay_late_in_half_year]","false") %>
 							      有
 							  </label>
 					      </div>
 					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label">與銀行信用卡往來時間(使用信用卡)<span class="text-error">*</span></label>
+					      <div class="controls">
+							  <label class="radio">
+							      <%= radio_button_tag("credit_case[credit_card_years]", "無", checked = true ) %>
+							      無
+							  </label>
+							  <label class="radio">
+							      <%= radio_button_tag("credit_case[credit_card_years]","半年內") %>
+							      半年內
+							  </label>
+							  <label class="radio">
+							      <%= radio_button_tag("credit_case[credit_card_years]","一年內") %>
+							      一年內
+							  </label>
+							  <label class="radio">
+							      <%= radio_button_tag("credit_case[credit_card_years]","more ㄧ年以上") %>
+							      ㄧ年以上
+							  </label>
+					      </div>
+					  </div>
 					  
+					  <div class="control-group">
+					      <div class="controls">
+						  <div class="form-actions">
+						      <button class="btn btn-info" onclick="nextstep(1)">上一步</button>
+						      <button class="btn btn-success input-medium" onclick="nextstep(3)">下一步</button>
+						  </div>
+					      </div>
+					  </div> 		
+					</div>
+					
+					<div class="tab-pane" id="tab3">
+					<!-- user info -->
+					  <div class="page-header">
+					      <h2>步驟三：聯絡資訊</h2>
+					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label" for="">您的稱呼<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_name, :placeholder => "如：林先生、陳小姐"%>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">電子信箱/Email<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_email, :placeholder => "格式：xxxname@gmail.com"%>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">聯絡電話<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_phone, :placeholder => "格式：0912918938"%>
+					      </div>
+					  </div>
+					  <div class="control-group">
+					      <label class="control-label" for="">LINE ID<span class="text-error"></span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :applicant_line_id, :placeholder => "有填,可及時回覆"%>
+					      </div>
+					  </div>
+
 					  <div class="control-group">      
 					      <div class="controls">
 								  <label class="checkbox inline">
-								  	<%= check_box_tag("loan_case[is_lender_contact]","true", checked =true) %>
+								  	<%= check_box_tag("credit_case[is_lender_contact]","true", checked =true) %>
 								      我同意，銀行貸款專員可以主動聯繫我。
 								  </label>
 					      </div>
@@ -261,10 +352,9 @@
 								  </div>
 					      </div>
 					  </div>
-						
-						
-					</div>
-					
+
+					 </div>
+
 					<% end %>
 					
 				      </div>
