@@ -210,55 +210,145 @@
 
 					<div class="clearfix"></div>
 
-					<div class="row">
+					<div class="row" style="margin-left:0px">
 						<section id="team">
 							<ul id="thumbs" class="team">
 
-								<div class="span12">
+								<li class="item-thumbs span3" >
+									<div class="team-box thumbnail">
+										<h6>南山人壽</h6>
+										<div class="caption">
+											<ul class="social-network">	
+												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
+																								
+												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
+												
+												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
+											</ul>
+										</div>
+									</div>
+								</li>
 
-									<% @lenders.all.each do |lender| %>
+								<li class="item-thumbs span3" >
+									<div class="team-box thumbnail">
+										<h6>匯豐銀行</h6>
+										<div class="caption">
+											<ul class="social-network">	
+												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
+																								
+												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
+												
+												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
+											</ul>
+										</div>
+									</div>
+								</li>
 
-										<!-- Item Project and Filter Name -->
-										<li class="item-thumbs span3 " data-id="id-4" data-type="kaohsiung">
-											<div class="team-box thumbnail">
-											  
-												<% if lender.avatar_file_name != nil %>
-											  	<%= image_tag lender.avatar.url(:thumb) %>
-											  <% else %>
-											  	<% if lender.is_male %>
-											  		<!-- show male pic -->
-													<%= image_tag("img/dummies/team/man.jpg") %>
-											  	<% else %>
-											  		<!-- show female pic -->
-													<%= image_tag("img/dummies/team/woman.jpg") %>
-											  	<% end %>
-											  <% end %>
+								<li class="item-thumbs span3" >
+									<div class="team-box thumbnail">
+										<h6>遠東銀行</h6>
+										<div class="caption">
+											<ul class="social-network">	
+												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
+																								
+												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
+												
+												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
+											</ul>
+										</div>
+									</div>
+								</li>
 
-											  <div class="caption">
-													<h6><%= lender.bank %> <%= lender.name[0]%><%= ( lender.is_male )? "先生" : "小姐" %> </h6>
-													<p></p>
+								<li class="item-thumbs span3" >
+									<div class="team-box thumbnail">
+										<h6>澳盛銀行</h6>
+										<div class="caption">
+											<ul class="social-network">	
+												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
+																								
+												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
+												
+												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
+											</ul>
+										</div>
+									</div>
+								</li>
 
-													<ul class="social-network">
-														<% if lender.is_phone_confirmed == true %>
-															<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
-														<% end %>
+								<li class="item-thumbs span3" >
+									<div class="team-box thumbnail">
+										<h6>大眾銀行</h6>
+										<div class="caption">
+											<ul class="social-network">	
+												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
+																								
+												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
+												
+												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
+											</ul>
+										</div>
+									</div>
+								</li>
 
-														<% if lender.is_mail_confirmed == true %>
-															<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
-														<% end %>
+								<li class="item-thumbs span3" >
+									<div class="team-box thumbnail">
+										<h6>新光銀行</h6>
+										<div class="caption">
+											<ul class="social-network">	
+												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
+																								
+												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
+												
+												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
+											</ul>
+										</div>
+									</div>
+								</li>
 
-														<% if lender.is_person_confirmed == true %>
-															<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
-														<% end %>
+								<li class="item-thumbs span3" >
+									<div class="team-box thumbnail">
+										<h6>花旗銀行</h6>
+										<div class="caption">
+											<ul class="social-network">	
+												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
+																								
+												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
+												
+												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
+											</ul>
+										</div>
+									</div>
+								</li>
 
-													</ul>
-											  </div>
-											</div>
-										</li>
-										<!-- End Item Project -->
+								<li class="item-thumbs span3" >
+									<div class="team-box thumbnail">
+										<h6>兆豐金控</h6>
+										<div class="caption">
+											<ul class="social-network">	
+												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
+																								
+												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
+												
+												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
+											</ul>
+										</div>
+									</div>
+								</li>
 
-									<% end %>
-								</div>
+								<li class="item-thumbs span3" >
+									<div class="team-box thumbnail">
+										<h6>國泰人壽</h6>
+										<div class="caption">
+											<ul class="social-network">	
+												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
+																								
+												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
+												
+												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
+											</ul>
+										</div>
+									</div>
+								</li>
+
 							</ul>
 						</section>
 						
