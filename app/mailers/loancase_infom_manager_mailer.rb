@@ -9,6 +9,6 @@ class LoancaseInfomManagerMailer < ActionMailer::Base
   #
   def mail_content(case_id)
     @loan_case = LoanCase.find(case_id)
-    mail to: "\"EZBANK\" <service@ezbank.com.tw>", subject: "新案件申請[房貸][#{@loan_case.address}]"
+    mail to: "service@ezbank.com.tw", subject: "新案件申請[房貸][#{@loan_case.address}]"
   end
 end

@@ -8,6 +8,6 @@ class OnlendingInformManagerMailer < ActionMailer::Base
   #
   def mail_content(onlending_id)
     @onlending = Onlending.find(onlending_id)
-    mail to: "\"EZBANK\" <service@ezbank.com.tw>", subject: "新案件申請[增轉貸][#{@onlending.address}]"
+    mail to: "service@ezbank.com.tw", subject: "新案件申請[增轉貸][#{@onlending.address}]"
   end
 end
