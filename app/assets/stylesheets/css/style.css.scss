@@ -2895,3 +2895,12 @@ ul.the-icons {
 	color: #e96b56 ;
 }
 
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    -moz-binding: url(<q>assets/xml/ellipsis.xml#ellipsis</q>);
+}
+

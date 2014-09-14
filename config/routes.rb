@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'knowledge/car_loan_knowledge'
   get 'knowledge/integrate_knowledge'
 
-  get 'agencies' => 'agency#agencies'
+  # get 'agencies' => 'agency#agencies'
 
   get 'user_lenders/user_center'
   get 'user_lenders_controller/user_center'

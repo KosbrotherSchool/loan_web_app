@@ -73,7 +73,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="span4">
+				<div class="span6">
 
 					<div class="service-box aligncenter flyLeft animated fadeInLeftBig">
 						<div class="icon">
@@ -91,7 +91,7 @@
 					</div>
 				</div>
 
-				<div class="span4">
+				<div class="span6">
 
 					<div class="service-box aligncenter">
 						<div class="icon">
@@ -106,23 +106,6 @@
 							以及銀行專員聯絡方式
 						</h6>
 						<a href="#" class="btn btn-medium btn-danger">申請信貸評估</a>				
-					</div>
-				</div>
-
-				<div class="span4">
-					<div class="service-box aligncenter flyIn animated fadeInUp">
-						<div class="icon">
-							<i class="icon-circled icon-bgsuccess icon-briefcase icon-4x"></i>
-						</div>
-						<h5>服務項目二：<span class="colored">找代辦</span></h5>
-						<h6>
-							合法代辦,快速回覆
-							<br/>
-							信用貸款,車輛抵押,房屋增貸, 債務整合
-							<br>
-							數家代辦供您選擇
-						</h6>
-						<a href="#" class="btn btn-medium btn-danger">找代辦</a>	
 					</div>
 				</div>
 				
@@ -189,6 +172,7 @@
 			</div>
 
 			-->
+	
 
 			<div class="row">
 				<div class="span6 aligncenter">
@@ -204,23 +188,13 @@
 				<div class="span6">
 					<h2>最新消息</h2>
 					<hr>
-					<!-- <div class="service-box" style="height:250px"> -->
-
-						<!-- <p style="padding-left:10px">更新時間: 2014/09/05</p> -->
-						<!-- <hr style="margin: 10px 0px"/> -->
-						<!-- <marquee  behavior="scroll" direction="up">		 -->
-							
-							<% 8.times do |num| %>
-								<p>
-									<span style="font-weight: bold">2014/8/25</span> 
-									<%= link_to "Mark 成功申請了 500 萬新房貸",root_path %>
-								</p>
-							<% end %>
-							
-						<!-- </marquee> -->
-							
 						
-					<!-- </div> -->
+					<% RecentNews.last(8).reverse.each do |news| %>	
+						<p class="ellipsis" >
+							<span style="font-weight: bold"><%= news.date_string %></span> 
+							<%= link_to news.title, news.link, :target=>"_blank" %>
+						</p>
+					<% end %>
 				</div>
 			</div>
 
