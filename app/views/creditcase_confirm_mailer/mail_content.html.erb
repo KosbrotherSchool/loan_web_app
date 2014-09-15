@@ -1,5 +1,88 @@
-<h1>CreditcaseConfirmMailer#mail_content</h1>
-
 <p>
-  <%= @greeting %>, find me in app/views/creditcase_confirm_mailer/mail_content.html.erb
+  <%= @credit_case.applicant_name %> 您好, 
 </p>
+<br>
+<p>我們已經收到您的需求了, 將會盡快詢問各銀行專員並回覆您,</p>
+<p>感謝您的申請！</p>
+<br>
+<p>
+EZBANK 客服中心敬上
+</p>
+<p>
+官方網站：<a href="http://ezbank.com.tw">http://ezbank.com.tw</a>
+客服信箱：service@ezbank.com.tw
+</p>
+<br>
+<p>備註:</p>
+<p>您填寫資料如下:</p>
+<div>
+    <h2>貸款需求</h2>
+    <hr>
+    <ul class="demand" id="demand-1">
+        <li>
+          貸款金額： <%= @credit_case.loan_money %> 萬
+        </li>
+        <% if @credit_case.to_loan_period_years == 0 %>
+            <li>貸款期限： 皆可 </li>
+        <% else %>
+            <li>貸款期限： <%= @credit_case.to_loan_period_years %> 年</li>
+        <% end %>
+        <% if @credit_case.other_info != nil && @credit_case.other_info != "" %>
+            <li>備註： <%= @credit_case.other_info.gsub(/\n/, '<br/>').html_safe  %> </li>
+        <% else %>
+            <li>備註： 無</li>
+        <% end %> 
+    </ul>
+    
+    <h2>信用資訊</h2>
+    <hr>
+    <ul class="demand" id="demand-2">
+        <li>年齡: <%= @credit_case.applicant_age %> 歲</li>
+        <% if @credit_case.is_married == false %>
+          <li>婚姻: 未婚</li>
+        <% else %>
+          <li>婚姻: 已婚</li>
+        <% end %>
+        <li>學歷: <%= @credit_case.education %></li>
+        <li>公司名稱： <%= @credit_case.applicant_company_name %></li>
+        <% if @credit_case.applicant_title != nil %>
+            <li>職稱： <%= @credit_case.applicant_title %></li>
+        <% end %>
+        <li>年資： <%= @credit_case.applicant_serve_year %> 年</li>
+        <li>年薪： <%= @credit_case.applicant_year_earning %>萬</li>
+        <% if @credit_case.applicant_is_have_house == false %>
+          <li>名下是否有房: 否</li>
+        <% else %>
+          <li>名下是否有房: 是</li>
+        <% end %>
+        <li>名下其他負債：房貸：
+            <% if @credit_case.applicant_other_house_loan != nil && @credit_case.applicant_other_house_loan != ""%>
+                <%= @credit_case.applicant_other_house_loan %> 萬；
+            <% else %>
+                0萬
+            <% end %>
+            信貸：
+            <% if @credit_case.applicant_other_credit_loan != nil && @credit_case.applicant_other_credit_loan !="" %> 
+                <%= @credit_case.applicant_other_credit_loan %> 萬
+            <% else %>
+                0萬
+            <% end %>
+        </li>
+        <% if @credit_case.is_pay_late_in_half_year == false %>
+            <li>近半年是否有信用卡遲繳： 否 </li>
+        <% else %>
+            <li>近半年是否有信用卡遲繳： 是 </li>
+        <% end %>
+        <li>與銀行信用卡往來時間： <%= @credit_case.credit_card_years %> </li>
+    </ul>
+    
+    <h2>個人資訊</h2>
+    <hr>
+    <ul class="demand" id="demand-3">
+        <li>年齡: <%= @credit_case.applicant_name %> </li>
+        <li>Email: <%= @credit_case.applicant_email %> </li>
+        <li>電話: <%= @credit_case.applicant_phone %> </li>
+        <li>LINE: <%= @credit_case.applicant_line_id %> </li>   
+    </ul>
+    
+</div>
