@@ -4,6 +4,8 @@ class CreditLoanController < ApplicationController
     @credit_case = CreditCase.new(credit_loan_params)
 
     if @credit_case.save
+      CreditcaseConfirmMailer.delay.mail_content(@credit_case.id)
+      CreditcaseInformManagerMailer.delay.mail_content(@credit_case.id)
       redirect_to :controller => 'credit_loan', :action => 'apply_credit_loan', :msg => 'success'
     else
       render :apply_credit_loan
