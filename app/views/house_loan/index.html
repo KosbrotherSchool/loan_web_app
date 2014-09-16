@@ -73,46 +73,103 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="span6">
+				<div class="span4">
 
-					<div class="service-box aligncenter flyLeft animated fadeInLeftBig">
+					<div class="service-box aligncenter flyLeft animated fadeInLeftBig" style="height:250px">
 						<div class="icon">
 							<i class="icon-circled icon-bgprimary icon-user icon-4x "></i>
 						</div>
-						<h5>服務項目一：<span class="colored">問房貸</span></h5>
+						<h5 style="margin-bottom:10px"><span class="colored">專業貸款諮詢</span></h5>
 						<h6>
-							免費填寫需求單
-							<br/>
-							回覆您銀行房貸條件
-							<br/>
-							以及銀行專員聯絡方式
+							認證貸款專員<br/>直接與您聯繫<br/>絕非代辦中心！
 						</h6>
-						<%= link_to "申請房貸評估", apply_mortgage_path, :class => "btn btn-medium btn-danger" %>	
+						<!-- <%= link_to "申請房貸評估", apply_mortgage_path, :class => "btn btn-medium btn-danger" %>	-->
 					</div>
 				</div>
 
-				<div class="span6">
+				<div class="span4">
 
-					<div class="service-box aligncenter">
+					<div class="service-box aligncenter" style="height:250px">
 						<div class="icon">
-							<i class="icon-circled icon-bgwarning icon-credit-card icon-4x "></i>
+							<i class="icon-circled icon-bgsuccess icon-credit-card icon-4x "></i>
 						</div>
-						<h5>服務項目二：<span class="colored">問信貸</span></h5>
+						<h5 style="margin-bottom:10px"><span class="colored">快速回覆</span></h5>
 						<h6>
-							免費填寫需求單
+							三天內回覆
 							<br/>
-							回覆您銀行信貸條件
+							多家銀行貸款條件
 							<br/>
-							以及銀行專員聯絡方式
+							輕鬆選出最佳貸款
 						</h6>
-						<%= link_to "申請信貸評估", apply_credit_loan_path, :class => "btn btn-medium btn-danger" %>				
+						<!-- <%= link_to "申請信貸評估", apply_credit_loan_path, :class => "btn btn-medium btn-danger" %>	 -->	
+					</div>
+				</div>
+
+				<div class="span4">
+
+					<div class="service-box aligncenter flyRight animated fadeInRightBig" style="height:250px">
+						<div class="icon">
+							<i class="icon-circled icon-bgwarning icon-coffee icon-4x "></i>
+						</div>
+						<h5 style="margin-bottom:10px"><span class="colored">合理收費</span></h5>
+						<h6 style="margin-bottom:3px">
+							透明收費標準
+							<br/>
+							核貸後才收媒合費
+							<br/>
+						</h6>
+						<a href="#" class="btn btn-warning">了解更多 <i class="icon-angle-right"></i></a>
+						<!-- <%= link_to "申請信貸評估", apply_credit_loan_path, :class => "btn btn-medium btn-danger" %>	 -->	
 					</div>
 				</div>
 				
 			</div>
 			
 			
-	
+			<div class="row" style="margin-bottom: 0px">
+				<div class="span12">
+					<div class="cta-box" style="background: #F5FAFF">
+						<div class="row">
+							<div class="span7">
+								<div class="cta-text">
+									<h2>立即 <span>免費</span> 申請諮詢，核貸才收費
+										<a href="#" class="btn btn-warning">了解更多 <i class="icon-angle-right"></i></a>
+									</h2>
+								</div>
+							</div>
+							<div class="span5">
+								<div class="cta-btn">
+									<%= link_to  apply_mortgage_path, :class => "btn btn-success" do %>
+										房貸申請<i class="icon-angle-right"></i>
+									<% end %>
+									<%= link_to  apply_credit_loan_path, :class => "btn btn-primary", :style => "margin-top: 3px" do %>
+										信貸申請<i class="icon-angle-right"></i>
+									<% end %>
+								</div>
+							</div>							
+						</div>
+					</div>
+				</div>	
+			</div>
+
+			<div class="row">
+				<div class="span12">
+					<div class="cta-box" style="background: #F5FAFF">
+						<div class="row">
+							<div class="span6">
+								<div class="cta-text">
+									<h2>直接加LINE諮詢</h2>
+								</div>
+							</div>
+							<div class="span6">
+								<div class="cta-btn">
+									<div class="btn btn-medium btn-danger">LINE ID: EZBANK_SERVICE</div>
+								</div>
+							</div>							
+						</div>
+					</div>
+				</div>	
+			</div>
 
 			<div class="row">
 				<div class="span6 aligncenter">
@@ -140,219 +197,6 @@
 
 
 			<div class="row">
-				
-				<div class="span12">
-
-					<h2>合作專員&nbsp;
-						<span style="font-size:18px">目前有 <%= Lender.all.size %> 位專員</span>
-					</h2>
-					<hr />
-
-					<div class="clearfix"></div>
-
-					<div class="row" style="margin-left:0px">
-						<section id="team">
-							<ul id="thumbs" class="team">
-
-								<li class="item-thumbs span3" >
-									<div class="team-box thumbnail">
-										<h6>南山人壽</h6>
-										<div class="caption">
-											<ul class="social-network">	
-												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
-																								
-												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
-												
-												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-
-								<li class="item-thumbs span3" >
-									<div class="team-box thumbnail">
-										<h6>匯豐銀行</h6>
-										<div class="caption">
-											<ul class="social-network">	
-												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
-																								
-												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
-												
-												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-
-								<li class="item-thumbs span3" >
-									<div class="team-box thumbnail">
-										<h6>遠東銀行</h6>
-										<div class="caption">
-											<ul class="social-network">	
-												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
-																								
-												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
-												
-												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-
-								<li class="item-thumbs span3" >
-									<div class="team-box thumbnail">
-										<h6>澳盛銀行</h6>
-										<div class="caption">
-											<ul class="social-network">	
-												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
-																								
-												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
-												
-												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-
-								<li class="item-thumbs span3" >
-									<div class="team-box thumbnail">
-										<h6>大眾銀行</h6>
-										<div class="caption">
-											<ul class="social-network">	
-												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
-																								
-												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
-												
-												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-
-								<li class="item-thumbs span3" >
-									<div class="team-box thumbnail">
-										<h6>新光銀行</h6>
-										<div class="caption">
-											<ul class="social-network">	
-												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
-																								
-												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
-												
-												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-
-								<li class="item-thumbs span3" >
-									<div class="team-box thumbnail">
-										<h6>花旗銀行</h6>
-										<div class="caption">
-											<ul class="social-network">	
-												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
-																								
-												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
-												
-												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-
-								<li class="item-thumbs span3" >
-									<div class="team-box thumbnail">
-										<h6>兆豐金控</h6>
-										<div class="caption">
-											<ul class="social-network">	
-												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
-																								
-												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
-												
-												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-
-								<li class="item-thumbs span3" >
-									<div class="team-box thumbnail">
-										<h6>國泰人壽</h6>
-										<div class="caption">
-											<ul class="social-network">	
-												<li><a href="#" title="電話認證"><i class="icon-circled icon-bgsuccess icon-mobile-phone"></i></a></li>
-																								
-												<li><a href="#" title="信箱認證"><i class="icon-circled icon-bgsuccess icon-file"></i></a></li>
-												
-												<li><a href="#" title="查核建檔"><i class="icon-circled icon-bgsuccess icon-ok-sign"></i></a></li>
-											</ul>
-										</div>
-									</div>
-								</li>
-
-							</ul>
-						</section>
-						
-					</div>
-				</div>			
-			</div>
-			
-			 	<!-- <div class="row">
-			 		<div class="span12">
-						<h2><span>申請流程</span></h2>
-						<hr />
-					</div> 
-			  </div> 
-
-			  <div class="row">
-
-						<div class="span4">
-							<div class="box flyLeft">
-								<div class="icon">
-									<i class="ico icon-circled icon-bgdark icon-check active icon-3x"></i>
-								</div>
-								<div class="text">
-									<h4><strong>第一步：<br />填寫需求單</strong></h4>
-									<h5>
-									詳細填寫需求，專員針對個人條件、房屋條件、貸款需求來評估。
-									</h5>
-								</div>
-							</div>
-						</div>
-					
-						<div class="span4">
-							<div class="box flyIn">
-								<div class="icon">
-									<i class="ico icon-circled icon-bgdark icon-group active icon-3x"></i>
-								</div>
-								<div class="text">
-									<h4><strong>第二步：<br />等待專員回信</strong></h4>
-									<h5>
-									各個專員收到需求後，在指定時間內，提供優惠條件供您比較。
-									</h5>
-								</div>
-							</div>
-						</div>
-						<div class="span4">
-							<div class="box flyRight">
-								<div class="icon">
-									<i class="ico icon-circled icon-bgdark icon-heart active icon-3x"></i>
-								</div>
-								<div class="text">
-									<h4><strong>第三步：<br />輕鬆選擇好貸款</strong></h4>
-									<h5>
-									從眾多專員評估結果，選擇最好的幾個送件申請貸款！
-									</h5>
-								</div>
-							</div>
-						</div>
-
-				</div> -->	
-
-
-			
-
-
-			<div class="row">
 				<div class="span12 aligncenter">
 					<hr />
 
@@ -377,9 +221,25 @@
 							</div>
 						</li>					
 					</ul>
-				</div>	
-				
-			</div>				
+				</div>			
+			</div>
+
+			<div class="row">
+				<div class="span12">
+					<h2><span>合作夥伴</span></h2>
+					<hr/>
+				</div>
+			</div>
+			<div class="row"> 
+				<div class="span3">
+					<%= link_to "http://www.foundi.info/", :target => "_blank" do %>
+						<%= image_tag("img/slides/camera/slide2/logo.png") %>
+					<% end %>
+				</div>								
+			</div>
+
+
+							
 			
 		</div>
 	</section>

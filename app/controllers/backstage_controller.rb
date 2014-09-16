@@ -314,8 +314,11 @@ class BackstageController < ApplicationController
 		@bank = Bank.find(params[:bank_id])
 	end
 
-	def bank_product_detail
-		
+	def bank_product_detail	
+	end
+
+	def credit_cases
+		@credit_cases = CreditCase.all
 	end
 
 	private 

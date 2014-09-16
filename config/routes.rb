@@ -63,6 +63,8 @@ Rails.application.routes.draw do
   patch "backstage/update_loanded_onlending" => "backstage#update_loanded_onlending"
   patch "backstage/update_failed_onlending" => "backstage#update_failed_onlending"
 
+  get "backstage/credit_cases" => "backstage#credit_cases"
+
   get "backstage/lenders" => "backstage#lenders" 
   patch "backstage/update_lender" => "backstage#lenders_update_lender"
   get "backstage/lenders/:lender_id" => "backstage#lender_edit"

@@ -17,6 +17,13 @@
 				<li>
 			<% end %>
 		  <%= link_to '增貸案件管理', backstage_onlendings_path %></li>
+		  
+		  <% if action_name == "onlendings" %>
+				<li class="active">
+			<% else %>
+				<li>
+			<% end %>
+		  <%= link_to '信貸案件管理', backstage_credit_cases_path %></li>
 
 		  <% if action_name == "lenders" %>
 				<li class="active">
