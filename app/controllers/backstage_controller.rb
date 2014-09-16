@@ -321,6 +321,19 @@ class BackstageController < ApplicationController
 		@credit_cases = CreditCase.all
 	end
 
+	def update_un_reply_credit_case
+		credit_case = CreditCase.find(params[:key])
+		credit_case.notes = params[:credit_case][:notes]
+		credit_case.status_id = 2
+		credit_case.save
+
+		redirect_to :controller => 'backstage', :action => 'credit_cases'
+	end
+
+	def credit_case_detail
+		@credit_case = CreditCase.find(params[:credit_case_id])
+	end
+
 	private 
 
 	def check_user

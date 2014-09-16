@@ -2,6 +2,7 @@ class CreditLoanController < ApplicationController
 
   def create
     @credit_case = CreditCase.new(credit_loan_params)
+    @credit_case.status_id = 1
 
     if @credit_case.save
       CreditcaseConfirmMailer.delay.mail_content(@credit_case.id)

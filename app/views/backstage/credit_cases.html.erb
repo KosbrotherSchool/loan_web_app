@@ -1,1 +1,89 @@
-credit_cases
+<div id="wrapper">
+	
+	<%= render "devise/shared/nevigation_links" %>
+	
+	<section id="content">
+		<div class="container">
+			<div class="row">
+				<h2>等待回覆案件</h2>
+			</div>
+
+			<div class="row">
+
+				<table class="table" border=1>
+						<tr>
+							<td>申請填表時間</td>
+							<td>申請人</td>
+							<td>申請人電話</td>
+							<td>LINE ID</td>
+							<td>貸款額度</td>
+							<td>備註</td>
+							<td>送出</td>
+						</tr>
+					<% @credit_cases.where("status_id = 1").each do |f|%>
+						<%= form_for f, :url => backstage_update_un_reply_credit_case_path , html: {class: "form-horizontal"} do |form| %>
+					 	<tr>
+							<td><%= f.created_at.strftime("%m/%d/%y-%H:%M") %></td>
+							<td>
+								<%= link_to(root_path+"backstage/credit_cases/#{f.id}", {:style => 'color: #09B3DD'}) do %>
+									<%= f.applicant_name %>
+								<% end %>
+							</td>
+							<td><%= f.applicant_phone %></td>
+							<td><%= f.applicant_line_id %></td>
+							<td><%= f.loan_money %></td>
+							<td><%= form.text_field :notes, :placeholder => f.notes, :class => "input-large"%></td>
+							<input type="hidden" name="key" value=<%= f.id %>>
+							<td><%= form.submit "已回覆" %></td>
+						</tr>
+						<% end %>
+					<% end %>
+				</table>			
+
+			</div>
+
+
+			<div class="row">
+				<h2>評估中</h2>
+			</div>
+
+			<div class="row">
+
+				<table class="table" border=1>
+						<tr>
+							<td>更新時間</td>
+							<td>申請人</td>
+							<td>申請人電話</td>
+							<td>LINE ID</td>
+							<td>貸款額度</td>
+							<td>備註</td>
+							<td>狀態</td>
+							<td>送出</td>
+						</tr>
+					<% @credit_cases.where("status_id = 2").each do |f|%>
+						<%= form_for f, :url => backstage_update_un_reply_credit_case_path , html: {class: "form-horizontal"} do |form| %>
+					 	<tr>
+							<td><%= f.updated_at.strftime("%m/%d/%y-%H:%M") %></td>
+							<td>
+								<%= link_to(root_path+"backstage/credit_cases/#{f.id}", {:style => 'color: #09B3DD'}) do %>
+									<%= f.applicant_name %>
+								<% end %>
+							</td>
+							<td><%= f.applicant_phone %></td>
+							<td><%= f.applicant_line_id %></td>
+							<td><%= f.loan_money %></td>
+							<td><%= form.text_field :notes, :placeholder => f.notes, :class => "input-large"%></td>
+							<td><%= form.select(:status, ['評估中'], {:selected  => "評估中"}, { :class => 'span2'}) %></td>
+							<input type="hidden" name="key" value=<%= f.id %>>
+							<td><%= form.submit "送出" %></td>
+						</tr>
+						<% end %>
+					<% end %>
+				</table>			
+
+			</div>
+
+		</div>
+	</section>
+
+</div>
