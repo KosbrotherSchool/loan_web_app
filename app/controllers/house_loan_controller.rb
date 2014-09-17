@@ -15,6 +15,9 @@ class HouseLoanController < ApplicationController
 		end
 	end
 
+	def pricing
+	end
+
 	def create_lender
 		@lender = Lender.new(lender_params)
 		@lender.is_phone_confirmed = false

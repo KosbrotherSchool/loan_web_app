@@ -76,16 +76,16 @@
 	<div class="container">
 
 		<div class="row-fluid nomargin">
-			<div class="span2">
+			<div class="span4">
 				<div class="logo">
 					<%= link_to(root_path) do %>
 						 <div class="logo">ez<span>Bank</span></div>
 					<% end %>
 				</div>
 		  </div>
-			<div class="span2">
+			<!-- <div class="span2">
 				<div class="fb-like" data-href="https://www.facebook.com/ezbank.com.tw" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-			</div>
+			</div> -->
 		<div class="span8">
 			<div class="navbar navbar-static-top">
 				<div class="navigation">
@@ -137,6 +137,14 @@
 								<li>
 							<% end %>
 								<%= link_to "查詢房貸", banks_path %>
+							</li>
+
+							<% if action_name == "pricing" %>
+								<li class="dropdown active">
+							<% else %>
+								<li>
+							<% end %>
+								<%= link_to "收費方式", pricing_path %>
 							</li>
 
 					</ul>

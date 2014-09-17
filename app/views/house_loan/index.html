@@ -40,14 +40,14 @@
 							<div class="container">
 								<div class="row"> 
 									<div class="span5">
-										<%= image_tag("img/slides/camera/slide2/logo.png") %>
+										<%= image_tag("img/slides/camera/slide2/logo.jpg") %>
 									</div>								
 									<div class="span6">
-										<h2 class="animated fadeInDown"><strong><span class="white">『foundi 房地資訊站』<br /> 讓每一個使用者都能更快找到心目中最理想的房子</span></strong></h2>
+										<h2 class="animated fadeInDown"><strong><span class="colored">免費諮詢及詢問銀行條件<br /> 『核貸成功才收費』</span></strong></h2>
 										
-										<a href="http://www.foundi.info/" target="_blank" class="btn btn-theme btn-large animated fadeInUp">
-											<i class="icon-magic"></i> 立即前往
-										</a>
+										<%= link_to pricing_path, :class => "btn btn-warning btn-large animated fadeInUp" do %>
+											<i class="icon-magic"></i> 了解更多
+										<% end %>
 									</div>
 
 								</div>  
@@ -118,7 +118,9 @@
 							核貸後才收媒合費
 							<br/>
 						</h6>
-						<a href="#" class="btn btn-warning">了解更多 <i class="icon-angle-right"></i></a>
+						<%= link_to pricing_path, :class => "btn btn-warning" do %>
+							了解更多 <i class="icon-angle-right"></i>
+						<% end %>
 						<!-- <%= link_to "申請信貸評估", apply_credit_loan_path, :class => "btn btn-medium btn-danger" %>	 -->	
 					</div>
 				</div>
@@ -133,7 +135,9 @@
 							<div class="span7">
 								<div class="cta-text">
 									<h2>立即 <span>免費</span> 申請諮詢，核貸才收費
-										<a href="#" class="btn btn-warning">了解更多 <i class="icon-angle-right"></i></a>
+										<%= link_to pricing_path, :class => "btn btn-warning" do %>
+											了解更多 <i class="icon-angle-right"></i>
+										<% end %>
 									</h2>
 								</div>
 							</div>
@@ -163,7 +167,7 @@
 							</div>
 							<div class="span6">
 								<div class="cta-btn">
-									<div class="btn btn-medium btn-danger">LINE ID: EZBANK_SERVICE</div>
+									<div class="btn btn-medium btn-danger">LINE ID: ezbank-service</div>
 								</div>
 							</div>							
 						</div>
@@ -233,7 +237,7 @@
 			<div class="row"> 
 				<div class="span3">
 					<%= link_to "http://www.foundi.info/", :target => "_blank" do %>
-						<%= image_tag("img/slides/camera/slide2/logo.png") %>
+						<%= image_tag("img/slides/camera/slide2/logo2.png") %>
 					<% end %>
 				</div>								
 			</div>

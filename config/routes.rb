@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "msg" => "house_loan#index"
   get "about-us" => "house_loan#about_us"
   get "index" => "house_loan#index"
+  get "pricing" => "house_loan#pricing"
   
   get "banks" => "banks#banks_list"
   get "banks/:bank_id" => "banks#bank_products"
