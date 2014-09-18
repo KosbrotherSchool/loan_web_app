@@ -8,13 +8,20 @@
 	  <div><%= f.label :email %>
 	  <%= f.email_field :email, autofocus: true, placeholder: "Email address" %></div>
 
+	  <div><label>LINE ID</label>
+	    <%= text_field_tag 'line_id',"", :class => "form-signin",placeholder: "有填可快速回覆" %>
+	  </div>
+
 	  <div><%= f.label "密碼" %>
-	    <%= f.password_field :password, autocomplete: "off", placeholder: "請輸入密碼" %></div>
+	    <%= f.password_field :password, autocomplete: "off", placeholder: "請輸入密碼" %>
+	  </div>
 
 	  <div><%= f.label "密碼確認" %>
-	    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "請再次輸入密碼" %></div>
+	    <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "請再次輸入密碼" %>
+	  </div>
 
-	  <div><%= f.submit "註冊", class: "btn btn-large btn-primary" %></div>
+	  <div><%= f.submit "註冊", class: "btn btn-large btn-primary" %>
+	  </div>
 
 	<% end %>
 

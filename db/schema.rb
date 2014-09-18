@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916124507) do
+ActiveRecord::Schema.define(version: 20140918001225) do
 
   create_table "bank_products", force: true do |t|
     t.integer  "bank_id"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20140916124507) do
     t.boolean  "is_person_confirmed"
     t.boolean  "is_show"
     t.integer  "user_lender_id"
+    t.string   "line_id"
   end
 
   create_table "loan_cases", force: true do |t|
