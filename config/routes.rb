@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get "about-us" => "house_loan#about_us"
   get "index" => "house_loan#index"
   get "pricing" => "house_loan#pricing"
-  
+  get "apply-case" => "house_loan#apply_case"
+  post "case_create" => "house_loan#case_create"
+
   get "banks" => "banks#banks_list"
   get "banks/:bank_id" => "banks#bank_products"
 

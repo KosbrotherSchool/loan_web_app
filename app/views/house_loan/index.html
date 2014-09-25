@@ -20,11 +20,12 @@
 							<div class="container">
 								<div class="row">                                
 									<div class="span6">
-										<h2 class="animated fadeInDown"><strong><span class="white">EZBANK<br /> 讓您「輕鬆取得優惠房貸」！</span></strong></h2>
+										<h2 class="animated fadeInDown"><strong><span class="white">EZBANK<br /> 讓您「輕鬆取得優惠貸款」！</span></strong></h2>
 										
-										<a href="apply-mortgage.html" class="btn btn-success btn-large animated fadeInUp">
-											<i class="icon-hand-up"></i> 立即填表申請房貸
-										</a>
+										<%= link_to apply_case_path, :class => "btn btn-success btn-large animated fadeInUp" do %>
+											<i class="icon-hand-up"></i> 立即填表申請諮詢
+										<% end %>
+
 									</div>
 									<div class="span5">
 										<%= image_tag("img/slides/camera/slide1/screen.png", class: "animated bounceInDown delay1") %>
@@ -143,36 +144,11 @@
 							</div>
 							<div class="span5">
 								<div class="cta-btn">
-									<%= link_to  apply_mortgage_path, :class => "btn btn-success" do %>
-										房貸申請<i class="icon-angle-right"></i>
-									<% end %>
-									<%= link_to  apply_credit_loan_path, :class => "btn btn-primary", :style => "margin-top: 3px" do %>
-										信貸申請<i class="icon-angle-right"></i>
+									<%= link_to  apply_case_path, :class => "btn btn-success" do %>
+										填表申請諮詢<i class="icon-angle-right"></i>
 									<% end %>
 								</div>
 							</div>							
-						</div>
-					</div>
-				</div>	
-			</div>
-
-			<div class="row">
-				<div class="span12">
-					<div class="cta-box " style="background: #F5FAFF">
-						<div class="row">
-							<div class="span6">
-								<div class="cta-text">
-									<h2>直接加<span style="color:#0FDB46">LINE</span>諮詢</h2>
-								</div>
-							</div>
-							<div class="span4">
-								<div class="cta-btn">
-									<div class="btn btn-medium btn-danger">LINE ID:&nbsp;&nbsp;ezbank-service</div>
-								</div>			
-							</div>
-							<div class="span2 service-box aligncenter" style="margin-left: 0px; background:none;border:0px;-webkit-box-shadow:none;box-shadow:none" >
-									<%= image_tag "img/service_line.png" %>
-							</div>
 						</div>
 					</div>
 				</div>	

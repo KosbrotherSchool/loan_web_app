@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<head>
+    <style>
+
+        .page-header {
+            padding-bottom: 2px;
+            margin: 10px 0 20px;
+            border-bottom: 1px solid #eeeeee;
+        }
+        
+        .addr-county, .addr-area{width:auto;}
+        .addr-county{
+        }
+        .addr-area{
+            
+        }
+        .addr-zip{
+	    			display: none !important;
+            width:30px;
+            border:1px solid #666;
+        }
+				form#contactform input[type="text"]{
+				  /*width: 50%;*/
+				}
+        #twzipcode > select {
+	  					margin-right: 9px;
+				}
+
+    </style>
+    <script type="text/javascript">
+      function nextstep(tabNum){
+				var selectTab = '#myTab a[href="#tab'+tabNum+'"]';
+				$(selectTab).tab('show');
+				location.hash="tab"+tabNum;
+				event.preventDefault();
+      }
+    </script>
+</head>
+
+<body>
+
+<div id="wrapper">
+		
+	<section id="inner-headline">
+		<div class="container">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="inner-heading">
+					<h2>申請貸款諮詢</h2>
+					</div>
+				</div>	
+			</div>			
+		</div>
+	</section>
+
+	<section id="content">
+		<div class="container">
+			<div class="row">
+				<div class="span9">
+				<% if @case.present? %>				
+				  <h4>詳細填寫需求，專員才能提供最精準的評估！</h4>
+				  <h5><span class="text-error">*</span> 星記號為必填</h5>
+
+				 	<% if @case.errors.any? %>
+				 		<div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px; margin-bottom:30px">
+								<h2>資料填寫不完整: </h2>
+								<ul>
+									<% @case.errors.full_messages.each do |message|%>
+										<li><%= message %></li>
+									<% end %>
+								</ul>
+						</div>
+					<% end %>
+				  
+				  <%= form_for @case, :url => case_create_path  , html: {class: "form-horizontal"} do |f| %>
+
+				  <div class="row-fluid">
+
+
+				  	<div class="control-group">
+					      <label class="control-label" for="">您的稱呼<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :name, :placeholder => "如：林先生、陳小姐"%>
+					      </div>
+					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label" for="">年齡<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :age, :placeholder => "", :class => "input-small"%>
+						  		歲
+					      </div>
+					  </div>
+				
+					  <div class="control-group">
+					      <label class="control-label" for="">預計貸款金額<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      <%= f.text_field :loan_money,  :class => "input-small"%>
+						  	萬
+					      </div>
+					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label" for="">用途<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+								  <label class="radio">
+								  		<%= radio_button_tag("simple_case[usage]", "信貸",checked = true) %>
+								      信貸
+								  </label>
+								  <label class="radio">
+								  		<%= radio_button_tag("simple_case[usage]", "房貸或轉增貸") %>
+								      房貸或轉增貸
+								  </label>
+								  <label class="radio">
+								      <%= radio_button_tag("simple_case[usage]", "其他") %>
+								      其他
+								  </label>  
+					      </div>
+					  </div>  
+			  
+					  <div class="control-group">
+					      <label class="control-label">是否有負債<span class="text-error">*</span></label>
+					      <div class="controls">
+							  <label class="radio">
+							      <%= radio_button_tag("simple_case[is_in_debt]", "false", checked = true ) %>
+							      無
+							  </label>
+							  <label class="radio">
+							      <%= radio_button_tag("simple_case[is_in_debt]","true") %>
+							      有
+							  </label>
+					      </div>
+					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label">是否有使用信用卡<span class="text-error">*</span></label>
+					      <div class="controls">
+							  <label class="radio">
+							      <%= radio_button_tag("simple_case[is_using_card]", "true", checked = true ) %>
+							      有
+							  </label>
+							  <label class="radio">
+							      <%= radio_button_tag("simple_case[is_using_card]","false") %>
+							      無
+							  </label>
+					      </div>
+					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label" for="">聯絡的<span style="color:#0FDB46">LINE</span>ID<span class="text-error">*</span><span class="text-error"></span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :line_id, :placeholder => "請填 LINE ID 或 電話"%>
+					      </div>
+					  </div>
+
+					  
+					  <div class="control-group">
+					      <label class="control-label">特殊需求與說明：</label>
+					      <div class="controls">
+					      	<%= f.text_area :other_info, :placeholder => "如有特別需求,可加以說明", :style=> "width:95%; height:100px"%>
+					      </div>
+					  </div>
+
+					  <div class="control-group">
+					      <div class="controls">
+								  <div class="form-actions">
+								    <button class="btn btn-success input-medium" type="submit">送出</button>
+								    <p style="margin-top:10px">我們會盡快與您聯絡，感謝您。</p>
+								  </div>
+					      </div>
+					  </div>
+
+					 </div>
+
+						<% end %>
+				  	</form>
+				  <% else %>
+				  	<h4 class="form-submit-minal-height">您的需求已送出，感謝您，專員將儘快回覆您的需求。</h4>		  	
+				  <% end %>
+				</div>
+				
+					<div class="span3">
+						<div class="clearfix"></div>
+						<aside class="right-sidebar">
+
+							<div class="widget">
+								<h5 class="widgetheading">個人資料保護說明<span></span></h5>
+								您同意資料將傳送與我們合作的專員。
+								<br />
+								未經您的同意，我們絕對不會將您的資料販售給其他個人或公司。
+								<br />
+								詳細內容請見「<a href="privacy.html" target="_blank" >隱私權聲明</a>」。
+							</div>					
+						</aside>
+					</div>	
+			</div>
+		</div>
+	</section>
+</div>
+<a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bglight icon-2x active"></i></a>	
+
+    <!-- javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+  <%= javascript_include_tag "js/jquery.twzipcode.js" %>  
+	<!-- <script type="text/javascript" src="assets/js/jquery.twzipcode.js"></script> -->
+	
+	<script type="text/javascript">
+	    $('#twzipcode').twzipcode({
+		css: ['addr-county', 'addr-area', 'addr-zip']
+	    });
+	</script>
+	
+</body>
+</html>

@@ -163,5 +163,10 @@ en:
         email: ""
         password: ""
         password_confirmation: ""
+      simple_case:
+        age: ""
+        name: ""
+        line_id: ""
+        loan_money: ""
 
 
