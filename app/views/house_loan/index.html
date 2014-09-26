@@ -10,73 +10,127 @@
 	<!-- section featured -->
 	<section id="featured">
 
-			<!-- slideshow start here -->
+			<div  style= "padding-bottom: 35px; background: url(<%= asset_path 'img/slides/camera/slide1/img1.jpg' %>)"  >
+				<div class="camera_caption fadeFromLeft">
+					<div class="container">
+						<div class="row">                                
+							<div class="span6">
+								<h2 class="animated fadeInDown"><strong><span class="white">免費諮詢多家銀行，<br /> 輕鬆取得優惠貸款！</span></strong></h2>
+								
+								<%= link_to apply_case_path, :class => "btn btn-success btn-large animated fadeInUp" do %>
+									<i class="icon-hand-up"></i> 立即填表申請諮詢
+								<% end %>
 
-				<div class="camera_wrap" id="camera-slide">
-				
-					<!-- slide 1 here -->
-					<div  data-src= "<%= asset_path 'img/slides/camera/slide1/img1.jpg' %>">
-						<div class="camera_caption fadeFromLeft">
-							<div class="container">
-								<div class="row">                                
-									<div class="span6">
-										<h2 class="animated fadeInDown"><strong><span class="white">EZBANK<br /> 讓您「輕鬆取得優惠貸款」！</span></strong></h2>
-										
-										<%= link_to apply_case_path, :class => "btn btn-success btn-large animated fadeInUp" do %>
-											<i class="icon-hand-up"></i> 立即填表申請諮詢
-										<% end %>
-
-									</div>
-									<div class="span5">
-										<%= image_tag("img/slides/camera/slide1/screen.png", class: "animated bounceInDown delay1") %>
-									</div>
-								</div>  
-							</div>                                                                                         
-						</div>
-					</div>
-					
-					<!-- slide 2 here -->
-					<div  data-src= "<%= asset_path 'img/slides/camera/slide2/img1.jpg' %>">
-						<div class="camera_caption fadeFromLeft">
-							<div class="container">
-								<div class="row"> 
-									<div class="span5">
-										<%= image_tag("img/slides/camera/slide2/logo.jpg") %>
-									</div>								
-									<div class="span6">
-										<h2 class="animated fadeInDown"><strong><span class="colored">免費諮詢及詢問多家銀行條件<br /> 『核貸成功才收費』</span></strong></h2>
-										
-										<%= link_to pricing_path, :class => "btn btn-warning btn-large animated fadeInUp" do %>
-											<i class="icon-magic"></i> 了解更多
-										<% end %>
-									</div>
-
-								</div>  
-							</div>                                                                                         
-						</div>
-					</div>
-					
-					
-
+							</div>
+							<div class="span5">
+								<%= image_tag("img/slides/camera/slide1/screen.png", class: "animated bounceInDown delay1") %>
+							</div>
+						</div>  
+					</div>                                                                                         
 				</div>
-
-			<!-- slideshow end here --> 
+			</div>
 
 	</section>
 	<!-- /section featured -->
 	
 	<section id="content">
 		<div class="container">
+
+			<div class="row">
+				
+				<div class="span6">
+					<h2>最新消息</h2>
+					<hr>
+						
+					<% RecentNews.last(3).reverse.each do |news| %>	
+						<p class="ellipsis" >
+							<span style="font-weight: bold"><%= news.date_string %></span> 
+							<%= link_to news.title, news.link, :target=>"_blank" %>
+						</p>
+					<% end %>
+				</div>
+
+				<div class="span6">
+					<h2>貸款教室</h2>
+					<hr>
+					<% RecentNews.last(3).reverse.each do |news| %>	
+						<p class="ellipsis" >
+							<span style="font-weight: bold"><%= news.date_string %></span> 
+							<%= link_to news.title, news.link, :target=>"_blank" %>
+						</p>
+					<% end %>	
+				</div>
+			</div>
+
+
 			<div class="row" style="margin-bottom:0px">
 				<div class="span12">
-					<h2><span>我們的服務</span></h2>
+					<h2><span>我們的服務價值</span></h2>
 					<hr/>
 				</div>
 			</div>
 			<div class="row">
 				<div class="span4">
 
-					<div class="service-box aligncenter flyLeft animated fadeInLeftBig" style="height:250px">
+					<div class="service-box aligncenter" style="height:250px">
+						<div class="icon">
+							<i class="icon-circled icon-bgprimary icon-user icon-4x "></i>
+						</div>
+						<h5 style="margin-bottom:10px"><span class="colored">免費諮詢</span></h5>
+						<h6>
+							教您提高貸款機率<br/>養成良好信用<br/>避免貸款陷阱!
+						</h6>
+					</div>
+				</div>
+
+				<div class="span4">
+
+					<div class="service-box aligncenter" style="height:250px">
+						<div class="icon">
+							<i class="icon-circled icon-bgsuccess icon-credit-card icon-4x "></i>
+						</div>
+						<h5 style="margin-bottom:10px"><span class="colored">多家銀行合作</span></h5>
+						<h6>
+							三天內回覆
+							<br/>
+							多家銀行貸款條件
+							<br/>
+							節省您寶貴時間!
+						</h6>
+					</div>
+				</div>
+
+				<div class="span4">
+
+					<div class="service-box aligncenter" style="height:250px">
+						<div class="icon">
+							<i class="icon-circled icon-bgwarning icon-coffee icon-4x "></i>
+						</div>
+						<h5 style="margin-bottom:10px"><span class="colored">收費透明</span></h5>
+						<h6 style="margin-bottom:3px">
+							成功核貸100萬
+							<br/>
+							只收媒合費用 NT＄2000!
+							<br/>
+						</h6>
+						<%= link_to pricing_path, :class => "btn btn-warning" do %>
+							了解更多 <i class="icon-angle-right"></i>
+						<% end %>
+					</div>
+				</div>
+				
+			</div>
+
+			<!-- <div class="row" style="margin-bottom:0px">
+				<div class="span12">
+					<h2><span>我們的服務保證</span></h2>
+					<hr/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span4">
+
+					<div class="service-box aligncenter" style="height:250px">
 						<div class="icon">
 							<i class="icon-circled icon-bgprimary icon-user icon-4x "></i>
 						</div>
@@ -84,7 +138,6 @@
 						<h6>
 							個資絕對保密<br/>非經過申請者同意<br/>不外洩給第三方！
 						</h6>
-						<!-- <%= link_to "申請房貸評估", apply_mortgage_path, :class => "btn btn-medium btn-danger" %>	-->
 					</div>
 				</div>
 
@@ -102,13 +155,12 @@
 							<br/>
 							輕鬆選出最佳貸款
 						</h6>
-						<!-- <%= link_to "申請信貸評估", apply_credit_loan_path, :class => "btn btn-medium btn-danger" %>	 -->	
 					</div>
 				</div>
 
 				<div class="span4">
 
-					<div class="service-box aligncenter flyRight animated fadeInRightBig" style="height:250px">
+					<div class="service-box aligncenter" style="height:250px">
 						<div class="icon">
 							<i class="icon-circled icon-bgwarning icon-coffee icon-4x "></i>
 						</div>
@@ -125,19 +177,138 @@
 					</div>
 				</div>
 				
+			</div> -->
+			
+			
+			
+
+
+			<!-- <h4 class="title"><strong>用過的朋友都怎麼說？</strong></h4>
+			<div class="blankline20"></div> -->
+
+
+			<div class="row" style="margin-bottom:0px">
+				<div class="span12 aligncenter">
+					<h2><strong>用過的朋友都怎麼說？</strong></h2>
+					<hr/>
+				</div>
 			</div>
-			
-			
-			<div class="row" style="margin-bottom: 0px">
+
+			<div class="row">
+
+				<div class="span4 aligncenter">
+					  <h4>實例見證1:</h4>
+					  <h5>
+					  	原先想要的房貸金額無法達到，<br>
+					  	比較多家銀行後，<br>
+					  	取得理想的貸款成數，<br>
+					  	感謝EZBANK及貸款專員。<br>
+					  </h5>
+					
+					<div class="testimonial-autor">
+						<h4>
+							新北市 吳小姐 服務業<br>
+						</h4>
+					</div>
+				</div>
+
+				<div class="span4 aligncenter">
+				
+						<h4>實例見證2:</h4>
+			  		<h5>
+					  	信用卡利息實在太高了，<br>
+					  	每個月只剩下幾千塊能用，<br>
+					  	困擾了很久，<br>
+					  	終於能夠減少這筆支出了<br>
+					  	以後一定好好注意自己的信用。<br>
+					  </h5>
+					
+						<div class="testimonial-autor">
+							<h4>台北市 藍小姐 服務業</h4>
+						</div>
+				</div>
+
+				<div class="span4 aligncenter">
+				
+					 	<h4>實例見證3:</h4>
+					  <h5>
+					  	想買車很久了，<br>
+					  	猶豫要用車貸還是信貸，<br>
+					  	透過諮詢才知道信貸的利率比較低，<br>
+					  	成功入手愛車，<br>
+					  	感謝EZBANK。<br>
+					  </h5>
+					
+						<div class="testimonial-autor">
+							<h4>新北市 林先生 餐飲業</h4>
+						</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="span4 aligncenter">
+					  <h4>實例見證4:</h4>
+					  <h5>
+					  	從買房要準備多少現金，<br>
+					  	到諮詢各家銀行房貸條件，<br>
+					  	一天內就得到回覆，<br>
+					  	最終也順利買到房子，<br>
+					  	我會推薦要買房朋友也來申請服務。<br>
+					  </h5>
+					
+					<div class="testimonial-autor">
+						<h4>
+							台中市 簡先生 科技業<br>
+						</h4>
+					</div>
+				</div>
+
+				<div class="span4 aligncenter">
+				
+						<h4>實例見證5:</h4>
+			  		<h5>
+					  	這個月急需要用錢，<br>
+					  	本來想找代辦，<br>
+					  	又覺得代辦收費太高，<br>
+					  	朋友推薦了這個網站，<br>
+					  	雖然貸款金額比預期少了一些，<br>
+					  	還是很高興渡過了難關。<br>
+					  </h5>
+					
+						<div class="testimonial-autor">
+							<h4>台北市 李小姐 自由業</h4>
+						</div>
+				</div>
+
+				<div class="span4 aligncenter">
+				
+					 	<h4>實例見證6:</h4>
+					  <h5>
+					  	哈，看到免費諮詢就申請了，<br>
+					  	媒合的專員服務也很好，<br>
+					  	耐心解答我許多問題，<br>
+					  	媒合費2千不算貴，<br>
+					  	整體服務給90分，<br>
+					  	But下次要給我打折！！<br>
+					  </h5>
+					
+						<div class="testimonial-autor">
+							<h4>新北市 吳小姐 網路業</h4>
+						</div>
+				</div>
+
+			</div>
+
+
+			<!-- <div class="row" style="margin-bottom: 0px">
 				<div class="span12">
 					<div class="cta-box" style="background: #F5FAFF">
 						<div class="row">
 							<div class="span7">
 								<div class="cta-text">
-									<h2>立即 <span>免費</span> 申請諮詢，核貸才收費
-										<%= link_to pricing_path, :class => "btn btn-warning" do %>
-											了解更多 <i class="icon-angle-right"></i>
-										<% end %>
+									<h2>立即 <span>免費</span> 申請諮詢
 									</h2>
 								</div>
 							</div>
@@ -151,60 +322,7 @@
 						</div>
 					</div>
 				</div>	
-			</div>
-
-			<div class="row">
-				<div class="span6 aligncenter">
-					<h2>貸款知識家</h2>
-					<hr>
-					<div class="service-box" style="height:250px">
-						<h5 style="text-align:left;margin:0 10px">Q: 我買的房子為什麼沒有銀行願意承作貸款?</h5>
-						<hr style="margin:10px 10px">
-						<pre style="height:100px; margin:10px 10px;font-size:17px;padding:10px;text-align:left">每家銀行承作房貸條件不同，例如：房屋位於偏遠的地區，或估價太低、坪數太小、登記為工業用及商業用途等，都會有影響。</pre>
-						<%= link_to "更多貸款知識", knowledges_path, :class => "btn btn-medium btn-info" %>
-					</div>		
-				</div>
-				<div class="span6">
-					<h2>最新消息</h2>
-					<hr>
-						
-					<% RecentNews.last(8).reverse.each do |news| %>	
-						<p class="ellipsis" >
-							<span style="font-weight: bold"><%= news.date_string %></span> 
-							<%= link_to news.title, news.link, :target=>"_blank" %>
-						</p>
-					<% end %>
-				</div>
-			</div>
-
-
-			<div class="row">
-				<div class="span12 aligncenter">
-					<hr />
-
-					<h3 class="title"><strong>用過的朋友都怎麼說？</strong></h3>
-					<div class="blankline20"></div>
-
-					<ul class="bxslider">
-						<li>
-							<blockquote>
-							  <h3>比仲介提供的貸款條件更好<br />重點是不花一分錢就可以體驗這服務！</h3>
-							</blockquote>
-							<div class="testimonial-autor">
-								<h3>新北市 吳小姐</h3>
-							</div>
-						</li>
-						<li>
-							<blockquote>
-							  <h3>不用再一個個打電話講一樣的事情<br />真的很輕鬆！</h3>
-							</blockquote>
-							<div class="testimonial-autor">
-								<h3>台北市 陳先生</h3>
-							</div>
-						</li>					
-					</ul>
-				</div>			
-			</div>
+			</div> -->
 
 			<div class="row">
 				<div class="span12">
