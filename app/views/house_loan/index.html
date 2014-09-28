@@ -53,7 +53,7 @@
 				<div class="span6">
 					<h2>貸款教室</h2>
 					<hr>
-					<% RecentNews.last(3).reverse.each do |news| %>	
+					<% RecentPost.last(3).reverse.each do |news| %>	
 						<p class="ellipsis" >
 							<span style="font-weight: bold"><%= news.date_string %></span> 
 							<%= link_to news.title, news.link, :target=>"_blank" %>
