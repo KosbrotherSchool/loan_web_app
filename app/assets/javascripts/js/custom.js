@@ -71,16 +71,16 @@ jQuery(document).ready(function($) {
 
     }		
 	
-		$(".box").hover(
-			function () {
-			$(this).find('.ico').addClass("animated rotateIn");
-			$(this).find('h4').addClass("animated fadeInUp");
-			},
-			function () {
-			$(this).find('.ico').removeClass("animated rotateIn");
-			$(this).find('h4').removeClass("animated fadeInUp");
-			}
-		);
+		// $(".box").hover(
+		// 	function () {
+		// 	$(this).find('.ico').addClass("animated rotateIn");
+		// 	$(this).find('h4').addClass("animated fadeInUp");
+		// 	},
+		// 	function () {
+		// 	$(this).find('.ico').removeClass("animated rotateIn");
+		// 	$(this).find('h4').removeClass("animated fadeInUp");
+		// 	}
+		// );
 		
 		$('.accordion').on('show', function (e) {
 		
@@ -96,17 +96,17 @@ jQuery(document).ready(function($) {
 		});	
 
 	// testimonial
-	var TestiSlide = $('.bxslider');
-	TestiSlide.bxSlider({
-		auto: true,
-		pager: false,
-		controls: false,
-		useCSS: false,
-		speed: 2000,
-		easing: 'easeOutElastic',
-		mode: 'horizontal',
-		controlDirections:true
-	});
+	// var TestiSlide = $('.bxslider');
+	// TestiSlide.bxSlider({
+	// 	auto: true,
+	// 	pager: false,
+	// 	controls: false,
+	// 	useCSS: false,
+	// 	speed: 2000,
+	// 	easing: 'easeOutElastic',
+	// 	mode: 'horizontal',
+	// 	controlDirections:true
+	// });
 
 		//prettyphoto
 		$("a[data-pretty^='prettyPhoto']").prettyPhoto();		
