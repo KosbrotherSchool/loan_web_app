@@ -45,7 +45,7 @@
 					<% RecentNews.last(3).reverse.each do |news| %>	
 						<p class="ellipsis" >
 							<span style="font-weight: bold"><%= news.date_string %></span> 
-							<%= link_to news.title, news.link, :target=>"_blank" %>
+							<%= link_to news.title, news.link %>
 						</p>
 					<% end %>
 				</div>
@@ -56,7 +56,7 @@
 					<% RecentPost.last(3).reverse.each do |news| %>	
 						<p class="ellipsis" >
 							<span style="font-weight: bold"><%= news.date_string %></span> 
-							<%= link_to news.title, news.link, :target=>"_blank" %>
+							<%= link_to news.title, news.link %>
 						</p>
 					<% end %>	
 				</div>
