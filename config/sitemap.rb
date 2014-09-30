@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sitemap_generator'
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://www.ezbank.com"
+SitemapGenerator::Sitemap.default_host = "http://www.ezbank.com.tw"
 
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.
