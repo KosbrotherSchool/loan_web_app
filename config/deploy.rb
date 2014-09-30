@@ -45,6 +45,16 @@ namespace :deploy do
   end
 end
 
+# recipes/sitemap.rb
+  namespace :sitemap do
+    desc "Generate sitemap.xml.gz"
+    task :generate, roles: :web do
+    run "cd #{deploy_to}/current && /usr/bin/env bundle exec rake sitemap:refresh RAILS_ENV=#{rails_env}"
+  end
+  after "deploy:restart", "sitemap:generate"
+  
+end
+
 before "deploy:assets:precompile", "deploy:copy_config_files" # 如果將database.yml放在shared下，請打開
 after "deploy:update_code", "deploy:copy_config_files" # 如果將database.yml放在shared下，請打開
 # after "deploy:finalize_update", "deploy:update_symlink" # 如果有實作使用者上傳檔案到public/system，請打開

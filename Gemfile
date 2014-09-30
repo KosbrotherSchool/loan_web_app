@@ -72,4 +72,4 @@ gem 'friendly_id', '~> 5.0.0'
 
 gem "figaro"
 
-gem "sitemap_generator"
+gem "sitemap_generator", '4.3.0'
