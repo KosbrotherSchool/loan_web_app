@@ -71,3 +71,5 @@ end
 gem 'friendly_id', '~> 5.0.0'
 
 gem "figaro"
+
+gem "sitemap_generator"
