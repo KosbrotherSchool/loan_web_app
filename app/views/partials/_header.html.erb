@@ -40,7 +40,7 @@
 	<div class="top">
 		<div class="container">
 			<p style="color: white;margin-bottom: 0px;font-size:15px; color:white">
-				您好, 歡迎來到EZBANK! 目前有 32 位合作專員
+				您好, 歡迎來到估屋網! 目前有 32 位合作專員
 				<span style="float:right;">
 					<% if current_user_lender == nil %>
 						[
@@ -76,22 +76,22 @@
 	<div class="container">
 
 		<div class="row-fluid nomargin">
-			<div class="span4">
+			<div class="span6">
 				<div class="logo">
 					<%= link_to(root_path) do %>
-						 <div class="logo">
-						 	ez<span>Bank</span>
+						 <div class="logo" style="float: none;">
+						 	<%= image_tag("logo3.png", :style => "margin-bottom:0px") %>
 						 </div>
 					<% end %>	
 					<br>	
-					<p style="font-size:18px;margin-top:3px">立即為您媒合最佳的銀行方案</p>				
+					<p style="font-size:18px;margin-top:-30px">多家銀行，快速估價，24小時回覆</p>				
 				</div>
 							
 		  </div>
 			<!-- <div class="span2">
 				<div class="fb-like" data-href="https://www.facebook.com/ezbank.com.tw" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
 			</div> -->
-		<div class="span8">
+		<div class="span6">
 			<div class="navbar navbar-static-top">
 				<div class="navigation">
 					<nav>
@@ -111,7 +111,7 @@
 							<% else %>
 								<li>
 							<% end %>
-								<%= link_to "申請貸款諮詢", apply_case_path %>
+								<%= link_to "申請估價", apply_case_path %>
 							</li>	
 
 							<% if action_name == "knowledges" %>
@@ -119,7 +119,7 @@
 							<% else %>
 								<li>
 							<% end %>
-								<%= link_to "貸款知識家", knowledges_path %>
+								<%= link_to "房貸知識家", knowledge_home_loan_knowledge_path %>
 							</li>	
 
 							<% if action_name == "banks_list" %>
