@@ -37,7 +37,8 @@ class HouseLoanController < ApplicationController
 		if params[:msg] == 'success'
 			
 		else
-			@case = SimpleCase.new
+			# @case = SimpleCase.new
+			@access = Access.new
 		end
 	end
 

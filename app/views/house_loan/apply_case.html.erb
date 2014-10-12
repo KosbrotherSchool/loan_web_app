@@ -61,99 +61,79 @@
 		<div class="container">
 			<div class="row">
 				<div class="span9">
-				<% if @case.present? %>				
-				  <h4>詳細填寫需求，專員才能提供最精準的評估！</h4>
+				<% if @access.present? %>				
+				  <h4>
+				  	<span style="color:#e96b56">房屋位址</span>務必準確填寫，銀行估價須調取<span style="color:#e96b56">建物謄本</span>，借此得知房屋的各樣資訊！建物謄本記載房屋建造以來的資訊，是估價所需成本之一。
+				  </h4>
 				  <h5><span class="text-error">*</span> 星記號為必填</h5>
 
-				 	<% if @case.errors.any? %>
+				 	<% if @access.errors.any? %>
 				 		<div style="border-width:3px;border-style:dashed;border-color:#FFAC55;padding:5px; margin-bottom:30px">
 								<h2>資料填寫不完整: </h2>
 								<ul>
-									<% @case.errors.full_messages.each do |message|%>
+									<% @access.errors.full_messages.each do |message|%>
 										<li><%= message %></li>
 									<% end %>
 								</ul>
 						</div>
 					<% end %>
 				  
-				  <%= form_for @case, :url => case_create_path  , html: {class: "form-horizontal"} do |f| %>
+				  <%= form_for @access, :url => case_create_path  , html: {class: "form-horizontal"} do |f| %>
 
 				  <div class="row-fluid">
 
 
 				  	<div class="control-group">
+					      <label class="control-label" for="">房屋位址<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :address, :placeholder => "ex：台中市美村路一段45號5樓之2", :style => "width:300px"%>
+					      </div>
+					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label" for="">屋齡<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :building_age, :placeholder => ""%>
+					      </div>
+					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label" for="">建築類型<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.select(:building_type, ['公寓', '電梯大樓','套房','透天'], {}, { :class => 'span3' }) %>
+					      </div>
+					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label" for="">格局<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.select(:rooms, [['請選擇',nil],'1', '2','3','4','5','6','7','8','9'], {}, { :class => 'span3' }) %>
+								  房  
+								  <%= f.select(:living_rooms, [['請選擇',nil],'1', '2','3','4','5','6','7','8','9'], {}, { :class => 'span3' }) %>
+								  廳 
+								  <%= f.select(:rest_rooms, [['請選擇',nil],'1', '2','3','4','5','6','7','8','9'], {}, { :class => 'span3' }) %>衛 
+					      </div>
+					  </div>
+
+					  <div class="control-group">
+					      <label class="control-label" for="">建物權狀坪數<span class="text-error">*</span><br /></label>
+					      <div class="controls">
+					      	<%= f.text_field :building_area, :placeholder => "", :class => "input-small"%>
+						  		坪
+					      </div>
+					  </div>
+
+				  	<div class="control-group">
 					      <label class="control-label" for="">您的稱呼<span class="text-error">*</span><br /></label>
 					      <div class="controls">
-					      	<%= f.text_field :name, :placeholder => "如：林先生、陳小姐"%>
-					      </div>
-					  </div>
-
-					  <div class="control-group">
-					      <label class="control-label" for="">年齡<span class="text-error">*</span><br /></label>
-					      <div class="controls">
-					      	<%= f.text_field :age, :placeholder => "", :class => "input-small"%>
-						  		歲
-					      </div>
-					  </div>
-				
-					  <div class="control-group">
-					      <label class="control-label" for="">預計貸款金額<span class="text-error">*</span><br /></label>
-					      <div class="controls">
-					      <%= f.text_field :loan_money,  :class => "input-small"%>
-						  	萬
-					      </div>
-					  </div>
-
-					  <div class="control-group">
-					      <label class="control-label" for="">用途<span class="text-error">*</span><br /></label>
-					      <div class="controls">
-								  <label class="radio">
-								  		<%= radio_button_tag("simple_case[usage]", "信貸",checked = true) %>
-								      信貸
-								  </label>
-								  <label class="radio">
-								  		<%= radio_button_tag("simple_case[usage]", "房貸或轉增貸") %>
-								      房貸或轉增貸
-								  </label>
-								  <label class="radio">
-								      <%= radio_button_tag("simple_case[usage]", "其他") %>
-								      其他
-								  </label>  
-					      </div>
-					  </div>  
-			  
-					  <div class="control-group">
-					      <label class="control-label">是否有負債<span class="text-error">*</span></label>
-					      <div class="controls">
-							  <label class="radio">
-							      <%= radio_button_tag("simple_case[is_in_debt]", "false", checked = true ) %>
-							      無
-							  </label>
-							  <label class="radio">
-							      <%= radio_button_tag("simple_case[is_in_debt]","true") %>
-							      有
-							  </label>
-					      </div>
-					  </div>
-
-					  <div class="control-group">
-					      <label class="control-label">是否有使用信用卡<span class="text-error">*</span></label>
-					      <div class="controls">
-							  <label class="radio">
-							      <%= radio_button_tag("simple_case[is_using_card]", "true", checked = true ) %>
-							      有
-							  </label>
-							  <label class="radio">
-							      <%= radio_button_tag("simple_case[is_using_card]","false") %>
-							      無
-							  </label>
+					      	<%= f.text_field :applicant_name, :placeholder => "如：林先生、陳小姐"%>
 					      </div>
 					  </div>
 
 					  <div class="control-group">
 					      <label class="control-label" for="">聯絡的<span style="color:#0FDB46">LINE</span>ID<span class="text-error">*</span><span class="text-error"></span><br /></label>
 					      <div class="controls">
-					      	<%= f.text_field :line_id, :placeholder => "請填 LINE ID 或 電話"%>
+					      	<%= f.text_field :applicant_line_id_or_phone, :placeholder => "請填 LINE ID 或 電話"%>
 					      </div>
 					  </div>
 
@@ -161,7 +141,7 @@
 					  <div class="control-group">
 					      <label class="control-label">特殊需求與說明：</label>
 					      <div class="controls">
-					      	<%= f.text_area :other_info, :placeholder => "如有特別需求,可加以說明", :style=> "width:95%; height:100px"%>
+					      	<%= f.text_area :other_info, :placeholder => "如果想一併知道貸款成數，請大致填寫您的工作狀況，包括：公司，年資，以及年收入。", :style=> "width:95%; height:100px"%>
 					      </div>
 					  </div>
 
