@@ -37,15 +37,15 @@ class HouseLoanController < ApplicationController
 		if params[:msg] == 'success'
 			
 		else
-			# @case = SimpleCase.new
 			@access = Access.new
 		end
 	end
 
 	def case_create
-		@case = SimpleCase.new(case_params)
+		@access = Access.new(access_params)
 
-    if @case.save
+    if @access.save
+    	AccessInformManagerMailer.delay.mail_content(@access.id)
       redirect_to :controller => 'house_loan', :action => 'apply_case', :msg => 'success'
     else
       render :apply_case
@@ -59,8 +59,8 @@ class HouseLoanController < ApplicationController
       str == 'true'
   end
 
-	def case_params
-		params.require(:simple_case).permit(:name, :line_id, :age, :loan_money, :usage, :is_in_debt, :is_using_card, :other_info)
+	def access_params
+		params.require(:access).permit(:address, :building_age, :building_type, :rooms, :living_rooms, :rest_rooms, :building_area, :applicant_name, :applicant_line_id_or_phone, :other_info)
 	end
 
 end
