@@ -8,6 +8,6 @@ class AccessInformManagerMailer < ActionMailer::Base
   #
   def mail_content(access_id)
     @access = Access.find(access_id)
-    mail to: "kosbrotherschool@gmail.com", subject: "新估價案件"
+    mail to: "service@goodwoo.com.tw", subject: "新估價案件"
   end
 end
