@@ -139,16 +139,16 @@
 							</div>
 
 							<div class="span9" style="margin-left:0px">
-								<form> 
-									<div class="cta-text" style="padding-top:10px; ">
+								<div class="cta-text" style="padding-top:10px; ">
+									<%= form_tag "/apply-case" do %>
 										<div class="span5">
-											<input class="span6 input-large" type="text" placeholder="請輸入地址" style="padding:18px 10px;font-size: 20px;">
-										</div>
-										<div class="span3">
-											<button class="btn btn-theme btn-large" type="submit">確定</button>
-										</div>	
-									</div> 
-								</form>	
+									  	<%= text_field_tag "address", "", :class => "span6 input-large", :style=>"padding:18px 10px;font-size: 20px;", :placeholder => "請輸入地址"  %>
+									  </div>
+									  <div class="span3">
+									  	<%= submit_tag "確定",:class=>"btn btn-theme btn-large" %>
+									  </div>	
+									<% end %>
+								</div> 
 							</div>							
 						
 						</div>

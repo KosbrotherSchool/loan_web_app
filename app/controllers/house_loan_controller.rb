@@ -33,11 +33,14 @@ class HouseLoanController < ApplicationController
 	def lender_response
 	end
 
-	def apply_case	
+	def apply_case
 		if params[:msg] == 'success'
 			
 		else
 			@access = Access.new
+			if params[:address] != nil
+				@access.address = params[:address]
+			end
 		end
 	end
 
