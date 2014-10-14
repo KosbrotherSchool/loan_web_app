@@ -41,7 +41,7 @@
 		<div class="container">
 			<p style="color: white;margin-bottom: 0px;font-size:15px; color:white">
 				您好, 歡迎來到估屋網! 目前有 32 位合作專員
-				<span style="float:right;">
+				<!-- <span style="float:right;">
 					<% if current_user_lender == nil %>
 						[
 						<%= link_to root_path+"user_lenders/sign_up", :style => "color:white;font-size:15px" do %>
@@ -69,7 +69,7 @@
 								<%= link_to "登出", root_path+"user_lenders/sign_out", :style => "color:white;font-size:15px" %>						
 							]	
 					<% end %>
-				</span>
+				</span> -->
 			</p>
 		</div>
 	</div>	
@@ -111,7 +111,7 @@
 							<% else %>
 								<li>
 							<% end %>
-								<%= link_to "申請估價", apply_case_path %>
+								<%= link_to "申請快速估價", apply_case_path %>
 							</li>	
 
 							<% if action_name == "knowledges" %>
