@@ -168,5 +168,14 @@ en:
         name: ""
         line_id: ""
         loan_money: ""
+      access:
+        address: ""
+        rooms: ""
+        living_rooms: ""
+        rest_rooms: ""
+        building_age: ""
+        building_area: ""
+        applicant_name: ""
+        applicant_line_id_or_phone: ""
 
 
