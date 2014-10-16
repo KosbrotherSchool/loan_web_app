@@ -117,6 +117,19 @@
 
 			</div>
 
+			<h1>估價案件:</h1>
+			<% Access.all.each do |access| %>
+			<br>
+				<p>位址: <%= access.address %></p>
+				<p>屋齡： <%= access.building_age %> 年（填0為新成屋)</p>
+				<p>房屋形態: <%= access.building_type %></p>
+				<p>格局： <%= access.rooms %> 房/ <%= access.living_rooms %> 廳/ <%= access.rest_rooms %> 衛</p>
+				<p>建物權狀坪數: <%= access.building_area %> 坪</p>
+				<p>稱呼: <%= access.applicant_name %></p>
+				<p>LINE: <%= access.applicant_line_id_or_phone %></p>
+				<p>其他說明: <%= access.other_info %></p>
+			<% end %>
+
 
 			<!-- divider -->
 			<div class="row">
