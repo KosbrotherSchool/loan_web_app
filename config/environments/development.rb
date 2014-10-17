@@ -46,5 +46,9 @@ Rails.application.configure do
   }
   
   Paperclip.options[:command_path] = "/usr/local/bin/"
+
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.integration_mode = :development
+  end
   
 end

@@ -73,3 +73,6 @@ gem 'friendly_id', '~> 5.0.0'
 gem "figaro"
 
 gem "sitemap_generator", '4.3.0'
+
+gem 'activemerchant', "~> 1.43.3"
+gem 'active_merchant_allpay', '>=0.1.2'
